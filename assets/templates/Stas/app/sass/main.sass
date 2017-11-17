@@ -1,0 +1,227 @@
+@import "fonts"
+@import "vars"
+@import "mixins/mixins"
+@import "mixins/mixin"
+
+*::-webkit-input-placeholder
+	color: #666
+	opacity: 1
+
+*:-moz-placeholder
+	color: #666
+	opacity: 1
+
+*::-moz-placeholder
+	color: #666
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: #666
+	opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+	color: rgba(0,0,0,.25)
+	border-color: rgba(0,0,0,.25)
+
+html, body
+	height: 100%
+	z-index: 0
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.75
+	font-family: $default-font
+	overflow-x: hidden
+
+.list-inline
+	height: 71px
+	line-height: 71px
+	@include margin(0, bottom)
+header
+	position: fixed
+	top: 0
+	left: 0
+	right: 0
+	height: 71px	
+	background-color: $main-color
+	.Logo
+		width: 210px
+		line-height: 71px
+		font-size: 22px
+		text-transform: uppercase
+		color: $white
+		.fa
+			margin: 
+				left: 20px
+				right: 20px
+.mm-navbar
+	img
+		height: 19px
+
+section#one, section#two, section#three, section#four, section#five 
+	min-height: 800px
+section
+	&.headerdiv
+		padding-top: 71px
+	&.main-login
+		@include border (1px, $white, 'top-bottom')
+		background-color: $main-color
+		z-index: 0
+		button
+			width: 70px
+			font-size: 16px
+		p
+			color: $white
+		span
+			color: $white
+			@include margin(20px, right)
+			font-size: 12px
+			& a
+				color: $white
+		.loginRegister
+			position: relative
+			top: -14px
+		.loginLoginFieldset
+			float: right
+			.forg	
+				float: right
+				line-height: 39px
+			span
+				@include margin(0, right)
+				@include margin(10px, left)
+		.loginUsernameLabel, .loginPasswordLabel, .loginLoginButton
+			@include margin(3px, top)
+
+	&.forgot
+		@include border (1px, $white, 'top-bottom')
+		.loginFP
+			min-width: 300px
+			max-width: 700px
+			@include margin(30px, top-bottom)
+			@include margin(auto, right-left)
+			label
+				display: block
+			input
+				width: 80%
+				@include padding(10px, left)
+				@include margin(3px, top)
+				font-size: 13px
+			p
+				text-align: center
+				@include margin(30px, top)
+			.loginFPLegend
+				text-align: center
+				font-size: 16px
+			.loginFPFieldset
+				text-align: center
+				span.loginFPButton input
+					width: 300px
+					@include margin(30px, top-bottom)
+					@include margin(auto, right-left)
+					color: $dgreen
+
+	&.reg
+		.register
+			min-width: 300px
+			max-width: 700px
+			@include margin(30px, top-bottom)
+			@include margin(auto, right-left)
+			label
+				display: block
+				margin: 20px 0 3px 30px
+				font-size: 13px
+			input
+				width: 80%
+				@include margin(0, top-bottom)
+				@include margin(30px, right-left)
+				@include padding(10px, left)
+				font-size: 13px
+				color: $dgreen  
+			.sub
+				@include margin(30px, top)
+		h3
+			text-align: center
+
+	&.search-all
+		@include border (1px, $white, 'top-bottom')
+		color: $white
+		background-color: $main-color
+		.sisea-search-form
+			@include padding(5px, top-bottom)
+			@include padding(0, right-left)
+			.fa
+				@include margin(10px, right)
+		.sisea-result a
+			color: $orange
+				
+	&.search
+		@include border (1px, $white, 'top-bottom')
+		.sisea-search-form
+			@include padding(5px, top-bottom)
+			@include padding(0, right-left)
+			.fa
+				@include margin(10px, right)
+			
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+  margin: 0
+  padding: 0
+  border: 0
+  font-size: 100%
+  vertical-align: baseline
+
+// HTML5 display-role reset for older browsers
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+  display: block
+
+
+ol, ul
+  list-style: none
+
+blockquote, q
+  quotes: none
+
+blockquote
+  &:before, &:after
+    content: ''
+    content: none
+
+q
+  &:before, &:after
+    content: ''
+    content: none
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+.clearfix
+	clear: both
+input
+	position: relative
+	opacity: .99
+#upbutton 
+	height: 39px
+	width: 120px
+	bottom: 80px
+	right: -40px
+	z-index: z('upbutton')
+	background-color: $pgrey
+	cursor: pointer
+	display: none
+	position: fixed
+	z-index: 20000 
+	color: $accent
+	opacity: 1
+	span
+		@include margin(10px, left)
+		font-size: 22px
+	.fa
+		@include margin(12px, left)
+		font-size: 20px
+	@include border-radius(8px, 'right-left-top')	
+	@include transform-rotate(-90deg)
+
+@import "media" 

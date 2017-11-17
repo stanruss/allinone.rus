@@ -1,0 +1,95 @@
+@import "vars"
+
+
+
+
+@media (min-width : 992px) and (max-width : 1200px)
+	/**/
+
+
+
+@media (min-width : 768px) and (max-width : 991px)
+	/**/
+
+@media (min-width : 240px) and (max-width : 767px)
+	html
+		header
+			position: relative
+			top: 0
+		.hamburger
+			position: relative
+			top: 8px
+		.Logo
+			float: right
+
+@media only screen and (max-width : 480px)
+	.animated
+			animation: none
+
+@media only screen and (max-width : 320px)
+	/**/
+
+
+/*==========  Mobile First  ==========*/
+
+
+@media only screen and (min-width : 320px)
+	/**/
+
+
+
+@media only screen and (min-width : 480px)
+	/**/
+
+
+
+@media only screen and (min-width : 768px)
+	html
+		#my-content
+			margin-top: 71px
+
+		#my-menu
+			display: block
+			position: fixed
+			height: 71px
+			left: 210px
+			z-index: 20
+			.mm-navbar
+				display: none
+			.mm-listview
+				
+				height: 71px
+				line-height: 51px
+				margin: 0
+				position: fixed
+				top: 0
+				li
+					display: inline-block
+					width: 104px
+					text-align: center
+					color: $white
+					&.active
+						background: rgba(0,0,0, .1)
+					&:hover
+						background: rgba(0,0,0, .1)
+		.mm-listview>li>a, .mm-listview>li>span
+			padding-left: 10px
+		
+		.mm-menu.mm-theme-white
+			background-color: $main-color
+		.mm-panels, .mm-panels>.mm-panel
+			position: fixed
+			
+			left: 210px
+			height: 71px
+		.mm-panels>.mm-panel.mm-hasnavbar
+			padding: 0
+@media only screen and (min-width : 992px)
+	/**/
+
+
+
+@media only screen and (min-width : 1200px)
+	/**/
+@media (min-width : 240px) and (max-width : 991px)
+	/**/

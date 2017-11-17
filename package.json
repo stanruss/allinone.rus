@@ -1,0 +1,30 @@
+{
+  "name": "newtemp.rus",
+  "version": "1.0.0",
+  "description": "Мой сайт",
+  "main": "index.js",
+  "devDependencies": {
+    "bower": "^1.8.2",
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-notify": "^3.0.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "postcss-assets": "^5.0.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-nested": "^2.1.2",
+    "postcss-short": "^4.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stanruss/newtemp.rus.git"
+  },
+  "author": "Stanruss",
+  "license": "ISC"
+}
