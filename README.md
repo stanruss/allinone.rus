@@ -1,3 +1,3 @@
  # allinone.rus
 
- Menu done <br>
+ Готовое меню
