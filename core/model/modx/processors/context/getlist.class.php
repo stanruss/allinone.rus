@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Grabs a list of contexts.
  *
@@ -20,18 +29,30 @@ class modContextGetListProcessor extends modObjectGetListProcessor {
     public $canEdit = false;
     /** @var boolean $canRemove Determines whether or not the user can remove a Context */
     public $canRemove = false;
+    /** @var boolean $canCreate Determines whether or not the user can create a context (/duplicate one) */
+    public $canCreate = false;
 
+    /**
+     * {@inheritDoc}
+     * @return boolean
+     */
     public function initialize() {
         $initialized = parent::initialize();
         $this->setDefaultProperties(array(
             'search' => '',
             'exclude' => '',
         ));
+        $this->canCreate = $this->modx->hasPermission('new_context');
         $this->canEdit = $this->modx->hasPermission('edit_context');
         $this->canRemove = $this->modx->hasPermission('delete_context');
         return $initialized;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param xPDOQuery $c
+     * @return xPDOQuery
+     */
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $search = $this->getProperty('search');
         if (!empty($search)) {
@@ -50,17 +71,31 @@ class modContextGetListProcessor extends modObjectGetListProcessor {
     }
 
     /**
+     * Filter the query by the valueField of MODx.combo.Context to get the initially value displayed right
+     * @param xPDOQuery $c
+     * @return xPDOQuery
+     */
+    public function prepareQueryAfterCount(xPDOQuery $c) {
+        $key = $this->getProperty('key','');
+        if (!empty($key)) {
+            $c->where(array(
+                $this->classKey . '.key:IN' => is_string($key) ? explode(',', $key) : $key,
+            ));
+        }
+        return $c;
+    }
+
+    /**
      * {@inheritDoc}
      * @param xPDOObject $object
      * @return array
      */
     public function prepareRow(xPDOObject $object) {
         $contextArray = $object->toArray();
-        if (!empty($contextArray['name'])) {
-            $contextArray['name'] .= ' ';
-        }
-        $contextArray['name'] .= "({$contextArray['key']})";
         $contextArray['perm'] = array();
+        if ($this->canCreate) {
+            $contextArray['perm'][] = 'pnew';
+        }
         if ($this->canEdit) {
             $contextArray['perm'][] = 'pedit';
         }

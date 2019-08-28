@@ -49,6 +49,16 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                 wn.expand();
             }
         } else {
+            // If we have disabled context sort, make sure dragging and dropping is disabled on the root elements
+            // in the tree. This corresponds to the context nodes.
+            if (MODx.config.context_tree_sort !== '1') {
+                if (typeof(this.root) !== 'undefined' && typeof(this.root.childNodes) !== 'undefined') {
+                    for (var i = 0; i < this.root.childNodes.length; i++) {
+                        this.root.childNodes[i].draggable = false;
+                    }
+                }
+            }
+
             for (var i=0;i<treeState.length;i++) {
                 this.expandPath(treeState[i]);
             }
@@ -123,7 +133,8 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
     ,duplicateResource: function(item,e) {
         var node = this.cm.activeNode;
         var id = node.id.split('_');id = id[1];
-        
+        var name = node.ui.textNode.innerText;
+
         var r = {
             resource: id
             ,is_folder: node.getUI().hasClass('folder')
@@ -131,6 +142,7 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
         var w = MODx.load({
             xtype: 'modx-window-resource-duplicate'
             ,resource: id
+            ,pagetitle: name
             ,hasChildren: node.attributes.hasChildren
             ,childCount: node.attributes.childCount
             ,listeners: {
@@ -178,11 +190,11 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
             ,listeners: {
                 'success': {fn:function() {
 	            	var cmp = Ext.getCmp('modx-grid-context');
-	            	
+
 	            	if (cmp) {
 		            	cmp.refresh();
-	            	} 
-	            	
+	            	}
+
 	                this.refresh();
 	            },scope:this}
             }
@@ -196,8 +208,9 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
     ,deleteDocument: function(itm,e) {
         var node = this.cm.activeNode;
         var id = node.id.split('_');id = id[1];
+        var pagetitle = node.ui.textNode.innerText;
         MODx.msg.confirm({
-            title: _('resource_delete')
+            title: pagetitle ? _('resource_delete') + ' ' + pagetitle : _('resource_delete')
             ,text: _('resource_delete_confirm')
             ,url: MODx.config.connector_url
             ,params: {
@@ -214,7 +227,7 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                             trashButton.enable();
                         }
 
-                        trashButton.setTooltip(_('empty_recycle_bin') + ' (' + data.object.deletedCount + ')');
+                        trashButton.setTooltip(_('trash.manage_recycle_bin_tooltip', {count: data.object.deletedCount}));
                     }
 
                     var n = this.cm.activeNode;
@@ -224,6 +237,13 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                     n.cascade(function(nd) {
                         nd.getUI().addClass('deleted');
                     },this);
+
+                    // refresh the trash manager if possible
+                    var trashlist = Ext.getCmp('modx-trash-resources');
+                    if (trashlist) {
+                        trashlist.refresh();
+                    }
+
                     Ext.get(ui.getEl()).frame();
                 },scope:this}
             }
@@ -249,7 +269,7 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                             trashButton.enable();
                         }
 
-                        trashButton.setTooltip(_('empty_recycle_bin') + ' (' + data.object.deletedCount + ')');
+                        trashButton.setTooltip(_('trash.manage_recycle_bin_tooltip', {count: data.object.deletedCount}));
                     }
 
                     var n = this.cm.activeNode;
@@ -259,6 +279,13 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                     n.cascade(function(nd) {
                         nd.getUI().removeClass('deleted');
                     },this);
+
+                    // refresh the trash manager if possible
+                    var trashlist = Ext.getCmp('modx-trash-resources');
+                    if (trashlist) {
+                        trashlist.refresh();
+                    }
+
                     Ext.get(ui.getEl()).frame();
                 },scope:this}
             }
@@ -302,30 +329,6 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                     var ui = this.cm.activeNode.getUI();
                     ui.addClass('unpublished');
                     Ext.get(ui.getEl()).frame();
-                },scope:this}
-            }
-        });
-    }
-
-    ,emptyRecycleBin: function() {
-        MODx.msg.confirm({
-            title: _('empty_recycle_bin')
-            ,text: _('empty_recycle_bin_confirm')
-            ,url: MODx.config.connector_url
-            ,params: {
-                action: 'resource/emptyRecycleBin'
-            }
-            ,listeners: {
-                'success':{fn:function() {
-                    Ext.select('div.deleted',this.getRootNode()).remove();
-                    MODx.msg.status({
-                        title: _('success')
-                        ,message: _('empty_recycle_bin_emptied')
-                    });
-                    var trashButton = this.getTopToolbar().findById('emptifier');
-					trashButton.disable();
-					trashButton.setTooltip(_('empty_recycle_bin') + ' (0)');
-                    this.fireEvent('emptyTrash');
                 },scope:this}
             }
         });
@@ -452,7 +455,7 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
             ,listeners: {
                 'success':{
                     fn: function() {
-                        this.refreshNode(this.cm.activeNode.id, true);
+                        this.refreshNode(this.cm.activeNode.id, this.cm.activeNode.childNodes.length > 0);
                     }
                     ,scope: this}
                 ,'hide':{fn:function() {this.destroy();}}
@@ -471,6 +474,7 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
             ,params: {
                 action: 'resource/get'
                 ,id: this.cm.activeNode.attributes.pk
+                ,skipFormatDates: true
             }
             ,listeners: {
                 'success': {fn:function(r) {
@@ -489,7 +493,7 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
                             ,'hide':{fn:function() {this.destroy();}}
                         }
                     });
-                    w.title += ': <span dir="ltr">' + w.record.pagetitle + ' ('+ w.record.id + ')</span>';
+                    w.title += ': <span dir="ltr">' + Ext.util.Format.htmlEncode(w.record.pagetitle) + ' ('+ w.record.id + ')</span>';
                     w.setValues(r.object);
                     w.show(e.target,function() {
                         Ext.isSafari ? w.setPosition(null,30) : w.center();
@@ -824,6 +828,20 @@ Ext.extend(MODx.tree.Resource,MODx.tree.Tree,{
         };
 
         this.createResourceHere(itm);
+    }
+
+    ,handleDirectCreateClick: function(node){
+        this.cm.activeNode = node;
+        this.createResourceHere({
+            classKey: 'modDocument'
+        });
+    }
+
+    /**
+     * Renders the item text without any special formatting. The resource/getnodes processor already protects against XSS.
+     */
+    ,renderItemText: function(item) {
+        return item.text;
     }
 });
 Ext.reg('modx-tree-resource',MODx.tree.Resource);
@@ -1271,6 +1289,15 @@ MODx.getQRSettings = function(id,va) {
                 ,id: 'modx-'+id+'-deleted'
                 ,inputValue: 1
                 ,checked: va['deleted'] != undefined ? va['deleted'] : 0
+            },{
+                xtype: 'xcheckbox'
+                ,boxLabel: _('resource_alias_visible')
+                ,description: _('resource_alias_visible_help')
+                ,hideLabel: true
+                ,name: 'alias_visible'
+                ,id: 'modx-'+id+'-alias-visible'
+                ,inputValue: 1
+                ,checked: va['alias_visible'] != undefined ? va['alias_visible'] : 1
             },{
                 xtype: 'xcheckbox'
                 ,boxLabel: _('resource_uri_override')

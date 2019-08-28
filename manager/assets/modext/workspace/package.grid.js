@@ -24,6 +24,11 @@ MODx.grid.Package = function(config) {
 				+'</tpl>'
 			+'</ul>'
 		+'</tpl>'
+		+'<tpl if="message !== null">'
+            +'<tpl for="message">'
+                +'<div class="{className}">{text}</div>'
+            +'</tpl>'
+        +'</tpl>'
 	+'</tpl>', {
 		compiled: true
 	});
@@ -88,7 +93,10 @@ MODx.grid.Package = function(config) {
         ,primaryKey: 'signature'
         ,paging: true
         ,autosave: true
-        ,tbar: [dlbtn,'->',{
+        ,tbar: [dlbtn, {
+            text: _('packages_purge')
+            ,handler: this.purgePackages
+        },'->',{
             xtype: 'textfield'
             ,name: 'search'
             ,id: 'modx-package-search'
@@ -110,7 +118,11 @@ MODx.grid.Package = function(config) {
             ,cls: 'x-form-filter-clear'
             ,text: _('filter_clear')
             ,listeners: {
-                'click': {fn: this.clearFilter, scope: this}
+                'click': {fn: this.clearFilter, scope: this},
+                'mouseout': { fn: function(evt){
+                    this.removeClass('x-btn-focus');
+                }
+                }
             }
         }]
     });
@@ -169,7 +181,7 @@ Ext.extend(MODx.grid.Package,MODx.grid.Grid,{
 	,mainColumnRenderer:function (value, metaData, record, rowIndex, colIndex, store){
 		var rec = record.data;
 		var state = (rec.installed !== null) ? ' installed' : ' not-installed';
-		var values = { name: value, state: state, actions: null };
+		var values = { name: value, state: state, actions: null, message: null };
 
 		var h = [];
 		if(rec.installed !== null) {
@@ -354,6 +366,9 @@ Ext.extend(MODx.grid.Package,MODx.grid.Grid,{
 
 	/* Search for a package update - only for installed package */
     ,update: function(btn,e) {
+        if (this.windows['modx-window-package-update']) {
+            this.windows['modx-window-package-update'].destroy();
+        }
         MODx.Ajax.request({
             url: this.config.url
             ,params: {
@@ -446,6 +461,25 @@ Ext.extend(MODx.grid.Package,MODx.grid.Grid,{
         });
     }
 
+    /* Purge old packages */
+    ,purgePackages: function(btn,e) {
+        var topic = '/workspace/packages/purge/';
+
+        this.loadWindow(btn,e,{
+            xtype: 'modx-window-packages-purge'
+            ,record: {
+                packagename: '*'
+                ,topic: topic
+                ,register: 'mgr'
+            }
+            ,listeners: {
+                success: {fn: function(o) {
+                    this.refresh();
+                },scope:this}
+            }
+        });
+    }
+
 	/* Load the console */
     ,loadConsole: function(btn,topic) {
         this.console = MODx.load({
@@ -489,18 +523,55 @@ Ext.extend(MODx.window.PackageUpdate,MODx.Window,{
         }];
 
         for (var i=0;i<ps.length;i=i+1) {
-            var pkg = ps[i];
+            var pkg = ps[i]
+                ,label = pkg.signature;
+
+            if (pkg.changelog) {
+                // We have a changelog string, allow users to view it
+                label += '<a href="javascript:;" class="changelog">'+ _('changelog') +'</a>';
+            }
             items.push({
                 xtype: 'radio'
                 ,name: 'info'
-                ,boxLabel: pkg.signature
+                ,boxLabel: label
+                ,itemCls: 'radio-version'
                 ,hideLabel: true
                 ,description: pkg.description
                 ,inputValue: pkg.info
                 ,labelSeparator: ''
-                ,checked: i == 0
+                ,checked: i === 0
+                ,listeners: {
+                    afterrender: {
+                        fn: function (radio) {
+                            var changelog = radio.container.query('.changelog')[0];
+                            if (!changelog) {
+                                return;
+                            }
+                            // When the changelog link is clicked, display the changelog in a window
+                            Ext.get(changelog).on('click', function(elem) {
+                                var win = MODx.load({
+                                    xtype: 'modx-window'
+                                    ,title: _('changelog')
+                                    ,cls: 'modx-alert'
+                                    ,width: 520
+                                    ,style: 'white-space: pre-wrap'
+                                    ,fields: [{
+                                        xtype: 'box'
+                                        ,html: pkg.changelog
+                                    }]
+                                    ,buttons: [{
+                                        text: _('close')
+                                        ,handler: function() {
+                                            win.close();
+                                        }
+                                    }]
+                                });
+                                win.show();
+                            });
+                        }
+                    }
+                }
             });
-
         }
         return items;
     }

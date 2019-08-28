@@ -227,6 +227,35 @@ Ext.extend(MODx,Ext.Component,{
             });
         }
     }
+    ,removeLocks: function(id) {
+		MODx.msg.confirm({
+			title: _('remove_locks')
+			,text: _('confirm_remove_locks')
+			,url: MODx.config.connectors_url
+			,params: {
+				action: 'system/remove_locks'
+			}
+			,listeners: {
+				'success': {
+					fn:function() {
+						var tree = Ext.getCmp("modx-resource-tree"); 
+						
+						if (tree && tree.rendered) {
+							tree.refresh();
+						}
+
+						var cmp = Ext.getCmp("modx-panel-resource");
+						
+						if (cmp) {
+							Ext.getCmp('modx-abtn-locked').hide();
+							Ext.getCmp('modx-abtn-save').show();	
+						}
+					},
+					scope:this
+				}
+			}
+		});  
+    }
 
     ,sleep: function(ms) {
         var s = new Date().getTime();
@@ -267,6 +296,92 @@ Ext.extend(MODx,Ext.Component,{
 			,cls: 'structure-tabs'
         });
         return c;
+    }
+
+    ,setStaticElementPath: function(type) {
+        var category   = '',
+            path       = '',
+            name       = '',
+            nameField  = 'name',
+            typePlural = type + "s";
+
+        if (type === "template") {
+            nameField = 'templatename';
+        }
+
+        if (MODx.config["static_elements_automate_" + typePlural] == 1) {
+            if (Ext.getCmp("modx-" + type + "-category").getValue() > 0) {
+                category = Ext.getCmp("modx-" + type + "-category").lastSelectionText;
+            }
+
+            name = Ext.getCmp("modx-" + type + "-" + nameField).getValue();
+            path = MODx.getStaticElementsPath(name, category, typePlural);
+            Ext.getCmp("modx-" + type + "-static-file").setValue(path);
+        }
+    }
+
+    ,setStaticElementsConfig: function (config, type) {
+        var typePlural = type + 's';
+
+        if (MODx.request.a === 'element/' + type + '/create' && MODx.config['static_elements_automate_' + typePlural] == 1) {
+            config.record['static'] = 1;
+            config.record['static_file'] = MODx.config.static_elements_basepath + typePlural + '/';
+            config.record['category'] = MODx.config.static_elements_default_category;
+
+            if (MODx.config.static_elements_default_mediasource) {
+                config.record['source'] = MODx.config.static_elements_default_mediasource;
+            }
+        }
+
+        return config;
+    }
+
+    ,getStaticElementsPath: function(name, category, type) {
+        var path = MODx.config.static_elements_basepath,
+            ext  = '';
+
+        if (category.length > 0) {
+            category = category.replace(/[^\w\s-]/gi, "");
+            category = category.replace(/\s/g, '-').toLowerCase();
+            // Convert nested elements to nested directory structure.
+            category = category.replace(/--/gi, '/');
+            category = "/" + category + "/";
+        } else {
+            category = "/";
+        }
+
+        // Remove trailing slash.
+        path = path.replace(/\/$/, "");
+
+        switch(type) {
+            case "templates":
+                ext = ".template.tpl";
+                break;
+            case "tvs":
+                ext = ".tv.tpl";
+                break;
+            case "chunks":
+                ext = ".chunk.tpl";
+                break;
+            case "snippets":
+                ext = ".snippet.php";
+                break;
+            case "plugins":
+                ext = ".plugin.php";
+                break;
+        }
+
+        // Remove special characters and spaces.
+        name = name.replace(/[^\w\s-]/gi, '');
+        name = name.replace(/\s/g, '-').toLowerCase();
+
+        if (name.length > 0) {
+            path += "/" + type + category + name + ext;
+        } else {
+            path += "/" + type + category;
+        }
+
+        return path;
     }
 
     ,helpUrl: false
@@ -912,3 +1027,30 @@ Ext.extend(MODx.HttpProvider, Ext.state.Provider, {
         Ext.Ajax.request(o);
     }
 });
+
+MODx.Header = function(config) {
+    config = config || {};
+
+    Ext.applyIf(config, {
+        cls: 'modx-page-header'
+        ,autoEl: {
+            tag: 'h2'
+        }
+        ,itemId: 'header'
+    });
+    MODx.Header.superclass.constructor.call(this, config);
+};
+Ext.extend(MODx.Header, Ext.BoxComponent, {});
+Ext.reg('modx-header', MODx.Header);
+
+MODx.Description = function(config) {
+    config = config || {};
+
+    Ext.applyIf(config, {
+        cls: 'panel-desc'
+        ,itemId: 'description'
+    });
+    MODx.Description.superclass.constructor.call(this, config);
+};
+Ext.extend(MODx.Description, Ext.BoxComponent, {});
+Ext.reg('modx-description', MODx.Description);

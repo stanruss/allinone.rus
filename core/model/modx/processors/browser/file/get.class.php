@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Gets the contents of a file
  *
@@ -20,7 +29,7 @@ class modBrowserFileGetProcessor extends modProcessor {
     public function process() {
         /* format filename */
         $file = rawurldecode($this->getProperty('file',''));
-        $file = preg_replace('/(\.+\/)+/', '', htmlspecialchars($file));
+        $file = preg_replace('/[\.]{2,}/', '', htmlspecialchars($file));
 
         $loaded = $this->getSource();
         if ($loaded !== true) {

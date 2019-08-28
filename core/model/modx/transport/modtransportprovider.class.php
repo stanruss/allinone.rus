@@ -1,8 +1,13 @@
 <?php
-/**
- * @package modx
- * @subpackage transport
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Represents a remote transport package provider service.
  *
@@ -222,7 +227,7 @@ class modTransportProvider extends xPDOSimpleObject {
             $package->set('signature', $signature);
             $package->set('state', 1);
             $package->set('workspace', 1);
-            $package->set('created', date('Y-m-d h:i:s'));
+            $package->set('created', strftime('%Y-%m-%d %H:%M:%S'));
             $package->set('provider', $this->get('id'));
             $package->set('metadata', $metadata);
             $package->set('package_name', $metadata['name']);
@@ -284,7 +289,6 @@ class modTransportProvider extends xPDOSimpleObject {
             foreach ($package->supports as $support) {
                 $supports .= (string)$support.$this->arg('supportsSeparator', $where);
             }
-
             $results[] = array(
                 'id' => (string)$package->id,
                 'version' => (string)$package->version,
@@ -308,8 +312,8 @@ class modTransportProvider extends xPDOSimpleObject {
                 'location' => (string)$package->location,
                 'version-compiled' => $versionCompiled,
                 'downloaded' => !empty($installed) ? true : false,
-                'featured' => (boolean)$package->featured,
-                'audited' => (boolean)$package->audited,
+                'featured' => ((string)$package->featured == 'true'),
+                'audited' => ((string)$package->audited == 'true'),
                 'dlaction-icon' => $installed ? 'package-installed' : 'package-download',
                 'dlaction-text' => $installed ? $this->xpdo->lexicon('downloaded') : $this->xpdo->lexicon('download'),
             );

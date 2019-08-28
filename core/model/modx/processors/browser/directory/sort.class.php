@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Moves a file/directory.
  *
@@ -18,9 +27,9 @@ class modBrowserFolderSortProcessor extends modProcessor {
     }
     public function process() {
         $from = $this->getProperty('from');
-        $from = preg_replace('/(\.+\/)+/', '', htmlspecialchars($from));
+        $from = preg_replace('/[\.]{2,}/', '', htmlspecialchars($from));
         $to = $this->getProperty('to');
-        $to = preg_replace('/(\.+\/)+/', '', htmlspecialchars($to));
+        $to = preg_replace('/[\.]{2,}/', '', htmlspecialchars($to));
         $point = $this->getProperty('point','append');
         if (empty($from)) return $this->failure($this->modx->lexicon('file_folder_err_ns'));
         if (empty($to)) return $this->failure($this->modx->lexicon('file_folder_err_ns'));

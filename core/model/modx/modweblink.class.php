@@ -1,7 +1,13 @@
 <?php
-/**
- * @package modx
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * A modResource derivative the represents a redirect link.
  *
@@ -39,7 +45,7 @@ class modWebLink extends modResource implements modResourceInterface {
         } else {
             $this->_output= $this->_content;
         }
-        $this->xpdo->sendRedirect($this->_output, array('responseCode' => $this->getProperty('responseCode', 'core', 'HTTP/1.1 301 Moved Permanently')));
+        $this->xpdo->sendRedirect($this->_output, array('responseCode' => $this->getProperty('responseCode', 'core', $_SERVER['SERVER_PROTOCOL'] . ' 301 Moved Permanently')));
     }
 
     /**

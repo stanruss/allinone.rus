@@ -4,8 +4,8 @@
  *
  * Copyright (c) MODX, LLC. All Rights Reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
 
 /**
@@ -22,7 +22,7 @@ if (strstr(str_replace('.','',serialize(array_merge($_GET, $_POST, $_COOKIE))), 
 }
 
 if (!defined('MODX_CORE_PATH')) {
-    define('MODX_CORE_PATH', dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR);
+    define('MODX_CORE_PATH', dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR);
 }
 require_once (MODX_CORE_PATH . 'xpdo/xpdo.class.php');
 
@@ -66,12 +66,12 @@ class modX extends xPDO {
      */
     public $contexts= array();
     /**
-     * @var modRequest Represents a web request and provides helper methods for
+     * @var modRequest|modConnectorRequest|modManagerRequest Represents a web request and provides helper methods for
      * dealing with request parameters and other attributes of a request.
      */
     public $request= null;
     /**
-     * @var modResponse Represents a web response, providing helper methods for
+     * @var modResponse|modConnectorResponse|modManagerResponse Represents a web response, providing helper methods for
      * managing response header attributes and the body containing the content of
      * the response.
      */
@@ -275,14 +275,21 @@ class modX extends xPDO {
     public $documentOutput= null;
 
     /**
+     * Keeps an in-memory representation of what deprecated functions have been logged
+     * for this request, to avoid spamming the log too often. See the `deprecated` method.
+     *
+     * @var array
+     */
+    private $loggedDeprecatedFunctions = [];
+
+    /**
      * Harden the environment against common security flaws.
      *
      * @static
      */
     public static function protect() {
-        if (isset ($_SERVER['QUERY_STRING']) && strpos(urldecode($_SERVER['QUERY_STRING']), chr(0)) !== false) die();
         if (@ ini_get('register_globals') && isset ($_REQUEST)) {
-            while (list($key, $value)= each($_REQUEST)) {
+            foreach ($_REQUEST as $key => $value) {
                 $GLOBALS[$key] = null;
                 unset ($GLOBALS[$key]);
             }
@@ -340,6 +347,28 @@ class modX extends xPDO {
             }
         }
         return $target;
+    }
+
+    /**
+     * @param array|string $data The target data to sanitize.
+     * @param array $replaceable
+     * @return array|string The sanitized data
+     */
+    public static function replaceReserved($data, array $replaceable = array ('[' => '&#91;', ']' => '&#93;', '`' => '&#96;'))
+    {
+        if (\is_array($data)) {
+            $result = array();
+            foreach ($data as $key => &$value) {
+                $key = self::replaceReserved($key, $replaceable);
+                $result[$key] = self::replaceReserved($value, $replaceable);
+            }
+        } elseif (\is_scalar($data)) {
+            $result = \str_replace(\array_keys($replaceable), \array_values($replaceable), $data);
+        } else {
+            $result = '';
+        }
+
+        return $result;
     }
 
     /**
@@ -559,7 +588,7 @@ class modX extends xPDO {
         $cache = $this->call('modExtensionPackage','loadCache',array(&$this));
         if (!empty($cache)) {
             foreach ($cache as $package) {
-                $package['table_prefix'] = !empty($package['table_prefix']) ? $package['table_prefix'] : null;
+                $package['table_prefix'] = isset($package['table_prefix']) ? $package['table_prefix'] : null;
                 $this->addPackage($package['namespace'],$package['path'],$package['table_prefix']);
                 if (!empty($package['service_name']) && !empty($package['service_class'])) {
                     $this->getService($package['service_name'],$package['service_class'],$package['path']);
@@ -593,7 +622,7 @@ class modX extends xPDO {
 
                 foreach ($extPackage as $packageName => $package) {
                     if (!empty($package) && !empty($package['path'])) {
-                        $package['tablePrefix'] = !empty($package['tablePrefix']) ? $package['tablePrefix'] : null;
+                        $package['tablePrefix'] = isset($package['tablePrefix']) ? $package['tablePrefix'] : null;
                         $package['path'] = str_replace(array(
                             '[[++core_path]]',
                             '[[++base_path]]',
@@ -625,18 +654,33 @@ class modX extends xPDO {
      * @param boolean $stopOnNotice Indicates if processing should stop when
      * encountering PHP errors of type E_NOTICE.
      * @return boolean|int The previous value.
+     *
+     * @info PHP errors are handle by modErrorHandler with at most LOG_LEVEL_INFO
+     *       When called by modX $debug is a string (ie $this->getOption('debug'))
+     *
+     *          (bool)true , (string)true , (string)-1 -> LOG_LEVEL_DEBUG (MODX), E_ALL | E_STRICT (PHP)
+     *          (bool)false, (string)false, (string) 0 -> LOG_LEVEL_ERROR (MODX), 0                (PHP)
+     *          (int)nnn                               -> LOG_LEVEL_INFO  (MODX), nnn              (PHP)
+     *          (string)E_XXX                          -> LOG_LEVEL_INFO  (MODX), E_XXX            (PHP)
      */
     public function setDebug($debug= true) {
         $oldValue= $this->getDebug();
-        if ($debug === true) {
+        if (($debug === true) || ('true' === $debug) || ('-1' === $debug)) {
             error_reporting(-1);
             parent :: setDebug(true);
-        } elseif ($debug === false) {
-            error_reporting(0);
-            parent :: setDebug(false);
-        } else {
-            error_reporting(intval($debug));
-            parent :: setDebug(intval($debug));
+        }
+        else {
+            if (($debug === false) || ('false' === $debug) || ('0' === $debug)) {
+                error_reporting(0);
+                parent :: setDebug(false);
+            }
+            else {
+                $debug = (is_int($debug) ? $debug : defined($debug) ? intval(constant($debug)) : 0);
+                if ($debug) {
+                    error_reporting($debug);
+                    parent :: setLogLevel(xPDO::LOG_LEVEL_INFO);
+                }
+            }
         }
         return $oldValue;
     }
@@ -733,9 +777,8 @@ class modX extends xPDO {
             if (isset ($resourceMap["{$id}"])) {
                 if ($children= $resourceMap["{$id}"]) {
                     foreach ($children as $child) {
-                        $processDepth = $depth - 1;
-                        if ($c= $this->getChildIds($child,$processDepth,$options)) {
-                            $children= array_merge($children, $c);
+                        if ($c = $this->getChildIds($child, $depth - 1, $options)) {
+                            $children = array_merge($children, $c);
                         }
                     }
                 }
@@ -756,20 +799,17 @@ class modX extends xPDO {
      */
     public function getTree($id= null, $depth= 10, array $options = array()) {
         $tree= array ();
-        $context = '';
         if (!empty($options['context'])) {
             $this->getContext($options['context']);
-            $context = $options['context'];
         }
         if ($id !== null) {
             if (is_array ($id)) {
                 foreach ($id as $k => $v) {
-                    $tree[$v]= $this->getTree($v, $depth, $options);
+                    $tree[$v] = $this->getTree($v, $depth - 1, $options);
                 }
-            }
-            elseif ($branch= $this->getChildIds($id, 1, $options)) {
+            } elseif ($branch= $this->getChildIds($id, 1, $options)) {
                 foreach ($branch as $key => $child) {
-                    if ($depth > 0 && $leaf= $this->getTree($child, $depth--, $options)) {
+                    if ($depth > 0 && $leaf = $this->getTree($child, $depth - 1, $options)) {
                         $tree[$child]= $leaf;
                     } else {
                         $tree[$child]= $child;
@@ -1047,10 +1087,11 @@ class modX extends xPDO {
         if (!XPDO_CLI_MODE) {
             $errorPageTitle = $this->getOption('error_pagetitle', $options, 'Error 503: Service temporarily unavailable');
             $errorMessage = $this->getOption('error_message', $options, '<p>Site temporarily unavailable.</p>');
+            $errorHeader = $this->getOption('error_header', $options, $_SERVER['SERVER_PROTOCOL'] . ' 503 Service Unavailable');
             if (file_exists(MODX_CORE_PATH . "error/{$type}.include.php")) {
                 @include(MODX_CORE_PATH . "error/{$type}.include.php");
             }
-            header($this->getOption('error_header', $options, 'HTTP/1.1 503 Service Unavailable'));
+            header($errorHeader);
             echo "<html><head><title>{$errorPageTitle}</title></head><body>{$errorMessage}</body></html>";
             @session_write_close();
         } else {
@@ -1083,6 +1124,19 @@ class modX extends xPDO {
         if (!$this->getResponse()) {
             $this->log(modX::LOG_LEVEL_FATAL, "Could not load response class.");
         }
+        if (!is_array($options)) {
+            $options = array('count_attempts' => (boolean) $options);
+        }
+        if ($type) {
+            $this->deprecated('2.0.5', 'Use type in options array instead.', 'sendRedirect method parameter $type');
+            $options['type'] = $type;
+            $type = '';
+        }
+        if ($responseCode) {
+            $this->deprecated('2.0.5', 'Use responseCode in options array instead.', 'sendRedirect method parameter $responseCode');
+            $options['responseCode'] = $responseCode;
+            $responseCode = '';
+        }
         $this->response->sendRedirect($url, $options, $type, $responseCode);
     }
 
@@ -1091,8 +1145,9 @@ class modX extends xPDO {
      *
      * @param integer $id The resource identifier.
      * @param string $options An array of options for the process.
+     * @param boolean $sendErrorPage Whether we should skip the sendErrorPage if the resource does not exist.
      */
-    public function sendForward($id, $options = null) {
+    public function sendForward($id, $options = null, $sendErrorPage = true) {
         if (!$this->getRequest()) {
             $this->log(modX::LOG_LEVEL_FATAL, "Could not load request class.");
         }
@@ -1119,8 +1174,7 @@ class modX extends xPDO {
                     )
                 );
                 if (!empty($this->resource->_fields)) {
-                    reset($this->resource->_fields);
-                    while (list($fkey, $fval) = each($this->resource->_fields)) {
+                    foreach ($this->resource->_fields as $fkey => $fval) {
                         if (!in_array($fkey, $excludes)) {
                             if (is_scalar($fval) && $fval !== '') {
                                 $currentResource[$fkey] = $fval;
@@ -1145,13 +1199,13 @@ class modX extends xPDO {
                 }
                 $this->request->prepareResponse();
                 exit();
-            } else {
+            } elseif ($sendErrorPage) {
                 $this->sendErrorPage();
             }
             $options= array_merge(
                 array(
                     'error_type' => '404'
-                    ,'error_header' => $this->getOption('error_page_header', $options,'HTTP/1.1 404 Not Found')
+                    ,'error_header' => $this->getOption('error_page_header', $options,$_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found')
                     ,'error_pagetitle' => $this->getOption('error_page_pagetitle', $options,'Error 404: Page not found')
                     ,'error_message' => $this->getOption('error_page_message', $options,'<h1>Page not found</h1><p>The page you requested was not found.</p>')
                 ),
@@ -1173,16 +1227,16 @@ class modX extends xPDO {
         if (!is_array($options)) $options = array();
         $options= array_merge(
             array(
-                'response_code' => $this->getOption('error_page_header', $options, 'HTTP/1.1 404 Not Found')
+                'response_code' => $this->getOption('error_page_header', $options, $_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found')
                 ,'error_type' => '404'
-                ,'error_header' => $this->getOption('error_page_header', $options, 'HTTP/1.1 404 Not Found')
+                ,'error_header' => $this->getOption('error_page_header', $options, $_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found')
                 ,'error_pagetitle' => $this->getOption('error_page_pagetitle', $options, 'Error 404: Page not found')
                 ,'error_message' => $this->getOption('error_page_message', $options, '<h1>Page not found</h1><p>The page you requested was not found.</p>')
             ),
             $options
         );
         $this->invokeEvent('OnPageNotFound', $options);
-        $this->sendForward($this->getOption('error_page', $options, $this->getOption('site_start')), $options);
+        $this->sendForward($this->getOption('error_page', $options, $this->getOption('site_start')), $options, false);
     }
 
     /**
@@ -1197,9 +1251,9 @@ class modX extends xPDO {
         if (!is_array($options)) $options = array();
         $options= array_merge(
             array(
-                'response_code' => $this->getOption('unauthorized_page_header' ,$options ,'HTTP/1.1 401 Unauthorized')
+                'response_code' => $this->getOption('unauthorized_page_header' ,$options ,$_SERVER['SERVER_PROTOCOL'] . ' 401 Unauthorized')
                 ,'error_type' => '401'
-                ,'error_header' => $this->getOption('unauthorized_page_header', $options,'HTTP/1.1 401 Unauthorized')
+                ,'error_header' => $this->getOption('unauthorized_page_header', $options,$_SERVER['SERVER_PROTOCOL'] . ' 401 Unauthorized')
                 ,'error_pagetitle' => $this->getOption('unauthorized_page_pagetitle',$options, 'Error 401: Unauthorized')
                 ,'error_message' => $this->getOption('unauthorized_page_message', $options,'<h1>Unauthorized</h1><p>You are not authorized to view the requested content.</p>')
             ),
@@ -1585,7 +1639,11 @@ class modX extends xPDO {
             $this->event= new modSystemEvent();
             foreach ($this->eventMap[$eventName] as $pluginId => $pluginPropset) {
                 $plugin= null;
-                $this->Event= & $this->event;
+                if (!version_compare(PHP_VERSION, '5.4', '>=')) {
+                    $this->Event = & $this->event;
+                } else {
+                    $this->Event = clone $this->event;
+                }
                 $this->event->resetEventObject();
                 $this->event->name= $eventName;
                 if (isset ($this->pluginCache[$pluginId])) {
@@ -1663,7 +1721,7 @@ class modX extends xPDO {
         if (isset($options['location']) && !empty($options['location'])) $processorsPath .= ltrim($options['location'],'/') . '/';
 
         // Prevent path traversal through the action
-        $action = preg_replace('/(\.+\/)+/', '', htmlspecialchars($action));
+        $action = preg_replace('/[\.]{2,}/', '', htmlspecialchars($action));
 
         // Find the processor file, preferring class based processors over old-style processors
         $processorFile = $processorsPath.ltrim($action . '.class.php','/');
@@ -1780,6 +1838,7 @@ class modX extends xPDO {
      * @param string $line
      */
     public function messageQuit($msg='unspecified error', $query='', $is_error=true, $nr='', $file='', $source='', $text='', $line='') {
+        $this->deprecated('2.2.0', 'Use modX::log with modX::LOG_LEVEL_FATAL instead.');
         $this->log(modX::LOG_LEVEL_FATAL, 'msg: ' . $msg . "\n" . 'query: ' . $query . "\n" . 'nr: ' . $nr . "\n" . 'file: ' . $file . "\n" . 'source: ' . $source . "\n" . 'text: ' . $text . "\n" . 'line: ' . $line . "\n");
     }
 
@@ -1836,8 +1895,7 @@ class modX extends xPDO {
         $chunk= $this->getChunk($chunkName);
         if (!empty($chunk) || $chunk === '0') {
             if(is_array($chunkArr)) {
-                reset($chunkArr);
-                while (list($key, $value)= each($chunkArr)) {
+                foreach ($chunkArr as $key => $value) {
                     $chunk= str_replace($prefix.$key.$suffix, $value, $chunk);
                 }
             }
@@ -1918,13 +1976,18 @@ class modX extends xPDO {
      * Remove an event from the eventMap so it will not be invoked.
      *
      * @param string $event
+     * @param integer $pluginId Plugin identifier to remove from the eventMap for the specified event.
      * @return boolean false if the event parameter is not specified or is not
      * present in the eventMap.
      */
-    public function removeEventListener($event) {
+    public function removeEventListener($event, $pluginId = 0) {
         $removed = false;
         if (!empty($event) && isset($this->eventMap[$event])) {
-            unset ($this->eventMap[$event]);
+            if (intval($pluginId)) {
+                unset ($this->eventMap[$event][$pluginId]);
+            } else {
+                unset ($this->eventMap[$event]);
+            }
             $removed = true;
         }
         return $removed;
@@ -1943,16 +2006,18 @@ class modX extends xPDO {
      *
      * @param string $event Name of the event.
      * @param integer $pluginId Plugin identifier to add to the event.
+     * @param string $propertySetName The name of property set bound to the plugin
      * @return boolean true if the event is successfully added, otherwise false.
      */
-    public function addEventListener($event, $pluginId) {
+    public function addEventListener($event, $pluginId, $propertySetName = '') {
         $added = false;
+        $pluginId = intval($pluginId);
         if ($event && $pluginId) {
             if (!isset($this->eventMap[$event]) || empty ($this->eventMap[$event])) {
                 $this->eventMap[$event]= array();
             }
-            $this->eventMap[$event][]= $pluginId;
-            $added= true;
+            $this->eventMap[$event][$pluginId]= $pluginId . (!empty($propertySetName) ? ':' . $propertySetName : '');
+            $added = true;
         }
         return $added;
     }
@@ -2146,7 +2211,7 @@ class modX extends xPDO {
      */
     public function checkSiteStatus() {
         $status = false;
-        if ($this->config['site_status'] == '1' || $this->hasPermission('view_offline')) {
+        if ($this->config['site_status'] == '1' || ($this->getSessionState() === modX::SESSION_STATE_INITIALIZED && $this->hasPermission('view_offline'))) {
             $status = true;
         }
         return $status;
@@ -2295,6 +2360,48 @@ class modX extends xPDO {
     }
 
     /**
+     * Marks the calling function as deprecated, sending a message into the error log.
+     *
+     * This automatically determines where the deprecated method was called from, and
+     * includes that in the log message.
+     *
+     * @param string $since The version the function was marked as deprecated
+     * @param string $recommendation A description or recommendation on what to replace a method with
+     * @param string $deprecatedDef Can be used to override the definition (i.e. function name) for the log; useful if not a specific method but an entire entity is deprecated.
+     */
+    public function deprecated($since, $recommendation = '', $deprecatedDef = '')
+    {
+        if (!$this->getOption('log_deprecated', null, true)) {
+            return;
+        }
+
+        // We use the trace to identify both the method that is deprecated, and the caller
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        $deprecatedMethod = isset($trace[1]) ? $trace[1] : array();
+        $caller = isset($trace[2]) ? $trace[2] : array();
+
+        // Format the deprecated function definition with the class, if it has one
+        if ($deprecatedDef === '') {
+            $deprecatedDef = isset($deprecatedMethod['class'])
+                ? $deprecatedMethod['class'] . '::' . $deprecatedMethod['function']
+                : $deprecatedMethod['function'];
+        }
+        $callerDef = isset($caller['class']) ? $caller['class']  . '::' . $caller['function'] : '';
+
+        // The message that gets logged
+        $msg = $deprecatedDef . ' is deprecated since version ' . $since . '. ' . $recommendation;
+
+        // Only log deprecated functions once - even when called many times in a single request.
+        if (in_array($msg.$callerDef, $this->loggedDeprecatedFunctions, true)) {
+            return;
+        }
+        $this->loggedDeprecatedFunctions[] = $msg.$callerDef;
+
+        // Send to the standard log, providing also the file and line the deprecated method was called from
+        $this->log(self::LOG_LEVEL_ERROR, $msg, '', $callerDef, $deprecatedMethod['file'], $deprecatedMethod['line']);
+    }
+
+    /**
      * Loads a specified Context.
      *
      * Merges any context settings with the modX::$config, and performs any
@@ -2356,7 +2463,22 @@ class modX extends xPDO {
         }
         if ($initialized) {
             $this->setLogLevel($this->getOption('log_level', $options, xPDO::LOG_LEVEL_ERROR));
-            $this->setLogTarget($this->getOption('log_target', $options, 'FILE'));
+                
+            $logTarget = $this->getOption('log_target', $options, 'FILE', true);
+            if ($logTarget === 'FILE') {
+                $options = array();
+                $filename = $this->getOption('error_log_filename', $options, '');
+                if (!empty($filename)) $options['filename'] = $filename;
+                $filepath = $this->getOption('error_log_filepath', $options, '');
+                if (!empty($filepath)) $options['filepath'] = rtrim($filepath, '/') . '/';
+                $this->setLogTarget(array(
+                    'target' => 'FILE',
+                    'options' => $options
+                ));
+            } else {
+                $this->setLogTarget($logTarget);
+            }
+            
             $debug = $this->getOption('debug');
             if (!is_null($debug) && $debug !== '') {
                 $this->setDebug($debug);
@@ -2379,7 +2501,10 @@ class modX extends xPDO {
 
         if ($this->getOption('setlocale', $options, true)) {
             $locale = setlocale(LC_ALL, null);
-            setlocale(LC_ALL, $this->getOption('locale', null, $locale));
+            $result = setlocale(LC_ALL, $this->getOption('locale', null, $locale));
+            if ($result === false) {
+                $this->log(modX::LOG_LEVEL_ERROR, 'Could not set the locale. Please check if the locale ' . $this->getOption('locale', null, $locale) . ' exists on your system');
+            }
         }
 
         $this->getService('lexicon', $this->getOption('lexicon_class', $options, 'modLexicon'), '', is_array($options) ? $options : array());
@@ -2394,9 +2519,10 @@ class modX extends xPDO {
     protected function _initErrorHandler($options = null) {
         if ($this->errorHandler == null || !is_object($this->errorHandler)) {
             if ($ehClass = $this->getOption('error_handler_class', $options, 'modErrorHandler', true)) {
-                if ($ehClass= $this->loadClass($ehClass, '', false, true)) {
-                    if ($this->errorHandler= new $ehClass($this)) {
-                        $result= set_error_handler(array ($this->errorHandler, 'handleError'), $this->getOption('error_handler_types', $options, error_reporting(), true));
+                $ehPath = $this->getOption('error_handler_path', $options, '', true);
+                if ($ehClass = $this->loadClass($ehClass, $ehPath, false, true)) {
+                    if ($this->errorHandler = new $ehClass($this)) {
+                        $result = set_error_handler(array ($this->errorHandler, 'handleError'), $this->getOption('error_handler_types', $options, error_reporting(), true));
                         if ($result === false) {
                             $this->log(modX::LOG_LEVEL_ERROR, 'Could not set error handler.  Make sure your class has a function called handleError(). Result: ' . print_r($result, true));
                         }

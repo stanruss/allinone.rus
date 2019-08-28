@@ -22,6 +22,11 @@ MODx.page.UpdateSnippet = function(config) {
                 ,ctrl: true
             }]
         },{
+            text: _('delete')
+            ,id: 'modx-abtn-delete'
+            ,handler: this.delete
+            ,scope: this
+        },{
             text: _('duplicate')
             ,id: 'modx-abtn-duplicate'
             ,handler: this.duplicate
@@ -49,6 +54,10 @@ Ext.extend(MODx.page.UpdateSnippet,MODx.Component, {
             id: this.record.id
             ,type: 'snippet'
             ,name: _('duplicate_of',{name: this.record.name})
+            ,source: this.record.source
+            ,static: this.record.static
+            ,static_file: this.record.static_file
+            ,category: this.record.category
         };
         var w = MODx.load({
             xtype: 'modx-window-element-duplicate'
@@ -63,6 +72,22 @@ Ext.extend(MODx.page.UpdateSnippet,MODx.Component, {
             }
         });
         w.show(e.target);
+    }
+    ,delete: function(btn, e) {
+        MODx.msg.confirm({
+            text: _('snippet_delete_confirm')
+            ,url: MODx.config.connector_url
+            ,params: {
+                action: 'element/snippet/remove'
+                ,id: this.record.id
+            }
+            ,listeners: {
+                success: {
+                    fn: function(r) {
+                        MODx.loadPage('?');
+                    },scope:this}
+            }
+        });
     }
 });
 Ext.reg('modx-page-snippet-update',MODx.page.UpdateSnippet);

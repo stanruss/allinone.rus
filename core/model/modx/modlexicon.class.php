@@ -1,14 +1,13 @@
 <?php
-/**
+/*
  * This file is part of MODX Revolution.
  *
  * Copyright (c) MODX, LLC. All Rights Reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @package modx
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * The lexicon handling class. Handles all lexicon topics by loading and storing their entries into a cached array.
  * Also considers database-based overrides for specific lexicon entries that preserve the originals and allow reversion.
@@ -336,6 +335,23 @@ class modLexicon {
                 }
             }
         }
+
+        $c = $this->modx->newQuery('modLexiconEntry');
+        $c->where(array(
+            'namespace' => $namespace,
+            'topic:NOT IN' => $topics,
+        ));
+        $c->select(array('topic'));
+        $c->query['distinct'] = 'DISTINCT';
+        if ($c->prepare() && $c->stmt->execute()) {
+            $entries = $c->stmt->fetchAll(\PDO::FETCH_ASSOC);
+            if (is_array($entries) and count($entries) > 0) {
+                foreach ($entries as $v) {
+                    $topics[] = $v['topic'];
+                }
+            }
+        }
+
         sort($topics);
         return $topics;
     }
@@ -362,6 +378,23 @@ class modLexicon {
                 $languages[] = $language->getFilename();
             }
         }
+
+        $c = $this->modx->newQuery('modLexiconEntry');
+        $c->where(array(
+            'namespace' => $namespace,
+            'language:NOT IN' => $languages,
+        ));
+        $c->select(array('language'));
+        $c->query['distinct'] = 'DISTINCT';
+        if ($c->prepare() && $c->stmt->execute()) {
+            $entries = $c->stmt->fetchAll(\PDO::FETCH_ASSOC);
+            if (is_array($entries) and count($entries) > 0) {
+                foreach ($entries as $v) {
+                    $languages[] = $v['language'];
+                }
+            }
+        }
+
         sort($languages);
         return $languages;
     }

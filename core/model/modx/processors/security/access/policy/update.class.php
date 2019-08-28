@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Updates a policy
  *
@@ -32,6 +41,11 @@ class modAccessPolicyUpdateProcessor extends modObjectUpdateProcessor {
         }
 
         return parent::beforeSave();
+    }
+
+    public function afterSave() {
+        $this->modx->cacheManager->flushPermissions();
+        return parent::afterSave();
     }
 }
 return 'modAccessPolicyUpdateProcessor';

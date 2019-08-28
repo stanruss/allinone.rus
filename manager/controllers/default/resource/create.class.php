@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 require_once dirname(__FILE__).'/resource.class.php';
 /**
  * Loads the create resource page
@@ -82,6 +91,11 @@ class ResourceCreateManagerController extends ResourceManagerController {
         $placeholders['parentname'] = $this->setParent();
         $this->fireOnRenderEvent();
 
+        /* set template */
+        if (!is_null($this->resource->get('template')) && $this->resource->get('template') !== 0) {
+            $this->scriptProperties['template'] = $this->resource->get('template');
+        }
+
         /* check permissions */
         $this->setPermissions();
 
@@ -122,7 +136,7 @@ class ResourceCreateManagerController extends ResourceManagerController {
             $this->getResourceGroups();
 
             /* check FC rules */
-            $overridden = $this->checkFormCustomizationRules($this->parent,true);
+            $overridden = $this->checkFormCustomizationRules($this->resource);
         } else {
             $this->resourceArray = array_merge($this->resourceArray, $reloadData);
             $this->resourceArray['resourceGroups'] = array();
@@ -145,7 +159,7 @@ class ResourceCreateManagerController extends ResourceManagerController {
             $this->resource->fromArray($reloadData); // We should have in Reload Data everything needed to do form customization checkings
 
             /* check FC rules */
-            $overridden = $this->checkFormCustomizationRules($this->resource,true); // This "forParent" doesn't seems logical for me, but it seems that all "resource/create" rules require this (see /core/model/modx/processors/security/forms/set/import.php for example)
+            $overridden = $this->checkFormCustomizationRules($this->resource);
         }
 
         /* apply FC rules */
@@ -188,7 +202,37 @@ class ResourceCreateManagerController extends ResourceManagerController {
      * @return int
      */
     public function getDefaultTemplate() {
-        $defaultTemplate = (isset($this->scriptProperties['template']) ? $this->scriptProperties['template'] : (!empty($this->parent->id) ? $this->parent->get('template') : $this->context->getOption('default_template', 0, $this->modx->_userConfig)));
+        $defaultTemplate = $this->context->getOption('default_template', 0, $this->modx->_userConfig);
+        if (isset($this->scriptProperties['template'])) {
+            $defaultTemplate = $this->scriptProperties['template'];
+        } else {
+            switch ($this->context->getOption('automatic_template_assignment', 'parent', $this->modx->_userConfig)) {
+                case 'parent':
+                    if (!empty($this->parent->id))
+                        $defaultTemplate = $this->parent->get('template');
+                    break;
+                case 'sibling':
+                    if (!empty($this->parent->id)) {
+                        $c = $this->modx->newQuery('modResource');
+                        $c->where(array('parent'=>$this->parent->id, 'context_key'=>$this->ctx));
+                        $c->sortby('id', 'DESC');
+                        $c->limit(1);
+                        $siblings = $this->modx->getCollection('modResource', $c);
+                        if (!empty($siblings)) {
+                            foreach ($siblings as $sibling){
+                                $defaultTemplate = $sibling->get('template');
+                            }
+                        }else{
+                            if (!empty($this->parent->id))
+                                $defaultTemplate = $this->parent->get('template');
+                        }
+                    }
+                    break;
+                case 'system':
+                    /* already established */
+                    break;
+            }
+        }
         $userGroups = $this->modx->user->getUserGroups();
         $c = $this->modx->newQuery('modActionDom');
         $c->innerJoin('modFormCustomizationSet','FCSet');

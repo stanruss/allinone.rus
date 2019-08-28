@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 class modBrowserFileDownloadProcessor extends modProcessor {
     /** @var modMediaSource|modFileMediaSource $source */
     public $source;
@@ -28,7 +37,7 @@ class modBrowserFileDownloadProcessor extends modProcessor {
     public function getObjectUrl() {
         /* format filename */
         $file = rawurldecode($this->getProperty('file',''));
-        $file = preg_replace('/(\.+\/)+/', '', htmlspecialchars($file));
+        $file = preg_replace('/[\.]{2,}/', '', htmlspecialchars($file));
         $url = $this->source->getObjectUrl($file);
         return $this->success('',array('url' => $url));
     }

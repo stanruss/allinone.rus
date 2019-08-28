@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Gets a list of users
  *
@@ -25,21 +34,33 @@ class modUserGetListProcessor extends modObjectGetListProcessor {
             'usergroup' => false,
             'query' => '',
         ));
-        if ($this->getProperty('sort') == 'username_link') $this->setProperty('sort','username');
-        if ($this->getProperty('sort') == 'id') $this->setProperty('sort','modUser.id');
+        if ($this->getProperty('sort') == 'username_link') {
+            $this->setProperty('sort', 'username');
+        }
+        if ($this->getProperty('sort') == 'id') {
+            $this->setProperty('sort',$this->classKey . '.id');
+        }
         return $initialized;
     }
 
     public function prepareQueryBeforeCount(xPDOQuery $c) {
         $c->leftJoin('modUserProfile','Profile');
 
-        $query = $this->getProperty('query','');
-        if (!empty($query)) {
-            $c->where(array(
-                'modUser.username:LIKE' => '%'.$query.'%',
-                'OR:Profile.fullname:LIKE' => '%'.$query.'%',
-                'OR:Profile.email:LIKE' => '%'.$query.'%',
-            ));
+        $queryChunks = explode(':', $this->getProperty('query',''));
+        if (count($queryChunks) == 2) {
+            list($field, $query) = $queryChunks;
+            if (in_array($field, array_keys($this->modx->getFields('modUserProfile')))) {
+                $c->where(array("Profile.$field:LIKE" => '%'.$query.'%'));
+            }
+        } else {
+            $query = current($queryChunks);
+            if (!empty($query)) {
+                $c->where(array(
+                    $this->classKey . '.username:LIKE' => '%'.$query.'%',
+                    'Profile.fullname:LIKE' => '%'.$query.'%',
+                    'Profile.email:LIKE' => '%'.$query.'%'
+                ), xPDOQuery::SQL_OR);
+            }
         }
 
         $userGroup = $this->getProperty('usergroup',0);
@@ -63,6 +84,14 @@ class modUserGetListProcessor extends modObjectGetListProcessor {
     public function prepareQueryAfterCount(xPDOQuery $c) {
         $c->select($this->modx->getSelectColumns('modUser','modUser'));
         $c->select($this->modx->getSelectColumns('modUserProfile','Profile','',array('fullname','email','blocked')));
+
+        $id = $this->getProperty('id', 0);
+        if (!empty($id)) {
+            $c->where(array(
+                $this->classKey . '.id:IN' => is_string($id) ? explode(',', $id) : $id,
+            ));
+        }
+
         return $c;
     }
 

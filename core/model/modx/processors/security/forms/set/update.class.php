@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Saves a Form Customization Set.
  *
@@ -134,10 +143,16 @@ class modFormCustomizationSetUpdateProcessor extends modObjectUpdateProcessor {
         $tabs = $this->getProperty('tabs',null);
         if ($tabs == null) return;
         $tabs = is_array($tabs) ? $tabs : $this->modx->fromJSON($tabs);
+        $action = $this->object->get('action');
+
+        // If the action ends in /* (wildcard rule), we assume tabs that exist for an update action
+        if (substr($action, -2) === '/*') {
+            $action = str_replace('/*', '/update', $action);
+        }
 
         foreach ($tabs as $tab) {
             $tabField = $this->modx->getObject('modActionField',array(
-                'action' => $this->object->get('action'),
+                'action' => $action,
                 'name' => $tab['name'],
                 'type' => 'tab',
             ));

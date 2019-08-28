@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Updates a file.
  *
@@ -21,7 +30,7 @@ class modBrowserFileUpdateProcessor extends modProcessor {
     public function process() {
         /* get base paths and sanitize incoming paths */
         $filePath = rawurldecode($this->getProperty('file',''));
-        $filePath = preg_replace('/(\.+\/)+/', '', htmlspecialchars($filePath));
+        $filePath = preg_replace('/[\.]{2,}/', '', htmlspecialchars($filePath));
 
         $loaded = $this->getSource();
         if (!($this->source instanceof modMediaSource)) {

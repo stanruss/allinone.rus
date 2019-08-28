@@ -1,9 +1,13 @@
 <?php
-/**
- * modProcessor
+/*
+ * This file is part of MODX Revolution.
  *
- * @package modx
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Abstracts a MODX processor, handling its response and error formatting.
  *
@@ -247,7 +251,16 @@ abstract class modProcessor {
      */
     public function outputArray(array $array,$count = false) {
         if ($count === false) { $count = count($array); }
-        return '{"success":true,"total":"'.$count.'","results":'.$this->modx->toJSON($array).'}';
+        $output = json_encode(array(
+            'success' => true,
+            'total' => $count,
+            'results' => $array
+        ));
+        if ($output === false) {
+            $this->modx->log(modX::LOG_LEVEL_ERROR, 'Processor failed creating output array due to JSON error '.json_last_error());
+            return json_encode(array('success' => false));
+        }
+        return $output;
     }
 
     /**
@@ -340,6 +353,9 @@ class modDeprecatedProcessor extends modProcessor {
      * @return mixed
      */
     public function process() {
+        $info = 'Flat file processor support, used for action ' . $this->getProperty('action', 'unknown action') . ' with path ' . $this->path . ',';
+        $this->modx->deprecated('2.7.0', '', $info);
+
         $modx =& $this->modx;
         $scriptProperties = $this->getProperties();
         $o = include $this->path;
@@ -938,6 +954,11 @@ class modObjectDuplicateProcessor extends modObjectProcessor {
     /** @var xPDOObject $newObject The newly duplicated object */
     public $newObject;
     public $nameField = 'name';
+    public $staticfileField = 'static_file';
+    /** @var string $newNameField The name of field that used for filling new name of object.
+     * If defined, duplication error will be attached to field with this name
+     */
+    public $newNameField;
 
     /**
      * {@inheritDoc}
@@ -973,8 +994,22 @@ class modObjectDuplicateProcessor extends modObjectProcessor {
         $name = $this->getNewName();
         $this->setNewName($name);
 
+        $staticFilename = $this->getProperty($this->staticfileField);
+        if (!empty($staticFilename)) {
+            $this->newObject->set('static_file', $staticFilename);
+        }
+
         if ($this->alreadyExists($name)) {
-            $this->addFieldError($this->nameField,$this->modx->lexicon($this->objectType.'_err_ae',array('name' => $name)));
+            $this->addFieldError(
+                $this->newNameField ? $this->newNameField : $this->nameField,
+                $this->modx->lexicon($this->objectType.'_err_ae',array('name' => $name))
+            );
+        }
+
+        /* Check if a static file already exists within specified static file path. */
+        if ($staticFilename && $this->staticFileAlreadyExists($staticFilename)) {
+            $this->modx->lexicon->load('core:element');
+            $this->addFieldError($this->staticfileField, $this->modx->lexicon('element_err_staticfile_exists'));
         }
 
         $canSave = $this->beforeSave();
@@ -1058,6 +1093,24 @@ class modObjectDuplicateProcessor extends modObjectProcessor {
             $this->nameField => $name,
         )) > 0;
 
+    }
+
+    /**
+     * Check to see if a static element file already exists.
+     * @param $filename
+     * @return bool
+     */
+    public function staticFileAlreadyExists($filename) {
+        $sourceId = $this->getProperty('source');
+        if ($sourceId > 0) {
+            $source = $this->modx->getObject('sources.modFileMediaSource', array('id' => $sourceId));
+            if ($source && $source->get('is_stream')) {
+                $source->initialize();
+                $filename = $source->getBasePath() . $filename;
+            }
+        }
+
+        return file_exists($filename);
     }
 
     /**

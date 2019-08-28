@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Renames a file
  *
@@ -45,9 +54,9 @@ class modBrowserFolderRenameProcessor extends modProcessor {
         }
 
         $path = $this->getProperty('path');
-        $path = preg_replace('/(\.+\/)+/', '', htmlspecialchars($path));
+        $path = preg_replace('/[\.]{2,}/', '', htmlspecialchars($path));
         $name = $this->getProperty('name');
-        $name = preg_replace('/(\.+\/)+/', '', htmlspecialchars($name));
+        $name = preg_replace('/[\.]{2,}/', '', htmlspecialchars($name));
         $response = $this->source->renameContainer($path, $name);
         return $this->handleResponse($response);
     }

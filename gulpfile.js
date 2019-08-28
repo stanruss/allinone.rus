@@ -1,5 +1,5 @@
 var syntax        = 'sass', // Syntax: sass or scss;
-		gulpversion   = '4'; // Gulp version: 3 or 4
+		gulpversion   = '3'; // Gulp version: 3 or 4
 
 var gulp         = require('gulp');
 var	rename       = require('gulp-rename');

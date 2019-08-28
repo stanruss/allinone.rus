@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Properly log in the user and set up the session.
  *
@@ -240,17 +249,13 @@ class modSecurityLoginProcessor extends modProcessor {
      * Update failed login count
      */
     public function failedLogin() {
-        if (!array_key_exists('login_failed', $_SESSION)) {
+        if (!isset($_SESSION['login_failed'])) {
             $_SESSION['login_failed'] = 0;
         }
-        if ($_SESSION['login_failed'] == 0) {
-            $flc = ((integer) $this->user->Profile->get('failedlogincount')) + 1;
-            $this->user->Profile->set('failedlogincount', $flc);
-            $this->user->Profile->save();
-            $_SESSION['login_failed']++;
-        } else {
-            $_SESSION['login_failed'] = 0;
-        }
+        $flc = ((integer) $this->user->Profile->get('failedlogincount')) + 1;
+        $this->user->Profile->set('failedlogincount', $flc);
+        $this->user->Profile->save();
+        $_SESSION['login_failed']++;
     }
 
     /** Check user password
@@ -266,6 +271,15 @@ class modSecurityLoginProcessor extends modProcessor {
                 $this->failedLogin();
                 return $this->modx->lexicon('login_username_password_incorrect');
             }
+        }
+        else if ($rt && (is_array($rt) && !in_array(true, $rt, true))) {
+            $error = "";
+            foreach ($rt as $msg) {
+                if (!empty($msg)) {
+                    $error .= $msg."\n";
+                }
+            }
+            return $error;
         }
 
         return false;
@@ -369,11 +383,19 @@ class modSecurityLoginProcessor extends modProcessor {
      */
     public function afterLogin() {
         $this->addSessionContexts();
+        if ($this->loginContext == 'mgr') {
+            $this->modx->user = null;
+            $this->modx->getUser('mgr', true);
+            if (!$this->modx->hasPermission('frames')) {
+                $this->modx->runProcessor('security/logout');
+                return $this->failure($this->modx->lexicon('access_denied'));
+            }
+        }
         $this->fireAfterLoginEvent();
 
         $this->modx->logManagerAction('login','modContext',$this->loginContext, $this->user->get('id'));
-        
-        return $this->prepareResponse();
+
+        return $this->cleanup($this->prepareResponse());
     }
 
     /**
@@ -391,8 +413,7 @@ class modSecurityLoginProcessor extends modProcessor {
             return $this->failure($preventLogin);
         }
 
-        $response = $this->afterLogin();
-        return $this->cleanup($response);
+        return $this->afterLogin();
     }
 
     /** Return the response

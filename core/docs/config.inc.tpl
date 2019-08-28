@@ -49,7 +49,7 @@ if (!defined('MODX_BASE_PATH')) {
 if(defined('PHP_SAPI') && (PHP_SAPI == "cli" || PHP_SAPI == "embed")) {
     $isSecureRequest = false;
 } else {
-    $isSecureRequest = ((isset ($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') || $_SERVER['SERVER_PORT'] == $https_port);
+    $isSecureRequest = ((isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') || $_SERVER['SERVER_PORT'] == $https_port);
 }
 if (!defined('MODX_URL_SCHEME')) {
     $url_scheme=  $isSecureRequest ? 'https://' : 'http://';
@@ -60,7 +60,7 @@ if (!defined('MODX_HTTP_HOST')) {
         $http_host='{http_host}';
         define('MODX_HTTP_HOST', $http_host);
     } else {
-        $http_host= array_key_exists('HTTP_HOST', $_SERVER) ? $_SERVER['HTTP_HOST'] : '{http_host}';
+        $http_host= array_key_exists('HTTP_HOST', $_SERVER) ? htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES) : '{http_host}';
         if ($_SERVER['SERVER_PORT'] != 80) {
             $http_host= str_replace(':' . $_SERVER['SERVER_PORT'], '', $http_host); // remove port from HTTP_HOST
         }
@@ -84,8 +84,4 @@ if (!defined('MODX_LOG_LEVEL_FATAL')) {
     define('MODX_LOG_LEVEL_WARN', 2);
     define('MODX_LOG_LEVEL_INFO', 3);
     define('MODX_LOG_LEVEL_DEBUG', 4);
-}
-if (!defined('MODX_CACHE_DISABLED')) {
-    $modx_cache_disabled= {cache_disabled};
-    define('MODX_CACHE_DISABLED', $modx_cache_disabled);
 }

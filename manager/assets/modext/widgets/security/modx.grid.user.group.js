@@ -8,6 +8,11 @@
  */
 MODx.grid.UserGroups = function(config) {
     config = config || {};
+    this.exp = new Ext.grid.RowExpander({
+        tpl : new Ext.Template(
+            '<p class="desc">{user_group_desc}</p>'
+        )
+    });
     Ext.applyIf(config,{
         title: ''
         ,id: 'modx-grid-user-groups'
@@ -15,9 +20,10 @@ MODx.grid.UserGroups = function(config) {
         ,baseParams: {
             action: 'security/group/getlist'
         }
-        ,fields: ['usergroup','name','member','role','rolename','primary_group','rank']
+        ,fields: ['usergroup','name','member','role','rolename','primary_group','rank','user_group_desc']
         ,cls: 'modx-grid modx-grid-draggable'
-        ,columns: [{
+        ,columns: [this.exp,
+        {
             header: _('user_group')
             ,dataIndex: 'name'
             ,width: 175
@@ -39,7 +45,8 @@ MODx.grid.UserGroups = function(config) {
                 'afterrowmove': {fn:this.onAfterRowMove,scope:this}
                 ,'beforerowmove': {fn:this.onBeforeRowMove,scope:this}
             }
-        })]
+        }),
+        this.exp]
         ,tbar: [{
             text: _('user_group_user_add')
             ,cls:'primary-button'
@@ -137,7 +144,7 @@ Ext.extend(MODx.grid.UserGroups,MODx.grid.LocalGrid,{
             ,handler: this.remove.createDelegate(this,[{text: _('user_group_remove_confirm')}])
             ,scope: this
         });
-        m.show(e.target);
+        m.showAt(e.xy);
     }
 });
 Ext.reg('modx-grid-user-groups',MODx.grid.UserGroups);

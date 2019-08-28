@@ -5,7 +5,7 @@
 $database_type = 'mysql';
 $database_server = 'localhost';
 $database_user = 'root';
-$database_password = '818791';
+$database_password = '';
 $database_connection_charset = 'utf8';
 $dbase = 'allinone';
 $table_prefix = 'new_';
@@ -15,35 +15,35 @@ $config_options = array (
 $driver_options = array (
 );
 
-$lastInstallTime = 1490966699;
+$lastInstallTime = 1566978002;
 
-$site_id = 'modx58de58ab522034.60981441';
+$site_id = 'modx5d662fd224f3f5.71663062';
 $site_sessionname = 'SN58de587ae2f52';
 $https_port = '443';
-$uuid = 'd00b02c7-6588-48d8-98bf-cfa75afb52b7';
+$uuid = '10790637-1f0e-453a-80c6-bab4505c7cd2';
 
 if (!defined('MODX_CORE_PATH')) {
-    $modx_core_path= 'C:/OSPanel/domains/allinone.rus/core/';
+    $modx_core_path= 'E:/OSPanel/domains/allinone.rus/core/';
     define('MODX_CORE_PATH', $modx_core_path);
 }
 if (!defined('MODX_PROCESSORS_PATH')) {
-    $modx_processors_path= 'C:/OSPanel/domains/allinone.rus/core/model/modx/processors/';
+    $modx_processors_path= 'E:/OSPanel/domains/allinone.rus/core/model/modx/processors/';
     define('MODX_PROCESSORS_PATH', $modx_processors_path);
 }
 if (!defined('MODX_CONNECTORS_PATH')) {
-    $modx_connectors_path= 'C:/OSPanel/domains/allinone.rus/connectors/';
+    $modx_connectors_path= 'E:/OSPanel/domains/allinone.rus/connectors/';
     $modx_connectors_url= '/connectors/';
     define('MODX_CONNECTORS_PATH', $modx_connectors_path);
     define('MODX_CONNECTORS_URL', $modx_connectors_url);
 }
 if (!defined('MODX_MANAGER_PATH')) {
-    $modx_manager_path= 'C:/OSPanel/domains/allinone.rus/manager/';
+    $modx_manager_path= 'E:/OSPanel/domains/allinone.rus/manager/';
     $modx_manager_url= '/manager/';
     define('MODX_MANAGER_PATH', $modx_manager_path);
     define('MODX_MANAGER_URL', $modx_manager_url);
 }
 if (!defined('MODX_BASE_PATH')) {
-    $modx_base_path= 'C:/OSPanel/domains/allinone.rus/';
+    $modx_base_path= 'E:/OSPanel/domains/allinone.rus/';
     $modx_base_url= '/';
     define('MODX_BASE_PATH', $modx_base_path);
     define('MODX_BASE_URL', $modx_base_url);
@@ -51,7 +51,7 @@ if (!defined('MODX_BASE_PATH')) {
 if(defined('PHP_SAPI') && (PHP_SAPI == "cli" || PHP_SAPI == "embed")) {
     $isSecureRequest = false;
 } else {
-    $isSecureRequest = ((isset ($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) == 'on') || $_SERVER['SERVER_PORT'] == $https_port);
+    $isSecureRequest = ((isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') || $_SERVER['SERVER_PORT'] == $https_port);
 }
 if (!defined('MODX_URL_SCHEME')) {
     $url_scheme=  $isSecureRequest ? 'https://' : 'http://';
@@ -62,7 +62,7 @@ if (!defined('MODX_HTTP_HOST')) {
         $http_host='allinone.rus';
         define('MODX_HTTP_HOST', $http_host);
     } else {
-        $http_host= array_key_exists('HTTP_HOST', $_SERVER) ? $_SERVER['HTTP_HOST'] : 'newclear.rus';
+        $http_host= array_key_exists('HTTP_HOST', $_SERVER) ? htmlspecialchars($_SERVER['HTTP_HOST'], ENT_QUOTES) : 'allinone.rus';
         if ($_SERVER['SERVER_PORT'] != 80) {
             $http_host= str_replace(':' . $_SERVER['SERVER_PORT'], '', $http_host); // remove port from HTTP_HOST
         }
@@ -75,7 +75,7 @@ if (!defined('MODX_SITE_URL')) {
     define('MODX_SITE_URL', $site_url);
 }
 if (!defined('MODX_ASSETS_PATH')) {
-    $modx_assets_path= 'C:/OSPanel/domains/allinone.rus/assets/';
+    $modx_assets_path= 'E:/OSPanel/domains/allinone.rus/assets/';
     $modx_assets_url= '/assets/';
     define('MODX_ASSETS_PATH', $modx_assets_path);
     define('MODX_ASSETS_URL', $modx_assets_url);
@@ -86,8 +86,4 @@ if (!defined('MODX_LOG_LEVEL_FATAL')) {
     define('MODX_LOG_LEVEL_WARN', 2);
     define('MODX_LOG_LEVEL_INFO', 3);
     define('MODX_LOG_LEVEL_DEBUG', 4);
-}
-if (!defined('MODX_CACHE_DISABLED')) {
-    $modx_cache_disabled= false;
-    define('MODX_CACHE_DISABLED', $modx_cache_disabled);
 }

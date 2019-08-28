@@ -8,6 +8,10 @@ $xpdo_meta_map['modUser']= array (
   'version' => '1.1',
   'table' => 'users',
   'extends' => 'modPrincipal',
+  'tableMeta' => 
+  array (
+    'engine' => 'InnoDB',
+  ),
   'fields' => 
   array (
     'username' => '',
@@ -17,7 +21,7 @@ $xpdo_meta_map['modUser']= array (
     'active' => 1,
     'remote_key' => NULL,
     'remote_data' => NULL,
-    'hash_class' => 'hashing.modPBKDF2',
+    'hash_class' => 'hashing.modNative',
     'salt' => '',
     'primary_group' => 0,
     'session_stale' => NULL,
@@ -38,7 +42,7 @@ $xpdo_meta_map['modUser']= array (
     'password' => 
     array (
       'dbtype' => 'varchar',
-      'precision' => '100',
+      'precision' => '255',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
@@ -46,7 +50,7 @@ $xpdo_meta_map['modUser']= array (
     'cachepwd' => 
     array (
       'dbtype' => 'varchar',
-      'precision' => '100',
+      'precision' => '255',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
@@ -72,7 +76,7 @@ $xpdo_meta_map['modUser']= array (
     'remote_key' => 
     array (
       'dbtype' => 'varchar',
-      'precision' => '255',
+      'precision' => '191',
       'phptype' => 'string',
       'null' => true,
       'index' => 'index',
@@ -89,7 +93,7 @@ $xpdo_meta_map['modUser']= array (
       'precision' => '100',
       'phptype' => 'string',
       'null' => false,
-      'default' => 'hashing.modPBKDF2',
+      'default' => 'hashing.modNative',
     ),
     'salt' => 
     array (

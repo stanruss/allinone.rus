@@ -14,10 +14,9 @@ MODx.panel.User = function(config) {
         ,defaults: { collapsible: false ,autoHeight: true }
         ,bodyStyle: ''
         ,items: [{
-             html: '<h2>'+_('user_new')+'</h2>'
-            ,border: false
-            ,cls: 'modx-page-header'
+             html: _('user_new')
             ,id: 'modx-user-header'
+            ,xtype: 'modx-header'
         },{
             xtype: 'modx-tabs'
             ,id: 'modx-user-tabs'
@@ -65,7 +64,7 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
                         var s = g.getStore();
                         if (s) { s.loadData(d); }
                     }
-                    Ext.get('modx-user-header').update('<h2>'+_('user')+': '+r.object.username+'</h2>');
+                    Ext.get('modx-user-header').update(_('user')+': '+r.object.username);
                     this.fireEvent('ready',r.object);
                     MODx.fireEvent('ready');
                 },scope:this}
@@ -135,8 +134,7 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
                 ,hideMode: 'offsets'
                 ,items: [{
                     html: '<h3>'+_('user_settings')+'</h3><p>'+_('user_settings_desc')+'</p>'
-					,bodyCssClass: 'panel-desc'
-                    ,border: false
+                    ,xtype: 'modx-description'
                 },{
                     xtype: 'modx-grid-user-settings'
 					,cls: 'main-wrapper'
@@ -156,7 +154,7 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
             ,hideMode: 'offsets'
             ,items: [{
                 html: _('access_permissions_user_message')
-				,bodyCssClass: 'panel-desc'
+                ,xtype: 'modx-description'
             },{
                 xtype: 'modx-grid-user-groups'
 				,cls: 'main-wrapper'
@@ -180,7 +178,7 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
                 ,hideMode: 'offsets'
                 ,items: [{
                     html: '<p>'+_('user_remote_data_msg')+'</p>'
-					,bodyCssClass: 'panel-desc'
+                    ,xtype: 'modx-description'
                 },{
                     layout: 'column'
 					,cls: 'main-wrapper'
@@ -216,7 +214,7 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
             ,hideMode: 'offsets'
             ,items: [{
                 html: '<p>'+_('extended_fields_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
+                ,xtype: 'modx-description'
             },{
                 layout: 'column'
 				,cls: 'main-wrapper'
@@ -253,6 +251,191 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
     }
 
     ,getGeneralFields: function(config) {
+        var itemsRight = [{
+            id: 'modx-user-newpassword'
+            ,name: 'newpassword'
+            ,xtype: 'hidden'
+            ,value: false
+        },{
+            id: 'modx-user-primary-group'
+            ,name: 'primary_group'
+            ,xtype: 'hidden'
+        },{
+            id: 'modx-user-active'
+            ,name: 'active'
+            ,hideLabel: true
+            ,boxLabel: _('active')
+            ,description: _('user_active_desc')
+            ,xtype: 'xcheckbox'
+            ,inputValue: 1
+        },{
+            id: 'modx-user-blocked'
+            ,name: 'blocked'
+            ,hideLabel: true
+            ,boxLabel: _('user_block')
+            ,description: _('user_block_desc')
+            ,xtype: 'xcheckbox'
+            ,inputValue: 1
+        }];
+        if (MODx.perm.set_sudo) {
+            itemsRight.push({
+                id: 'modx-user-sudo'
+                ,name: 'sudo'
+                ,hideLabel: true
+                ,boxLabel: _('user_sudo')
+                ,description: _('user_sudo_desc')
+                ,xtype: 'xcheckbox'
+                ,inputValue: 1
+                ,value: 0
+            });
+        }
+        itemsRight.push({
+            id: 'modx-user-blockeduntil'
+            ,name: 'blockeduntil'
+            ,fieldLabel: _('user_blockeduntil')
+            ,description: _('user_blockeduntil_desc')
+            ,xtype: 'xdatetime'
+            ,width: 300
+            ,timeWidth: 150
+            ,dateWidth: 150
+            ,allowBlank: true
+            ,dateFormat: MODx.config.manager_date_format
+            ,timeFormat: MODx.config.manager_time_format
+            ,hiddenFormat: 'Y-m-d H:i:s'
+        },{
+            id: 'modx-user-blockedafter'
+            ,name: 'blockedafter'
+            ,fieldLabel: _('user_blockedafter')
+            ,description: _('user_blockedafter_desc')
+            ,xtype: 'xdatetime'
+            ,width: 300
+            ,timeWidth: 150
+            ,dateWidth: 150
+            ,allowBlank: true
+            ,dateFormat: MODx.config.manager_date_format
+            ,timeFormat: MODx.config.manager_time_format
+            ,hiddenFormat: 'Y-m-d H:i:s'
+        },{
+            id: 'modx-user-logincount'
+            ,name: 'logincount'
+            ,fieldLabel: _('user_logincount')
+            ,description: _('user_logincount_desc')
+            ,xtype: 'statictextfield'
+        },{
+            id: 'modx-user-lastlogin'
+            ,name: 'lastlogin'
+            ,fieldLabel: _('user_prevlogin')
+            ,description: _('user_prevlogin_desc')
+            ,xtype: 'statictextfield'
+        },{
+            id: 'modx-user-failedlogincount'
+            ,name: 'failedlogincount'
+            ,fieldLabel: _('user_failedlogincount')
+            ,description: _('user_failedlogincount_desc')
+            ,xtype: 'textfield'
+        },{
+            id: 'modx-user-createdon'
+            ,name: 'createdon'
+            ,fieldLabel: _('user_createdon')
+            ,description: _('user_createdon_desc')
+            ,xtype: 'statictextfield'
+        },{
+            id: 'modx-user-class-key'
+            ,name: 'class_key'
+            ,fieldLabel: _('class_key')
+            ,description: _('user_class_key_desc')
+            ,xtype: 'textfield'
+            ,anchor: '100%'
+            ,value: 'modUser'
+        },{
+            id: 'modx-user-comment'
+            ,name: 'comment'
+            ,fieldLabel: _('comment')
+            ,xtype: 'textarea'
+            ,anchor: '100%'
+            ,grow: true
+        },{
+            id: 'modx-user-fs-newpassword'
+            ,title: _('password_new')
+            ,xtype: 'fieldset'
+            ,cls: 'x-fieldset-checkbox-toggle' // add a custom class for checkbox replacement
+            ,checkboxToggle: true
+            ,collapsed: (config.user ? true : false)
+            ,forceLayout: true
+            ,listeners: {
+                'expand': {fn:function(p) {
+                    Ext.getCmp('modx-user-newpassword').setValue(true);
+                    this.markDirty();
+                },scope:this}
+                ,'collapse': {fn:function(p) {
+                    Ext.getCmp('modx-user-newpassword').setValue(false);
+                    this.markDirty();
+                },scope:this}
+            }
+            ,items: [{
+                xtype: 'radiogroup'
+                ,fieldLabel: _('password_method')
+                ,columns: 1
+                ,items: [{
+                    id: 'modx-user-passwordnotifymethod-e'
+                    ,name: 'passwordnotifymethod'
+                    ,boxLabel: _('password_method_email')
+                    ,xtype: 'radio'
+                    ,value: 'e'
+                    ,inputValue: 'e'
+                },{
+                    id: 'modx-user-passwordnotifymethod-s'
+                    ,name: 'passwordnotifymethod'
+                    ,boxLabel: _('password_method_screen')
+                    ,xtype: 'radio'
+                    ,value: 's'
+                    ,inputValue: 's'
+                    ,checked: true
+                }]
+            },{
+                xtype: 'radiogroup'
+                ,fieldLabel: _('password_gen_method')
+                ,columns: 1
+                ,items: [{
+                    id: 'modx-user-password-genmethod-g'
+                    ,name: 'passwordgenmethod'
+                    ,boxLabel: _('password_gen_gen')
+                    ,xtype: 'radio'
+                    ,inputValue: 'g'
+                    ,value: 'g'
+                    ,checked: true
+                },{
+                    id: 'modx-user-password-genmethod-s'
+                    ,name: 'passwordgenmethod'
+                    ,boxLabel: _('password_gen_specify')
+                    ,xtype: 'radio'
+                    ,inputValue: 'spec'
+                    ,value: 'spec'
+                }]
+            },{
+                id: 'modx-user-panel-newpassword'
+                ,xtype: 'panel'
+                ,layout: 'form'
+                ,border: false
+                ,autoHeight: true
+                ,style: 'padding-top: 15px' // nested form, add padding-top as the label will not have it
+                ,items: [{
+                    id: 'modx-user-specifiedpassword'
+                    ,name: 'specifiedpassword'
+                    ,fieldLabel: _('change_password_new')
+                    ,xtype: 'textfield'
+                    ,inputType: 'password'
+                    ,anchor: '100%'
+                },{
+                    id: 'modx-user-confirmpassword'
+                    ,name: 'confirmpassword'
+                    ,fieldLabel: _('change_password_confirm')
+                    ,xtype: 'textfield'
+                    ,inputType: 'password'
+                    ,anchor: '100%'
+                }]
+            }]
+        });
         return [{
             layout: 'column'
             ,border: false
@@ -371,7 +554,6 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
                     ,xtype: 'datefield'
                     ,width: 200
                     ,allowBlank: true
-                    ,format: MODx.config.manager_date_format
                 },{
                     id: 'modx-user-gender'
                     ,name: 'gender'
@@ -385,187 +567,7 @@ Ext.extend(MODx.panel.User,MODx.FormPanel,{
                 ,defaults: {
                     msgTarget: 'under'
                 }
-                ,items: [{
-                    id: 'modx-user-newpassword'
-                    ,name: 'newpassword'
-                    ,xtype: 'hidden'
-                    ,value: false
-                },{
-                    id: 'modx-user-primary-group'
-                    ,name: 'primary_group'
-                    ,xtype: 'hidden'
-                },{
-                    id: 'modx-user-active'
-                    ,name: 'active'
-                    ,hideLabel: true
-                    ,boxLabel: _('active')
-                    ,description: _('user_active_desc')
-                    ,xtype: 'xcheckbox'
-                    ,inputValue: 1
-                },{
-                    id: 'modx-user-sudo'
-                    ,name: 'sudo'
-                    ,hideLabel: true
-                    ,boxLabel: _('user_sudo')
-                    ,description: _('user_sudo_desc')
-                    ,xtype: 'xcheckbox'
-                    ,inputValue: 1
-                    ,value: 0
-                },{
-                    id: 'modx-user-blocked'
-                    ,name: 'blocked'
-                    ,hideLabel: true
-                    ,boxLabel: _('user_block')
-                    ,description: _('user_block_desc')
-                    ,xtype: 'xcheckbox'
-                    ,inputValue: 1
-                },{
-                    id: 'modx-user-blockeduntil'
-                    ,name: 'blockeduntil'
-                    ,fieldLabel: _('user_blockeduntil')
-                    ,description: _('user_blockeduntil_desc')
-                    ,xtype: 'xdatetime'
-                    ,width: 300
-                    ,timeWidth: 150
-                    ,dateWidth: 150
-                    ,allowBlank: true
-                    ,dateFormat: MODx.config.manager_date_format
-                    ,timeFormat: MODx.config.manager_time_format
-                    ,hiddenFormat: 'Y-m-d H:i:s'
-                },{
-                    id: 'modx-user-blockedafter'
-                    ,name: 'blockedafter'
-                    ,fieldLabel: _('user_blockedafter')
-                    ,description: _('user_blockedafter_desc')
-                    ,xtype: 'xdatetime'
-                    ,width: 300
-                    ,timeWidth: 150
-                    ,dateWidth: 150
-                    ,allowBlank: true
-                    ,dateFormat: MODx.config.manager_date_format
-                    ,timeFormat: MODx.config.manager_time_format
-                    ,hiddenFormat: 'Y-m-d H:i:s'
-                },{
-                    id: 'modx-user-logincount'
-                    ,name: 'logincount'
-                    ,fieldLabel: _('user_logincount')
-                    ,description: _('user_logincount_desc')
-                    ,xtype: 'statictextfield'
-                },{
-                    id: 'modx-user-lastlogin'
-                    ,name: 'lastlogin'
-                    ,fieldLabel: _('user_prevlogin')
-                    ,description: _('user_prevlogin_desc')
-                    ,xtype: 'statictextfield'
-                },{
-                    id: 'modx-user-failedlogincount'
-                    ,name: 'failedlogincount'
-                    ,fieldLabel: _('user_failedlogincount')
-                    ,description: _('user_failedlogincount_desc')
-                    ,xtype: 'textfield'
-                },{
-                    id: 'modx-user-createdon'
-                    ,name: 'createdon'
-                    ,fieldLabel: _('user_createdon')
-                    ,description: _('user_createdon_desc')
-                    ,xtype: 'statictextfield'
-                },{
-                    id: 'modx-user-class-key'
-                    ,name: 'class_key'
-                    ,fieldLabel: _('class_key')
-                    ,description: _('user_class_key_desc')
-                    ,xtype: 'textfield'
-                    ,anchor: '100%'
-                    ,value: 'modUser'
-                },{
-                    id: 'modx-user-comment'
-                    ,name: 'comment'
-                    ,fieldLabel: _('comment')
-                    ,xtype: 'textarea'
-                    ,anchor: '100%'
-                    ,grow: true
-                },{
-                    id: 'modx-user-fs-newpassword'
-                    ,title: _('password_new')
-                    ,xtype: 'fieldset'
-                    ,cls: 'x-fieldset-checkbox-toggle' // add a custom class for checkbox replacement
-                    ,checkboxToggle: true
-                    ,collapsed: (config.user ? true : false)
-                    ,forceLayout: true
-                    ,listeners: {
-                        'expand': {fn:function(p) {
-                            Ext.getCmp('modx-user-newpassword').setValue(true);
-                            this.markDirty();
-                        },scope:this}
-                        ,'collapse': {fn:function(p) {
-                            Ext.getCmp('modx-user-newpassword').setValue(false);
-                            this.markDirty();
-                        },scope:this}
-                    }
-                    ,items: [{
-                        xtype: 'radiogroup'
-                        ,fieldLabel: _('password_method')
-                        ,columns: 1
-                        ,items: [{
-                            id: 'modx-user-passwordnotifymethod-e'
-                            ,name: 'passwordnotifymethod'
-                            ,boxLabel: _('password_method_email')
-                            ,xtype: 'radio'
-                            ,value: 'e'
-                            ,inputValue: 'e'
-                        },{
-                            id: 'modx-user-passwordnotifymethod-s'
-                            ,name: 'passwordnotifymethod'
-                            ,boxLabel: _('password_method_screen')
-                            ,xtype: 'radio'
-                            ,value: 's'
-                            ,inputValue: 's'
-                            ,checked: true
-                        }]
-                    },{
-                        xtype: 'radiogroup'
-                        ,fieldLabel: _('password_gen_method')
-                        ,columns: 1
-                        ,items: [{
-                            id: 'modx-user-password-genmethod-g'
-                            ,name: 'passwordgenmethod'
-                            ,boxLabel: _('password_gen_gen')
-                            ,xtype: 'radio'
-                            ,inputValue: 'g'
-                            ,value: 'g'
-                            ,checked: true
-                        },{
-                            id: 'modx-user-password-genmethod-s'
-                            ,name: 'passwordgenmethod'
-                            ,boxLabel: _('password_gen_specify')
-                            ,xtype: 'radio'
-                            ,inputValue: 'spec'
-                            ,value: 'spec'
-                        }]
-                    },{
-                        id: 'modx-user-panel-newpassword'
-                        ,xtype: 'panel'
-                        ,layout: 'form'
-                        ,border: false
-                        ,autoHeight: true
-                        ,style: 'padding-top: 15px' // nested form, add padding-top as the label will not have it
-                        ,items: [{
-                            id: 'modx-user-specifiedpassword'
-                            ,name: 'specifiedpassword'
-                            ,fieldLabel: _('change_password_new')
-                            ,xtype: 'textfield'
-                            ,inputType: 'password'
-                            ,anchor: '100%'
-                        },{
-                            id: 'modx-user-confirmpassword'
-                            ,name: 'confirmpassword'
-                            ,fieldLabel: _('change_password_confirm')
-                            ,xtype: 'textfield'
-                            ,inputType: 'password'
-                            ,anchor: '100%'
-                        }]
-                    }]
-                }]
+                ,items: itemsRight
             }]
         },{
             html: MODx.onUserFormRender

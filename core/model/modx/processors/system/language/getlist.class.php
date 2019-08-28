@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Grabs a list of lexicon languages
  *
@@ -27,7 +36,7 @@ class modSystemLanguageGetListProcessor extends modProcessor {
     public function process() {
         $data = $this->getData();
         if (empty($data)) return $this->failure();
-        
+
         /* loop through */
         $list = array();
         foreach ($data['results'] as $language) {
@@ -61,7 +70,7 @@ class modSystemLanguageGetListProcessor extends modProcessor {
         if ($limit > 0) {
             $data['results'] = array_slice($data['results'],$this->getProperty('start'),$limit,true);
         }
-        
+
         return $data;
     }
 }

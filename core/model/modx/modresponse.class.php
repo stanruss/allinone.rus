@@ -4,9 +4,10 @@
  *
  * Copyright (c) MODX, LLC. All Rights Reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Encapsulates a MODX response to a web request.
  *
@@ -58,19 +59,11 @@ class modResponse {
         }
 
         if (!$this->contentType->get('binary')) {
-            $this->modx->resource->_output= $this->modx->resource->process();
-            $this->modx->resource->_jscripts= $this->modx->jscripts;
-            $this->modx->resource->_sjscripts= $this->modx->sjscripts;
-            $this->modx->resource->_loadedjscripts= $this->modx->loadedjscripts;
-
-            /* collect any uncached element tags in the content and process them */
-            $this->modx->getParser();
-            $maxIterations= intval($this->modx->getOption('parser_max_iterations', $options, 10));
-            $this->modx->parser->processElementTags('', $this->modx->resource->_output, true, false, '[[', ']]', array(), $maxIterations);
-            $this->modx->parser->processElementTags('', $this->modx->resource->_output, true, true, '[[', ']]', array(), $maxIterations);
+            $this->modx->resource->prepare();
 
             /*FIXME: only do this for HTML content ?*/
             if (strpos($this->contentType->get('mime_type'), 'text/html') !== false) {
+                $this->modx->invokeEvent('OnBeforeRegisterClientScripts');
                 /* Insert Startup jscripts & CSS scripts into template - template must have a </head> tag */
                 if (($js= $this->modx->getRegisteredClientStartupScripts()) && (strpos($this->modx->resource->_output, '</head>') !== false)) {
                     /* change to just before closing </head> */
@@ -98,11 +91,13 @@ class modResponse {
             $totalTime= sprintf("%2.4f s", $totalTime);
             $phpTime= sprintf("%2.4f s", $phpTime);
             $source= $this->modx->resourceGenerated ? "database" : "cache";
+            $memory = number_format(memory_get_usage(true) / 1024, 0,","," ") . ' kb';
             $this->modx->resource->_output= str_replace("[^q^]", $queries, $this->modx->resource->_output);
             $this->modx->resource->_output= str_replace("[^qt^]", $queryTime, $this->modx->resource->_output);
             $this->modx->resource->_output= str_replace("[^p^]", $phpTime, $this->modx->resource->_output);
             $this->modx->resource->_output= str_replace("[^t^]", $totalTime, $this->modx->resource->_output);
             $this->modx->resource->_output= str_replace("[^s^]", $source, $this->modx->resource->_output);
+            $this->modx->resource->_output= str_replace("[^m^]", $memory, $this->modx->resource->_output);
         } else {
             $this->modx->beforeRender();
 
@@ -201,6 +196,13 @@ class modResponse {
     public function sendRedirect($url, $options= false, $type= '', $responseCode= '') {
         if (!is_array($options)) {
             $options = array('count_attempts' => (boolean) $options);
+        }
+
+        if ($type) {
+            $this->modx->deprecated('2.0.5', 'Use type in options array instead.', 'sendRedirect method parameter $type');
+        }
+        if ($responseCode) {
+            $this->modx->deprecated('2.0.5', 'Use responseCode in options array instead.', 'sendRedirect method parameter $responseCode');
         }
         $options = array_merge(array('count_attempts' => false, 'type' => $type, 'responseCode' => $responseCode), $options);
         $url= str_replace('&amp;','&',$url);

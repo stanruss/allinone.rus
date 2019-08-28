@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Update a package from its provider.
  *
@@ -68,6 +77,7 @@ class modPackageCheckForUpdatesProcessor extends modProcessor {
         foreach ($packages as $package) {
             $packageArray = array(
                 'id' => (string)$package['id'],
+                'changelog' => (string)$package['changelog'],
                 'package' => (string)$package['package'],
                 'version' => (string)$package['version'],
                 'release' => (string)$package['release'],

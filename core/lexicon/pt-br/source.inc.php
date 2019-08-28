@@ -37,7 +37,7 @@ $_lang['source_update'] = 'Atualizar a Fonte de Mídia';
 $_lang['source_type'] = 'Tipo de origem';
 $_lang['source_type_desc'] = 'O tipo, ou motorista, da Fonte de Mídia. A fonte vai usar esse driver para conectar-se na coleta de seus dados. Por exemplo: File System vai pegar os arquivos do sistema de arquivos. S3 terá arquivos de um bucket S3 .';
 $_lang['source_type.file'] = 'Sistema de arquivos';
-$_lang['source_type.file_desc'] = 'A fonte baseado em sistema de arquivos que navega \\ do seu servidor de arquivos.';
+$_lang['source_type.file_desc'] = 'A fonte baseado em sistema de arquivos que navega \ do seu servidor de arquivos.';
 $_lang['source_type.s3'] = 'Amazon S3';
 $_lang['source_type.s3_desc'] = 'Navega um bucket do Amazon S3.';
 $_lang['source_types'] = 'Tipos de fonte';
@@ -80,7 +80,7 @@ $_lang['prop_s3.thumbnailQuality_desc'] = 'A qualidade das miniaturas prestados,
 $_lang['prop_s3.thumbnailType_desc'] = 'O tipo de imagem para tornar thumbnails como.';
 $_lang['prop_s3.url_desc'] = 'O URL da instância do Amazon S3.';
 $_lang['s3_no_move_folder'] = 'O driver S3 não suporta movimentação de pastas neste momento.';
-$_lang['prop_s3.region_desc'] = 'Region of the bucket. Example: us-west-1';
+$_lang['prop_s3.region_desc'] = 'Região do bucket. Exemplo: us-west-1';
 
 /* file type */
 $_lang['PNG'] = 'PNG';

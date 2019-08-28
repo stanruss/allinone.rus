@@ -16,7 +16,8 @@
  * You should have received a copy of the GNU General Public License along with
  * xPDO; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
- */
+*/
+
 /**
  * Script that upgrades xPDO mysql models from version 1.0 to the 1.1 format.
  *
@@ -29,11 +30,12 @@
 $scriptTitle = basename(__FILE__, '.php');
 /**#@+
  * Arguments
- */
+*/
+
 /**
  * @var string The xPDO root path, where the xpdo.class.php file is located.
  */
-$xpdo_path= realpath(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR;
+$xpdo_path= realpath(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR;
 /**
  * @var string The name of the model package.
  */
@@ -128,7 +130,7 @@ if (!empty($argv) && $argc > 1) {
     }
 } elseif (!empty($_REQUEST)) {
     /* process $_REQUEST arguments */
-    while (list($argKey, $argValue)= each($_REQUEST)) {
+    foreach ($_REQUEST as $argKey => $argValue) {
         if (in_array(strtolower($argValue), array('true','false'))) {
             $argValue = $argValue === 'true' ? true : false;
         }

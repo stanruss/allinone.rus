@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Renames a directory.
  *
@@ -38,8 +47,8 @@ class modBrowserFolderUpdateProcessor extends modProcessor {
             return $this->failure($this->modx->lexicon('permission_denied'));
         }
 
-        $dir = preg_replace('/(\.+\/)+/', '', htmlspecialchars($this->getProperty('dir')));
-        $name = preg_replace('/(\.+\/)+/', '', htmlspecialchars($this->getProperty('name')));
+        $dir = preg_replace('/[\.]{2,}/', '', htmlspecialchars($this->getProperty('dir')));
+        $name = preg_replace('/[\.]{2,}/', '', htmlspecialchars($this->getProperty('name')));
         $success = $source->renameContainer($dir, $name);
 
         if (!$success) {

@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 require_once dirname(__FILE__).'/resource.class.php';
 /**
  * Loads the resource data page
@@ -26,6 +35,7 @@ class ResourceDataManagerController extends ResourceManagerController {
      */
     public function loadCustomCssJs() {
         $mgrUrl = $this->modx->getOption('manager_url',null,MODX_MANAGER_URL);
+        $this->addJavascript($mgrUrl.'assets/modext/widgets/system/modx.grid.manager.log.js');
         $this->addJavascript($mgrUrl.'assets/modext/widgets/resource/modx.panel.resource.data.js');
         $this->addJavascript($mgrUrl.'assets/modext/sections/resource/data.js');
         $this->addHtml('

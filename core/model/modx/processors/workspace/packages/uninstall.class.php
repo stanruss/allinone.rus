@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Uninstall a package
  *
@@ -55,8 +64,14 @@ class modPackageUninstallProcessor extends modProcessor {
         sleep(2);
         $this->modx->log(modX::LOG_LEVEL_INFO,'COMPLETED');
 
-        $this->clearCache();
         $this->logManagerAction();
+
+        $this->modx->invokeEvent('OnPackageUninstall', array(
+            'package' => $this->package
+        ));
+
+        $this->clearCache();
+
         return $this->success();
     }
 

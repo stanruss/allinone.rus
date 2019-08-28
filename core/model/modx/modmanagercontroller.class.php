@@ -1,7 +1,13 @@
 <?php
-/**
- * @package modx
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Abstract class for manager controllers. Not to be initialized directly; must be extended by the implementing
  * controller.
@@ -48,7 +54,7 @@ abstract class modManagerController {
     protected $failureMessage = '';
 
     /**
-     * The constructor for the modManaagerController class.
+     * The constructor for the modManagerController class.
      *
      * @param modX $modx A reference to the modX object.
      * @param array $config A configuration array of options related to this controller's action object.
@@ -384,6 +390,7 @@ abstract class modManagerController {
         $managerPath = $this->modx->getOption('manager_path',null,MODX_MANAGER_PATH);
         $paths[] = $managerPath . 'templates/'.$this->theme.'/';
         $paths[] = $managerPath . 'templates/default/';
+        $paths = array_unique($paths);
         return $paths;
     }
 
@@ -759,10 +766,10 @@ HTML;
      * Checks Form Customization rules for an object.
      *
      * @param xPDOObject $obj If passed, will validate against for rules with constraints.
-     * @param bool $forParent
+     * @param bool $forParent No longer used - filtering only happens by controller
      * @return array
      */
-    public function checkFormCustomizationRules(&$obj = null,$forParent = false) {
+    public function checkFormCustomizationRules(&$obj = null, $forParent = false) {
         $overridden = array();
 
         if ($this->modx->getOption('form_customization_use_all_groups',null,false)) {
@@ -778,9 +785,24 @@ HTML;
         $c->innerJoin('modFormCustomizationProfile','Profile','FCSet.profile = Profile.id');
         $c->leftJoin('modFormCustomizationProfileUserGroup','ProfileUserGroup','Profile.id = ProfileUserGroup.profile');
         $c->leftJoin('modFormCustomizationProfile','UGProfile','UGProfile.id = ProfileUserGroup.profile');
+
+        // Filter on the controller (action).
+        $controller = array_key_exists('controller', $this->config) ? $this->config['controller'] : '';
+        if (strpos($controller, '/') !== false) {
+            // For multi-level controllers (e.g. resource/create), we get the last part
+            // of the controller name to also search for a wildcard (e.g. resource/*)
+            $wildController = substr($controller, 0, strrpos($controller, '/')) . '/*';
+            $c->where(array(
+                'modActionDom.action:IN' => array($controller, $wildController),
+            ));
+        }
+        else {
+            $c->where(array(
+                'modActionDom.action' => array_key_exists('controller',$this->config) ? $this->config['controller'] : '',
+            ));
+        }
+
         $c->where(array(
-            'modActionDom.action' => array_key_exists('controller',$this->config) ? $this->config['controller'] : '',
-            'modActionDom.for_parent' => $forParent,
             'FCSet.active' => true,
             'Profile.active' => true,
         ));

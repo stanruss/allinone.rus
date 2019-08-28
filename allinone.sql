@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 17 2017 г., 14:56
--- Версия сервера: 5.5.53
--- Версия PHP: 5.5.38
+-- Время создания: Авг 28 2019 г., 10:43
+-- Версия сервера: 10.3.13-MariaDB
+-- Версия PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -30,9 +32,9 @@ CREATE TABLE `new_access_actiondom` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -45,9 +47,9 @@ CREATE TABLE `new_access_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -60,9 +62,9 @@ CREATE TABLE `new_access_category` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -76,9 +78,9 @@ CREATE TABLE `new_access_context` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -103,9 +105,9 @@ CREATE TABLE `new_access_elements` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -119,9 +121,9 @@ CREATE TABLE `new_access_media_source` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -144,9 +146,9 @@ CREATE TABLE `new_access_menus` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -159,9 +161,9 @@ CREATE TABLE `new_access_namespace` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -173,10 +175,10 @@ CREATE TABLE `new_access_namespace` (
 
 CREATE TABLE `new_access_permissions` (
   `id` int(10) UNSIGNED NOT NULL,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `template` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `value` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
+  `value` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -413,7 +415,9 @@ INSERT INTO `new_access_permissions` (`id`, `template`, `name`, `description`, `
 (227, 8, 'quip.thread_remove', 'perm.thread_remove', 1),
 (228, 8, 'quip.thread_truncate', 'perm.thread_truncate', 1),
 (229, 8, 'quip.thread_update', 'perm.thread_update', 1),
-(230, 8, 'quip.thread_view', 'perm.thread_view', 1);
+(230, 8, 'quip.thread_view', 'perm.thread_view', 1),
+(231, 1, 'menu_trash', 'perm.menu_trash_desc', 1),
+(232, 1, 'set_sudo', 'perm.set_sudo_desc', 1);
 
 -- --------------------------------------------------------
 
@@ -424,11 +428,11 @@ INSERT INTO `new_access_permissions` (`id`, `template`, `name`, `description`, `
 CREATE TABLE `new_access_policies` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `template` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `description` mediumtext DEFAULT NULL,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `template` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `class` varchar(255) NOT NULL DEFAULT '',
-  `data` text,
+  `data` text DEFAULT NULL,
   `lexicon` varchar(255) NOT NULL DEFAULT 'permissions'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -438,15 +442,15 @@ CREATE TABLE `new_access_policies` (
 
 INSERT INTO `new_access_policies` (`id`, `name`, `description`, `parent`, `template`, `class`, `data`, `lexicon`) VALUES
 (1, 'Resource', 'MODX Resource Policy with all attributes.', 0, 2, '', '{\"add_children\":true,\"create\":true,\"copy\":true,\"delete\":true,\"list\":true,\"load\":true,\"move\":true,\"publish\":true,\"remove\":true,\"save\":true,\"steal_lock\":true,\"undelete\":true,\"unpublish\":true,\"view\":true}', 'permissions'),
-(2, 'Administrator', 'Context administration policy with all permissions.', 0, 1, '', '{\"about\":true,\"access_permissions\":true,\"actions\":true,\"change_password\":true,\"change_profile\":true,\"charsets\":true,\"class_map\":true,\"components\":true,\"content_types\":true,\"countries\":true,\"create\":true,\"credits\":true,\"customize_forms\":true,\"dashboards\":true,\"database\":true,\"database_truncate\":true,\"delete_category\":true,\"delete_chunk\":true,\"delete_context\":true,\"delete_document\":true,\"delete_eventlog\":true,\"delete_plugin\":true,\"delete_propertyset\":true,\"delete_role\":true,\"delete_snippet\":true,\"delete_template\":true,\"delete_tv\":true,\"delete_user\":true,\"directory_chmod\":true,\"directory_create\":true,\"directory_list\":true,\"directory_remove\":true,\"directory_update\":true,\"edit_category\":true,\"edit_chunk\":true,\"edit_context\":true,\"edit_document\":true,\"edit_locked\":true,\"edit_plugin\":true,\"edit_propertyset\":true,\"edit_role\":true,\"edit_snippet\":true,\"edit_template\":true,\"edit_tv\":true,\"edit_user\":true,\"element_tree\":true,\"empty_cache\":true,\"error_log_erase\":true,\"error_log_view\":true,\"export_static\":true,\"file_create\":true,\"file_list\":true,\"file_manager\":true,\"file_remove\":true,\"file_tree\":true,\"file_update\":true,\"file_upload\":true,\"file_unpack\":true,\"file_view\":true,\"flush_sessions\":true,\"frames\":true,\"help\":true,\"home\":true,\"import_static\":true,\"languages\":true,\"lexicons\":true,\"list\":true,\"load\":true,\"logout\":true,\"logs\":true,\"menus\":true,\"menu_reports\":true,\"menu_security\":true,\"menu_site\":true,\"menu_support\":true,\"menu_system\":true,\"menu_tools\":true,\"menu_user\":true,\"messages\":true,\"namespaces\":true,\"new_category\":true,\"new_chunk\":true,\"new_context\":true,\"new_document\":true,\"new_document_in_root\":true,\"new_plugin\":true,\"new_propertyset\":true,\"new_role\":true,\"new_snippet\":true,\"new_static_resource\":true,\"new_symlink\":true,\"new_template\":true,\"new_tv\":true,\"new_user\":true,\"new_weblink\":true,\"packages\":true,\"policy_delete\":true,\"policy_edit\":true,\"policy_new\":true,\"policy_save\":true,\"policy_template_delete\":true,\"policy_template_edit\":true,\"policy_template_new\":true,\"policy_template_save\":true,\"policy_template_view\":true,\"policy_view\":true,\"property_sets\":true,\"providers\":true,\"publish_document\":true,\"purge_deleted\":true,\"remove\":true,\"remove_locks\":true,\"resource_duplicate\":true,\"resourcegroup_delete\":true,\"resourcegroup_edit\":true,\"resourcegroup_new\":true,\"resourcegroup_resource_edit\":true,\"resourcegroup_resource_list\":true,\"resourcegroup_save\":true,\"resourcegroup_view\":true,\"resource_quick_create\":true,\"resource_quick_update\":true,\"resource_tree\":true,\"save\":true,\"save_category\":true,\"save_chunk\":true,\"save_context\":true,\"save_document\":true,\"save_plugin\":true,\"save_propertyset\":true,\"save_role\":true,\"save_snippet\":true,\"save_template\":true,\"save_tv\":true,\"save_user\":true,\"search\":true,\"settings\":true,\"sources\":true,\"source_delete\":true,\"source_edit\":true,\"source_save\":true,\"source_view\":true,\"steal_locks\":true,\"tree_show_element_ids\":true,\"tree_show_resource_ids\":true,\"undelete_document\":true,\"unlock_element_properties\":true,\"unpublish_document\":true,\"usergroup_delete\":true,\"usergroup_edit\":true,\"usergroup_new\":true,\"usergroup_save\":true,\"usergroup_user_edit\":true,\"usergroup_user_list\":true,\"usergroup_view\":true,\"view\":true,\"view_category\":true,\"view_chunk\":true,\"view_context\":true,\"view_document\":true,\"view_element\":true,\"view_eventlog\":true,\"view_offline\":true,\"view_plugin\":true,\"view_propertyset\":true,\"view_role\":true,\"view_snippet\":true,\"view_sysinfo\":true,\"view_template\":true,\"view_tv\":true,\"view_unpublished\":true,\"view_user\":true,\"workspaces\":true}', 'permissions'),
+(2, 'Administrator', 'Context administration policy with all permissions.', 0, 1, '', '{\"about\":true,\"access_permissions\":true,\"actions\":true,\"change_password\":true,\"change_profile\":true,\"charsets\":true,\"class_map\":true,\"components\":true,\"content_types\":true,\"countries\":true,\"create\":true,\"credits\":true,\"customize_forms\":true,\"dashboards\":true,\"database\":true,\"database_truncate\":true,\"delete_category\":true,\"delete_chunk\":true,\"delete_context\":true,\"delete_document\":true,\"delete_eventlog\":true,\"delete_plugin\":true,\"delete_propertyset\":true,\"delete_role\":true,\"delete_snippet\":true,\"delete_template\":true,\"delete_tv\":true,\"delete_user\":true,\"directory_chmod\":true,\"directory_create\":true,\"directory_list\":true,\"directory_remove\":true,\"directory_update\":true,\"edit_category\":true,\"edit_chunk\":true,\"edit_context\":true,\"edit_document\":true,\"edit_locked\":true,\"edit_plugin\":true,\"edit_propertyset\":true,\"edit_role\":true,\"edit_snippet\":true,\"edit_template\":true,\"edit_tv\":true,\"edit_user\":true,\"element_tree\":true,\"empty_cache\":true,\"error_log_erase\":true,\"error_log_view\":true,\"events\":true,\"export_static\":true,\"file_create\":true,\"file_list\":true,\"file_manager\":true,\"file_remove\":true,\"file_tree\":true,\"file_update\":true,\"file_upload\":true,\"file_unpack\":true,\"file_view\":true,\"flush_sessions\":true,\"frames\":true,\"help\":true,\"home\":true,\"import_static\":true,\"languages\":true,\"lexicons\":true,\"list\":true,\"load\":true,\"logout\":true,\"logs\":true,\"menus\":true,\"menu_reports\":true,\"menu_security\":true,\"menu_site\":true,\"menu_support\":true,\"menu_system\":true,\"menu_tools\":true,\"menu_user\":true,\"messages\":true,\"namespaces\":true,\"new_category\":true,\"new_chunk\":true,\"new_context\":true,\"new_document\":true,\"new_document_in_root\":true,\"new_plugin\":true,\"new_propertyset\":true,\"new_role\":true,\"new_snippet\":true,\"new_static_resource\":true,\"new_symlink\":true,\"new_template\":true,\"new_tv\":true,\"new_user\":true,\"new_weblink\":true,\"packages\":true,\"policy_delete\":true,\"policy_edit\":true,\"policy_new\":true,\"policy_save\":true,\"policy_template_delete\":true,\"policy_template_edit\":true,\"policy_template_new\":true,\"policy_template_save\":true,\"policy_template_view\":true,\"policy_view\":true,\"property_sets\":true,\"providers\":true,\"publish_document\":true,\"purge_deleted\":true,\"remove\":true,\"remove_locks\":true,\"resource_duplicate\":true,\"resourcegroup_delete\":true,\"resourcegroup_edit\":true,\"resourcegroup_new\":true,\"resourcegroup_resource_edit\":true,\"resourcegroup_resource_list\":true,\"resourcegroup_save\":true,\"resourcegroup_view\":true,\"resource_quick_create\":true,\"resource_quick_update\":true,\"resource_tree\":true,\"save\":true,\"save_category\":true,\"save_chunk\":true,\"save_context\":true,\"save_document\":true,\"save_plugin\":true,\"save_propertyset\":true,\"save_role\":true,\"save_snippet\":true,\"save_template\":true,\"save_tv\":true,\"save_user\":true,\"search\":true,\"set_sudo\":true,\"settings\":true,\"sources\":true,\"source_delete\":true,\"source_edit\":true,\"source_save\":true,\"source_view\":true,\"steal_locks\":true,\"tree_show_element_ids\":true,\"tree_show_resource_ids\":true,\"undelete_document\":true,\"unlock_element_properties\":true,\"unpublish_document\":true,\"usergroup_delete\":true,\"usergroup_edit\":true,\"usergroup_new\":true,\"usergroup_save\":true,\"usergroup_user_edit\":true,\"usergroup_user_list\":true,\"usergroup_view\":true,\"view\":true,\"view_category\":true,\"view_chunk\":true,\"view_context\":true,\"view_document\":true,\"view_element\":true,\"view_eventlog\":true,\"view_offline\":true,\"view_plugin\":true,\"view_propertyset\":true,\"view_role\":true,\"view_snippet\":true,\"view_sysinfo\":true,\"view_template\":true,\"view_tv\":true,\"view_unpublished\":true,\"view_user\":true,\"workspaces\":true}', 'permissions'),
 (3, 'Load Only', 'A minimal policy with permission to load an object.', 0, 3, '', '{\"load\":true}', 'permissions'),
 (4, 'Load, List and View', 'Provides load, list and view permissions only.', 0, 3, '', '{\"load\":true,\"list\":true,\"view\":true}', 'permissions'),
 (5, 'Object', 'An Object policy with all permissions.', 0, 3, '', '{\"load\":true,\"list\":true,\"view\":true,\"save\":true,\"remove\":true}', 'permissions'),
 (6, 'Element', 'MODX Element policy with all attributes.', 0, 4, '', '{\"add_children\":true,\"create\":true,\"delete\":true,\"list\":true,\"load\":true,\"remove\":true,\"save\":true,\"view\":true,\"copy\":true}', 'permissions'),
-(7, 'Content Editor', 'Context administration policy with limited, content-editing related Permissions, but no publishing.', 0, 1, '', '{\"change_profile\":true,\"class_map\":true,\"countries\":true,\"edit_document\":true,\"frames\":true,\"help\":true,\"home\":true,\"load\":true,\"list\":true,\"logout\":true,\"menu_reports\":true,\"menu_site\":true,\"menu_support\":true,\"menu_tools\":true,\"menu_user\":true,\"resource_duplicate\":true,\"resource_tree\":true,\"save_document\":true,\"source_view\":true,\"tree_show_resource_ids\":true,\"view\":true,\"view_document\":true,\"new_document\":true,\"delete_document\":true}', 'permissions'),
+(7, 'Content Editor', 'Context administration policy with limited, content-editing related Permissions, but no publishing.', 0, 1, '', '{\"change_profile\":true,\"class_map\":true,\"countries\":true,\"edit_document\":true,\"frames\":true,\"help\":true,\"home\":true,\"load\":true,\"list\":true,\"logout\":true,\"menu_reports\":true,\"menu_site\":true,\"menu_support\":true,\"menu_tools\":true,\"menu_user\":true,\"resource_duplicate\":true,\"resource_tree\":true,\"save_document\":true,\"source_view\":true,\"tree_show_resource_ids\":true,\"view\":true,\"view_document\":true,\"view_template\":true,\"new_document\":true,\"delete_document\":true}', 'permissions'),
 (8, 'Media Source Admin', 'Media Source administration policy.', 0, 5, '', '{\"create\":true,\"copy\":true,\"load\":true,\"list\":true,\"save\":true,\"remove\":true,\"view\":true}', 'permissions'),
 (9, 'Media Source User', 'Media Source user policy, with basic viewing and using - but no editing - of Media Sources.', 0, 5, '', '{\"load\":true,\"list\":true,\"view\":true}', 'permissions'),
-(10, 'Developer', 'Context administration policy with most Permissions except Administrator and Security functions.', 0, 0, '', '{\"about\":true,\"change_password\":true,\"change_profile\":true,\"charsets\":true,\"class_map\":true,\"components\":true,\"content_types\":true,\"countries\":true,\"create\":true,\"credits\":true,\"customize_forms\":true,\"dashboards\":true,\"database\":true,\"delete_category\":true,\"delete_chunk\":true,\"delete_context\":true,\"delete_document\":true,\"delete_eventlog\":true,\"delete_plugin\":true,\"delete_propertyset\":true,\"delete_snippet\":true,\"delete_template\":true,\"delete_tv\":true,\"delete_role\":true,\"delete_user\":true,\"directory_chmod\":true,\"directory_create\":true,\"directory_list\":true,\"directory_remove\":true,\"directory_update\":true,\"edit_category\":true,\"edit_chunk\":true,\"edit_context\":true,\"edit_document\":true,\"edit_locked\":true,\"edit_plugin\":true,\"edit_propertyset\":true,\"edit_role\":true,\"edit_snippet\":true,\"edit_template\":true,\"edit_tv\":true,\"edit_user\":true,\"element_tree\":true,\"empty_cache\":true,\"error_log_erase\":true,\"error_log_view\":true,\"export_static\":true,\"file_create\":true,\"file_list\":true,\"file_manager\":true,\"file_remove\":true,\"file_tree\":true,\"file_update\":true,\"file_upload\":true,\"file_unpack\":true,\"file_view\":true,\"frames\":true,\"help\":true,\"home\":true,\"import_static\":true,\"languages\":true,\"lexicons\":true,\"list\":true,\"load\":true,\"logout\":true,\"logs\":true,\"menu_reports\":true,\"menu_site\":true,\"menu_support\":true,\"menu_system\":true,\"menu_tools\":true,\"menu_user\":true,\"menus\":true,\"messages\":true,\"namespaces\":true,\"new_category\":true,\"new_chunk\":true,\"new_context\":true,\"new_document\":true,\"new_static_resource\":true,\"new_symlink\":true,\"new_weblink\":true,\"new_document_in_root\":true,\"new_plugin\":true,\"new_propertyset\":true,\"new_role\":true,\"new_snippet\":true,\"new_template\":true,\"new_tv\":true,\"new_user\":true,\"packages\":true,\"property_sets\":true,\"providers\":true,\"publish_document\":true,\"purge_deleted\":true,\"remove\":true,\"resource_duplicate\":true,\"resource_quick_create\":true,\"resource_quick_update\":true,\"resource_tree\":true,\"save\":true,\"save_category\":true,\"save_chunk\":true,\"save_context\":true,\"save_document\":true,\"save_plugin\":true,\"save_propertyset\":true,\"save_snippet\":true,\"save_template\":true,\"save_tv\":true,\"save_user\":true,\"search\":true,\"settings\":true,\"source_delete\":true,\"source_edit\":true,\"source_save\":true,\"source_view\":true,\"sources\":true,\"tree_show_element_ids\":true,\"tree_show_resource_ids\":true,\"undelete_document\":true,\"unpublish_document\":true,\"unlock_element_properties\":true,\"view\":true,\"view_category\":true,\"view_chunk\":true,\"view_context\":true,\"view_document\":true,\"view_element\":true,\"view_eventlog\":true,\"view_offline\":true,\"view_plugin\":true,\"view_propertyset\":true,\"view_role\":true,\"view_snippet\":true,\"view_sysinfo\":true,\"view_template\":true,\"view_tv\":true,\"view_user\":true,\"view_unpublished\":true,\"workspaces\":true}', 'permissions'),
+(10, 'Developer', 'Context administration policy with most Permissions except Administrator and Security functions.', 0, 1, '', '{\"about\":true,\"change_password\":true,\"change_profile\":true,\"charsets\":true,\"class_map\":true,\"components\":true,\"content_types\":true,\"countries\":true,\"create\":true,\"credits\":true,\"customize_forms\":true,\"dashboards\":true,\"database\":true,\"delete_category\":true,\"delete_chunk\":true,\"delete_context\":true,\"delete_document\":true,\"delete_eventlog\":true,\"delete_plugin\":true,\"delete_propertyset\":true,\"delete_snippet\":true,\"delete_template\":true,\"delete_tv\":true,\"delete_role\":true,\"delete_user\":true,\"directory_chmod\":true,\"directory_create\":true,\"directory_list\":true,\"directory_remove\":true,\"directory_update\":true,\"edit_category\":true,\"edit_chunk\":true,\"edit_context\":true,\"edit_document\":true,\"edit_locked\":true,\"edit_plugin\":true,\"edit_propertyset\":true,\"edit_role\":true,\"edit_snippet\":true,\"edit_template\":true,\"edit_tv\":true,\"edit_user\":true,\"element_tree\":true,\"empty_cache\":true,\"error_log_erase\":true,\"error_log_view\":true,\"export_static\":true,\"file_create\":true,\"file_list\":true,\"file_manager\":true,\"file_remove\":true,\"file_tree\":true,\"file_update\":true,\"file_upload\":true,\"file_unpack\":true,\"file_view\":true,\"frames\":true,\"help\":true,\"home\":true,\"import_static\":true,\"languages\":true,\"lexicons\":true,\"list\":true,\"load\":true,\"logout\":true,\"logs\":true,\"menu_reports\":true,\"menu_site\":true,\"menu_support\":true,\"menu_system\":true,\"menu_tools\":true,\"menu_user\":true,\"menus\":true,\"messages\":true,\"namespaces\":true,\"new_category\":true,\"new_chunk\":true,\"new_context\":true,\"new_document\":true,\"new_static_resource\":true,\"new_symlink\":true,\"new_weblink\":true,\"new_document_in_root\":true,\"new_plugin\":true,\"new_propertyset\":true,\"new_role\":true,\"new_snippet\":true,\"new_template\":true,\"new_tv\":true,\"new_user\":true,\"packages\":true,\"property_sets\":true,\"providers\":true,\"publish_document\":true,\"purge_deleted\":true,\"remove\":true,\"resource_duplicate\":true,\"resource_quick_create\":true,\"resource_quick_update\":true,\"resource_tree\":true,\"save\":true,\"save_category\":true,\"save_chunk\":true,\"save_context\":true,\"save_document\":true,\"save_plugin\":true,\"save_propertyset\":true,\"save_snippet\":true,\"save_template\":true,\"save_tv\":true,\"save_user\":true,\"search\":true,\"settings\":true,\"source_delete\":true,\"source_edit\":true,\"source_save\":true,\"source_view\":true,\"sources\":true,\"tree_show_element_ids\":true,\"tree_show_resource_ids\":true,\"undelete_document\":true,\"unpublish_document\":true,\"unlock_element_properties\":true,\"view\":true,\"view_category\":true,\"view_chunk\":true,\"view_context\":true,\"view_document\":true,\"view_element\":true,\"view_eventlog\":true,\"view_offline\":true,\"view_plugin\":true,\"view_propertyset\":true,\"view_role\":true,\"view_snippet\":true,\"view_sysinfo\":true,\"view_template\":true,\"view_tv\":true,\"view_user\":true,\"view_unpublished\":true,\"workspaces\":true}', 'permissions'),
 (11, 'Context', 'A standard Context policy that you can apply when creating Context ACLs for basic read/write and view_unpublished access within a Context.', 0, 6, '', '{\"load\":true,\"list\":true,\"view\":true,\"save\":true,\"remove\":true,\"copy\":true,\"view_unpublished\":true}', 'permissions'),
 (12, 'Hidden Namespace', 'Hidden Namespace policy, will not show Namespace in lists.', 0, 7, '', '{\"load\":false,\"list\":false,\"view\":true}', 'permissions'),
 (13, 'QuipModeratorPolicy', 'A policy for moderating Quip comments.', 0, 8, '', '{\"quip.comment_approve\":true,\"quip.comment_list\":true,\"quip.comment_list_unapproved\":true,\"quip.comment_remove\":true,\"quip.comment_update\":true,\"quip.thread_list\":true,\"quip.thread_manage\":true,\"quip.thread_remove\":true,\"quip.thread_truncate\":true,\"quip.thread_view\":true,\"quip.thread_update\":true}', 'quip:permissions'),
@@ -460,9 +464,9 @@ INSERT INTO `new_access_policies` (`id`, `name`, `description`, `parent`, `templ
 
 CREATE TABLE `new_access_policy_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `template_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `template_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext,
+  `description` mediumtext DEFAULT NULL,
   `lexicon` varchar(255) NOT NULL DEFAULT 'permissions'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -489,7 +493,7 @@ INSERT INTO `new_access_policy_templates` (`id`, `template_group`, `name`, `desc
 CREATE TABLE `new_access_policy_template_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext
+  `description` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -514,9 +518,9 @@ CREATE TABLE `new_access_resources` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -530,9 +534,9 @@ CREATE TABLE `new_access_resource_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -555,9 +559,9 @@ CREATE TABLE `new_access_templatevars` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -569,10 +573,10 @@ CREATE TABLE `new_access_templatevars` (
 
 CREATE TABLE `new_actiondom` (
   `id` int(10) UNSIGNED NOT NULL,
-  `set` int(11) NOT NULL DEFAULT '0',
+  `set` int(11) NOT NULL DEFAULT 0,
   `action` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `xtype` varchar(100) NOT NULL DEFAULT '',
   `container` varchar(255) NOT NULL DEFAULT '',
   `rule` varchar(100) NOT NULL DEFAULT '',
@@ -580,9 +584,9 @@ CREATE TABLE `new_actiondom` (
   `constraint` varchar(255) NOT NULL DEFAULT '',
   `constraint_field` varchar(100) NOT NULL DEFAULT '',
   `constraint_class` varchar(100) NOT NULL DEFAULT '',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `for_parent` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `for_parent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -595,7 +599,7 @@ CREATE TABLE `new_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `namespace` varchar(100) NOT NULL DEFAULT 'core',
   `controller` varchar(255) NOT NULL,
-  `haslayout` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `haslayout` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `lang_topics` text NOT NULL,
   `assets` text NOT NULL,
   `help_url` text NOT NULL
@@ -628,7 +632,7 @@ CREATE TABLE `new_actions_fields` (
   `tab` varchar(255) NOT NULL DEFAULT '',
   `form` varchar(255) NOT NULL DEFAULT '',
   `other` varchar(255) NOT NULL DEFAULT '',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -636,82 +640,84 @@ CREATE TABLE `new_actions_fields` (
 --
 
 INSERT INTO `new_actions_fields` (`id`, `action`, `name`, `type`, `tab`, `form`, `other`, `rank`) VALUES
-(1, 'resource/update', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
-(2, 'resource/update', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
-(3, 'resource/update', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
-(4, 'resource/update', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
-(5, 'resource/update', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
-(6, 'resource/update', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
-(7, 'resource/update', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
-(8, 'resource/update', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
-(9, 'resource/update', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
-(10, 'resource/update', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
-(11, 'resource/update', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
-(12, 'resource/update', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
-(13, 'resource/update', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
-(14, 'resource/update', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
-(15, 'resource/update', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
-(16, 'resource/update', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
-(17, 'resource/update', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
-(18, 'resource/update', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
-(19, 'resource/update', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
-(20, 'resource/update', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
-(21, 'resource/update', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
-(22, 'resource/update', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
-(23, 'resource/update', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
-(24, 'resource/update', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
-(25, 'resource/update', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
-(26, 'resource/update', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
-(27, 'resource/update', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
-(28, 'resource/update', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
-(29, 'resource/update', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
-(30, 'resource/update', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
-(31, 'resource/update', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
-(32, 'resource/update', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
-(33, 'resource/update', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
-(34, 'resource/update', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
-(35, 'resource/update', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
-(36, 'resource/update', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
-(37, 'resource/update', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
-(38, 'resource/update', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0),
-(39, 'resource/create', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
-(40, 'resource/create', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
-(41, 'resource/create', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
-(42, 'resource/create', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
-(43, 'resource/create', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
-(44, 'resource/create', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
-(45, 'resource/create', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
-(46, 'resource/create', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
-(47, 'resource/create', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
-(48, 'resource/create', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
-(49, 'resource/create', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
-(50, 'resource/create', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
-(51, 'resource/create', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
-(52, 'resource/create', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
-(53, 'resource/create', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
-(54, 'resource/create', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
-(55, 'resource/create', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
-(56, 'resource/create', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
-(57, 'resource/create', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
-(58, 'resource/create', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
-(59, 'resource/create', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
-(60, 'resource/create', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
-(61, 'resource/create', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
-(62, 'resource/create', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
-(63, 'resource/create', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
-(64, 'resource/create', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
-(65, 'resource/create', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
-(66, 'resource/create', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
-(67, 'resource/create', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
-(68, 'resource/create', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
-(69, 'resource/create', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
-(70, 'resource/create', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
-(71, 'resource/create', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
-(72, 'resource/create', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
-(73, 'resource/create', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
-(74, 'resource/create', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
-(75, 'resource/create', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
-(76, 'resource/create', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0);
+(139, 'resource/create', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
+(138, 'resource/create', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
+(137, 'resource/create', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
+(136, 'resource/create', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
+(135, 'resource/create', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
+(134, 'resource/create', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
+(133, 'resource/create', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
+(132, 'resource/create', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
+(131, 'resource/create', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
+(130, 'resource/create', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
+(129, 'resource/create', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
+(128, 'resource/create', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
+(127, 'resource/create', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
+(126, 'resource/create', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
+(125, 'resource/create', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
+(124, 'resource/create', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
+(123, 'resource/create', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
+(122, 'resource/create', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
+(121, 'resource/create', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
+(120, 'resource/create', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
+(119, 'resource/create', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
+(118, 'resource/create', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
+(117, 'resource/create', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
+(116, 'resource/create', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
+(115, 'resource/update', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0),
+(114, 'resource/update', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
+(113, 'resource/update', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
+(112, 'resource/update', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
+(111, 'resource/update', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
+(110, 'resource/update', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
+(109, 'resource/update', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
+(108, 'resource/update', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 5),
+(107, 'resource/update', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
+(106, 'resource/update', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
+(105, 'resource/update', 'alias_visible', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
+(104, 'resource/update', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
+(103, 'resource/update', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
+(102, 'resource/update', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
+(101, 'resource/update', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
+(100, 'resource/update', 'pub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 1),
+(99, 'resource/update', 'publishedon', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 0),
+(98, 'resource/update', 'modx-page-settings-right', 'tab', '', 'modx-panel-resource', '', 5),
+(97, 'resource/update', 'menuindex', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 4),
+(96, 'resource/update', 'content_dispo', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 3),
+(95, 'resource/update', 'content_type', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 2),
+(94, 'resource/update', 'class_key', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 1),
+(93, 'resource/update', 'parent-cmb', 'field', 'modx-page-settings-left', 'modx-panel-resource', '', 0),
+(92, 'resource/update', 'modx-page-settings-left', 'tab', '', 'modx-panel-resource', '', 4),
+(91, 'resource/update', 'modx-page-settings', 'tab', '', 'modx-panel-resource', '', 3),
+(90, 'resource/update', 'published', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 5),
+(89, 'resource/update', 'hidemenu', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 4),
+(88, 'resource/update', 'link_attributes', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 3),
+(87, 'resource/update', 'menutitle', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 2),
+(86, 'resource/update', 'alias', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 1),
+(85, 'resource/update', 'template', 'field', 'modx-resource-main-right', 'modx-panel-resource', '', 0),
+(84, 'resource/update', 'modx-resource-main-right', 'tab', '', 'modx-panel-resource', '', 2),
+(83, 'resource/update', 'introtext', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 4),
+(82, 'resource/update', 'description', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 3),
+(81, 'resource/update', 'longtitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 2),
+(80, 'resource/update', 'pagetitle', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 1),
+(79, 'resource/update', 'id', 'field', 'modx-resource-main-left', 'modx-panel-resource', '', 0),
+(78, 'resource/update', 'modx-resource-main-left', 'tab', '', 'modx-panel-resource', '', 1),
+(77, 'resource/update', 'modx-resource-settings', 'tab', '', 'modx-panel-resource', '', 0),
+(140, 'resource/create', 'unpub_date', 'field', 'modx-page-settings-right', 'modx-panel-resource', '', 2),
+(141, 'resource/create', 'modx-page-settings-right-box-left', 'tab', '', 'modx-panel-resource', '', 6),
+(142, 'resource/create', 'isfolder', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 0),
+(143, 'resource/create', 'searchable', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 1),
+(144, 'resource/create', 'alias_visible', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 2),
+(145, 'resource/create', 'richtext', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 3),
+(146, 'resource/create', 'uri_override', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 4),
+(147, 'resource/create', 'uri', 'field', 'modx-page-settings-right-box-left', 'modx-panel-resource', '', 5),
+(148, 'resource/create', 'modx-page-settings-right-box-right', 'tab', '', 'modx-panel-resource', '', 7),
+(149, 'resource/create', 'cacheable', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 0),
+(150, 'resource/create', 'syncsite', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 1),
+(151, 'resource/create', 'deleted', 'field', 'modx-page-settings-right-box-right', 'modx-panel-resource', '', 2),
+(152, 'resource/create', 'modx-panel-resource-tv', 'tab', '', 'modx-panel-resource', 'tv', 8),
+(153, 'resource/create', 'modx-resource-access-permissions', 'tab', '', 'modx-panel-resource', '', 9),
+(154, 'resource/create', 'modx-resource-content', 'field', 'modx-resource-content', 'modx-panel-resource', '', 0);
 
 -- --------------------------------------------------------
 
@@ -720,9 +726,9 @@ INSERT INTO `new_actions_fields` (`id`, `action`, `name`, `type`, `tab`, `form`,
 --
 
 CREATE TABLE `new_active_users` (
-  `internalKey` int(9) NOT NULL DEFAULT '0',
+  `internalKey` int(9) NOT NULL DEFAULT 0,
   `username` varchar(50) NOT NULL DEFAULT '',
-  `lasthit` int(20) NOT NULL DEFAULT '0',
+  `lasthit` int(20) NOT NULL DEFAULT 0,
   `id` int(10) DEFAULT NULL,
   `action` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(20) NOT NULL DEFAULT ''
@@ -736,9 +742,9 @@ CREATE TABLE `new_active_users` (
 
 CREATE TABLE `new_categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent` int(10) UNSIGNED DEFAULT '0',
+  `parent` int(10) UNSIGNED DEFAULT 0,
   `category` varchar(45) NOT NULL DEFAULT '',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -776,9 +782,9 @@ INSERT INTO `new_categories` (`id`, `parent`, `category`, `rank`) VALUES
 --
 
 CREATE TABLE `new_categories_closure` (
-  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `descendant` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `depth` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `descendant` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `depth` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -842,7 +848,7 @@ CREATE TABLE `new_class_map` (
   `class` varchar(120) NOT NULL DEFAULT '',
   `parent_class` varchar(120) NOT NULL DEFAULT '',
   `name_field` varchar(255) NOT NULL DEFAULT 'name',
-  `path` tinytext,
+  `path` tinytext DEFAULT NULL,
   `lexicon` varchar(255) NOT NULL DEFAULT 'core:resource'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -871,7 +877,7 @@ CREATE TABLE `new_clientconfig_group` (
   `id` int(10) UNSIGNED NOT NULL,
   `label` varchar(75) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `sortorder` int(10) NOT NULL DEFAULT '0'
+  `sortorder` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -893,13 +899,13 @@ CREATE TABLE `new_clientconfig_setting` (
   `label` varchar(75) NOT NULL DEFAULT '',
   `xtype` varchar(75) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `is_required` tinyint(1) NOT NULL DEFAULT '0',
-  `sortorder` int(10) NOT NULL DEFAULT '0',
+  `is_required` tinyint(1) NOT NULL DEFAULT 0,
+  `sortorder` int(10) NOT NULL DEFAULT 0,
   `value` mediumtext NOT NULL,
   `default` mediumtext NOT NULL,
-  `group` int(11) DEFAULT '0',
-  `options` mediumtext,
-  `source` int(11) DEFAULT '0'
+  `group` int(11) DEFAULT 0,
+  `options` mediumtext DEFAULT NULL,
+  `source` int(11) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -934,7 +940,7 @@ CREATE TABLE `new_collection_resource_template` (
 CREATE TABLE `new_collection_selections` (
   `collection` int(10) UNSIGNED NOT NULL,
   `resource` int(10) UNSIGNED NOT NULL,
-  `menuindex` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `menuindex` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -946,7 +952,7 @@ CREATE TABLE `new_collection_selections` (
 CREATE TABLE `new_collection_settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `collection` int(10) UNSIGNED NOT NULL,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `template` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -966,20 +972,20 @@ CREATE TABLE `new_collection_templates` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL DEFAULT '',
-  `global_template` int(1) NOT NULL DEFAULT '0',
-  `bulk_actions` int(1) NOT NULL DEFAULT '0',
-  `allow_dd` int(1) NOT NULL DEFAULT '1',
-  `page_size` int(10) NOT NULL DEFAULT '20',
+  `global_template` int(1) NOT NULL DEFAULT 0,
+  `bulk_actions` int(1) NOT NULL DEFAULT 0,
+  `allow_dd` int(1) NOT NULL DEFAULT 1,
+  `page_size` int(10) NOT NULL DEFAULT 20,
   `sort_field` varchar(100) NOT NULL DEFAULT 'id',
   `sort_dir` varchar(4) NOT NULL DEFAULT 'asc',
   `sort_type` varchar(64) DEFAULT NULL,
   `child_template` int(10) UNSIGNED DEFAULT NULL,
   `child_resource_type` varchar(100) NOT NULL DEFAULT 'modDocument',
-  `resource_type_selection` int(1) NOT NULL DEFAULT '1',
+  `resource_type_selection` int(1) NOT NULL DEFAULT 1,
   `tab_label` varchar(255) NOT NULL DEFAULT 'collections.children',
   `button_label` varchar(255) NOT NULL DEFAULT 'collections.children.create',
   `content_place` varchar(255) NOT NULL DEFAULT 'original',
-  `view_for` int(1) UNSIGNED NOT NULL DEFAULT '0',
+  `view_for` int(1) UNSIGNED NOT NULL DEFAULT 0,
   `link_label` varchar(255) NOT NULL DEFAULT 'selections.create',
   `context_menu` varchar(512) NOT NULL DEFAULT 'view,edit,duplicate,publish,unpublish,-,delete,undelete,remove,-,unlink',
   `buttons` varchar(512) NOT NULL DEFAULT 'open,view,edit,duplicate,publish:orange,unpublish,delete,undelete,remove,unlink',
@@ -992,15 +998,15 @@ CREATE TABLE `new_collection_templates` (
   `child_cacheable` int(1) DEFAULT NULL,
   `child_searchable` int(1) DEFAULT NULL,
   `child_richtext` int(1) DEFAULT NULL,
-  `child_content_type` int(10) NOT NULL DEFAULT '0',
+  `child_content_type` int(10) NOT NULL DEFAULT 0,
   `parent` varchar(100) NOT NULL DEFAULT '',
   `child_content_disposition` int(1) DEFAULT NULL,
   `permanent_sort_before` varchar(255) NOT NULL DEFAULT '',
   `permanent_sort_after` varchar(255) NOT NULL DEFAULT '',
-  `selection_link_condition` text,
-  `search_query_exclude_tvs` int(1) NOT NULL DEFAULT '0',
-  `search_query_exclude_tagger` int(1) NOT NULL DEFAULT '0',
-  `search_query_title_only` int(1) NOT NULL DEFAULT '0'
+  `selection_link_condition` text DEFAULT NULL,
+  `search_query_exclude_tvs` int(1) NOT NULL DEFAULT 0,
+  `search_query_exclude_tagger` int(1) NOT NULL DEFAULT 0,
+  `search_query_title_only` int(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1021,13 +1027,13 @@ CREATE TABLE `new_collection_template_columns` (
   `template` int(10) UNSIGNED NOT NULL,
   `label` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `sortable` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `width` int(10) UNSIGNED NOT NULL DEFAULT '100',
+  `hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `sortable` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `width` int(10) UNSIGNED NOT NULL DEFAULT 100,
   `editor` varchar(255) NOT NULL DEFAULT '',
   `renderer` varchar(255) NOT NULL DEFAULT '',
   `php_renderer` varchar(255) NOT NULL DEFAULT '',
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `sort_type` varchar(64) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1051,11 +1057,11 @@ INSERT INTO `new_collection_template_columns` (`id`, `template`, `label`, `name`
 CREATE TABLE `new_content_type` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` tinytext,
-  `mime_type` tinytext,
-  `file_extensions` tinytext,
-  `headers` mediumtext,
-  `binary` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `description` tinytext DEFAULT NULL,
+  `mime_type` tinytext DEFAULT NULL,
+  `file_extensions` tinytext DEFAULT NULL,
+  `headers` mediumtext DEFAULT NULL,
+  `binary` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1081,8 +1087,8 @@ INSERT INTO `new_content_type` (`id`, `name`, `description`, `mime_type`, `file_
 CREATE TABLE `new_context` (
   `key` varchar(100) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `description` tinytext,
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `description` tinytext DEFAULT NULL,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1113,11 +1119,11 @@ CREATE TABLE `new_context_resource` (
 CREATE TABLE `new_context_setting` (
   `context_key` varchar(255) NOT NULL,
   `key` varchar(50) NOT NULL,
-  `value` mediumtext,
+  `value` mediumtext DEFAULT NULL,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1137,8 +1143,8 @@ INSERT INTO `new_context_setting` (`context_key`, `key`, `value`, `xtype`, `name
 CREATE TABLE `new_dashboard` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
-  `hide_trees` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `description` text DEFAULT NULL,
+  `hide_trees` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1157,9 +1163,9 @@ INSERT INTO `new_dashboard` (`id`, `name`, `description`, `hide_trees`) VALUES
 CREATE TABLE `new_dashboard_widget` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `type` varchar(100) NOT NULL,
-  `content` mediumtext,
+  `content` mediumtext DEFAULT NULL,
   `namespace` varchar(255) NOT NULL DEFAULT '',
   `lexicon` varchar(255) NOT NULL DEFAULT 'core:dashboards',
   `size` varchar(255) NOT NULL DEFAULT 'half'
@@ -1183,9 +1189,9 @@ INSERT INTO `new_dashboard_widget` (`id`, `name`, `description`, `type`, `conten
 --
 
 CREATE TABLE `new_dashboard_widget_placement` (
-  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `widget` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `widget` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1208,8 +1214,8 @@ INSERT INTO `new_dashboard_widget_placement` (`dashboard`, `widget`, `rank`) VAL
 CREATE TABLE `new_documentgroup_names` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `private_memgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `private_webgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `private_memgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `private_webgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1228,8 +1234,8 @@ INSERT INTO `new_documentgroup_names` (`id`, `name`, `private_memgroup`, `privat
 
 CREATE TABLE `new_document_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `document_group` int(10) NOT NULL DEFAULT '0',
-  `document` int(10) NOT NULL DEFAULT '0'
+  `document_group` int(10) NOT NULL DEFAULT 0,
+  `document` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1251,9 +1257,9 @@ INSERT INTO `new_document_groups` (`id`, `document_group`, `document`) VALUES
 --
 
 CREATE TABLE `new_element_property_sets` (
-  `element` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `element` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `element_class` varchar(100) NOT NULL DEFAULT '',
-  `property_set` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `property_set` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1266,7 +1272,7 @@ CREATE TABLE `new_extension_packages` (
   `id` int(10) UNSIGNED NOT NULL,
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `name` varchar(100) NOT NULL DEFAULT 'core',
-  `path` text,
+  `path` text DEFAULT NULL,
   `table_prefix` varchar(255) NOT NULL DEFAULT '',
   `service_class` varchar(255) NOT NULL DEFAULT '',
   `service_name` varchar(255) NOT NULL DEFAULT '',
@@ -1284,8 +1290,8 @@ CREATE TABLE `new_fc_profiles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1295,8 +1301,8 @@ CREATE TABLE `new_fc_profiles` (
 --
 
 CREATE TABLE `new_fc_profiles_usergroups` (
-  `usergroup` int(11) NOT NULL DEFAULT '0',
-  `profile` int(11) NOT NULL DEFAULT '0'
+  `usergroup` int(11) NOT NULL DEFAULT 0,
+  `profile` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1307,11 +1313,11 @@ CREATE TABLE `new_fc_profiles_usergroups` (
 
 CREATE TABLE `new_fc_sets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `profile` int(11) NOT NULL DEFAULT '0',
+  `profile` int(11) NOT NULL DEFAULT 0,
   `action` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `template` int(11) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `template` int(11) NOT NULL DEFAULT 0,
   `constraint` varchar(255) NOT NULL DEFAULT '',
   `constraint_field` varchar(100) NOT NULL DEFAULT '',
   `constraint_class` varchar(100) NOT NULL DEFAULT ''
@@ -1329,8 +1335,8 @@ CREATE TABLE `new_formit_forms` (
   `context_key` varchar(100) NOT NULL DEFAULT '',
   `values` text NOT NULL,
   `ip` varchar(15) NOT NULL DEFAULT '',
-  `date` int(11) NOT NULL DEFAULT '0',
-  `encrypted` tinyint(1) NOT NULL DEFAULT '0',
+  `date` int(11) NOT NULL DEFAULT 0,
+  `encrypted` tinyint(1) NOT NULL DEFAULT 0,
   `hash` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1342,15 +1348,15 @@ CREATE TABLE `new_formit_forms` (
 
 CREATE TABLE `new_gallery_albums` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `year` varchar(100) DEFAULT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `createdon` datetime DEFAULT NULL,
-  `createdby` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `prominent` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `createdby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `prominent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `watermark` varchar(255) NOT NULL DEFAULT '',
   `cover_filename` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1371,7 +1377,7 @@ INSERT INTO `new_gallery_albums` (`id`, `parent`, `name`, `year`, `description`,
 
 CREATE TABLE `new_gallery_album_contexts` (
   `id` int(10) UNSIGNED NOT NULL,
-  `album` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `album` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1383,9 +1389,9 @@ CREATE TABLE `new_gallery_album_contexts` (
 
 CREATE TABLE `new_gallery_album_items` (
   `id` int(10) UNSIGNED NOT NULL,
-  `item` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `album` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `item` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `album` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1411,14 +1417,14 @@ CREATE TABLE `new_gallery_items` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL DEFAULT '',
   `filename` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `mediatype` varchar(40) NOT NULL DEFAULT 'image',
-  `url` text,
+  `url` text DEFAULT NULL,
   `createdon` datetime DEFAULT NULL,
-  `createdby` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `createdby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `duration` varchar(40) NOT NULL DEFAULT '',
-  `streamer` text,
+  `streamer` text DEFAULT NULL,
   `watermark_pos` varchar(10) NOT NULL DEFAULT 'tl'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1443,7 +1449,7 @@ INSERT INTO `new_gallery_items` (`id`, `name`, `filename`, `description`, `media
 
 CREATE TABLE `new_gallery_tags` (
   `id` int(10) UNSIGNED NOT NULL,
-  `item` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `item` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `tag` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1461,7 +1467,7 @@ CREATE TABLE `new_lexicon_entries` (
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `language` varchar(20) NOT NULL DEFAULT 'en',
   `createdon` datetime DEFAULT NULL,
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1472,7 +1478,7 @@ CREATE TABLE `new_lexicon_entries` (
 
 CREATE TABLE `new_manager_log` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `user` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `occurred` datetime DEFAULT NULL,
   `action` varchar(100) NOT NULL DEFAULT '',
   `classKey` varchar(100) NOT NULL DEFAULT '',
@@ -4300,7 +4306,10 @@ INSERT INTO `new_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, `
 (2810, 1, '2017-11-17 14:38:59', 'chunk_update', 'modChunk', '23'),
 (2811, 1, '2017-11-17 14:39:00', 'propertyset_update_from_element', 'modChunk', '23'),
 (2812, 1, '2017-11-17 14:41:08', 'chunk_update', 'modChunk', '23'),
-(2813, 1, '2017-11-17 14:41:09', 'propertyset_update_from_element', 'modChunk', '23');
+(2813, 1, '2017-11-17 14:41:09', 'propertyset_update_from_element', 'modChunk', '23'),
+(2814, 1, '2019-08-28 10:40:22', 'login', 'modContext', 'mgr'),
+(2815, 1, '2019-08-28 10:41:51', 'setting_update', 'modSystemSetting', 'fe_editor_lang'),
+(2816, 1, '2019-08-28 10:42:02', 'setting_update', 'modSystemSetting', 'manager_language');
 
 -- --------------------------------------------------------
 
@@ -4311,10 +4320,10 @@ INSERT INTO `new_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, `
 CREATE TABLE `new_media_sources` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `class_key` varchar(100) NOT NULL DEFAULT 'sources.modFileMediaSource',
-  `properties` mediumtext,
-  `is_stream` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
+  `properties` mediumtext DEFAULT NULL,
+  `is_stream` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4332,7 +4341,7 @@ INSERT INTO `new_media_sources` (`id`, `name`, `description`, `class_key`, `prop
 --
 
 CREATE TABLE `new_media_sources_contexts` (
-  `source` int(11) NOT NULL DEFAULT '0',
+  `source` int(11) NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4343,9 +4352,9 @@ CREATE TABLE `new_media_sources_contexts` (
 --
 
 CREATE TABLE `new_media_sources_elements` (
-  `source` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `object_class` varchar(100) NOT NULL DEFAULT 'modTemplateVar',
-  `object` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `object` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4372,10 +4381,10 @@ INSERT INTO `new_media_sources_elements` (`source`, `object_class`, `object`, `c
 CREATE TABLE `new_membergroup_names` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT '1'
+  `description` text DEFAULT NULL,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4395,10 +4404,10 @@ INSERT INTO `new_membergroup_names` (`id`, `name`, `description`, `parent`, `ran
 
 CREATE TABLE `new_member_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `member` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `role` int(10) UNSIGNED NOT NULL DEFAULT '1',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `user_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `member` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `role` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4421,7 +4430,7 @@ CREATE TABLE `new_menus` (
   `action` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `icon` varchar(255) NOT NULL DEFAULT '',
-  `menuindex` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `menuindex` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `params` text NOT NULL,
   `handler` text NOT NULL,
   `permissions` text NOT NULL,
@@ -4450,8 +4459,8 @@ INSERT INTO `new_menus` (`text`, `parent`, `action`, `description`, `icon`, `men
 ('users', 'manage', 'security/user', 'user_management_desc', '', 0, '', '', 'view_user', 'core'),
 ('refresh_site', 'manage', '', 'refresh_site_desc', '', 1, '', 'MODx.clearCache(); return false;', 'empty_cache', 'core'),
 ('refreshuris', 'refresh_site', '', 'refreshuris_desc', '', 0, '', 'MODx.refreshURIs(); return false;', 'empty_cache', 'core'),
-('remove_locks', 'manage', '', 'remove_locks_desc', '', 2, '', '\nMODx.msg.confirm({\n    title: _(\'remove_locks\')\n    ,text: _(\'confirm_remove_locks\')\n    ,url: MODx.config.connectors_url\n    ,params: {\n        action: \'system/remove_locks\'\n    }\n    ,listeners: {\n        \'success\': {fn:function() {\n            var tree = Ext.getCmp(\"modx-resource-tree\");\n            if (tree && tree.rendered) {\n                tree.refresh();\n            }\n         },scope:this}\n    }\n});', 'remove_locks', 'core'),
-('flush_access', 'manage', '', 'flush_access_desc', '', 3, '', 'MODx.msg.confirm({\n    title: _(\'flush_access\')\n    ,text: _(\'flush_access_confirm\')\n    ,url: MODx.config.connector_url\n    ,params: {\n        action: \'security/access/flush\'\n    }\n    ,listeners: {\n        \'success\': {fn:function() { location.href = \'./\'; },scope:this}\n    }\n});', 'access_permissions', 'core'),
+('remove_locks', 'manage', '', 'remove_locks_desc', '', 2, '', 'MODx.removeLocks();return false;', 'remove_locks', 'core'),
+('flush_access', 'manage', '', 'flush_access_desc', '', 3, '', 'MODx.msg.confirm({\n    title: _(\'flush_access\')\n    ,text: _(\'flush_access_confirm\')\n    ,url: MODx.config.connector_url\n    ,params: {\n        action: \'security/access/flush\'\n    }\n    ,listeners: {\n        \'success\': {fn:function() { location.href = \'./\'; },scope:this},\n        \'failure\': {fn:function(response) { Ext.MessageBox.alert(\'failure\', response.responseText); },scope:this},\n    }\n});', 'access_permissions', 'core'),
 ('flush_sessions', 'manage', '', 'flush_sessions_desc', '', 4, '', 'MODx.msg.confirm({\n    title: _(\'flush_sessions\')\n    ,text: _(\'flush_sessions_confirm\')\n    ,url: MODx.config.connector_url\n    ,params: {\n        action: \'security/flush\'\n    }\n    ,listeners: {\n        \'success\': {fn:function() { location.href = \'./\'; },scope:this}\n    }\n});', 'flush_sessions', 'core'),
 ('reports', 'manage', '', 'reports_desc', '', 5, '', '', 'menu_reports', 'core'),
 ('site_schedule', 'reports', 'resource/site_schedule', 'site_schedule_desc', '', 0, '', '', 'view_document', 'core'),
@@ -4498,16 +4507,16 @@ CREATE TABLE `new_migx_configs` (
   `filters` text NOT NULL,
   `extended` text NOT NULL,
   `columns` text NOT NULL,
-  `createdby` int(10) NOT NULL DEFAULT '0',
+  `createdby` int(10) NOT NULL DEFAULT 0,
   `createdon` datetime DEFAULT NULL,
-  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT 0,
   `editedon` datetime DEFAULT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime DEFAULT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `publishedon` datetime DEFAULT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT '0'
+  `publishedby` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4518,19 +4527,19 @@ CREATE TABLE `new_migx_configs` (
 
 CREATE TABLE `new_migx_config_elements` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT '0',
-  `element_id` int(10) NOT NULL DEFAULT '0',
-  `rank` int(10) NOT NULL DEFAULT '0',
-  `createdby` int(10) NOT NULL DEFAULT '0',
+  `config_id` int(10) NOT NULL DEFAULT 0,
+  `element_id` int(10) NOT NULL DEFAULT 0,
+  `rank` int(10) NOT NULL DEFAULT 0,
+  `createdby` int(10) NOT NULL DEFAULT 0,
   `createdon` datetime NOT NULL,
-  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT 0,
   `editedon` datetime NOT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime NOT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `publishedon` datetime NOT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT '0'
+  `publishedby` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4543,16 +4552,16 @@ CREATE TABLE `new_migx_elements` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` varchar(100) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `createdby` int(10) NOT NULL DEFAULT '0',
+  `createdby` int(10) NOT NULL DEFAULT 0,
   `createdon` datetime NOT NULL,
-  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT 0,
   `editedon` datetime NOT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime NOT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `publishedon` datetime NOT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT '0'
+  `publishedby` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4563,10 +4572,10 @@ CREATE TABLE `new_migx_elements` (
 
 CREATE TABLE `new_migx_formtabs` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT '0',
+  `config_id` int(10) NOT NULL DEFAULT 0,
   `caption` varchar(255) NOT NULL DEFAULT '',
-  `pos` int(10) NOT NULL DEFAULT '0',
-  `print_before_tabs` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `pos` int(10) NOT NULL DEFAULT 0,
+  `print_before_tabs` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `extended` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4578,13 +4587,13 @@ CREATE TABLE `new_migx_formtabs` (
 
 CREATE TABLE `new_migx_formtab_fields` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT '0',
-  `formtab_id` int(10) NOT NULL DEFAULT '0',
+  `config_id` int(10) NOT NULL DEFAULT 0,
+  `formtab_id` int(10) NOT NULL DEFAULT 0,
   `field` varchar(255) NOT NULL DEFAULT '',
   `caption` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `pos` int(10) NOT NULL DEFAULT '0',
-  `description_is_code` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `pos` int(10) NOT NULL DEFAULT 0,
+  `description_is_code` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `inputTV` varchar(255) NOT NULL DEFAULT '',
   `inputTVtype` varchar(255) NOT NULL DEFAULT '',
   `validation` text NOT NULL,
@@ -4606,8 +4615,8 @@ CREATE TABLE `new_migx_formtab_fields` (
 
 CREATE TABLE `new_namespaces` (
   `name` varchar(40) NOT NULL DEFAULT '',
-  `path` text,
-  `assets_path` text
+  `path` text DEFAULT NULL,
+  `assets_path` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4652,9 +4661,9 @@ INSERT INTO `new_namespaces` (`name`, `path`, `assets_path`) VALUES
 CREATE TABLE `new_property_set` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
-  `category` int(10) NOT NULL DEFAULT '0',
+  `category` int(10) NOT NULL DEFAULT 0,
   `description` varchar(255) NOT NULL DEFAULT '',
-  `properties` text
+  `properties` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4666,25 +4675,25 @@ CREATE TABLE `new_property_set` (
 CREATE TABLE `new_quip_comments` (
   `id` int(10) UNSIGNED NOT NULL,
   `thread` varchar(255) NOT NULL DEFAULT '',
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` tinytext,
-  `author` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` tinytext DEFAULT NULL,
+  `author` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `body` text NOT NULL,
   `createdon` datetime DEFAULT NULL,
   `editedon` datetime DEFAULT NULL,
-  `approved` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `approved` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `approvedon` datetime DEFAULT NULL,
-  `approvedby` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `approvedby` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `website` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(255) NOT NULL DEFAULT '0.0.0.0',
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime DEFAULT NULL,
-  `deletedby` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `resource` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `resource` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `idprefix` varchar(255) NOT NULL DEFAULT 'qcom',
-  `existing_params` text
+  `existing_params` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4694,9 +4703,9 @@ CREATE TABLE `new_quip_comments` (
 --
 
 CREATE TABLE `new_quip_comments_closure` (
-  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `descendant` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `depth` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `descendant` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `depth` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4721,15 +4730,15 @@ CREATE TABLE `new_quip_comment_notify` (
 CREATE TABLE `new_quip_threads` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `createdon` datetime DEFAULT NULL,
-  `moderated` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `moderated` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `moderator_group` varchar(255) NOT NULL DEFAULT 'Administrator',
-  `moderators` text,
-  `notify_emails` text,
-  `resource` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `moderators` text DEFAULT NULL,
+  `notify_emails` text DEFAULT NULL,
+  `resource` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `idprefix` varchar(255) NOT NULL DEFAULT 'qcom',
-  `existing_params` text,
-  `quip_call_params` text,
-  `quipreply_call_params` text
+  `existing_params` text DEFAULT NULL,
+  `quip_call_params` text DEFAULT NULL,
+  `quipreply_call_params` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4743,11 +4752,11 @@ CREATE TABLE `new_register_messages` (
   `id` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `valid` datetime NOT NULL,
-  `accessed` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `accesses` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `expires` int(20) NOT NULL DEFAULT '0',
+  `accessed` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `accesses` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `expires` int(20) NOT NULL DEFAULT 0,
   `payload` mediumtext NOT NULL,
-  `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4759,7 +4768,7 @@ CREATE TABLE `new_register_messages` (
 CREATE TABLE `new_register_queues` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `options` mediumtext
+  `options` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4781,8 +4790,8 @@ CREATE TABLE `new_register_topics` (
   `queue` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `options` mediumtext
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `options` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4802,7 +4811,7 @@ INSERT INTO `new_register_topics` (`id`, `queue`, `name`, `created`, `updated`, 
 CREATE TABLE `new_session` (
   `id` varchar(255) NOT NULL DEFAULT '',
   `access` int(20) UNSIGNED NOT NULL,
-  `data` mediumtext
+  `data` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4810,11 +4819,7 @@ CREATE TABLE `new_session` (
 --
 
 INSERT INTO `new_session` (`id`, `access`, `data`) VALUES
-('dp1gigqom0bmgfio2v5c2qojk1', 1510827252, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx58de58ab522034.60981441_15a0d64ec33a5e4.28565478\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
-('aiiuptf8c911mjkl7trnaf9j92', 1510828099, 'modx.user.contextTokens|a:0:{}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}'),
-('qm5imucu91hr2u7to1r5bted60', 1510763280, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:2:{s:3:\"mgr\";i:1;s:3:\"web\";i:1;}modx.mgr.user.token|s:52:\"modx58de58ab522034.60981441_15a0c3ae0445e31.36673170\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}newResourceTokens|a:3:{i:0;s:23:\"5a0c3b8b026490.57737334\";i:1;s:23:\"5a0c45813e6b28.34659019\";i:2;s:23:\"5a0c45a3d68377.89460831\";}modx.web.user.token|s:52:\"modx58de58ab522034.60981441_15a0c6b106345e6.21506574\";modx.web.session.cookie.lifetime|i:0;modx.web.user.config|a:0:{}'),
-('2fo09fr29kc8j77d43js2r6nh5', 1510844474, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx58de58ab522034.60981441_15a0da836425d01.47503258\";modx.mgr.session.cookie.lifetime|i:604800;modx.mgr.user.config|a:0:{}'),
-('60tp9d15djbvcmo7gqftp1lnf0', 1510916806, 'modx.user.contextTokens|a:0:{}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}');
+('9kq4ocaa4d7eo6ann0khpg73jshu53gf', 1566978022, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d662fe5f05ae3.63406320\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -4828,64 +4833,65 @@ CREATE TABLE `new_site_content` (
   `contentType` varchar(50) NOT NULL DEFAULT 'text/html',
   `pagetitle` varchar(255) NOT NULL DEFAULT '',
   `longtitle` varchar(255) NOT NULL DEFAULT '',
-  `description` varchar(255) NOT NULL DEFAULT '',
+  `description` text NOT NULL,
   `alias` varchar(255) DEFAULT '',
   `link_attributes` varchar(255) NOT NULL DEFAULT '',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `pub_date` int(20) NOT NULL DEFAULT '0',
-  `unpub_date` int(20) NOT NULL DEFAULT '0',
-  `parent` int(10) NOT NULL DEFAULT '0',
-  `isfolder` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `introtext` text,
-  `content` mediumtext,
-  `richtext` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `template` int(10) NOT NULL DEFAULT '0',
-  `menuindex` int(10) NOT NULL DEFAULT '0',
-  `searchable` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `cacheable` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `createdby` int(10) NOT NULL DEFAULT '0',
-  `createdon` int(20) NOT NULL DEFAULT '0',
-  `editedby` int(10) NOT NULL DEFAULT '0',
-  `editedon` int(20) NOT NULL DEFAULT '0',
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `deletedon` int(20) NOT NULL DEFAULT '0',
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `publishedon` int(20) NOT NULL DEFAULT '0',
-  `publishedby` int(10) NOT NULL DEFAULT '0',
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `pub_date` int(20) NOT NULL DEFAULT 0,
+  `unpub_date` int(20) NOT NULL DEFAULT 0,
+  `parent` int(10) NOT NULL DEFAULT 0,
+  `isfolder` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `introtext` text DEFAULT NULL,
+  `content` mediumtext DEFAULT NULL,
+  `richtext` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `template` int(10) NOT NULL DEFAULT 0,
+  `menuindex` int(10) NOT NULL DEFAULT 0,
+  `searchable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `cacheable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `createdby` int(10) NOT NULL DEFAULT 0,
+  `createdon` int(20) NOT NULL DEFAULT 0,
+  `editedby` int(10) NOT NULL DEFAULT 0,
+  `editedon` int(20) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deletedon` int(20) NOT NULL DEFAULT 0,
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `publishedon` int(20) NOT NULL DEFAULT 0,
+  `publishedby` int(10) NOT NULL DEFAULT 0,
   `menutitle` varchar(255) NOT NULL DEFAULT '',
-  `donthit` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `privateweb` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `privatemgr` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `content_dispo` tinyint(1) NOT NULL DEFAULT '0',
-  `hidemenu` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `donthit` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `privateweb` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `privatemgr` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `content_dispo` tinyint(1) NOT NULL DEFAULT 0,
+  `hidemenu` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `class_key` varchar(100) NOT NULL DEFAULT 'modDocument',
   `context_key` varchar(100) NOT NULL DEFAULT 'web',
-  `content_type` int(11) UNSIGNED NOT NULL DEFAULT '1',
-  `uri` text,
-  `uri_override` tinyint(1) NOT NULL DEFAULT '0',
-  `hide_children_in_tree` tinyint(1) NOT NULL DEFAULT '0',
-  `show_in_tree` tinyint(1) NOT NULL DEFAULT '1',
-  `properties` mediumtext
+  `content_type` int(11) UNSIGNED NOT NULL DEFAULT 1,
+  `uri` text DEFAULT NULL,
+  `uri_override` tinyint(1) NOT NULL DEFAULT 0,
+  `hide_children_in_tree` tinyint(1) NOT NULL DEFAULT 0,
+  `show_in_tree` tinyint(1) NOT NULL DEFAULT 1,
+  `properties` mediumtext DEFAULT NULL,
+  `alias_visible` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `new_site_content`
 --
 
-INSERT INTO `new_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longtitle`, `description`, `alias`, `link_attributes`, `published`, `pub_date`, `unpub_date`, `parent`, `isfolder`, `introtext`, `content`, `richtext`, `template`, `menuindex`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `menutitle`, `donthit`, `privateweb`, `privatemgr`, `content_dispo`, `hidemenu`, `class_key`, `context_key`, `content_type`, `uri`, `uri_override`, `hide_children_in_tree`, `show_in_tree`, `properties`) VALUES
-(1, 'document', 'text/html', 'Главная', 'Поздравляем!', '', 'index', '', 1, 0, 0, 0, 0, '', '<p>You have successfully installed MODX Revolution&nbsp;[[++settings_version]]!</p>\r\n<p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website.</p>\r\n<h2>New to&nbsp;MODX?</h2>\r\n<p>Pages on a MODX site are called <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/resources\">Resources</a>, and are visible on the left-hand side of the manager in the Resources tab. Resources can be nested under other resources, making it easy to create a tree of resources. There are different types of resources for different use&nbsp;cases.</p>\r\n<p>Building your website is done through a combination of <strong>Templates</strong>, <strong>Template Variables</strong>, <strong>Chunks</strong>, <strong>Snippets</strong> and <strong>Plugins</strong>. Collectively these are known as <strong>Elements</strong>, and can also be found in the left-hand side of the manager, in the Elements&nbsp;tab.</p>\r\n<p><a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/templates\">Templates</a> contain the outer markup of any page. Each resource can only be assigned to a single template at a time. By adding <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/customizing-content/template-variables\">Template Variables</a> to a template, you can add custom fields for any resource using that particular&nbsp;template.</p>\r\n<p>With <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/chunks\">Chunks</a> you can share parts of the markup, such as a header, across different templates. <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/using-snippets\">Snippets</a> are pieces of PHP that return dynamic content, such as summaries of other resources or the current date. With snippets, you will often use Chunks to mark up the pieces of content it returns, instead of mixing the PHP and&nbsp;HTML.</p>\r\n<p>Finally, <a href=\"https://rtfm.modx.com/revolution/2.x/developing-in-modx/basic-development/plugins\">Plugins</a> enable more advanced features by hooking into the extensive events system provided by&nbsp;MODX.</p>\r\n<p>To learn more about MODX, be sure to check out the <a href=\"https://rtfm.modx.com/revolution/2.x/getting-started\">Getting Started</a> section in the official&nbsp;documentation.</p>', 1, 1, 0, 1, 1, 1, 1490966703, 1, 1510751128, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'index.html', 0, 0, 1, NULL),
-(2, 'document', 'text/html', 'Сервисы', '', 'Demo blog container page for Blogit.', 'blog', '', 1, 0, 0, 0, 1, '', '<h1>Blog overview</h1>', 1, 2, 2, 1, 1, 1, 1490968787, 1, 1510753842, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'CollectionContainer', 'web', 1, 'blog/', 0, 0, 1, NULL),
-(3, 'document', 'text/html', 'Post 1', '', 'Demo post 1 for the BlogIt extra.', 'post-1', '', 1, 0, 0, 2, 0, 'Demo summary of post 2 for the BlogIt extra.', '<p>Demo content of post 2 for the BlogIt extra.</p>', 1, 3, 0, 1, 1, 1, 1490968787, 1, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'post-1.html', 0, 0, 0, NULL),
-(4, 'document', 'text/html', 'Post 2', '', 'Demo post 2 for the BlogIt extra.', 'post-2', '', 1, 0, 0, 2, 0, 'Demo summary of post 2 for the BlogIt extra.', '<p>Demo content of post 2 for the BlogIt extra.</p>', 1, 3, 1, 1, 1, 1, 1490968787, 1, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'post-2.html', 0, 0, 0, NULL),
-(5, 'document', 'text/html', '404', '', '', '404', '', 1, 0, 0, 0, 0, '', '<p>Содержимое сайта не найдено.</p>', 1, 0, 2, 1, 1, 1, 1491231802, 0, 0, 0, 0, 0, 1491231802, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, '404.html', 0, 0, 1, NULL),
-(6, 'document', 'text/html', 'sitemap', '', '', 'sitemap', '', 1, 0, 0, 0, 0, '', '<p>[[pdoSitemap]]</p>', 1, 0, 3, 1, 1, 1, 1491232125, 0, 0, 0, 0, 0, 1491232125, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'sitemap.html', 0, 0, 1, NULL),
-(7, 'document', 'text/html', 'robots', '', '', 'robots', '', 1, 0, 0, 0, 0, '', '<p>User-agent: *<br />Disallow: /sm/<br />Disallow: /assets/components/<br />Disallow: /core/<br />Disallow: /connectors/<br />Disallow: /index.php<br />Disallow: /index.html<br />Disallow: /index<br />Disallow: *?<br />Host: [[Host]]<br />Sitemap: http://[[Host]]/sitemap.xml</p>', 1, 0, 4, 1, 1, 1, 1491232213, 1, 1491232247, 0, 0, 0, 1491232200, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'robots.html', 0, 0, 1, NULL),
-(8, 'document', 'text/html', 'Forgot Password', '', '', 'forgot-password', '', 1, 0, 0, 0, 0, '', '', 1, 4, 5, 1, 1, 1, 1491232523, 1, 1491233029, 0, 0, 0, 1491232500, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'forgot-password.html', 0, 0, 1, NULL),
-(9, 'document', 'text/html', 'Reset Password Handler', '', '', 'reset-password-handler', '', 1, 0, 0, 0, 0, '', '<p>[[!ResetPassword? &amp;loginResourceId=`1`]]</p>', 1, 0, 6, 1, 1, 1, 1491232811, 0, 0, 0, 0, 0, 1491232811, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'reset-password-handler.html', 0, 0, 1, NULL),
-(10, 'document', 'text/html', 'Регистрация', '', '', 'registration', '', 1, 0, 0, 0, 0, '', '', 1, 5, 7, 1, 1, 1, 1491232958, 1, 1491233276, 0, 0, 0, 1491232920, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'registration.html', 0, 0, 1, NULL),
-(11, 'document', 'text/html', 'Подтверждение регистрации', '', '', 'registration-accese', '', 1, 0, 0, 0, 0, '', '', 1, 6, 8, 1, 1, 1, 1491233640, 1, 1491233925, 0, 0, 0, 1491233640, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'registration-accese.html', 0, 0, 1, NULL),
-(12, 'document', 'text/html', 'Активация регистрации', '', '', 'activation', '', 1, 0, 0, 0, 0, '', '', 1, 7, 9, 1, 1, 1, 1491233985, 1, 1491234330, 0, 0, 0, 1491233940, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'activation.html', 0, 0, 1, NULL),
-(16, 'document', 'text/html', 'Результаты поиска', '', '', 'result-search', '', 1, 0, 0, 0, 0, '', '', 1, 8, 13, 1, 1, 1, 1498046307, 1, 1498047163, 0, 0, 0, 1498046280, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'result-search.html', 0, 0, 1, NULL);
+INSERT INTO `new_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longtitle`, `description`, `alias`, `link_attributes`, `published`, `pub_date`, `unpub_date`, `parent`, `isfolder`, `introtext`, `content`, `richtext`, `template`, `menuindex`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `menutitle`, `donthit`, `privateweb`, `privatemgr`, `content_dispo`, `hidemenu`, `class_key`, `context_key`, `content_type`, `uri`, `uri_override`, `hide_children_in_tree`, `show_in_tree`, `properties`, `alias_visible`) VALUES
+(1, 'document', 'text/html', 'Главная', 'Поздравляем!', '', 'index', '', 1, 0, 0, 0, 0, '', '<p>You have successfully installed MODX Revolution&nbsp;[[++settings_version]]!</p>\r\n<p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website.</p>\r\n<h2>New to&nbsp;MODX?</h2>\r\n<p>Pages on a MODX site are called <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/resources\">Resources</a>, and are visible on the left-hand side of the manager in the Resources tab. Resources can be nested under other resources, making it easy to create a tree of resources. There are different types of resources for different use&nbsp;cases.</p>\r\n<p>Building your website is done through a combination of <strong>Templates</strong>, <strong>Template Variables</strong>, <strong>Chunks</strong>, <strong>Snippets</strong> and <strong>Plugins</strong>. Collectively these are known as <strong>Elements</strong>, and can also be found in the left-hand side of the manager, in the Elements&nbsp;tab.</p>\r\n<p><a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/templates\">Templates</a> contain the outer markup of any page. Each resource can only be assigned to a single template at a time. By adding <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/customizing-content/template-variables\">Template Variables</a> to a template, you can add custom fields for any resource using that particular&nbsp;template.</p>\r\n<p>With <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/chunks\">Chunks</a> you can share parts of the markup, such as a header, across different templates. <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/using-snippets\">Snippets</a> are pieces of PHP that return dynamic content, such as summaries of other resources or the current date. With snippets, you will often use Chunks to mark up the pieces of content it returns, instead of mixing the PHP and&nbsp;HTML.</p>\r\n<p>Finally, <a href=\"https://rtfm.modx.com/revolution/2.x/developing-in-modx/basic-development/plugins\">Plugins</a> enable more advanced features by hooking into the extensive events system provided by&nbsp;MODX.</p>\r\n<p>To learn more about MODX, be sure to check out the <a href=\"https://rtfm.modx.com/revolution/2.x/getting-started\">Getting Started</a> section in the official&nbsp;documentation.</p>', 1, 1, 0, 1, 1, 1, 1490966703, 1, 1510751128, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'index.html', 0, 0, 1, NULL, 1),
+(2, 'document', 'text/html', 'Сервисы', '', 'Demo blog container page for Blogit.', 'blog', '', 1, 0, 0, 0, 1, '', '<h1>Blog overview</h1>', 1, 2, 2, 1, 1, 1, 1490968787, 1, 1510753842, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'CollectionContainer', 'web', 1, 'blog/', 0, 0, 1, NULL, 1),
+(3, 'document', 'text/html', 'Post 1', '', 'Demo post 1 for the BlogIt extra.', 'post-1', '', 1, 0, 0, 2, 0, 'Demo summary of post 2 for the BlogIt extra.', '<p>Demo content of post 2 for the BlogIt extra.</p>', 1, 3, 0, 1, 1, 1, 1490968787, 1, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'post-1.html', 0, 0, 0, NULL, 1),
+(4, 'document', 'text/html', 'Post 2', '', 'Demo post 2 for the BlogIt extra.', 'post-2', '', 1, 0, 0, 2, 0, 'Demo summary of post 2 for the BlogIt extra.', '<p>Demo content of post 2 for the BlogIt extra.</p>', 1, 3, 1, 1, 1, 1, 1490968787, 1, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'post-2.html', 0, 0, 0, NULL, 1),
+(5, 'document', 'text/html', '404', '', '', '404', '', 1, 0, 0, 0, 0, '', '<p>Содержимое сайта не найдено.</p>', 1, 0, 2, 1, 1, 1, 1491231802, 0, 0, 0, 0, 0, 1491231802, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, '404.html', 0, 0, 1, NULL, 1),
+(6, 'document', 'text/html', 'sitemap', '', '', 'sitemap', '', 1, 0, 0, 0, 0, '', '<p>[[pdoSitemap]]</p>', 1, 0, 3, 1, 1, 1, 1491232125, 0, 0, 0, 0, 0, 1491232125, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'sitemap.html', 0, 0, 1, NULL, 1),
+(7, 'document', 'text/html', 'robots', '', '', 'robots', '', 1, 0, 0, 0, 0, '', '<p>User-agent: *<br />Disallow: /sm/<br />Disallow: /assets/components/<br />Disallow: /core/<br />Disallow: /connectors/<br />Disallow: /index.php<br />Disallow: /index.html<br />Disallow: /index<br />Disallow: *?<br />Host: [[Host]]<br />Sitemap: http://[[Host]]/sitemap.xml</p>', 1, 0, 4, 1, 1, 1, 1491232213, 1, 1491232247, 0, 0, 0, 1491232200, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'robots.html', 0, 0, 1, NULL, 1),
+(8, 'document', 'text/html', 'Forgot Password', '', '', 'forgot-password', '', 1, 0, 0, 0, 0, '', '', 1, 4, 5, 1, 1, 1, 1491232523, 1, 1491233029, 0, 0, 0, 1491232500, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'forgot-password.html', 0, 0, 1, NULL, 1),
+(9, 'document', 'text/html', 'Reset Password Handler', '', '', 'reset-password-handler', '', 1, 0, 0, 0, 0, '', '<p>[[!ResetPassword? &amp;loginResourceId=`1`]]</p>', 1, 0, 6, 1, 1, 1, 1491232811, 0, 0, 0, 0, 0, 1491232811, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'reset-password-handler.html', 0, 0, 1, NULL, 1),
+(10, 'document', 'text/html', 'Регистрация', '', '', 'registration', '', 1, 0, 0, 0, 0, '', '', 1, 5, 7, 1, 1, 1, 1491232958, 1, 1491233276, 0, 0, 0, 1491232920, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'registration.html', 0, 0, 1, NULL, 1),
+(11, 'document', 'text/html', 'Подтверждение регистрации', '', '', 'registration-accese', '', 1, 0, 0, 0, 0, '', '', 1, 6, 8, 1, 1, 1, 1491233640, 1, 1491233925, 0, 0, 0, 1491233640, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'registration-accese.html', 0, 0, 1, NULL, 1),
+(12, 'document', 'text/html', 'Активация регистрации', '', '', 'activation', '', 1, 0, 0, 0, 0, '', '', 1, 7, 9, 1, 1, 1, 1491233985, 1, 1491234330, 0, 0, 0, 1491233940, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'activation.html', 0, 0, 1, NULL, 1),
+(16, 'document', 'text/html', 'Результаты поиска', '', '', 'result-search', '', 1, 0, 0, 0, 0, '', '', 1, 8, 13, 1, 1, 1, 1498046307, 1, 1498047163, 0, 0, 0, 1498046280, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, 'result-search.html', 0, 0, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -4895,17 +4901,17 @@ INSERT INTO `new_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longt
 
 CREATE TABLE `new_site_htmlsnippets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Chunk',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
-  `snippet` mediumtext,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
+  `snippet` mediumtext DEFAULT NULL,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4969,19 +4975,19 @@ INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `nam
 
 CREATE TABLE `new_site_plugins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
   `plugincode` mediumtext NOT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
-  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `moduleguid` varchar(32) NOT NULL DEFAULT '',
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5012,10 +5018,10 @@ INSERT INTO `new_site_plugins` (`id`, `source`, `property_preprocess`, `name`, `
 --
 
 CREATE TABLE `new_site_plugin_events` (
-  `pluginid` int(10) NOT NULL DEFAULT '0',
+  `pluginid` int(10) NOT NULL DEFAULT 0,
   `event` varchar(255) NOT NULL DEFAULT '',
-  `priority` int(10) NOT NULL DEFAULT '0',
-  `propertyset` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `priority` int(10) NOT NULL DEFAULT 0,
+  `propertyset` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5083,18 +5089,18 @@ INSERT INTO `new_site_plugin_events` (`pluginid`, `event`, `priority`, `property
 
 CREATE TABLE `new_site_snippets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
-  `snippet` mediumtext,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
+  `snippet` mediumtext DEFAULT NULL,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
   `moduleguid` varchar(32) NOT NULL DEFAULT '',
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5202,18 +5208,18 @@ INSERT INTO `new_site_snippets` (`id`, `source`, `property_preprocess`, `name`, 
 
 CREATE TABLE `new_site_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `templatename` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Template',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
   `icon` varchar(255) NOT NULL DEFAULT '',
-  `template_type` int(11) NOT NULL DEFAULT '0',
+  `template_type` int(11) NOT NULL DEFAULT 0,
   `content` mediumtext NOT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5239,23 +5245,23 @@ INSERT INTO `new_site_templates` (`id`, `source`, `property_preprocess`, `templa
 
 CREATE TABLE `new_site_tmplvars` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `type` varchar(20) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
   `caption` varchar(80) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `elements` text,
-  `rank` int(11) NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `elements` text DEFAULT NULL,
+  `rank` int(11) NOT NULL DEFAULT 0,
   `display` varchar(20) NOT NULL DEFAULT '',
-  `default_text` mediumtext,
-  `properties` text,
-  `input_properties` text,
-  `output_properties` text,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `default_text` mediumtext DEFAULT NULL,
+  `properties` text DEFAULT NULL,
+  `input_properties` text DEFAULT NULL,
+  `output_properties` text DEFAULT NULL,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5283,8 +5289,8 @@ INSERT INTO `new_site_tmplvars` (`id`, `source`, `property_preprocess`, `type`, 
 
 CREATE TABLE `new_site_tmplvar_access` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tmplvarid` int(10) NOT NULL DEFAULT '0',
-  `documentgroup` int(10) NOT NULL DEFAULT '0'
+  `tmplvarid` int(10) NOT NULL DEFAULT 0,
+  `documentgroup` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5295,8 +5301,8 @@ CREATE TABLE `new_site_tmplvar_access` (
 
 CREATE TABLE `new_site_tmplvar_contentvalues` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tmplvarid` int(10) NOT NULL DEFAULT '0',
-  `contentid` int(10) NOT NULL DEFAULT '0',
+  `tmplvarid` int(10) NOT NULL DEFAULT 0,
+  `contentid` int(10) NOT NULL DEFAULT 0,
   `value` mediumtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5315,9 +5321,9 @@ INSERT INTO `new_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `v
 --
 
 CREATE TABLE `new_site_tmplvar_templates` (
-  `tmplvarid` int(10) NOT NULL DEFAULT '0',
-  `templateid` int(11) NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `tmplvarid` int(10) NOT NULL DEFAULT 0,
+  `templateid` int(11) NOT NULL DEFAULT 0,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5336,7 +5342,7 @@ INSERT INTO `new_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VAL
 
 CREATE TABLE `new_system_eventnames` (
   `name` varchar(50) NOT NULL,
-  `service` tinyint(4) UNSIGNED NOT NULL DEFAULT '0',
+  `service` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
   `groupname` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5526,7 +5532,16 @@ INSERT INTO `new_system_eventnames` (`name`, `service`, `groupname`) VALUES
 ('OnMediaSourceFormSave', 1, 'Media Sources'),
 ('OnMediaSourceDuplicate', 1, 'Media Sources'),
 ('ClientConfig_ConfigChange', 6, 'clientconfig'),
-('pdoToolsOnFenomInit', 6, 'pdoTools');
+('pdoToolsOnFenomInit', 6, 'pdoTools'),
+('OnUserProfileBeforeSave', 1, 'User Profiles'),
+('OnUserProfileSave', 1, 'User Profiles'),
+('OnUserProfileBeforeRemove', 1, 'User Profiles'),
+('OnUserProfileRemove', 1, 'User Profiles'),
+('OnResourceCacheUpdate', 1, 'Resources'),
+('OnBeforeRegisterClientScripts', 5, 'System'),
+('OnPackageInstall', 2, 'Package Manager'),
+('OnPackageUninstall', 2, 'Package Manager'),
+('OnPackageRemove', 2, 'Package Manager');
 
 -- --------------------------------------------------------
 
@@ -5540,7 +5555,7 @@ CREATE TABLE `new_system_settings` (
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5570,7 +5585,7 @@ INSERT INTO `new_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`,
 ('cache_db_session', '0', 'combo-boolean', 'core', 'caching', NULL),
 ('cache_db_session_lifetime', '', 'textfield', 'core', 'caching', NULL),
 ('cache_default', '1', 'combo-boolean', 'core', 'caching', NULL),
-('cache_disabled', '0', 'combo-boolean', 'core', 'caching', NULL),
+('automatic_template_assignment', 'parent', 'textfield', 'core', 'site', NULL),
 ('cache_expires', '0', 'textfield', 'core', 'caching', NULL),
 ('cache_format', '0', 'textfield', 'core', 'caching', NULL),
 ('cache_handler', 'xPDOFileCache', 'textfield', 'core', 'caching', NULL),
@@ -5606,7 +5621,7 @@ INSERT INTO `new_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`,
 ('enable_dragdrop', '1', 'combo-boolean', 'core', 'manager', NULL),
 ('error_page', '5', 'textfield', 'core', 'site', '2017-04-03 15:04:21'),
 ('failed_login_attempts', '5', 'textfield', 'core', 'authentication', NULL),
-('fe_editor_lang', 'en', 'modx-combo-language', 'core', 'language', NULL),
+('fe_editor_lang', 'ru', 'modx-combo-language', 'core', 'language', '2019-08-28 07:41:51'),
 ('feed_modx_news', 'http://feeds.feedburner.com/modx-announce', 'textfield', 'core', 'system', NULL),
 ('feed_modx_news_enabled', '1', 'combo-boolean', 'core', 'system', NULL),
 ('feed_modx_security', 'http://forums.modx.com/board.xml?board=294', 'textfield', 'core', 'system', NULL),
@@ -5663,11 +5678,11 @@ INSERT INTO `new_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`,
 ('manager_time_format', 'g:i a', 'textfield', 'core', 'manager', NULL),
 ('manager_direction', 'ltr', 'textfield', 'core', 'language', NULL),
 ('manager_lang_attribute', 'ru', 'textfield', 'core', 'language', '2017-03-31 13:25:03'),
-('manager_language', 'ru', 'modx-combo-language', 'core', 'language', '2017-03-31 13:25:03'),
+('manager_language', 'ru', 'modx-combo-language', 'core', 'language', '2019-08-28 07:42:02'),
 ('manager_login_url_alternate', '', 'textfield', 'core', 'authentication', NULL),
 ('manager_theme', 'default', 'modx-combo-manager-theme', 'core', 'manager', NULL),
 ('manager_week_start', '0', 'textfield', 'core', 'manager', NULL),
-('modx_browser_tree_hide_files', '', 'combo-boolean', 'core', 'manager', NULL),
+('modx_browser_tree_hide_files', '1', 'combo-boolean', 'core', 'manager', '2019-08-28 07:40:02'),
 ('modx_browser_tree_hide_tooltips', '1', 'combo-boolean', 'core', 'manager', NULL),
 ('modx_browser_default_sort', 'name', 'textfield', 'core', 'manager', NULL),
 ('modx_browser_default_viewmode', 'grid', 'textfield', 'core', 'manager', NULL),
@@ -5773,7 +5788,7 @@ INSERT INTO `new_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`,
 ('manager_use_fullname', '', 'combo-boolean', 'core', 'manager', NULL),
 ('parser_recurse_uncacheable', '1', 'combo-boolean', 'core', 'system', NULL),
 ('preserve_menuindex', '1', 'combo-boolean', 'core', 'manager', NULL),
-('settings_version', '2.5.6-pl', 'textfield', 'core', 'system', NULL),
+('settings_version', '2.7.1-pl', 'textfield', 'core', 'system', '2019-08-28 07:40:07'),
 ('settings_distro', 'traditional', 'textfield', 'core', 'system', NULL),
 ('ace.theme', 'chrome', 'textfield', 'ace', 'general', NULL),
 ('ace.font_size', '13px', 'textfield', 'ace', 'general', NULL),
@@ -5950,7 +5965,24 @@ INSERT INTO `new_system_settings` (`key`, `value`, `xtype`, `namespace`, `area`,
 ('tinymcerte.content_css', '', 'textfield', 'tinymcerte', 'default', NULL),
 ('tinymcerte.image_class_list', '', 'textfield', 'tinymcerte', 'default', NULL),
 ('tinymcerte.external_config', '', 'textfield', 'tinymcerte', 'default', NULL),
-('tinymcerte.skin', 'modx', 'textfield', 'tinymcerte', 'default', NULL);
+('tinymcerte.skin', 'modx', 'textfield', 'tinymcerte', 'default', NULL),
+('use_context_resource_table', '1', 'combo-boolean', 'core', 'caching', NULL),
+('cache_resource_clear_partial', '0', 'combo-boolean', 'core', 'caching', NULL),
+('default_media_source_type', 'sources.modFileMediaSource', 'modx-combo-source-type', 'core', 'manager', NULL),
+('log_deprecated', '1', 'combo-boolean', 'core', 'system', NULL),
+('static_elements_automate_templates', '0', 'combo-boolean', 'core', 'static_elements', NULL),
+('static_elements_automate_tvs', '0', 'combo-boolean', 'core', 'static_elements', NULL),
+('static_elements_automate_chunks', '0', 'combo-boolean', 'core', 'static_elements', NULL),
+('static_elements_automate_snippets', '0', 'combo-boolean', 'core', 'static_elements', NULL),
+('static_elements_automate_plugins', '0', 'combo-boolean', 'core', 'static_elements', NULL),
+('static_elements_default_mediasource', '0', 'modx-combo-source', 'core', 'static_elements', NULL),
+('static_elements_default_category', '0', 'modx-combo-category', 'core', 'static_elements', NULL),
+('static_elements_basepath', '', 'textfield', 'core', 'static_elements', NULL),
+('allow_tv_eval', '1', 'combo-boolean', 'core', 'system', NULL),
+('log_snippet_not_found', '1', 'combo-boolean', 'core', 'site', NULL),
+('error_log_filename', 'error.log', 'textfield', 'core', 'system', NULL),
+('error_log_filepath', '', 'textfield', 'core', 'system', NULL),
+('access_policies_version', '1.0', 'textfield', 'core', 'system', NULL);
 
 -- --------------------------------------------------------
 
@@ -5963,19 +5995,19 @@ CREATE TABLE `new_tagger_groups` (
   `name` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `field_type` varchar(100) NOT NULL,
-  `allow_new` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `remove_unused` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `allow_blank` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `allow_type` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `show_autotag` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `hide_input` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `tag_limit` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `allow_new` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `remove_unused` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allow_blank` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allow_type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `show_autotag` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `hide_input` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `tag_limit` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `show_for_templates` text NOT NULL,
   `place` varchar(100) NOT NULL DEFAULT 'in-tab',
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `description` text NOT NULL,
-  `in_tvs_position` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `as_radio` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `in_tvs_position` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `as_radio` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `sort_field` varchar(255) NOT NULL DEFAULT 'alias',
   `sort_dir` varchar(255) NOT NULL DEFAULT 'asc',
   `show_for_contexts` text NOT NULL
@@ -5992,7 +6024,7 @@ CREATE TABLE `new_tagger_tags` (
   `tag` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `group` int(10) UNSIGNED NOT NULL,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6016,8 +6048,8 @@ CREATE TABLE `new_thumb_images` (
   `id` int(10) UNSIGNED NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `cache_image` varchar(255) DEFAULT NULL,
-  `config` mediumtext,
-  `isend` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `config` mediumtext DEFAULT NULL,
+  `isend` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6029,22 +6061,22 @@ CREATE TABLE `new_thumb_images` (
 CREATE TABLE `new_transport_packages` (
   `signature` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `installed` datetime DEFAULT NULL,
-  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `workspace` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `provider` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `source` tinytext,
-  `manifest` text,
-  `attributes` mediumtext,
+  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `workspace` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `provider` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` tinytext DEFAULT NULL,
+  `manifest` text DEFAULT NULL,
+  `attributes` mediumtext DEFAULT NULL,
   `package_name` varchar(255) NOT NULL,
-  `metadata` text,
-  `version_major` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  `version_minor` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  `version_patch` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
+  `metadata` text DEFAULT NULL,
+  `version_major` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `version_minor` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `version_patch` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
   `release` varchar(100) NOT NULL DEFAULT '',
-  `release_index` smallint(5) UNSIGNED NOT NULL DEFAULT '0'
+  `release_index` smallint(5) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6111,14 +6143,14 @@ INSERT INTO `new_transport_packages` (`signature`, `created`, `updated`, `instal
 CREATE TABLE `new_transport_providers` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext,
-  `service_url` tinytext,
+  `description` mediumtext DEFAULT NULL,
+  `service_url` tinytext DEFAULT NULL,
   `username` varchar(255) NOT NULL DEFAULT '',
   `api_key` varchar(255) NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `priority` tinyint(4) NOT NULL DEFAULT '10',
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `priority` tinyint(4) NOT NULL DEFAULT 10,
   `properties` mediumtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6127,7 +6159,7 @@ CREATE TABLE `new_transport_providers` (
 --
 
 INSERT INTO `new_transport_providers` (`id`, `name`, `description`, `service_url`, `username`, `api_key`, `created`, `updated`, `active`, `priority`, `properties`) VALUES
-(1, 'modx.com', 'The official MODX transport provider for 3rd party components.', 'https://rest.modx.com/extras/', '', '', '2017-03-28 08:55:26', NULL, 1, 10, ''),
+(1, 'modx.com', 'The official MODX transport provider for 3rd party components.', 'https://rest.modx.com/extras/', '', '', '2019-02-14 17:13:52', '2019-08-28 07:40:03', 1, 10, ''),
 (2, 'modstore.pro', '', 'https://modstore.pro/extras/', 'stan19781@gmail.com', '3d022f17e6069642abb5522e328d72b4', '2017-03-31 16:53:28', NULL, 1, 10, '');
 
 -- --------------------------------------------------------
@@ -6139,18 +6171,18 @@ INSERT INTO `new_transport_providers` (`id`, `name`, `description`, `service_url
 CREATE TABLE `new_users` (
   `id` int(10) UNSIGNED NOT NULL,
   `username` varchar(100) NOT NULL DEFAULT '',
-  `password` varchar(100) NOT NULL DEFAULT '',
-  `cachepwd` varchar(100) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `cachepwd` varchar(255) NOT NULL DEFAULT '',
   `class_key` varchar(100) NOT NULL DEFAULT 'modUser',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `remote_key` varchar(255) DEFAULT NULL,
-  `remote_data` text,
-  `hash_class` varchar(100) NOT NULL DEFAULT 'hashing.modPBKDF2',
+  `remote_data` text DEFAULT NULL,
+  `hash_class` varchar(100) NOT NULL DEFAULT 'hashing.modNative',
   `salt` varchar(100) NOT NULL DEFAULT '',
-  `primary_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `session_stale` text,
-  `sudo` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `createdon` int(20) NOT NULL DEFAULT '0'
+  `primary_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `session_stale` text DEFAULT NULL,
+  `sudo` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `createdon` int(20) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6174,16 +6206,16 @@ CREATE TABLE `new_user_attributes` (
   `email` varchar(100) NOT NULL DEFAULT '',
   `phone` varchar(100) NOT NULL DEFAULT '',
   `mobilephone` varchar(100) NOT NULL DEFAULT '',
-  `blocked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `blockeduntil` int(11) NOT NULL DEFAULT '0',
-  `blockedafter` int(11) NOT NULL DEFAULT '0',
-  `logincount` int(11) NOT NULL DEFAULT '0',
-  `lastlogin` int(11) NOT NULL DEFAULT '0',
-  `thislogin` int(11) NOT NULL DEFAULT '0',
-  `failedlogincount` int(10) NOT NULL DEFAULT '0',
+  `blocked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `blockeduntil` int(11) NOT NULL DEFAULT 0,
+  `blockedafter` int(11) NOT NULL DEFAULT 0,
+  `logincount` int(11) NOT NULL DEFAULT 0,
+  `lastlogin` int(11) NOT NULL DEFAULT 0,
+  `thislogin` int(11) NOT NULL DEFAULT 0,
+  `failedlogincount` int(10) NOT NULL DEFAULT 0,
   `sessionid` varchar(100) NOT NULL DEFAULT '',
-  `dob` int(10) NOT NULL DEFAULT '0',
-  `gender` int(1) NOT NULL DEFAULT '0',
+  `dob` int(10) NOT NULL DEFAULT 0,
+  `gender` int(1) NOT NULL DEFAULT 0,
   `address` text NOT NULL,
   `country` varchar(255) NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
@@ -6193,7 +6225,7 @@ CREATE TABLE `new_user_attributes` (
   `photo` varchar(255) NOT NULL DEFAULT '',
   `comment` text NOT NULL,
   `website` varchar(255) NOT NULL DEFAULT '',
-  `extended` text
+  `extended` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6201,7 +6233,7 @@ CREATE TABLE `new_user_attributes` (
 --
 
 INSERT INTO `new_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `address`, `country`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `website`, `extended`) VALUES
-(1, 1, 'Администратор по умолчанию', 'stan19781@gmail.com', '', '', 0, 0, 0, 213, 1510827244, 1510844470, 0, '2fo09fr29kc8j77d43js2r6nh5', 0, 0, '', '', '', '', '', '', '', '', '', NULL),
+(1, 1, 'Администратор по умолчанию', 'stan19781@gmail.com', '', '', 0, 0, 0, 214, 1510844470, 1566978021, 0, '9kq4ocaa4d7eo6ann0khpg73jshu53gf', 0, 0, '', '', '', '', '', '', '', '', '', NULL),
 (3, 3, '', 'platonov_stan@mail.ru', '', '', 0, 0, 0, 7, 1491287477, 1491302110, 0, 'pinq7vkq5q6r7f8adtj2m64550', 0, 0, '', '', '', '', '', '', '', '', '', '[]');
 
 -- --------------------------------------------------------
@@ -6213,8 +6245,8 @@ INSERT INTO `new_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `ph
 CREATE TABLE `new_user_group_roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999'
+  `description` mediumtext DEFAULT NULL,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6232,13 +6264,13 @@ INSERT INTO `new_user_group_roles` (`id`, `name`, `description`, `authority`) VA
 --
 
 CREATE TABLE `new_user_group_settings` (
-  `group` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `group` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `key` varchar(50) NOT NULL,
-  `value` text,
+  `value` text DEFAULT NULL,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6252,11 +6284,11 @@ CREATE TABLE `new_user_messages` (
   `type` varchar(15) NOT NULL DEFAULT '',
   `subject` varchar(255) NOT NULL DEFAULT '',
   `message` text NOT NULL,
-  `sender` int(10) NOT NULL DEFAULT '0',
-  `recipient` int(10) NOT NULL DEFAULT '0',
-  `private` tinyint(4) NOT NULL DEFAULT '0',
+  `sender` int(10) NOT NULL DEFAULT 0,
+  `recipient` int(10) NOT NULL DEFAULT 0,
+  `private` tinyint(4) NOT NULL DEFAULT 0,
   `date_sent` datetime DEFAULT NULL,
-  `read` tinyint(1) NOT NULL DEFAULT '0'
+  `read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6266,13 +6298,13 @@ CREATE TABLE `new_user_messages` (
 --
 
 CREATE TABLE `new_user_settings` (
-  `user` int(11) NOT NULL DEFAULT '0',
+  `user` int(11) NOT NULL DEFAULT 0,
   `key` varchar(50) NOT NULL DEFAULT '',
-  `value` text,
+  `value` text DEFAULT NULL,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6286,8 +6318,8 @@ CREATE TABLE `new_workspaces` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `path` varchar(255) NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `attributes` mediumtext
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `attributes` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -7139,356 +7171,428 @@ ALTER TABLE `new_workspaces`
 --
 ALTER TABLE `new_access_actiondom`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_actions`
 --
 ALTER TABLE `new_access_actions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_category`
 --
 ALTER TABLE `new_access_category`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_context`
 --
 ALTER TABLE `new_access_context`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_elements`
 --
 ALTER TABLE `new_access_elements`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_media_source`
 --
 ALTER TABLE `new_access_media_source`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_menus`
 --
 ALTER TABLE `new_access_menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_namespace`
 --
 ALTER TABLE `new_access_namespace`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_permissions`
 --
 ALTER TABLE `new_access_permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=231;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_policies`
 --
 ALTER TABLE `new_access_policies`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_policy_templates`
 --
 ALTER TABLE `new_access_policy_templates`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_policy_template_groups`
 --
 ALTER TABLE `new_access_policy_template_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_resources`
 --
 ALTER TABLE `new_access_resources`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_resource_groups`
 --
 ALTER TABLE `new_access_resource_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT для таблицы `new_access_templatevars`
 --
 ALTER TABLE `new_access_templatevars`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_actiondom`
 --
 ALTER TABLE `new_actiondom`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_actions`
 --
 ALTER TABLE `new_actions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `new_actions_fields`
 --
 ALTER TABLE `new_actions_fields`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+
 --
 -- AUTO_INCREMENT для таблицы `new_categories`
 --
 ALTER TABLE `new_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- AUTO_INCREMENT для таблицы `new_class_map`
 --
 ALTER TABLE `new_class_map`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT для таблицы `new_clientconfig_group`
 --
 ALTER TABLE `new_clientconfig_group`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `new_clientconfig_setting`
 --
 ALTER TABLE `new_clientconfig_setting`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `new_collection_settings`
 --
 ALTER TABLE `new_collection_settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `new_collection_templates`
 --
 ALTER TABLE `new_collection_templates`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `new_collection_template_columns`
 --
 ALTER TABLE `new_collection_template_columns`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT для таблицы `new_content_type`
 --
 ALTER TABLE `new_content_type`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT для таблицы `new_dashboard`
 --
 ALTER TABLE `new_dashboard`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT для таблицы `new_dashboard_widget`
 --
 ALTER TABLE `new_dashboard_widget`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT для таблицы `new_documentgroup_names`
 --
 ALTER TABLE `new_documentgroup_names`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_document_groups`
 --
 ALTER TABLE `new_document_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `new_extension_packages`
 --
 ALTER TABLE `new_extension_packages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_fc_profiles`
 --
 ALTER TABLE `new_fc_profiles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_fc_sets`
 --
 ALTER TABLE `new_fc_sets`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_formit_forms`
 --
 ALTER TABLE `new_formit_forms`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_gallery_albums`
 --
 ALTER TABLE `new_gallery_albums`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_gallery_album_contexts`
 --
 ALTER TABLE `new_gallery_album_contexts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_gallery_album_items`
 --
 ALTER TABLE `new_gallery_album_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `new_gallery_items`
 --
 ALTER TABLE `new_gallery_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `new_gallery_tags`
 --
 ALTER TABLE `new_gallery_tags`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_lexicon_entries`
 --
 ALTER TABLE `new_lexicon_entries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_manager_log`
 --
 ALTER TABLE `new_manager_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2814;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2817;
+
 --
 -- AUTO_INCREMENT для таблицы `new_media_sources`
 --
 ALTER TABLE `new_media_sources`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_membergroup_names`
 --
 ALTER TABLE `new_membergroup_names`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT для таблицы `new_member_groups`
 --
 ALTER TABLE `new_member_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT для таблицы `new_migx_configs`
 --
 ALTER TABLE `new_migx_configs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_migx_config_elements`
 --
 ALTER TABLE `new_migx_config_elements`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_migx_elements`
 --
 ALTER TABLE `new_migx_elements`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_migx_formtabs`
 --
 ALTER TABLE `new_migx_formtabs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_migx_formtab_fields`
 --
 ALTER TABLE `new_migx_formtab_fields`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_property_set`
 --
 ALTER TABLE `new_property_set`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_quip_comments`
 --
 ALTER TABLE `new_quip_comments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_quip_comment_notify`
 --
 ALTER TABLE `new_quip_comment_notify`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_register_queues`
 --
 ALTER TABLE `new_register_queues`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_register_topics`
 --
 ALTER TABLE `new_register_topics`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_content`
 --
 ALTER TABLE `new_site_content`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_htmlsnippets`
 --
 ALTER TABLE `new_site_htmlsnippets`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_plugins`
 --
 ALTER TABLE `new_site_plugins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_snippets`
 --
 ALTER TABLE `new_site_snippets`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_templates`
 --
 ALTER TABLE `new_site_templates`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_tmplvars`
 --
 ALTER TABLE `new_site_tmplvars`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_tmplvar_access`
 --
 ALTER TABLE `new_site_tmplvar_access`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_site_tmplvar_contentvalues`
 --
 ALTER TABLE `new_site_tmplvar_contentvalues`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT для таблицы `new_tagger_groups`
 --
 ALTER TABLE `new_tagger_groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_tagger_tags`
 --
 ALTER TABLE `new_tagger_tags`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_thumb_images`
 --
 ALTER TABLE `new_thumb_images`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_transport_providers`
 --
 ALTER TABLE `new_transport_providers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_users`
 --
 ALTER TABLE `new_users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `new_user_attributes`
 --
 ALTER TABLE `new_user_attributes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT для таблицы `new_user_group_roles`
 --
 ALTER TABLE `new_user_group_roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT для таблицы `new_user_messages`
 --
 ALTER TABLE `new_user_messages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT для таблицы `new_workspaces`
 --
 ALTER TABLE `new_workspaces`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

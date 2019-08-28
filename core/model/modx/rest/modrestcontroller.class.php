@@ -1,26 +1,14 @@
 <?php
 /*
- * MODX Revolution
+ * This file is part of the MODX Revolution package.
  *
- * Copyright 2006-2012 by MODX, LLC.
+ * Copyright (c) MODX, LLC
  *
- * All rights reserved.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place, Suite 330, Boston, MA 02111-1307 USA
- *
- */
+*/
+
 /**
  * Abstract controller class for modRestService; all REST controllers must extend this class to be properly
  * implemented.
@@ -91,6 +79,10 @@ abstract class modRestController {
     public $deleteRequiredFields = array();
     /** @var string $deleteMethod The method on the object to call for DELETE requests */
     public $deleteMethod = 'remove';
+    /** @var array $allowedMethods An array of allowed request methods */
+    public $allowedMethods = array('GET', 'POST', 'PUT', 'DELETE');
+    /** @var array $allowedMethods An array of allowed request methods */
+    public $allowedHeaders = array('Content-Type');
 
     /**
      * @param modX $modx The modX instance
@@ -288,9 +280,10 @@ abstract class modRestController {
      */
     protected function process($success = true,$message = '',$object = array(),$status = 200) {
         $response = array(
+            $this->getOption('responseSuccessKey','success') => $success,
             $this->getOption('responseMessageKey','message') => $message,
             $this->getOption('responseObjectKey','object') => is_object($object) ? $object->toArray() : $object,
-            $this->getOption('responseSuccessKey','success') => $success,
+            'code' => $status
         );
         if (empty($success) && !empty($this->errors)) {
             $response[$this->getOption('responseErrorsKey','errors')] = $this->errors;
@@ -750,6 +743,15 @@ abstract class modRestController {
      */
     public function afterDelete(array &$objectArray) {}
 
+    /**
+     * Handle OPTIONS requests
+     * @return array
+     */
+    public function options() {
+        header('Access-Control-Allow-Methods: ' . implode(', ', $this->allowedMethods));
+        header('Access-Control-Allow-Headers: ' . implode(', ', $this->allowedHeaders));
+        $this->responseStatus = 200;
+    }
 
     /**
      * Set object-specific model-layer errors for classes that implement the getErrors/addFieldError methods

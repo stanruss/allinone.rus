@@ -4,9 +4,10 @@
  *
  * Copyright (c) MODX, LLC. All Rights Reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Represents the MODX parser responsible for processing MODX tags.
  *
@@ -421,7 +422,6 @@ class modParser {
 
         $outerTag= $tag[0];
         $innerTag= $tag[1];
-
         /* Avoid all processing for comment tags, e.g. [[- comments here]] */
         if (substr($innerTag, 0, 1) === '-') {
             return "";
@@ -449,6 +449,10 @@ class modParser {
             $cacheable= false;
             $tokenOffset++;
             $token= substr($tagName, $tokenOffset, 1);
+        } elseif (!$processUncacheable && strpos($tagPropString, '[[!') !== false) {
+            $this->modx->log(xPDO::LOG_LEVEL_WARN, "You should not call uncached elements inside cached!\nOuter tag: {$tag[0]}\nInner tag {$innerTag}");
+            $this->_processingTag = false;
+            return $outerTag;
         }
         if ($cacheable && $token !== '+') {
             $elementOutput= $this->loadFromCache($outerTag);
@@ -460,6 +464,9 @@ class modParser {
         }
         if ($elementOutput === null) {
             switch ($token) {
+                case '-':
+                    $elementOutput = '';
+                    break;
                 case '+':
                     $tagName= substr($tagName, 1 + $tokenOffset);
                     $element= new modPlaceholderTag($this->modx);
@@ -505,7 +512,16 @@ class modParser {
                         $element->setCacheable($cacheable);
                         $elementOutput= $element->process($tagPropString);
                     }
-                    elseif ($element= $this->getElement('modTemplateVar', $tagName)) {
+                    else {
+                        $element = $this->getElement('modTemplateVar', $tagName);
+
+                        // If our element tag was not found (e.i. not an existing TV), create a new instance of
+                        // modFieldTag. We do this to make it possible to use output modifiers such as default. This
+                        // mirrors the behavior of placeholders.
+                        if ($element === false) {
+                            $element = new modFieldTag($this->modx);
+                        }
+
                         $element->set('name', $tagName);
                         $element->setTag($outerTag);
                         $element->setCacheable($cacheable);
@@ -519,6 +535,11 @@ class modParser {
                         $element->setTag($outerTag);
                         $element->setCacheable($cacheable);
                         $elementOutput= $element->process($tagPropString);
+                    }
+                    elseif(!empty($tagName)) {
+                        if ($this->modx->getOption('log_snippet_not_found', null, false)) {
+                            $this->modx->log(xPDO::LOG_LEVEL_ERROR, "Could not find snippet with name {$tagName}.");
+                        }
                     }
             }
         }
@@ -805,7 +826,7 @@ abstract class modTag {
         if (empty($this->_tag) && ($name = $this->get('name'))) {
             $propTemp = array();
             if (empty($this->_propertyString) && !empty($this->_properties)) {
-                while(list($key, $value) = each($this->_properties)) {
+                foreach ($this->_properties as $key => $value) {
                     $propTemp[] = trim($key) . '=`' . $value . '`';
                 }
                 if (!empty($propTemp)) {
@@ -1155,7 +1176,7 @@ class modFieldTag extends modTag {
         if (!$this->isCacheable() || !is_string($this->_content) || $this->_content === '') {
             if (isset($options['content']) && !empty($options['content'])) {
                 $this->_content = $options['content'];
-            } else {
+            } elseif ($this->modx->resource instanceof modResource) {
                 if ($this->get('name') == 'content') {
                     $this->_content = $this->modx->resource->getContent($options);
                 } else {

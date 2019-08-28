@@ -1,8 +1,11 @@
 <?php
-/**
- * This file contains the PHPMailer implementation of the modMail email service.
- * @package modx
- * @subpackage mail
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
 
 require_once MODX_CORE_PATH . 'model/modx/mail/modmail.class.php';
@@ -112,6 +115,24 @@ class modPHPMailer extends modMail {
                 break;
             case modMail::MAIL_SUBJECT :
                 $this->mailer->Subject= $this->attributes[$key];
+                break;
+            case modMail::MAIL_DKIM_SELECTOR :
+                $this->mailer->DKIM_selector= $this->attributes[$key];
+                break;
+            case modMail::MAIL_DKIM_IDENTITY :
+                $this->mailer->DKIM_identity= $this->attributes[$key];
+                break;
+            case modMail::MAIL_DKIM_DOMAIN :
+                $this->mailer->DKIM_domain= $this->attributes[$key];
+                break;
+            case modMail::MAIL_DKIM_PRIVATEKEYFILE :
+                $this->mailer->DKIM_private= $this->attributes[$key];
+                break;
+            case modMail::MAIL_DKIM_PRIVATEKEYSTRING :
+                $this->mailer->DKIM_private_string= $this->attributes[$key];
+                break;
+            case modMail::MAIL_DKIM_PASSPHRASE :
+                $this->mailer->DKIM_passphrase= $this->attributes[$key];
                 break;
             default :
                 $this->modx->log(modX::LOG_LEVEL_WARN, $this->modx->lexicon('mail_err_attr_nv',array('attr' => $key)));

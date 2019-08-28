@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Loads the lexicon into a JS-compatible function _()
  *
@@ -53,7 +62,7 @@ if ($modx->getOption('cache_lang_js',null,false)) {
 
     /* if Browser sent ID, check if they match */
     if (isset($headers['If-None-Match']) && @preg_match($hash, $headers['If-None-Match'])) {
-        header('HTTP/1.1 304 Not Modified');
+        header($_SERVER['SERVER_PROTOCOL'] . ' 304 Not Modified');
     } else {
         header("ETag: \"{$hash}\"");
         header('Accept-Ranges: bytes');

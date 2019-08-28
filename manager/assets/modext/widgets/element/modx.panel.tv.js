@@ -8,6 +8,9 @@
  */
 MODx.panel.TV = function(config) {
     config = config || {};
+    config.record = config.record || {};
+    config = MODx.setStaticElementsConfig(config, 'tv');
+
     Ext.applyIf(config,{
         url: MODx.config.connector_url
         ,baseParams: {
@@ -19,11 +22,9 @@ MODx.panel.TV = function(config) {
         ,tv: ''
         ,bodyStyle: ''
         ,items: [{
-            html: '<h2>'+_('tv_new')+'</h2>'
+            html: _('tv_new')
             ,id: 'modx-tv-header'
-            ,itemId: 'header'
-            ,cls: 'modx-page-header'
-            ,border: false
+            ,xtype: 'modx-header'
         },MODx.getPageStructure([{
             title: _('general_information')
             ,defaults: {border: false ,msgTarget: 'side', layout: 'form'}
@@ -34,8 +35,8 @@ MODx.panel.TV = function(config) {
             ,forceLayout: true
             ,items: [{
                 html: '<p>'+_('tv_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
                 ,id: 'modx-tv-msg'
+                ,xtype: 'modx-description'
             },{
                 layout: 'column'
                 ,border: false
@@ -72,7 +73,15 @@ MODx.panel.TV = function(config) {
                         ,value: config.record.name
                         ,listeners: {
                             'keyup': {scope:this,fn:function(f,e) {
-                                Ext.getCmp('modx-tv-header').getEl().update('<h2>'+_('tv')+': '+f.getValue()+'</h2>');
+                                var title = Ext.util.Format.stripTags(f.getValue());
+                                title = _('tv')+': '+Ext.util.Format.htmlEncode(title);
+                                if (MODx.request.a !== 'element/tv/create' && MODx.perm.tree_show_element_ids === 1) {
+                                    title = title+ ' <small>('+this.config.record.id+')</small>';
+                                }
+
+                                Ext.getCmp('modx-tv-header').getEl().update(title);
+
+                                MODx.setStaticElementPath('tv');
                             }}
                         }
                     },{
@@ -143,6 +152,16 @@ MODx.panel.TV = function(config) {
                         ,id: 'modx-tv-category'
                         ,anchor: '100%'
                         ,value: config.record.category || 0
+                        ,listeners: {
+                            'afterrender': {scope:this,fn:function(f,e) {
+                                setTimeout(function(){
+                                    MODx.setStaticElementPath('tv');
+                                }, 200);
+                            }}
+                            ,'change': {scope:this,fn:function(f,e) {
+                                MODx.setStaticElementPath('tv');
+                            }}
+                        }
                     },{
                         xtype: MODx.expandHelp ? 'label' : 'hidden'
                         ,forId: 'modx-tv-category'
@@ -246,8 +265,7 @@ MODx.panel.TV = function(config) {
 			,layout: 'form'
             ,items: [{
                 html: '<p>'+_('tv_tmpl_access_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
-                ,border: false
+                ,xtype: 'modx-description'
             },{
                 xtype: 'modx-grid-tv-template'
                 ,itemId: 'grid-template'
@@ -271,9 +289,8 @@ MODx.panel.TV = function(config) {
             ,layout: 'form'
             ,items: [{
                 html: '<p>'+_('tv_access_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
                 ,id: 'modx-tv-access-msg'
-                ,border: false
+                ,xtype: 'modx-description'
             },{
                 xtype: 'modx-grid-tv-security'
                 ,itemId: 'grid-access'
@@ -296,9 +313,8 @@ MODx.panel.TV = function(config) {
 			,hideMode: 'offsets'
             ,items: [{
                 html: '<p>'+_('tv_sources.intro_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
                 ,id: 'modx-tv-sources-msg'
-                ,border: false
+                ,xtype: 'modx-description'
             },{
                 xtype: 'modx-grid-element-sources'
                 ,itemId: 'grid-sources'
@@ -330,6 +346,12 @@ MODx.panel.TV = function(config) {
             'setup': {fn:this.setup,scope:this}
             ,'success': {fn:this.success,scope:this}
             ,'beforeSubmit': {fn:this.beforeSubmit,scope:this}
+            ,'failureSubmit': {
+                fn: function () {
+                    this.showErroredTab(['modx-tv-form'], 'modx-tv-tabs')
+                },
+                scope: this
+            }
         }
     });
     MODx.panel.TV.superclass.constructor.call(this,config);
@@ -342,7 +364,11 @@ Ext.extend(MODx.panel.TV,MODx.FormPanel,{
         if (this.initialized) { this.clearDirty(); return true; }
         this.getForm().setValues(this.config.record);
         if (!Ext.isEmpty(this.config.record.name)) {
-            Ext.getCmp('modx-tv-header').getEl().update('<h2>'+_('tv')+': '+this.config.record.name+'</h2>');
+            var title = _('tv')+': '+this.config.record.name;
+            if (MODx.perm.tree_show_element_ids === 1) {
+                title = title+ ' <small>('+this.config.record.id+')</small>';
+            }
+            Ext.getCmp('modx-tv-header').getEl().update(title);
         }
         var d;
         if (!Ext.isEmpty(this.config.record.properties)) {
@@ -402,7 +428,7 @@ Ext.extend(MODx.panel.TV,MODx.FormPanel,{
         if (MODx.request.id) Ext.getCmp('modx-grid-element-properties').save();
         this.getForm().setValues(r.result.object);
 
-        var t = Ext.getCmp('modx-element-tree');
+        var t = Ext.getCmp('modx-tree-element');
         if (t) {
             var c = Ext.getCmp('modx-tv-category').getValue();
             var u = c != '' && c != null && c != 0 ? 'n_tv_category_'+c : 'n_type_tv';
@@ -411,7 +437,6 @@ Ext.extend(MODx.panel.TV,MODx.FormPanel,{
             t.refreshNode(u,true);
         }
     }
-
     ,changeEditor: function() {
         this.cleanupEditor();
         this.submit();
@@ -453,8 +478,8 @@ MODx.panel.TVInputProperties = function(config) {
         ,cls: 'form-with-labels'
         ,items: [{
             html: _('tv_input_options_msg')
-			,bodyCssClass: 'panel-desc'
             ,itemId: 'desc-tv-input-properties'
+            ,xtype: 'modx-description'
         },{
             layout: 'form'
 			,border: false
@@ -529,6 +554,11 @@ Ext.extend(MODx.panel.TVInputProperties,MODx.Panel,{
         Ext.getCmp('modx-panel-tv').markDirty();
     }
     ,showInputProperties: function(cb,rc,i) {
+        var element = Ext.getCmp('modx-tv-elements');
+        if (element) {
+          element.show();
+        }
+
         this.markPanelDirty();
         var pu = Ext.get('modx-input-props').getUpdater();
         pu.loadScripts = true;
@@ -563,8 +593,8 @@ MODx.panel.TVOutputProperties = function(config) {
         ,defaults: {border: false}
         ,items: [{
             html: _('tv_output_options_msg')
-			,bodyCssClass: 'panel-desc'
             ,itemId: 'desc-tv-output-properties'
+            ,xtype: 'modx-description'
         },{
             layout: 'form'
 			,border: false

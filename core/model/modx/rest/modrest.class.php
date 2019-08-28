@@ -1,26 +1,14 @@
 <?php
 /*
- * MODX Revolution
+ * This file is part of the MODX Revolution package.
  *
- * Copyright 2006-2012 by MODX, LLC.
+ * Copyright (c) MODX, LLC
  *
- * All rights reserved.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place, Suite 330, Boston, MA 02111-1307 USA
- *
- */
+*/
+
 /**
  * REST Client service class with XML/JSON/QS support
  *
@@ -314,7 +302,9 @@ class RestClientRequest {
      */
     protected function prepareHeaders() {
         if (!empty($this->headers)) {
-            $this->requestOptions[CURLOPT_HTTPHEADER] = array();
+            if (empty($this->requestOptions[CURLOPT_HTTPHEADER])) {
+                $this->requestOptions[CURLOPT_HTTPHEADER] = array();
+            }
             foreach ($this->headers as $key => $value) {
                 $this->requestOptions[CURLOPT_HTTPHEADER][] = sprintf("%s: %s", $key, $value);
             }
@@ -412,7 +402,7 @@ class RestClientRequest {
             CURLOPT_USERAGENT => $this->getOption('userAgent'),
             CURLOPT_CONNECTTIMEOUT => $this->getOption('connectTimeout',0),
             CURLOPT_DNS_CACHE_TIMEOUT => $this->getOption('dnsCacheTimeout',120),
-            CURLOPT_VERBOSE => $this->getOption('vernose',false),
+            CURLOPT_VERBOSE => $this->getOption('verbose',false),
             CURLOPT_SSL_VERIFYHOST => $this->getOption('sslVerifyhost',2),
             CURLOPT_SSL_VERIFYPEER => $this->getOption('sslVerifypeer',false),
             CURLOPT_COOKIE => $this->getOption('cookie',''),
@@ -470,10 +460,9 @@ class RestClientRequest {
     /**
      * @param DOMDocument $doc
      * @param DOMNode $node
-     * @param array $parameters
+     * @param array|DOMNode $parameters
      */
     protected function _populateXmlDoc(&$doc, &$node, &$parameters) {
-        /** @var $val DOMNode */
         foreach ($parameters as $key => $val) {
             if (is_array($val)) {
                 if (empty($val)) {

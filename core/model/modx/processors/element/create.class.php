@@ -1,7 +1,16 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Abstract class for Create Element processors. To be extended for each derivative element type.
- * 
+ *
  * @abstract
  * @package modx
  * @subpackage processors.element
@@ -29,7 +38,7 @@ abstract class modElementCreateProcessor extends modObjectCreateProcessor {
 
         /* verify element with that name does not already exist */
         if ($this->alreadyExists($name)) {
-            $this->addFieldError('name',$this->modx->lexicon($this->objectType.'_err_exists_name',array(
+            $this->addFieldError('name',$this->modx->lexicon($this->objectType.'_err_ae',array(
                 'name' => $name,
             )));
         }
@@ -38,10 +47,10 @@ abstract class modElementCreateProcessor extends modObjectCreateProcessor {
         if (!empty($category)) {
             /** @var modCategory $category */
             $category = $this->modx->getObject('modCategory',array('id' => $category));
-            if (empty($category)) {
+            if ($category === null) {
                 $this->addFieldError('category',$this->modx->lexicon('category_err_nf'));
             }
-            if (!$category->checkPolicy('add_children')) {
+            if ($category !== null && !$category->checkPolicy('add_children')) {
                 $this->addFieldError('category',$this->modx->lexicon('access_denied'));
             }
         }
@@ -108,7 +117,7 @@ abstract class modElementCreateProcessor extends modObjectCreateProcessor {
             }
         }
     }
-    
+
     /**
      * Clear the cache post-save
      * @return void

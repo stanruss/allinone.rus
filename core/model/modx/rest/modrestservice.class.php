@@ -1,30 +1,14 @@
 <?php
 /*
- * MODX Revolution
+ * This file is part of the MODX Revolution package.
  *
- * Copyright 2006-2012 by MODX, LLC.
+ * Copyright (c) MODX, LLC
  *
- * All rights reserved.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option) any later
- * version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
- * details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 Temple
- * Place, Suite 330, Boston, MA 02111-1307 USA
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  *
  */
-/**
- * @package modx
- * @subpackage rest
- */
+
 require_once realpath(dirname(__FILE__).'/modrestcontroller.class.php');
 /**
  * A MODX-powered REST service class for dynamic REST API applications. Uses controller classes to handle routing
@@ -146,7 +130,7 @@ class modRestService {
 				$controller = $controller->newInstance($this->modx,$this->request,$this->config);
 			    $controller->setProperties($this->request->parameters);
 			    $controller->setHeaders($this->request->headers);
-			    if ($controller->isProtected()) {
+			    if ($controller->isProtected() && $this->request->method != 'options') {
                     if (!$controller->verifyAuthentication()) {
                         throw new Exception('Unauthorized', 401);
                     }
@@ -210,7 +194,7 @@ class modRestService {
         $expectedArray = explode('/',$expectedFile);
         if (empty($expectedArray)) $expectedArray = array(rtrim($expectedFile,'/').'/');
         $id = array_pop($expectedArray);
-        if (!file_exists($basePath.$expectedFile.$controllerClassFilePostfix) && intval($id) > 0) {
+        if (!file_exists($basePath.$expectedFile.$controllerClassFilePostfix) && !empty($id)) {
             $expectedFile = implode('/',$expectedArray);
             if (empty($expectedFile)) {
                 $expectedFile = $id;
@@ -243,13 +227,13 @@ class modRestService {
     public function iterateDirectories($pattern, $flags = 0) {
         $files = glob($pattern, $flags);
         $dirs = glob(dirname($pattern) . '/*', GLOB_ONLYDIR|GLOB_NOSORT);
-        
+
         if ($dirs) {
             foreach ($dirs as $dir) {
                 $files = array_merge($files, $this->iterateDirectories($dir . '/' . basename($pattern), $flags));
             }
         }
-        
+
         return $files;
     }
 
@@ -261,7 +245,7 @@ class modRestService {
         if (!$exit) {
             $this->modx->sendUnauthorizedPage();
         } else {
-            header('HTTP/1.1 401 Unauthorized');
+            header($_SERVER['SERVER_PROTOCOL'] . ' 401 Unauthorized');
             @session_write_close();
             exit(0);
         }
@@ -324,8 +308,9 @@ class modRestServiceRequest {
      * Check for a format suffix (.json, .xml, etc) on the request, properly setting the format if found
      */
     public function checkForSuffix() {
-		$formatPos = strpos($this->action,'.');
-		if ($formatPos !== false) {
+        $checkForSuffix = $this->service->getOption('checkForSuffix', true);
+        $formatPos = strpos($this->action,'.');
+		if ($checkForSuffix && $formatPos !== false) {
 		    $this->format = substr($this->action,$formatPos+1);
 		    $this->action = substr($this->action,0,$formatPos);
 		}
@@ -395,32 +380,43 @@ class modRestServiceRequest {
      * @return array
      */
 	protected function _collectRequestParameters() {
-	    $data = @file_get_contents('php://input');
-	    $params = array();
-	    $contentType = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : '';
-	    $spPos = strpos($contentType,';');
-	    if ($spPos !== false) {
-	        $contentType = substr($contentType,0,$spPos);
-	    }
+        $filehandle = fopen('php://input', "r");
+        $params = array();
+        $contentType = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : '';
+        $spPos = strpos($contentType, ';');
+        if ($spPos !== false) {
+            $contentType = substr($contentType, 0, $spPos);
+        }
         switch ($contentType) {
+            case 'image/jpeg':
+            case 'image/png':
+            case 'image/gif':
+                $params['filehandle'] = $filehandle;
+                break;
             case 'application/xml':
             case 'text/xml':
+                $data = stream_get_contents($filehandle);
+                fclose($filehandle);
                 $xml = simplexml_load_string($data);
-                $params = $this->_xml2Array($xml);
+                $params = $this->_xml2array($xml);
                 break;
             case 'application/json':
             case 'text/json':
+                $data = stream_get_contents($filehandle);
+                fclose($filehandle);
                 $params = $this->service->modx->fromJSON($data);
+                $params = (!is_array($params)) ? array() : $params;
                 break;
             case 'application/x-www-form-urlencoded':
             default:
+                $data = stream_get_contents($filehandle);
+                fclose($filehandle);
                 parse_str($data, $params);
                 break;
         }
-        if ($this->service->getOption('trimParameters',false)) {
-		    array_walk_recursive($this->parameters,array('modRestServiceRequest','_trimString'));
+        if ($this->service->getOption('trimParameters', false)) {
+            array_walk_recursive($this->parameters, array('modRestServiceRequest', '_trimString'));
         }
-        if (empty($params)) $params = array();
         return $params;
 	}
 
@@ -642,7 +638,7 @@ class modRestServiceResponse {
         $status = !empty($this->payload['status']) ? $this->payload['status'] : 200;
         $body = empty($this->payload['body']) ? '' : $this->payload['body'];
 
-		$headers = 'HTTP/1.1 ' . $status . ' ' . $this->getResponseCodeMessage($status);
+		$headers = $_SERVER['SERVER_PROTOCOL'] . ' ' . $status . ' ' . $this->getResponseCodeMessage($status);
 		header($headers);
 		header('Content-Type: ' . $contentType);
 		echo $body;

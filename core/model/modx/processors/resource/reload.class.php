@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * save resource form data for reload
  */
@@ -67,7 +76,7 @@ class modResourceReloadProcessor extends modProcessor {
                             /* handles checkboxes & multiple selects elements */
                             if (is_array($value)) {
                                 $featureInsert = array();
-                                while (list($featureValue, $featureItem) = each($value)) {
+                                foreach ($value as $featureValue => $featureItem) {
                                     if(empty($featureItem)) { continue; }
                                     $featureInsert[count($featureInsert)] = $featureItem;
                                 }

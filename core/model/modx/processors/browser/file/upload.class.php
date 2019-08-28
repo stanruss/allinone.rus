@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Upload files to a directory
  *
@@ -37,7 +46,7 @@ class modBrowserFileUploadProcessor extends modProcessor {
             return $this->failure($this->modx->lexicon('permission_denied'));
         }
 
-        $path = preg_replace('/(\.+\/)+/', '', htmlspecialchars($this->getProperty('path')));
+        $path = preg_replace('/[\.]{2,}/', '', htmlspecialchars($this->getProperty('path')));
         $success = $this->source->uploadObjectsToContainer($path,$_FILES);
 
         if (empty($success)) {

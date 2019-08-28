@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Chmod a directory
  *
@@ -39,7 +48,7 @@ class modBrowserFolderChmodProcessor extends modProcessor {
         $this->source->initialize();
 
         $dir = $this->getProperty('dir');
-        $dir = preg_replace('/(\.+\/)+/', '', htmlspecialchars($dir));
+        $dir = preg_replace('/[\.]{2,}/', '', htmlspecialchars($dir));
         $success = $this->source->chmodContainer($dir, $this->getProperty('mode'));
 
         if (empty($success)) {

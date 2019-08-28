@@ -7,10 +7,9 @@
  * @xtype modx-page-template-update
  */
 MODx.page.UpdateTemplate = function(config) {
-	config = config || {};
-
-	Ext.applyIf(config,{
-		formpanel: 'modx-panel-template'
+    config = config || {};
+    Ext.applyIf(config,{
+        formpanel: 'modx-panel-template'
         ,buttons: [{
             process: 'element/template/update'
             ,text: _('save')
@@ -22,6 +21,11 @@ MODx.page.UpdateTemplate = function(config) {
                 key: MODx.config.keymap_save || 's'
                 ,ctrl: true
             }]
+        },{
+            text: _('delete')
+            ,id: 'modx-abtn-delete'
+            ,handler: this.delete
+            ,scope: this
         },{
             text: _('duplicate')
             ,id: 'modx-abtn-duplicate'
@@ -41,8 +45,8 @@ MODx.page.UpdateTemplate = function(config) {
             ,template: config.id
             ,record: config.record || {}
         }]
-	});
-	MODx.page.UpdateTemplate.superclass.constructor.call(this,config);
+    });
+    MODx.page.UpdateTemplate.superclass.constructor.call(this,config);
 };
 Ext.extend(MODx.page.UpdateTemplate,MODx.Component, {
     duplicate: function(btn, e) {
@@ -50,6 +54,10 @@ Ext.extend(MODx.page.UpdateTemplate,MODx.Component, {
             id: this.record.id
             ,type: 'template'
             ,name: _('duplicate_of',{name: this.record.templatename})
+            ,source: this.record.source
+            ,static: this.record.static
+            ,static_file: this.record.static_file
+            ,category: this.record.category
         };
         var w = MODx.load({
             xtype: 'modx-window-element-duplicate'
@@ -64,6 +72,22 @@ Ext.extend(MODx.page.UpdateTemplate,MODx.Component, {
             }
         });
         w.show(e.target);
+    }
+    ,delete: function(btn, e) {
+        MODx.msg.confirm({
+            text: _('template_delete_confirm')
+            ,url: MODx.config.connector_url
+            ,params: {
+                action: 'element/template/remove'
+                ,id: this.record.id
+            }
+            ,listeners: {
+                success: {
+                    fn: function(r) {
+                        MODx.loadPage('?');
+                    },scope:this}
+            }
+        });
     }
 });
 Ext.reg('modx-page-template-update',MODx.page.UpdateTemplate);

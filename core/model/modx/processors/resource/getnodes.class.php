@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Get nodes for the resource tree
  *
@@ -166,10 +175,9 @@ class modResourceGetNodesProcessor extends modProcessor {
         );
         $this->itemClass= 'modResource';
         $c= $this->modx->newQuery($this->itemClass);
-        $c->leftJoin('modResource', 'Child', array('modResource.id = Child.parent'));
         $c->select($this->modx->getSelectColumns('modResource', 'modResource', '', $resourceColumns));
         $c->select(array(
-            'childrenCount' => 'COUNT(Child.id)',
+            'childrenCount' => "(SELECT COUNT(*) FROM {$this->modx->getTableName('modResource')} WHERE parent = modResource.id)",
         ));
         $c->where(array(
             'context_key' => $this->contextKey,
@@ -185,7 +193,6 @@ class modResourceGetNodesProcessor extends modProcessor {
                 'parent' => $this->startNode,
             ));
         }
-        $c->groupby($this->modx->getSelectColumns('modResource', 'modResource', '', $resourceColumns), '');
         $sortBy = $this->modx->escape($this->getProperty('sortBy'));
         $c->sortby('modResource.' . $sortBy,$this->getProperty('sortDir'));
         return $c;
@@ -365,7 +372,8 @@ class modResourceGetNodesProcessor extends modProcessor {
         $nodeFieldFallback = $this->getProperty('nodeFieldFallback');
         $noHref = $this->getProperty('noHref',false);
 
-        $hasChildren = $resource->get('childrenCount') > 0;
+        $hasChildren  = $resource->get('childrenCount') > 0;
+        $showChildren = $hasChildren && !$resource->get('hide_children_in_tree');
 
         $class = array();
         if (!$resource->isfolder) {
@@ -383,7 +391,7 @@ class modResourceGetNodesProcessor extends modProcessor {
                 $class[] = $this->permissions['resource_duplicate'];
             }
         }
-        if ($resource->allowChildrenResources) {
+        if ($resource->allowChildrenResources && !$resource->deleted) {
             if (!empty($this->permissions['new_document'])) $class[] = $this->permissions['new_document'];
             if (!empty($this->permissions['new_symlink'])) $class[] = $this->permissions['new_symlink'];
             if (!empty($this->permissions['new_weblink'])) $class[] = $this->permissions['new_weblink'];
@@ -478,11 +486,12 @@ class modResourceGetNodesProcessor extends modProcessor {
             $sessionEnabled = $ctxSetting->get('value') == 0 ? array('preview' => 'true') : '';
         }
 
-        $text = strip_tags($resource->get($nodeField));
+        $text = $resource->get($nodeField);
         if (empty($text)) {
             $text = $resource->get($nodeFieldFallback);
-            $text = strip_tags($text);
         }
+        $charset = $this->modx->getOption('modx_charset', null, 'UTF-8');
+        $text = htmlentities($text, ENT_QUOTES, $charset);
         $itemArray = array(
             'text' => $text.$idNote,
             'id' => $resource->context_key . '_'.$resource->id,
@@ -493,20 +502,20 @@ class modResourceGetNodesProcessor extends modProcessor {
             'selected' => $active,
             'classKey' => $resource->class_key,
             'ctx' => $resource->context_key,
+            'childCount' => $resource->get('childrenCount'),
+            'hasChildren' => $hasChildren,
             'hide_children_in_tree' => $resource->hide_children_in_tree,
             'qtip' => $qtip,
             'preview_url' => (!$resource->get('deleted')) ? $this->modx->makeUrl($resource->get('id'), $resource->get('context_key'), $sessionEnabled, 'full', array('xhtml_urls' => false)) : '',
             'page' => empty($noHref) ? '?a='.(!empty($this->permissions['edit_document']) ? 'resource/update' : 'resource/data').'&id='.$resource->id : '',
             'allowDrop' => true,
         );
-        if (!$hasChildren) {
-            $itemArray['hasChildren'] = false;
+
+        if (!$showChildren) {
             $itemArray['children'] = array();
             $itemArray['expanded'] = true;
-        } else {
-            $itemArray['hasChildren'] = true;
-            $itemArray['childCount']  = $resource->get('childrenCount');
         }
+
         $itemArray = $resource->prepareTreeNode($itemArray);
         return $itemArray;
     }

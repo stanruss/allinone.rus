@@ -1,8 +1,13 @@
 <?php
-/**
- * @package modx
- * @subpackage validation
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Custom validation class for modx
  *
@@ -20,8 +25,7 @@ class modValidator extends xPDOValidator {
     public function validate(array $parameters= array()) {
         $result= parent :: validate($parameters);
         if (!empty($this->messages)) {
-            reset($this->messages);
-            while (list ($k, $v)= each($this->messages)) {
+            foreach ($this->messages as $k => $v) {
                 if (array_key_exists('message',$this->messages[$k])) {
                     $this->messages[$k]['message']= $this->object->xpdo->lexicon($this->messages[$k]['message']);
                 }

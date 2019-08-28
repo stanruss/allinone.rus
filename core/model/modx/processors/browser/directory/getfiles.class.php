@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Gets all files in a directory
  *
@@ -49,7 +58,7 @@ class modBrowserFolderGetFilesProcessor extends modProcessor {
         }
 
         $dir = $this->getProperty('dir');
-        $dir = preg_replace('/(\.+\/)+/', '', htmlspecialchars($dir));
+        $dir = preg_replace('/[\.]{2,}/', '', htmlspecialchars($dir));
         if ($dir === 'root') {
             $dir = '';
         }

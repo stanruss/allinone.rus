@@ -1,7 +1,13 @@
 <?php
-/**
- * @package modx
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * A modResource derivative the represents a symbolic link.
  *
@@ -29,7 +35,7 @@ class modSymLink extends modResource implements modResourceInterface {
      */
     public function process() {
         $this->_content= $this->get('content');
-        if (empty ($this->_content)) {
+        if (empty ($this->_content) || $this->get('id') == $this->_content) {
             $this->xpdo->sendErrorPage();
         }
         if (is_numeric($this->_content)) {

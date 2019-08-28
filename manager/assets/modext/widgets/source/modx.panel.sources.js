@@ -6,17 +6,15 @@ MODx.panel.Sources = function(config) {
         ,bodyStyle: ''
         ,defaults: { collapsible: false ,autoHeight: true }
         ,items: [{
-            html: '<h2>'+_('sources')+'</h2>'
-            ,border: false
+            html: _('sources')
             ,id: 'modx-sources-header'
-            ,cls: 'modx-page-header'
+            ,xtype: 'modx-header'
         },MODx.getPageStructure([{
             layout: 'form'
             ,title: _('sources')
             ,items: [{
                 html: '<p>'+_('sources.intro_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
-                ,border: false
+                ,xtype: 'modx-description'
             },{
                 xtype: 'modx-grid-sources'
 				,cls: 'main-wrapper'
@@ -27,8 +25,7 @@ MODx.panel.Sources = function(config) {
             ,title: _('source_types')
             ,items: [{
                 html: '<p>'+_('source_types.intro_msg')+'</p>'
-				,bodyCssClass: 'panel-desc'
-                ,border: false
+                ,xtype: 'modx-description'
             },{
                 xtype: 'modx-grid-source-types'
 				,cls: 'main-wrapper'
@@ -74,12 +71,14 @@ MODx.grid.Sources = function(config) {
             ,width: 150
             ,sortable: true
             ,editor: { xtype: 'textfield' ,allowBlank: false }
+            ,renderer: Ext.util.Format.htmlEncode
         },{
             header: _('description')
             ,dataIndex: 'description'
             ,width: 300
             ,sortable: false
             ,editor: { xtype: 'textarea' }
+            ,renderer: Ext.util.Format.htmlEncode
         }]
         ,tbar: [{
             text: _('source_create')
@@ -114,7 +113,11 @@ MODx.grid.Sources = function(config) {
             ,id: 'modx-filter-clear'
             ,cls: 'x-form-filter-clear'
             ,listeners: {
-                'click': {fn: this.clearFilter, scope: this}
+                'click': {fn: this.clearFilter, scope: this},
+                'mouseout': { fn: function(evt){
+                    this.removeClass('x-btn-focus');
+                }
+                }
             }
         }]
     });
@@ -264,6 +267,7 @@ MODx.window.CreateSource = function(config) {
             ,fieldLabel: _('source_type')
             ,anchor: '100%'
             ,allowBlank: false
+            ,value: MODx.config.default_media_source_type
         }]
         ,keys: []
     });
@@ -289,11 +293,13 @@ MODx.grid.SourceTypes = function(config) {
             ,dataIndex: 'name'
             ,width: 150
             ,sortable: true
+            ,renderer: Ext.util.Format.htmlEncode
         },{
             header: _('description')
             ,dataIndex: 'description'
             ,width: 300
             ,sortable: false
+            ,renderer: Ext.util.Format.htmlEncode
         }]
     });
     MODx.grid.SourceTypes.superclass.constructor.call(this,config);

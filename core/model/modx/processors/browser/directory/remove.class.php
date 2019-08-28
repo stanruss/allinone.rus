@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Remove a directory
  *
@@ -41,7 +50,7 @@ class modBrowserFolderRemoveProcessor extends modProcessor {
         }
 
         $dir = $this->getProperty('dir');
-        $dir = preg_replace('/(\.+\/)+/', '', htmlspecialchars($dir));
+        $dir = preg_replace('/[\.]{2,}/', '', htmlspecialchars($dir));
         $success = $this->source->removeContainer($dir);
 
         if (empty($success)) {

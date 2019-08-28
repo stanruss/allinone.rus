@@ -2,7 +2,7 @@ MODx.grid.SettingsGrid = function(config) {
     config = config || {};
     this.exp = new Ext.grid.RowExpander({
         tpl : new Ext.Template(
-            '<p class="desc">{description_trans}</p>'
+            '<p class="desc">{description_trans:htmlEncode}</p>'
         )
     });
 
@@ -73,7 +73,11 @@ MODx.grid.SettingsGrid = function(config) {
         ,cls: 'x-form-filter-clear'
         ,text: _('filter_clear')
         ,listeners: {
-            'click': {fn: this.clearFilter, scope: this}
+            'click': {fn: this.clearFilter, scope: this},
+            'mouseout': { fn: function(evt){
+                   this.removeClass('x-btn-focus');
+                }
+            }
         }
     });
 
@@ -151,7 +155,7 @@ MODx.grid.SettingsGrid = function(config) {
         ,primaryKey: 'key'
         ,autosave: true
         ,save_action: 'system/settings/updatefromgrid'
-        ,pageSize: parseInt(MODx.config.default_per_page) > 30 ? parseInt(MODx.config.default_per_page) : 30
+        ,pageSize: parseInt(MODx.config.default_per_page) || 20
         ,paging: true
         ,collapseFirst: false
         ,tools: [{
@@ -502,6 +506,7 @@ MODx.combo.xType = function(config) {
                 ,[_('usergroup'),'modx-combo-usergroup']
                 ,[_('language'),'modx-combo-language']
                 ,[_('source'),'modx-combo-source']
+                ,[_('source_type'),'modx-combo-source-type']
                 ,[_('setting_manager_theme'),'modx-combo-manager-theme']
             ]
         })

@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Retrieves a resource by its ID.
  *
@@ -17,7 +26,10 @@ class modResourceGetProcessor extends modObjectGetProcessor {
     public function process() {
         $resourceArray = $this->object->toArray();
         $resourceArray['canpublish'] = $this->modx->hasPermission('publish_document');
-        $this->formatDates($resourceArray);
+        if (!$this->getProperty('skipFormatDates') ||
+            ($this->getProperty('skipFormatDates') && $this->getProperty('skipFormatDates') == 'false')) {
+            $this->formatDates($resourceArray);
+        }
         return $this->success('',$resourceArray);
     }
 

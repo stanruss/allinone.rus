@@ -16,6 +16,8 @@ $_lang['system_events.create'] = 'Vytvořit novou událost';
 $_lang['system_events.name_desc'] = 'Název události. Který byste měli použít v rámci volání &dollar;modx->invokeEvent(název, vlastnosti).';
 $_lang['system_events.groupname'] = 'Skupina';
 $_lang['system_events.groupname_desc'] = 'Název skupiny, kam tato událost patří. Vyberte existující nebo zadejte nový název skupiny.';
+$_lang['system_events.plugins'] = 'Pluginy';
+$_lang['system_events.plugins_desc'] = 'Seznam pluginů připojených k události. Vyzvedněte pluginy, které by měly být připojeny k události.';
 
 $_lang['system_events.service'] = 'Služba';
 $_lang['system_events.service_1'] = 'Události služby Parser';

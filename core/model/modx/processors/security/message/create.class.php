@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Create a message
  *
@@ -131,7 +140,7 @@ class modMessageCreateProcessor extends modObjectProcessor {
             if ($user->get($primaryKey) == $this->modx->user->get('id')) {
                 continue;
             }
-            $recipients[] = $user->get('id');
+            $recipients[] = $user->get($primaryKey);
         }
         return $recipients;
     }

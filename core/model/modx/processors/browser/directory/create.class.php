@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Create a directory.
  *
@@ -41,10 +50,10 @@ class modBrowserFolderCreateProcessor extends modProcessor {
         }
 
         $parent = rawurldecode($this->getProperty('parent',''));
-        $parent = ltrim(strip_tags(preg_replace('/(\.+\/)+/', '', htmlspecialchars($parent))),'/');
+        $parent = ltrim(strip_tags(preg_replace('/[\.]{2,}/', '', htmlspecialchars($parent))),'/');
 
         $name = $this->getProperty('name');
-        $name = ltrim(strip_tags(preg_replace('/(\.+\/)+/', '', htmlspecialchars($name))),'/');
+        $name = ltrim(strip_tags(preg_replace('/[\.]{2,}/', '', htmlspecialchars($name))),'/');
         $success = $this->source->createContainer($name, $parent);
 
         if (empty($success)) {

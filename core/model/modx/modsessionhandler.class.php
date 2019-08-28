@@ -4,9 +4,10 @@
  *
  * Copyright (c) MODX, LLC. All Rights Reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Default database session handler class for MODX.
  *
@@ -141,7 +142,7 @@ class modSessionHandler {
     public function gc($max) {
         $maxtime= time() - $this->gcMaxLifetime;
         $result = $this->modx->removeCollection('modSession', array("{$this->modx->escape('access')} < {$maxtime}"));
-        return $result;
+        return $result !== false;
     }
 
     /**

@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Install a package
  *
@@ -52,6 +61,12 @@ class modPackageInstallProcessor extends modProcessor {
             $msg = $this->modx->lexicon('package_install_info_success',array('signature' => $this->package->get('signature')));
             $this->modx->log(modX::LOG_LEVEL_WARN,$msg);
             $this->modx->log(modX::LOG_LEVEL_INFO,'COMPLETED');
+
+            $this->modx->invokeEvent('OnPackageInstall', array(
+                'package' => $this->package,
+                'action' => $this->package->previousVersionInstalled() ? xPDOTransport::ACTION_UPGRADE : xPDOTransport::ACTION_INSTALL
+            ));
+
             return $this->success($msg);
         }
     }

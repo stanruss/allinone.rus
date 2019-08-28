@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Renames a file
  *
@@ -31,9 +40,9 @@ class modBrowserFileRenameProcessor extends modProcessor {
         }
 
         $oldFile = $this->getProperty('path');
-        $oldFile = preg_replace('/(\.+\/)+/', '', htmlspecialchars($oldFile));
+        $oldFile = preg_replace('/[\.]{2,}/', '', htmlspecialchars($oldFile));
         $name = $this->getProperty('name');
-        $name = preg_replace('/(\.+\/)+/', '', htmlspecialchars($name));
+        $name = preg_replace('/[\.]{2,}/', '', htmlspecialchars($name));
         $success = $this->source->renameObject($oldFile, $name);
 
         if (empty($success)) {

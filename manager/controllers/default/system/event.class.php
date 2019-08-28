@@ -1,7 +1,11 @@
 <?php
-/**
- * @package modx
- * @subpackage manager.controllers
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
 class SystemEventManagerController extends modManagerController {
     public $logArray = array();
@@ -39,16 +43,21 @@ class SystemEventManagerController extends modManagerController {
      * @return mixed
      */
     public function process(array $scriptProperties = array()) {
-        $f = $this->modx->getOption(xPDO::OPT_CACHE_PATH).'logs/error.log';
+        $logTarget = $this->modx->getLogTarget();
+        if (!is_array($logTarget)) {
+            $logTarget = array('options' => array());
+        }
+        $filename = $this->modx->getOption('filename', $logTarget['options'], 'error.log', true);
+        $filepath = $this->modx->getOption('filepath', $logTarget['options'], $this->modx->getCachePath() . xPDOCacheManager::LOG_DIR, true);
+        $f = $filepath.$filename;
         $this->logArray['name'] = $f;
         if (file_exists($f)) {
-            $this->logArray['size'] = round(@filesize($f) / 1000 / 1000,2);
+            $this->logArray['size'] = round(@filesize($f) / 1000 / 1000, 2);
+            $this->logArray['log'] = '';
             if ($this->logArray['size'] > 1) {
-                $this->logArray['log'] = '';
                 $this->logArray['tooLarge'] = true;
                 $this->logArray['size'] .= ' MiB';
             } else {
-                $this->logArray['log'] = @file_get_contents($f);
                 $this->logArray['tooLarge'] = false;
             }
         }

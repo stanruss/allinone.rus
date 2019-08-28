@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Gets a list of system events
  *
@@ -44,12 +53,27 @@ class modPluginEventGetListProcessor extends modObjectProcessor {
 
     public function getData() {
         $criteria = array();
-        if (!empty($name)) {
-            $criteria[] = array('name:LIKE' => '%'.$name.'%');
+
+        $query = $this->getProperty('query');
+        if (!empty($query)) {
+            $criteria[] = array('name:LIKE' => '%'.$query.'%');
         }
+
+        $group = $this->getProperty('group');
+        if (!empty($group)) {
+            $criteria[] = array('groupname' => $group);
+        }
+
         $this->modx->newQuery('modEvent');
-        $eventsResult = $this->modx->call('modEvent', 'listEvents', array(&$this->modx, $this->getProperty('plugin'), $criteria, array(
-            $this->getProperty('sort') => $this->getProperty('dir')), $this->getProperty('limit'), $this->getProperty('start')));
+        $eventsResult = $this->modx->call('modEvent', 'listEvents', array(
+            &$this->modx,
+            $this->getProperty('plugin'),
+            $criteria,
+            array($this->getProperty('sort') => $this->getProperty('dir')),
+            $this->getProperty('limit'),
+            $this->getProperty('start')
+        ));
+
         return array(
             'total' => $eventsResult['count'],
             'results' => $eventsResult['collection'],

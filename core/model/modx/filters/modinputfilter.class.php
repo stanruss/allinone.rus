@@ -4,8 +4,8 @@
  *
  * Copyright (c) MODX, LLC. All Rights Reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
 
 /**
@@ -30,7 +30,7 @@ class modInputFilter {
 
     /**
      * Constructor for modInputFilter
-     * 
+     *
      * @param modX $modx A reference to the modX instance.
      */
     function __construct(modX &$modx) {
@@ -49,9 +49,9 @@ class modInputFilter {
         $splitPos= strpos($output, ':');
         if ($splitPos !== false && $splitPos > 0) {
             $matches= array ();
-            $name= substr($output, 0, $splitPos);
+            $name= trim(substr($output, 0, $splitPos));
             $modifiers= substr($output, $splitPos);
-            if (preg_match_all('~:([^:=]+)(?:=`(.*?)`(?=:[^:=]+|$))?~s', $modifiers, $matches)) {
+            if (preg_match_all('~:([^:=]+)(?:=`(.*?)`[\r\n\s]*(?=:[^:=]+|$))?~s', $modifiers, $matches)) {
                 $this->_commands = $matches[1]; /* modifier commands */
                 $this->_modifiers = $matches[2]; /* modifier values */
             }

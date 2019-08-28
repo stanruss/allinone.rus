@@ -1,8 +1,13 @@
 <?php
-/**
- * @package modx
- * @subpackage transport
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 /**
  * Represents an xPDOTransport package as required for MODX Providers and package installation
  *
@@ -339,7 +344,7 @@ class modTransportPackage extends xPDOObject {
                 $this->save();
             } else {
                 $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,$this->xpdo->lexicon('package_err_uninstall',array(
-                    'signature' => $this->package->get('signature'),
+                    'signature' => $this->get('signature'),
                 )));
             }
         } else {
@@ -384,9 +389,10 @@ class modTransportPackage extends xPDOObject {
                         'source' => $source,
                     )));
                 }
+            }
 
             /* if not, try curl */
-            } else if (function_exists('curl_init')) {
+            if (empty($content) && function_exists('curl_init')) {
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $source);
                 curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -417,9 +423,10 @@ class modTransportPackage extends xPDOObject {
                 }
                 $content = curl_exec($ch);
                 curl_close($ch);
+            }
 
             /* and as last-ditch resort, try fsockopen */
-            } else {
+            if (empty($content)) {
                 $content = $this->_getByFsockopen($source);
             }
 
@@ -433,7 +440,7 @@ class modTransportPackage extends xPDOObject {
                 $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,'MODX could not download the file. You must enable allow_url_fopen, cURL or fsockopen to use remote transport packaging.');
             }
         } else {
-             $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,$this->xpdo->lexicon('package_err_target_write',array(
+            $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,$this->xpdo->lexicon('package_err_target_write',array(
                 'targetDir' => $targetDir,
             )));
         }
@@ -477,7 +484,7 @@ class modTransportPackage extends xPDOObject {
                         $latest->parseSignature();
                         if (xPDOTransport::satisfies($latest->version, $constraint)) {
                             unset($latest);
-                            continue;
+                            break;
                         }
                     }
                     $unsatisfied[$package] = $constraint;
@@ -490,14 +497,15 @@ class modTransportPackage extends xPDOObject {
     public function checkDownloadedDependencies(array $dependencies) {
         $satisfied = array();
         foreach ($dependencies as $package => $constraint) {
-            if (strtolower($package) === strtolower($this->identifier)) continue;
+            if (strtolower($package) === strtolower($this->identifier) || $package === 'php' || $package === 'modx') continue;
 
             /* get latest installed package version */
             $latestQuery = $this->xpdo->newQuery(
                 'modTransportPackage',
                 array(
                     array(
-                        "UCASE({$this->xpdo->escape('package_name')}) LIKE UCASE({$this->xpdo->quote($package)})"
+                        "UCASE({$this->xpdo->escape('package_name')}) LIKE UCASE({$this->xpdo->quote($package)})",
+                        'OR:signature:LIKE' => $package . '-%'
                     ),
                     'installed:IS' => null,
                 )
@@ -599,7 +607,7 @@ class modTransportPackage extends xPDOObject {
                     $resolution = $provider->latest($package, $constraint);
                 }
                 /* loop through active providers if all else fails */
-                if ($resolution === false) {
+                if (empty($resolution)) {
                     $query = $this->xpdo->newQuery('transport.modTransportProvider', $conditions);
                     $query->sortby('priority', 'ASC');
                     /** @var modTransportProvider $p */
@@ -611,7 +619,7 @@ class modTransportPackage extends xPDOObject {
                         }
                     }
                 }
-                if ($resolution === false) {
+                if (empty($resolution)) {
                     $this->xpdo->log(xPDO::LOG_LEVEL_ERROR, "Could not find package to satisfy dependency {$package} @ {$constraint} from your currently active providers", '', __METHOD__, __FILE__, __LINE__);
                 }
                 break;
@@ -669,7 +677,7 @@ class modTransportPackage extends xPDOObject {
         if( !$fp ) {
             $this->xpdo->log(xPDO::LOG_LEVEL_ERROR,'Could not retrieve from '.$url);
         } else {
-            fwrite($fp, "GET $path HTTP/1.0\r\n" .
+            fwrite($fp, "GET $path ".$_SERVER['SERVER_PROTOCOL']."\r\n" .
                 "Host: $host\r\n" .
                 "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.3) Gecko/20060426 Firefox/1.5.0.3\r\n" .
                 "Accept: */*\r\n" .

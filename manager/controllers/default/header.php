@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Loads the main structure
  *
@@ -65,15 +74,20 @@ class TopMenu
         $this->setPlaceholders();
 
         // Then process menu "containers"
-        $this->buildMenu(
-            $this->modx->getOption('main_nav_parent', null, 'topnav', true),
-            'navb'
-        );
-        $this->buildMenu(
-            $this->modx->getOption('user_nav_parent', null, 'usernav', true),
-            'userNav'
-        );
-
+        $mainNav = $this->modx->smarty->getTemplateVars('navb');
+        if (empty($mainNav)) {
+            $this->buildMenu(
+                $this->modx->getOption('main_nav_parent', null, 'topnav', true),
+                'navb'
+            );
+        }
+        $userNav = $this->modx->smarty->getTemplateVars('userNav');
+        if (empty($userNav)) {
+            $this->buildMenu(
+                $this->modx->getOption('user_nav_parent', null, 'usernav', true),
+                'userNav'
+            );
+        }
     }
 
     /**
@@ -312,7 +326,7 @@ class TopMenu
                 $attributes = ' href="?a='.$menu['action'].$menu['params'].'"';
             }
             if (!empty($menu['handler'])) {
-                $attributes .= ' onclick="'.str_replace('"','\'',$menu['handler']).'"';
+                $attributes .= ' onclick="{literal} '.str_replace('"','\'',$menu['handler']).'{/literal} "';
             }
             $smTpl .= '<a'.$attributes.'>'.$menu['text'].$description.'</a>'."\n";
 

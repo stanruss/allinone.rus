@@ -1,4 +1,13 @@
 <?php
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
+ */
+
 /**
  * Gets a list of users in a usergroup
  *
@@ -39,14 +48,14 @@ class modUserGroupUserGetListProcessor extends modObjectGetListProcessor {
         $username = $this->getProperty('username','');
         if (!empty($username)) {
             $c->where(array(
-                'modUser.username:LIKE' => '%'.$username.'%',
+                $this->classKey . '.username:LIKE' => '%'.$username.'%',
             ));
         }
         return $c;
     }
 
     public function prepareQueryAfterCount(xPDOQuery $c) {
-        $c->select($this->modx->getSelectColumns('modUser','modUser'));
+        $c->select($this->modx->getSelectColumns($this->classKey,$this->classKey));
         $c->select(array(
             'usergroup' => 'UserGroup.id',
             'usergroup_name' => 'UserGroup.name',

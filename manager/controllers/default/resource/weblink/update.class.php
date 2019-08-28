@@ -1,7 +1,11 @@
 <?php
-/**
- * @package modx
- * @subpackage manager.controllers
+/*
+ * This file is part of MODX Revolution.
+ *
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
 class WebLinkUpdateManagerController extends ResourceUpdateManagerController {
     /**
@@ -46,7 +50,7 @@ class WebLinkUpdateManagerController extends ResourceUpdateManagerController {
         /* load RTE */
         $this->loadRichTextEditor();
     }
-    
+
     /**
      * Return the location of the template file
      * @return string
@@ -57,7 +61,7 @@ class WebLinkUpdateManagerController extends ResourceUpdateManagerController {
 
     public function process(array $scriptProperties = array()) {
         $placeholders = parent::process($scriptProperties);
-        $this->resourceArray['responseCode'] = $this->resource->getProperty('responseCode','core','HTTP/1.1 301 Moved Permanently');
+        $this->resourceArray['responseCode'] = $this->resource->getProperty('responseCode','core',$_SERVER['SERVER_PROTOCOL'] . ' 301 Moved Permanently');
         return $placeholders;
     }
 }

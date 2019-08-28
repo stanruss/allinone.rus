@@ -1,9 +1,13 @@
 <?php
-/**
- * modConnectorResponse
+/*
+ * This file is part of MODX Revolution.
  *
- * @package modx
+ * Copyright (c) MODX, LLC. All Rights Reserved.
+ *
+ * For complete copyright and license information, see the COPYRIGHT and LICENSE
+ * files found in the top-level directory of this distribution.
  */
+
 require_once MODX_CORE_PATH . 'model/modx/modresponse.class.php';
 /**
  * Encapsulates an HTTP response from the MODX manager.
@@ -90,7 +94,7 @@ class modConnectorResponse extends modResponse {
         /* backwards compat */
         $error =& $this->modx->error;
         /* prevent browsing of subdirectories for security */
-        $target = preg_replace('/(\.+\/)+/', '', htmlspecialchars($options['action']));
+        $target = preg_replace('/[\.]{2,}/', '', htmlspecialchars($options['action']));
 
         $siteId = $this->modx->user->getUserToken($this->modx->context->get('key'));
         $isLogin = $target == 'login' || $target == 'security/login';
@@ -157,7 +161,7 @@ class modConnectorResponse extends modResponse {
                 $message = $this->_responseCodes[$this->responseCode];
             }
             header('Status: '.$this->responseCode.' '.$message);
-            header('Version: HTTP/1.1');
+            header('Version: ' . $_SERVER['SERVER_PROTOCOL']);
         }
         if (is_array($this->header)) {
             foreach ($this->header as $header) header($header);
