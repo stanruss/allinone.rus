@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Авг 28 2019 г., 10:43
--- Версия сервера: 10.3.13-MariaDB
--- Версия PHP: 7.3.2
+-- Время создания: Авг 31 2019 г., 10:36
+-- Версия сервера: 5.6.41
+-- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,9 +32,9 @@ CREATE TABLE `new_access_actiondom` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -47,9 +47,9 @@ CREATE TABLE `new_access_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -62,9 +62,9 @@ CREATE TABLE `new_access_category` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -78,9 +78,9 @@ CREATE TABLE `new_access_context` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -105,9 +105,9 @@ CREATE TABLE `new_access_elements` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -121,9 +121,9 @@ CREATE TABLE `new_access_media_source` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -146,9 +146,9 @@ CREATE TABLE `new_access_menus` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -161,9 +161,9 @@ CREATE TABLE `new_access_namespace` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -175,10 +175,10 @@ CREATE TABLE `new_access_namespace` (
 
 CREATE TABLE `new_access_permissions` (
   `id` int(10) UNSIGNED NOT NULL,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `template` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `value` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
+  `value` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -428,11 +428,11 @@ INSERT INTO `new_access_permissions` (`id`, `template`, `name`, `description`, `
 CREATE TABLE `new_access_policies` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `description` mediumtext,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `template` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `class` varchar(255) NOT NULL DEFAULT '',
-  `data` text DEFAULT NULL,
+  `data` text,
   `lexicon` varchar(255) NOT NULL DEFAULT 'permissions'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -464,9 +464,9 @@ INSERT INTO `new_access_policies` (`id`, `name`, `description`, `parent`, `templ
 
 CREATE TABLE `new_access_policy_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `template_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `template_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext DEFAULT NULL,
+  `description` mediumtext,
   `lexicon` varchar(255) NOT NULL DEFAULT 'permissions'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -493,7 +493,7 @@ INSERT INTO `new_access_policy_templates` (`id`, `template_group`, `name`, `desc
 CREATE TABLE `new_access_policy_template_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext DEFAULT NULL
+  `description` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -518,9 +518,9 @@ CREATE TABLE `new_access_resources` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -534,9 +534,9 @@ CREATE TABLE `new_access_resource_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -559,9 +559,9 @@ CREATE TABLE `new_access_templatevars` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -573,10 +573,10 @@ CREATE TABLE `new_access_templatevars` (
 
 CREATE TABLE `new_actiondom` (
   `id` int(10) UNSIGNED NOT NULL,
-  `set` int(11) NOT NULL DEFAULT 0,
+  `set` int(11) NOT NULL DEFAULT '0',
   `action` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text DEFAULT NULL,
+  `description` text,
   `xtype` varchar(100) NOT NULL DEFAULT '',
   `container` varchar(255) NOT NULL DEFAULT '',
   `rule` varchar(100) NOT NULL DEFAULT '',
@@ -584,9 +584,9 @@ CREATE TABLE `new_actiondom` (
   `constraint` varchar(255) NOT NULL DEFAULT '',
   `constraint_field` varchar(100) NOT NULL DEFAULT '',
   `constraint_class` varchar(100) NOT NULL DEFAULT '',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
-  `for_parent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `for_parent` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `rank` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -599,7 +599,7 @@ CREATE TABLE `new_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `namespace` varchar(100) NOT NULL DEFAULT 'core',
   `controller` varchar(255) NOT NULL,
-  `haslayout` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `haslayout` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `lang_topics` text NOT NULL,
   `assets` text NOT NULL,
   `help_url` text NOT NULL
@@ -632,7 +632,7 @@ CREATE TABLE `new_actions_fields` (
   `tab` varchar(255) NOT NULL DEFAULT '',
   `form` varchar(255) NOT NULL DEFAULT '',
   `other` varchar(255) NOT NULL DEFAULT '',
-  `rank` int(11) NOT NULL DEFAULT 0
+  `rank` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -726,9 +726,9 @@ INSERT INTO `new_actions_fields` (`id`, `action`, `name`, `type`, `tab`, `form`,
 --
 
 CREATE TABLE `new_active_users` (
-  `internalKey` int(9) NOT NULL DEFAULT 0,
+  `internalKey` int(9) NOT NULL DEFAULT '0',
   `username` varchar(50) NOT NULL DEFAULT '',
-  `lasthit` int(20) NOT NULL DEFAULT 0,
+  `lasthit` int(20) NOT NULL DEFAULT '0',
   `id` int(10) DEFAULT NULL,
   `action` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(20) NOT NULL DEFAULT ''
@@ -742,9 +742,9 @@ CREATE TABLE `new_active_users` (
 
 CREATE TABLE `new_categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent` int(10) UNSIGNED DEFAULT 0,
+  `parent` int(10) UNSIGNED DEFAULT '0',
   `category` varchar(45) NOT NULL DEFAULT '',
-  `rank` int(11) NOT NULL DEFAULT 0
+  `rank` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -782,9 +782,9 @@ INSERT INTO `new_categories` (`id`, `parent`, `category`, `rank`) VALUES
 --
 
 CREATE TABLE `new_categories_closure` (
-  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `descendant` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `depth` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `descendant` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `depth` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -848,7 +848,7 @@ CREATE TABLE `new_class_map` (
   `class` varchar(120) NOT NULL DEFAULT '',
   `parent_class` varchar(120) NOT NULL DEFAULT '',
   `name_field` varchar(255) NOT NULL DEFAULT 'name',
-  `path` tinytext DEFAULT NULL,
+  `path` tinytext,
   `lexicon` varchar(255) NOT NULL DEFAULT 'core:resource'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -877,7 +877,7 @@ CREATE TABLE `new_clientconfig_group` (
   `id` int(10) UNSIGNED NOT NULL,
   `label` varchar(75) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `sortorder` int(10) NOT NULL DEFAULT 0
+  `sortorder` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -899,13 +899,13 @@ CREATE TABLE `new_clientconfig_setting` (
   `label` varchar(75) NOT NULL DEFAULT '',
   `xtype` varchar(75) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `is_required` tinyint(1) NOT NULL DEFAULT 0,
-  `sortorder` int(10) NOT NULL DEFAULT 0,
+  `is_required` tinyint(1) NOT NULL DEFAULT '0',
+  `sortorder` int(10) NOT NULL DEFAULT '0',
   `value` mediumtext NOT NULL,
   `default` mediumtext NOT NULL,
-  `group` int(11) DEFAULT 0,
-  `options` mediumtext DEFAULT NULL,
-  `source` int(11) DEFAULT 0
+  `group` int(11) DEFAULT '0',
+  `options` mediumtext,
+  `source` int(11) DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -940,7 +940,7 @@ CREATE TABLE `new_collection_resource_template` (
 CREATE TABLE `new_collection_selections` (
   `collection` int(10) UNSIGNED NOT NULL,
   `resource` int(10) UNSIGNED NOT NULL,
-  `menuindex` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `menuindex` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -952,7 +952,7 @@ CREATE TABLE `new_collection_selections` (
 CREATE TABLE `new_collection_settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `collection` int(10) UNSIGNED NOT NULL,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `template` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -972,20 +972,20 @@ CREATE TABLE `new_collection_templates` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL DEFAULT '',
-  `global_template` int(1) NOT NULL DEFAULT 0,
-  `bulk_actions` int(1) NOT NULL DEFAULT 0,
-  `allow_dd` int(1) NOT NULL DEFAULT 1,
-  `page_size` int(10) NOT NULL DEFAULT 20,
+  `global_template` int(1) NOT NULL DEFAULT '0',
+  `bulk_actions` int(1) NOT NULL DEFAULT '0',
+  `allow_dd` int(1) NOT NULL DEFAULT '1',
+  `page_size` int(10) NOT NULL DEFAULT '20',
   `sort_field` varchar(100) NOT NULL DEFAULT 'id',
   `sort_dir` varchar(4) NOT NULL DEFAULT 'asc',
   `sort_type` varchar(64) DEFAULT NULL,
   `child_template` int(10) UNSIGNED DEFAULT NULL,
   `child_resource_type` varchar(100) NOT NULL DEFAULT 'modDocument',
-  `resource_type_selection` int(1) NOT NULL DEFAULT 1,
+  `resource_type_selection` int(1) NOT NULL DEFAULT '1',
   `tab_label` varchar(255) NOT NULL DEFAULT 'collections.children',
   `button_label` varchar(255) NOT NULL DEFAULT 'collections.children.create',
   `content_place` varchar(255) NOT NULL DEFAULT 'original',
-  `view_for` int(1) UNSIGNED NOT NULL DEFAULT 0,
+  `view_for` int(1) UNSIGNED NOT NULL DEFAULT '0',
   `link_label` varchar(255) NOT NULL DEFAULT 'selections.create',
   `context_menu` varchar(512) NOT NULL DEFAULT 'view,edit,duplicate,publish,unpublish,-,delete,undelete,remove,-,unlink',
   `buttons` varchar(512) NOT NULL DEFAULT 'open,view,edit,duplicate,publish:orange,unpublish,delete,undelete,remove,unlink',
@@ -998,15 +998,15 @@ CREATE TABLE `new_collection_templates` (
   `child_cacheable` int(1) DEFAULT NULL,
   `child_searchable` int(1) DEFAULT NULL,
   `child_richtext` int(1) DEFAULT NULL,
-  `child_content_type` int(10) NOT NULL DEFAULT 0,
+  `child_content_type` int(10) NOT NULL DEFAULT '0',
   `parent` varchar(100) NOT NULL DEFAULT '',
   `child_content_disposition` int(1) DEFAULT NULL,
   `permanent_sort_before` varchar(255) NOT NULL DEFAULT '',
   `permanent_sort_after` varchar(255) NOT NULL DEFAULT '',
-  `selection_link_condition` text DEFAULT NULL,
-  `search_query_exclude_tvs` int(1) NOT NULL DEFAULT 0,
-  `search_query_exclude_tagger` int(1) NOT NULL DEFAULT 0,
-  `search_query_title_only` int(1) NOT NULL DEFAULT 0
+  `selection_link_condition` text,
+  `search_query_exclude_tvs` int(1) NOT NULL DEFAULT '0',
+  `search_query_exclude_tagger` int(1) NOT NULL DEFAULT '0',
+  `search_query_title_only` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1027,13 +1027,13 @@ CREATE TABLE `new_collection_template_columns` (
   `template` int(10) UNSIGNED NOT NULL,
   `label` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `sortable` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `width` int(10) UNSIGNED NOT NULL DEFAULT 100,
+  `hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `sortable` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `width` int(10) UNSIGNED NOT NULL DEFAULT '100',
   `editor` varchar(255) NOT NULL DEFAULT '',
   `renderer` varchar(255) NOT NULL DEFAULT '',
   `php_renderer` varchar(255) NOT NULL DEFAULT '',
-  `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `sort_type` varchar(64) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1057,11 +1057,11 @@ INSERT INTO `new_collection_template_columns` (`id`, `template`, `label`, `name`
 CREATE TABLE `new_content_type` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` tinytext DEFAULT NULL,
-  `mime_type` tinytext DEFAULT NULL,
-  `file_extensions` tinytext DEFAULT NULL,
-  `headers` mediumtext DEFAULT NULL,
-  `binary` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+  `description` tinytext,
+  `mime_type` tinytext,
+  `file_extensions` tinytext,
+  `headers` mediumtext,
+  `binary` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1087,8 +1087,8 @@ INSERT INTO `new_content_type` (`id`, `name`, `description`, `mime_type`, `file_
 CREATE TABLE `new_context` (
   `key` varchar(100) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `description` tinytext DEFAULT NULL,
-  `rank` int(11) NOT NULL DEFAULT 0
+  `description` tinytext,
+  `rank` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1119,11 +1119,11 @@ CREATE TABLE `new_context_resource` (
 CREATE TABLE `new_context_setting` (
   `context_key` varchar(255) NOT NULL,
   `key` varchar(50) NOT NULL,
-  `value` mediumtext DEFAULT NULL,
+  `value` mediumtext,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1143,8 +1143,8 @@ INSERT INTO `new_context_setting` (`context_key`, `key`, `value`, `xtype`, `name
 CREATE TABLE `new_dashboard` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text DEFAULT NULL,
-  `hide_trees` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+  `description` text,
+  `hide_trees` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1163,9 +1163,9 @@ INSERT INTO `new_dashboard` (`id`, `name`, `description`, `hide_trees`) VALUES
 CREATE TABLE `new_dashboard_widget` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text DEFAULT NULL,
+  `description` text,
   `type` varchar(100) NOT NULL,
-  `content` mediumtext DEFAULT NULL,
+  `content` mediumtext,
   `namespace` varchar(255) NOT NULL DEFAULT '',
   `lexicon` varchar(255) NOT NULL DEFAULT 'core:dashboards',
   `size` varchar(255) NOT NULL DEFAULT 'half'
@@ -1189,9 +1189,9 @@ INSERT INTO `new_dashboard_widget` (`id`, `name`, `description`, `type`, `conten
 --
 
 CREATE TABLE `new_dashboard_widget_placement` (
-  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `widget` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `widget` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1214,8 +1214,8 @@ INSERT INTO `new_dashboard_widget_placement` (`dashboard`, `widget`, `rank`) VAL
 CREATE TABLE `new_documentgroup_names` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `private_memgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `private_webgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+  `private_memgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `private_webgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1234,8 +1234,8 @@ INSERT INTO `new_documentgroup_names` (`id`, `name`, `private_memgroup`, `privat
 
 CREATE TABLE `new_document_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `document_group` int(10) NOT NULL DEFAULT 0,
-  `document` int(10) NOT NULL DEFAULT 0
+  `document_group` int(10) NOT NULL DEFAULT '0',
+  `document` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1257,9 +1257,9 @@ INSERT INTO `new_document_groups` (`id`, `document_group`, `document`) VALUES
 --
 
 CREATE TABLE `new_element_property_sets` (
-  `element` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `element` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `element_class` varchar(100) NOT NULL DEFAULT '',
-  `property_set` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `property_set` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1272,7 +1272,7 @@ CREATE TABLE `new_extension_packages` (
   `id` int(10) UNSIGNED NOT NULL,
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `name` varchar(100) NOT NULL DEFAULT 'core',
-  `path` text DEFAULT NULL,
+  `path` text,
   `table_prefix` varchar(255) NOT NULL DEFAULT '',
   `service_class` varchar(255) NOT NULL DEFAULT '',
   `service_name` varchar(255) NOT NULL DEFAULT '',
@@ -1290,8 +1290,8 @@ CREATE TABLE `new_fc_profiles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `rank` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1301,8 +1301,8 @@ CREATE TABLE `new_fc_profiles` (
 --
 
 CREATE TABLE `new_fc_profiles_usergroups` (
-  `usergroup` int(11) NOT NULL DEFAULT 0,
-  `profile` int(11) NOT NULL DEFAULT 0
+  `usergroup` int(11) NOT NULL DEFAULT '0',
+  `profile` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1313,11 +1313,11 @@ CREATE TABLE `new_fc_profiles_usergroups` (
 
 CREATE TABLE `new_fc_sets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `profile` int(11) NOT NULL DEFAULT 0,
+  `profile` int(11) NOT NULL DEFAULT '0',
   `action` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT 0,
-  `template` int(11) NOT NULL DEFAULT 0,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `template` int(11) NOT NULL DEFAULT '0',
   `constraint` varchar(255) NOT NULL DEFAULT '',
   `constraint_field` varchar(100) NOT NULL DEFAULT '',
   `constraint_class` varchar(100) NOT NULL DEFAULT ''
@@ -1335,8 +1335,8 @@ CREATE TABLE `new_formit_forms` (
   `context_key` varchar(100) NOT NULL DEFAULT '',
   `values` text NOT NULL,
   `ip` varchar(15) NOT NULL DEFAULT '',
-  `date` int(11) NOT NULL DEFAULT 0,
-  `encrypted` tinyint(1) NOT NULL DEFAULT 0,
+  `date` int(11) NOT NULL DEFAULT '0',
+  `encrypted` tinyint(1) NOT NULL DEFAULT '0',
   `hash` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1348,15 +1348,15 @@ CREATE TABLE `new_formit_forms` (
 
 CREATE TABLE `new_gallery_albums` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `year` varchar(100) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `createdon` datetime DEFAULT NULL,
-  `createdby` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `prominent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `createdby` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `prominent` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `watermark` varchar(255) NOT NULL DEFAULT '',
   `cover_filename` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1377,7 +1377,7 @@ INSERT INTO `new_gallery_albums` (`id`, `parent`, `name`, `year`, `description`,
 
 CREATE TABLE `new_gallery_album_contexts` (
   `id` int(10) UNSIGNED NOT NULL,
-  `album` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `album` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1389,9 +1389,9 @@ CREATE TABLE `new_gallery_album_contexts` (
 
 CREATE TABLE `new_gallery_album_items` (
   `id` int(10) UNSIGNED NOT NULL,
-  `item` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `album` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `item` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `album` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1417,14 +1417,14 @@ CREATE TABLE `new_gallery_items` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL DEFAULT '',
   `filename` varchar(255) NOT NULL DEFAULT '',
-  `description` text DEFAULT NULL,
+  `description` text,
   `mediatype` varchar(40) NOT NULL DEFAULT 'image',
-  `url` text DEFAULT NULL,
+  `url` text,
   `createdon` datetime DEFAULT NULL,
-  `createdby` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `createdby` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `duration` varchar(40) NOT NULL DEFAULT '',
-  `streamer` text DEFAULT NULL,
+  `streamer` text,
   `watermark_pos` varchar(10) NOT NULL DEFAULT 'tl'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1449,7 +1449,7 @@ INSERT INTO `new_gallery_items` (`id`, `name`, `filename`, `description`, `media
 
 CREATE TABLE `new_gallery_tags` (
   `id` int(10) UNSIGNED NOT NULL,
-  `item` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `item` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `tag` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1467,7 +1467,7 @@ CREATE TABLE `new_lexicon_entries` (
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `language` varchar(20) NOT NULL DEFAULT 'en',
   `createdon` datetime DEFAULT NULL,
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1478,7 +1478,7 @@ CREATE TABLE `new_lexicon_entries` (
 
 CREATE TABLE `new_manager_log` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `user` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `occurred` datetime DEFAULT NULL,
   `action` varchar(100) NOT NULL DEFAULT '',
   `classKey` varchar(100) NOT NULL DEFAULT '',
@@ -4309,7 +4309,155 @@ INSERT INTO `new_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, `
 (2813, 1, '2017-11-17 14:41:09', 'propertyset_update_from_element', 'modChunk', '23'),
 (2814, 1, '2019-08-28 10:40:22', 'login', 'modContext', 'mgr'),
 (2815, 1, '2019-08-28 10:41:51', 'setting_update', 'modSystemSetting', 'fe_editor_lang'),
-(2816, 1, '2019-08-28 10:42:02', 'setting_update', 'modSystemSetting', 'manager_language');
+(2816, 1, '2019-08-28 10:42:02', 'setting_update', 'modSystemSetting', 'manager_language'),
+(2817, 1, '2019-08-30 10:42:02', 'login', 'modContext', 'mgr'),
+(2818, 1, '2019-08-30 10:46:00', 'template_update', 'modTemplate', '1'),
+(2819, 1, '2019-08-30 10:46:00', 'propertyset_update_from_element', 'modPropertySet', 'modTemplate 1 Default'),
+(2820, 1, '2019-08-30 10:46:43', 'chunk_update', 'modChunk', '23'),
+(2821, 1, '2019-08-30 10:46:44', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 23 Default'),
+(2822, 1, '2019-08-30 10:47:25', 'chunk_update', 'modChunk', '28'),
+(2823, 1, '2019-08-30 10:47:25', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2824, 1, '2019-08-30 10:47:35', 'chunk_update', 'modChunk', '28'),
+(2825, 1, '2019-08-30 10:47:36', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2826, 1, '2019-08-30 10:47:51', 'chunk_update', 'modChunk', '29'),
+(2827, 1, '2019-08-30 10:47:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 29 Default'),
+(2828, 1, '2019-08-30 10:48:15', 'chunk_update', 'modChunk', '93'),
+(2829, 1, '2019-08-30 10:48:15', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 93 Default'),
+(2830, 1, '2019-08-30 10:51:50', 'chunk_update', 'modChunk', '22'),
+(2831, 1, '2019-08-30 10:51:50', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2832, 1, '2019-08-30 10:59:04', 'chunk_update', 'modChunk', '22'),
+(2833, 1, '2019-08-30 10:59:04', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2834, 1, '2019-08-30 11:01:20', 'chunk_update', 'modChunk', '22'),
+(2835, 1, '2019-08-30 11:01:20', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2836, 1, '2019-08-30 11:04:57', 'chunk_update', 'modChunk', '22'),
+(2837, 1, '2019-08-30 11:04:58', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2838, 1, '2019-08-30 11:25:07', 'login', 'modContext', 'mgr'),
+(2839, 1, '2019-08-30 11:25:11', 'chunk_update', 'modChunk', '22'),
+(2840, 1, '2019-08-30 11:25:12', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2841, 1, '2019-08-30 11:27:28', 'chunk_update', 'modChunk', '64'),
+(2842, 1, '2019-08-30 11:27:29', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 64 Default'),
+(2843, 1, '2019-08-30 11:31:50', 'chunk_update', 'modChunk', '25'),
+(2844, 1, '2019-08-30 11:31:50', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2845, 1, '2019-08-30 11:32:08', 'chunk_update', 'modChunk', '23'),
+(2846, 1, '2019-08-30 11:32:09', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 23 Default'),
+(2847, 1, '2019-08-30 11:33:04', 'chunk_update', 'modChunk', '25'),
+(2848, 1, '2019-08-30 11:33:04', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2849, 1, '2019-08-30 11:34:51', 'chunk_update', 'modChunk', '25'),
+(2850, 1, '2019-08-30 11:34:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2851, 1, '2019-08-30 11:35:27', 'chunk_update', 'modChunk', '25'),
+(2852, 1, '2019-08-30 11:35:27', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2853, 1, '2019-08-30 11:37:50', 'chunk_update', 'modChunk', '25'),
+(2854, 1, '2019-08-30 11:37:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2855, 1, '2019-08-30 11:39:37', 'chunk_update', 'modChunk', '25'),
+(2856, 1, '2019-08-30 11:39:38', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2857, 1, '2019-08-30 11:43:04', 'chunk_update', 'modChunk', '25'),
+(2858, 1, '2019-08-30 11:43:04', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2859, 1, '2019-08-30 11:43:35', 'chunk_update', 'modChunk', '25'),
+(2860, 1, '2019-08-30 11:43:35', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2861, 1, '2019-08-30 11:44:05', 'chunk_update', 'modChunk', '25'),
+(2862, 1, '2019-08-30 11:44:05', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2863, 1, '2019-08-30 11:44:52', 'chunk_update', 'modChunk', '25'),
+(2864, 1, '2019-08-30 11:44:52', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2865, 1, '2019-08-30 11:45:20', 'chunk_update', 'modChunk', '25'),
+(2866, 1, '2019-08-30 11:45:20', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2867, 1, '2019-08-30 11:50:36', 'chunk_update', 'modChunk', '25'),
+(2868, 1, '2019-08-30 11:50:36', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2869, 1, '2019-08-30 11:51:20', 'chunk_update', 'modChunk', '25'),
+(2870, 1, '2019-08-30 11:51:20', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2871, 1, '2019-08-30 12:03:52', 'chunk_update', 'modChunk', '25'),
+(2872, 1, '2019-08-30 12:03:53', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2873, 1, '2019-08-30 12:04:44', 'chunk_update', 'modChunk', '25'),
+(2874, 1, '2019-08-30 12:04:44', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2875, 1, '2019-08-30 12:12:48', 'chunk_create', 'modChunk', '94'),
+(2876, 1, '2019-08-30 12:13:28', 'chunk_update', 'modChunk', '94'),
+(2877, 1, '2019-08-30 12:13:28', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2878, 1, '2019-08-30 12:14:12', 'chunk_update', 'modChunk', '94'),
+(2879, 1, '2019-08-30 12:14:12', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2880, 1, '2019-08-30 12:15:04', 'chunk_update', 'modChunk', '94'),
+(2881, 1, '2019-08-30 12:15:05', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2882, 1, '2019-08-30 12:15:19', 'chunk_update', 'modChunk', '94'),
+(2883, 1, '2019-08-30 12:15:20', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2884, 1, '2019-08-30 12:15:25', 'chunk_update', 'modChunk', '94'),
+(2885, 1, '2019-08-30 12:15:26', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2886, 1, '2019-08-30 12:16:33', 'chunk_update', 'modChunk', '94'),
+(2887, 1, '2019-08-30 12:16:33', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2888, 1, '2019-08-30 12:17:54', 'chunk_update', 'modChunk', '94'),
+(2889, 1, '2019-08-30 12:17:54', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2890, 1, '2019-08-30 12:18:40', 'chunk_update', 'modChunk', '94'),
+(2891, 1, '2019-08-30 12:18:40', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2892, 1, '2019-08-30 12:19:26', 'chunk_update', 'modChunk', '94'),
+(2893, 1, '2019-08-30 12:19:26', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2894, 1, '2019-08-30 12:20:11', 'chunk_update', 'modChunk', '94'),
+(2895, 1, '2019-08-30 12:20:11', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2896, 1, '2019-08-30 12:20:54', 'chunk_update', 'modChunk', '94'),
+(2897, 1, '2019-08-30 12:20:55', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2898, 1, '2019-08-30 12:25:51', 'chunk_update', 'modChunk', '25'),
+(2899, 1, '2019-08-30 12:25:52', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 25 Default'),
+(2900, 1, '2019-08-30 12:27:10', 'chunk_update', 'modChunk', '94'),
+(2901, 1, '2019-08-30 12:27:10', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2902, 1, '2019-08-30 12:27:40', 'chunk_update', 'modChunk', '94'),
+(2903, 1, '2019-08-30 12:27:40', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2904, 1, '2019-08-30 12:27:59', 'chunk_update', 'modChunk', '94'),
+(2905, 1, '2019-08-30 12:27:59', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 94 Default'),
+(2906, 1, '2019-08-30 12:29:15', 'resource_create', 'modDocument', '17'),
+(2907, 1, '2019-08-30 12:29:45', 'delete_resource', 'modDocument', '17'),
+(2908, 1, '2019-08-30 12:30:05', 'empty_trash', 'modResource', '17'),
+(2909, 1, '2019-08-30 12:31:58', 'resource_update', 'modResource', '2'),
+(2910, 1, '2019-08-30 15:34:02', 'chunk_create', 'modChunk', '95'),
+(2911, 1, '2019-08-30 15:34:10', 'chunk_update', 'modChunk', '95'),
+(2912, 1, '2019-08-30 15:34:11', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 95 Default'),
+(2913, 1, '2019-08-30 15:34:38', 'chunk_update', 'modChunk', '29'),
+(2914, 1, '2019-08-30 15:34:38', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 29 Default'),
+(2915, 1, '2019-08-30 15:36:00', 'chunk_update', 'modChunk', '28'),
+(2916, 1, '2019-08-30 15:36:00', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2917, 1, '2019-08-30 15:44:16', 'chunk_update', 'modChunk', '28'),
+(2918, 1, '2019-08-30 15:44:16', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2919, 1, '2019-08-30 15:44:29', 'chunk_update', 'modChunk', '23'),
+(2920, 1, '2019-08-30 15:44:30', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 23 Default'),
+(2921, 1, '2019-08-30 16:17:49', 'chunk_update', 'modChunk', '28'),
+(2922, 1, '2019-08-30 16:17:49', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2923, 1, '2019-08-30 16:18:13', 'chunk_update', 'modChunk', '28'),
+(2924, 1, '2019-08-30 16:18:14', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2925, 1, '2019-08-30 16:18:27', 'template_update', 'modTemplate', '1'),
+(2926, 1, '2019-08-30 16:18:27', 'propertyset_update_from_element', 'modPropertySet', 'modTemplate 1 Default'),
+(2927, 1, '2019-08-30 16:22:35', 'chunk_update', 'modChunk', '28'),
+(2928, 1, '2019-08-30 16:22:36', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2929, 1, '2019-08-30 16:23:06', 'chunk_update', 'modChunk', '28'),
+(2930, 1, '2019-08-30 16:23:06', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2931, 1, '2019-08-30 16:23:57', 'chunk_update', 'modChunk', '22'),
+(2932, 1, '2019-08-30 16:23:58', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2933, 1, '2019-08-30 16:25:23', 'chunk_update', 'modChunk', '22'),
+(2934, 1, '2019-08-30 16:25:23', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2935, 1, '2019-08-30 16:29:02', 'chunk_update', 'modChunk', '22'),
+(2936, 1, '2019-08-30 16:29:03', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 22 Default'),
+(2937, 1, '2019-08-30 16:38:23', 'chunk_update', 'modChunk', '28'),
+(2938, 1, '2019-08-30 16:38:23', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2939, 1, '2019-08-30 16:38:54', 'chunk_update', 'modChunk', '28'),
+(2940, 1, '2019-08-30 16:38:54', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2941, 1, '2019-08-30 16:39:35', 'chunk_update', 'modChunk', '28'),
+(2942, 1, '2019-08-30 16:39:35', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2943, 1, '2019-08-30 16:39:58', 'chunk_update', 'modChunk', '28'),
+(2944, 1, '2019-08-30 16:39:59', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2945, 1, '2019-08-30 16:41:51', 'chunk_update', 'modChunk', '28'),
+(2946, 1, '2019-08-30 16:41:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2947, 1, '2019-08-30 16:44:55', 'chunk_update', 'modChunk', '28'),
+(2948, 1, '2019-08-30 16:44:55', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2949, 1, '2019-08-30 17:05:51', 'chunk_update', 'modChunk', '28'),
+(2950, 1, '2019-08-30 17:05:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2951, 1, '2019-08-30 17:07:54', 'chunk_update', 'modChunk', '28'),
+(2952, 1, '2019-08-30 17:07:55', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2953, 1, '2019-08-30 17:09:02', 'chunk_update', 'modChunk', '28'),
+(2954, 1, '2019-08-30 17:09:02', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2955, 1, '2019-08-30 17:13:08', 'chunk_update', 'modChunk', '28'),
+(2956, 1, '2019-08-30 17:13:09', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2957, 1, '2019-08-30 17:16:29', 'chunk_update', 'modChunk', '28'),
+(2958, 1, '2019-08-30 17:16:30', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2959, 1, '2019-08-30 17:17:03', 'chunk_update', 'modChunk', '28'),
+(2960, 1, '2019-08-30 17:17:04', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2961, 1, '2019-08-30 17:18:09', 'chunk_update', 'modChunk', '28'),
+(2962, 1, '2019-08-30 17:18:10', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default'),
+(2963, 1, '2019-08-30 17:21:00', 'chunk_update', 'modChunk', '28'),
+(2964, 1, '2019-08-30 17:21:00', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 28 Default');
 
 -- --------------------------------------------------------
 
@@ -4320,10 +4468,10 @@ INSERT INTO `new_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, `
 CREATE TABLE `new_media_sources` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text DEFAULT NULL,
+  `description` text,
   `class_key` varchar(100) NOT NULL DEFAULT 'sources.modFileMediaSource',
-  `properties` mediumtext DEFAULT NULL,
-  `is_stream` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
+  `properties` mediumtext,
+  `is_stream` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4341,7 +4489,7 @@ INSERT INTO `new_media_sources` (`id`, `name`, `description`, `class_key`, `prop
 --
 
 CREATE TABLE `new_media_sources_contexts` (
-  `source` int(11) NOT NULL DEFAULT 0,
+  `source` int(11) NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4352,9 +4500,9 @@ CREATE TABLE `new_media_sources_contexts` (
 --
 
 CREATE TABLE `new_media_sources_elements` (
-  `source` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `source` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `object_class` varchar(100) NOT NULL DEFAULT 'modTemplateVar',
-  `object` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `object` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4381,10 +4529,10 @@ INSERT INTO `new_media_sources_elements` (`source`, `object_class`, `object`, `c
 CREATE TABLE `new_membergroup_names` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text DEFAULT NULL,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT 1
+  `description` text,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4404,10 +4552,10 @@ INSERT INTO `new_membergroup_names` (`id`, `name`, `description`, `parent`, `ran
 
 CREATE TABLE `new_member_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `member` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `role` int(10) UNSIGNED NOT NULL DEFAULT 1,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `user_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `member` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `role` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4430,7 +4578,7 @@ CREATE TABLE `new_menus` (
   `action` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `icon` varchar(255) NOT NULL DEFAULT '',
-  `menuindex` int(11) UNSIGNED NOT NULL DEFAULT 0,
+  `menuindex` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `params` text NOT NULL,
   `handler` text NOT NULL,
   `permissions` text NOT NULL,
@@ -4507,16 +4655,16 @@ CREATE TABLE `new_migx_configs` (
   `filters` text NOT NULL,
   `extended` text NOT NULL,
   `columns` text NOT NULL,
-  `createdby` int(10) NOT NULL DEFAULT 0,
+  `createdby` int(10) NOT NULL DEFAULT '0',
   `createdon` datetime DEFAULT NULL,
-  `editedby` int(10) NOT NULL DEFAULT 0,
+  `editedby` int(10) NOT NULL DEFAULT '0',
   `editedon` datetime DEFAULT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `deletedon` datetime DEFAULT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT 0,
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deletedby` int(10) NOT NULL DEFAULT '0',
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `publishedon` datetime DEFAULT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT 0
+  `publishedby` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4527,19 +4675,19 @@ CREATE TABLE `new_migx_configs` (
 
 CREATE TABLE `new_migx_config_elements` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT 0,
-  `element_id` int(10) NOT NULL DEFAULT 0,
-  `rank` int(10) NOT NULL DEFAULT 0,
-  `createdby` int(10) NOT NULL DEFAULT 0,
+  `config_id` int(10) NOT NULL DEFAULT '0',
+  `element_id` int(10) NOT NULL DEFAULT '0',
+  `rank` int(10) NOT NULL DEFAULT '0',
+  `createdby` int(10) NOT NULL DEFAULT '0',
   `createdon` datetime NOT NULL,
-  `editedby` int(10) NOT NULL DEFAULT 0,
+  `editedby` int(10) NOT NULL DEFAULT '0',
   `editedon` datetime NOT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `deletedon` datetime NOT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT 0,
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deletedby` int(10) NOT NULL DEFAULT '0',
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `publishedon` datetime NOT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT 0
+  `publishedby` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4552,16 +4700,16 @@ CREATE TABLE `new_migx_elements` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` varchar(100) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `createdby` int(10) NOT NULL DEFAULT 0,
+  `createdby` int(10) NOT NULL DEFAULT '0',
   `createdon` datetime NOT NULL,
-  `editedby` int(10) NOT NULL DEFAULT 0,
+  `editedby` int(10) NOT NULL DEFAULT '0',
   `editedon` datetime NOT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `deletedon` datetime NOT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT 0,
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deletedby` int(10) NOT NULL DEFAULT '0',
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `publishedon` datetime NOT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT 0
+  `publishedby` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4572,10 +4720,10 @@ CREATE TABLE `new_migx_elements` (
 
 CREATE TABLE `new_migx_formtabs` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT 0,
+  `config_id` int(10) NOT NULL DEFAULT '0',
   `caption` varchar(255) NOT NULL DEFAULT '',
-  `pos` int(10) NOT NULL DEFAULT 0,
-  `print_before_tabs` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `pos` int(10) NOT NULL DEFAULT '0',
+  `print_before_tabs` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `extended` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4587,13 +4735,13 @@ CREATE TABLE `new_migx_formtabs` (
 
 CREATE TABLE `new_migx_formtab_fields` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT 0,
-  `formtab_id` int(10) NOT NULL DEFAULT 0,
+  `config_id` int(10) NOT NULL DEFAULT '0',
+  `formtab_id` int(10) NOT NULL DEFAULT '0',
   `field` varchar(255) NOT NULL DEFAULT '',
   `caption` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `pos` int(10) NOT NULL DEFAULT 0,
-  `description_is_code` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `pos` int(10) NOT NULL DEFAULT '0',
+  `description_is_code` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `inputTV` varchar(255) NOT NULL DEFAULT '',
   `inputTVtype` varchar(255) NOT NULL DEFAULT '',
   `validation` text NOT NULL,
@@ -4615,8 +4763,8 @@ CREATE TABLE `new_migx_formtab_fields` (
 
 CREATE TABLE `new_namespaces` (
   `name` varchar(40) NOT NULL DEFAULT '',
-  `path` text DEFAULT NULL,
-  `assets_path` text DEFAULT NULL
+  `path` text,
+  `assets_path` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4661,9 +4809,9 @@ INSERT INTO `new_namespaces` (`name`, `path`, `assets_path`) VALUES
 CREATE TABLE `new_property_set` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
-  `category` int(10) NOT NULL DEFAULT 0,
+  `category` int(10) NOT NULL DEFAULT '0',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `properties` text DEFAULT NULL
+  `properties` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4675,25 +4823,25 @@ CREATE TABLE `new_property_set` (
 CREATE TABLE `new_quip_comments` (
   `id` int(10) UNSIGNED NOT NULL,
   `thread` varchar(255) NOT NULL DEFAULT '',
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `rank` tinytext DEFAULT NULL,
-  `author` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `rank` tinytext,
+  `author` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `body` text NOT NULL,
   `createdon` datetime DEFAULT NULL,
   `editedon` datetime DEFAULT NULL,
-  `approved` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `approved` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `approvedon` datetime DEFAULT NULL,
-  `approvedby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `approvedby` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `website` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(255) NOT NULL DEFAULT '0.0.0.0',
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `deletedon` datetime DEFAULT NULL,
-  `deletedby` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `resource` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `deletedby` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `resource` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `idprefix` varchar(255) NOT NULL DEFAULT 'qcom',
-  `existing_params` text DEFAULT NULL
+  `existing_params` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4703,9 +4851,9 @@ CREATE TABLE `new_quip_comments` (
 --
 
 CREATE TABLE `new_quip_comments_closure` (
-  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `descendant` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `depth` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `descendant` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `depth` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4730,15 +4878,15 @@ CREATE TABLE `new_quip_comment_notify` (
 CREATE TABLE `new_quip_threads` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `createdon` datetime DEFAULT NULL,
-  `moderated` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `moderated` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `moderator_group` varchar(255) NOT NULL DEFAULT 'Administrator',
-  `moderators` text DEFAULT NULL,
-  `notify_emails` text DEFAULT NULL,
-  `resource` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `moderators` text,
+  `notify_emails` text,
+  `resource` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `idprefix` varchar(255) NOT NULL DEFAULT 'qcom',
-  `existing_params` text DEFAULT NULL,
-  `quip_call_params` text DEFAULT NULL,
-  `quipreply_call_params` text DEFAULT NULL
+  `existing_params` text,
+  `quip_call_params` text,
+  `quipreply_call_params` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4752,11 +4900,11 @@ CREATE TABLE `new_register_messages` (
   `id` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `valid` datetime NOT NULL,
-  `accessed` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `accesses` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `expires` int(20) NOT NULL DEFAULT 0,
+  `accessed` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `accesses` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `expires` int(20) NOT NULL DEFAULT '0',
   `payload` mediumtext NOT NULL,
-  `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+  `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -4768,7 +4916,7 @@ CREATE TABLE `new_register_messages` (
 CREATE TABLE `new_register_queues` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `options` mediumtext DEFAULT NULL
+  `options` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4790,8 +4938,8 @@ CREATE TABLE `new_register_topics` (
   `queue` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `options` mediumtext DEFAULT NULL
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `options` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4811,7 +4959,7 @@ INSERT INTO `new_register_topics` (`id`, `queue`, `name`, `created`, `updated`, 
 CREATE TABLE `new_session` (
   `id` varchar(255) NOT NULL DEFAULT '',
   `access` int(20) UNSIGNED NOT NULL,
-  `data` mediumtext DEFAULT NULL
+  `data` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4819,7 +4967,10 @@ CREATE TABLE `new_session` (
 --
 
 INSERT INTO `new_session` (`id`, `access`, `data`) VALUES
-('9kq4ocaa4d7eo6ann0khpg73jshu53gf', 1566978022, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d662fe5f05ae3.63406320\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}');
+('9kq4ocaa4d7eo6ann0khpg73jshu53gf', 1566978022, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d662fe5f05ae3.63406320\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
+('q8c8jcnui2eqg6bquvbrklft41', 1567150922, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d68d34aaf4cd6.88481006\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
+('7pp92ogds21t6ivo986b70umj2', 1567158243, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d68dd63a43906.20379294\";modx.mgr.session.cookie.lifetime|i:604800;modx.mgr.user.config|a:0:{}modx.user.1.userGroups|a:1:{i:0;i:1;}newResourceTokens|a:5:{i:0;s:23:\"5d68ec554a17e3.01722061\";i:1;s:23:\"5d68ec6d2bd8b6.12497339\";i:2;s:23:\"5d68ec8a7ce837.53818554\";i:3;s:23:\"5d68ecfd726ac9.83302055\";i:4;s:23:\"5d68efe21ba127.26960270\";}'),
+('21j4nh1bfjj4fq3ul3ca3cud52', 1567157764, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -4836,42 +4987,42 @@ CREATE TABLE `new_site_content` (
   `description` text NOT NULL,
   `alias` varchar(255) DEFAULT '',
   `link_attributes` varchar(255) NOT NULL DEFAULT '',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `pub_date` int(20) NOT NULL DEFAULT 0,
-  `unpub_date` int(20) NOT NULL DEFAULT 0,
-  `parent` int(10) NOT NULL DEFAULT 0,
-  `isfolder` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `introtext` text DEFAULT NULL,
-  `content` mediumtext DEFAULT NULL,
-  `richtext` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
-  `template` int(10) NOT NULL DEFAULT 0,
-  `menuindex` int(10) NOT NULL DEFAULT 0,
-  `searchable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
-  `cacheable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
-  `createdby` int(10) NOT NULL DEFAULT 0,
-  `createdon` int(20) NOT NULL DEFAULT 0,
-  `editedby` int(10) NOT NULL DEFAULT 0,
-  `editedon` int(20) NOT NULL DEFAULT 0,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `deletedon` int(20) NOT NULL DEFAULT 0,
-  `deletedby` int(10) NOT NULL DEFAULT 0,
-  `publishedon` int(20) NOT NULL DEFAULT 0,
-  `publishedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `pub_date` int(20) NOT NULL DEFAULT '0',
+  `unpub_date` int(20) NOT NULL DEFAULT '0',
+  `parent` int(10) NOT NULL DEFAULT '0',
+  `isfolder` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `introtext` text,
+  `content` mediumtext,
+  `richtext` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `template` int(10) NOT NULL DEFAULT '0',
+  `menuindex` int(10) NOT NULL DEFAULT '0',
+  `searchable` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `cacheable` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `createdby` int(10) NOT NULL DEFAULT '0',
+  `createdon` int(20) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedon` int(20) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedon` int(20) NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT '0',
+  `publishedon` int(20) NOT NULL DEFAULT '0',
+  `publishedby` int(10) NOT NULL DEFAULT '0',
   `menutitle` varchar(255) NOT NULL DEFAULT '',
-  `donthit` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `privateweb` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `privatemgr` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `content_dispo` tinyint(1) NOT NULL DEFAULT 0,
-  `hidemenu` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `donthit` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `privateweb` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `privatemgr` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `content_dispo` tinyint(1) NOT NULL DEFAULT '0',
+  `hidemenu` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `class_key` varchar(100) NOT NULL DEFAULT 'modDocument',
   `context_key` varchar(100) NOT NULL DEFAULT 'web',
-  `content_type` int(11) UNSIGNED NOT NULL DEFAULT 1,
-  `uri` text DEFAULT NULL,
-  `uri_override` tinyint(1) NOT NULL DEFAULT 0,
-  `hide_children_in_tree` tinyint(1) NOT NULL DEFAULT 0,
-  `show_in_tree` tinyint(1) NOT NULL DEFAULT 1,
-  `properties` mediumtext DEFAULT NULL,
-  `alias_visible` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
+  `content_type` int(11) UNSIGNED NOT NULL DEFAULT '1',
+  `uri` text,
+  `uri_override` tinyint(1) NOT NULL DEFAULT '0',
+  `hide_children_in_tree` tinyint(1) NOT NULL DEFAULT '0',
+  `show_in_tree` tinyint(1) NOT NULL DEFAULT '1',
+  `properties` mediumtext,
+  `alias_visible` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -4880,7 +5031,7 @@ CREATE TABLE `new_site_content` (
 
 INSERT INTO `new_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longtitle`, `description`, `alias`, `link_attributes`, `published`, `pub_date`, `unpub_date`, `parent`, `isfolder`, `introtext`, `content`, `richtext`, `template`, `menuindex`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `menutitle`, `donthit`, `privateweb`, `privatemgr`, `content_dispo`, `hidemenu`, `class_key`, `context_key`, `content_type`, `uri`, `uri_override`, `hide_children_in_tree`, `show_in_tree`, `properties`, `alias_visible`) VALUES
 (1, 'document', 'text/html', 'Главная', 'Поздравляем!', '', 'index', '', 1, 0, 0, 0, 0, '', '<p>You have successfully installed MODX Revolution&nbsp;[[++settings_version]]!</p>\r\n<p>Now that MODX is installed you can login to the manager to create your templates, manage content and install third party extras to add functionality to your&nbsp;website.</p>\r\n<h2>New to&nbsp;MODX?</h2>\r\n<p>Pages on a MODX site are called <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/resources\">Resources</a>, and are visible on the left-hand side of the manager in the Resources tab. Resources can be nested under other resources, making it easy to create a tree of resources. There are different types of resources for different use&nbsp;cases.</p>\r\n<p>Building your website is done through a combination of <strong>Templates</strong>, <strong>Template Variables</strong>, <strong>Chunks</strong>, <strong>Snippets</strong> and <strong>Plugins</strong>. Collectively these are known as <strong>Elements</strong>, and can also be found in the left-hand side of the manager, in the Elements&nbsp;tab.</p>\r\n<p><a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/templates\">Templates</a> contain the outer markup of any page. Each resource can only be assigned to a single template at a time. By adding <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/customizing-content/template-variables\">Template Variables</a> to a template, you can add custom fields for any resource using that particular&nbsp;template.</p>\r\n<p>With <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/chunks\">Chunks</a> you can share parts of the markup, such as a header, across different templates. <a href=\"https://rtfm.modx.com/revolution/2.x/making-sites-with-modx/structuring-your-site/using-snippets\">Snippets</a> are pieces of PHP that return dynamic content, such as summaries of other resources or the current date. With snippets, you will often use Chunks to mark up the pieces of content it returns, instead of mixing the PHP and&nbsp;HTML.</p>\r\n<p>Finally, <a href=\"https://rtfm.modx.com/revolution/2.x/developing-in-modx/basic-development/plugins\">Plugins</a> enable more advanced features by hooking into the extensive events system provided by&nbsp;MODX.</p>\r\n<p>To learn more about MODX, be sure to check out the <a href=\"https://rtfm.modx.com/revolution/2.x/getting-started\">Getting Started</a> section in the official&nbsp;documentation.</p>', 1, 1, 0, 1, 1, 1, 1490966703, 1, 1510751128, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'index.html', 0, 0, 1, NULL, 1),
-(2, 'document', 'text/html', 'Сервисы', '', 'Demo blog container page for Blogit.', 'blog', '', 1, 0, 0, 0, 1, '', '<h1>Blog overview</h1>', 1, 2, 2, 1, 1, 1, 1490968787, 1, 1510753842, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'CollectionContainer', 'web', 1, 'blog/', 0, 0, 1, NULL, 1),
+(2, 'document', 'text/html', 'Сервисы', '', 'Demo blog container page for Blogit.', 'blog', '', 1, 0, 0, 0, 1, '', '<h1>Blog overview</h1>', 1, 2, 2, 1, 1, 1, 1490968787, 1, 1567157518, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 1, 'CollectionContainer', 'web', 1, 'blog/', 0, 0, 1, NULL, 1),
 (3, 'document', 'text/html', 'Post 1', '', 'Demo post 1 for the BlogIt extra.', 'post-1', '', 1, 0, 0, 2, 0, 'Demo summary of post 2 for the BlogIt extra.', '<p>Demo content of post 2 for the BlogIt extra.</p>', 1, 3, 0, 1, 1, 1, 1490968787, 1, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'post-1.html', 0, 0, 0, NULL, 1),
 (4, 'document', 'text/html', 'Post 2', '', 'Demo post 2 for the BlogIt extra.', 'post-2', '', 1, 0, 0, 2, 0, 'Demo summary of post 2 for the BlogIt extra.', '<p>Demo content of post 2 for the BlogIt extra.</p>', 1, 3, 1, 1, 1, 1, 1490968787, 1, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 'modDocument', 'web', 1, 'post-2.html', 0, 0, 0, NULL, 1),
 (5, 'document', 'text/html', '404', '', '', '404', '', 1, 0, 0, 0, 0, '', '<p>Содержимое сайта не найдено.</p>', 1, 0, 2, 1, 1, 1, 1491231802, 0, 0, 0, 0, 0, 1491231802, 1, '', 0, 0, 0, 0, 1, 'modDocument', 'web', 1, '404.html', 0, 0, 1, NULL, 1),
@@ -4901,17 +5052,17 @@ INSERT INTO `new_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longt
 
 CREATE TABLE `new_site_htmlsnippets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Chunk',
-  `editor_type` int(11) NOT NULL DEFAULT 0,
-  `category` int(11) NOT NULL DEFAULT 0,
-  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
-  `snippet` mediumtext DEFAULT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `editor_type` int(11) NOT NULL DEFAULT '0',
+  `category` int(11) NOT NULL DEFAULT '0',
+  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
+  `snippet` mediumtext,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `properties` text,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -4941,14 +5092,14 @@ INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `nam
 (19, 0, 0, 'lgnResetPassChangePassTpl', '', 0, 12, 0, '[[!+logcp.error_message:notempty=`<p style=\"color: red;\">[[+logcp.error_message]]</p>`]]\n\n<form class=\"form inline\" action=\"\" method=\"post\">\n    <input type=\"hidden\" name=\"nospam:blank\" value=\"\" />\n\n    <div class=\"ff\">\n        <label for=\"password_new\">[[!%login.password_new]]\n            <span class=\"error\">[[+logcp.error.password_new]]</span>\n        </label>\n        <input type=\"password\" name=\"password_new:required\" id=\"password_new\" value=\"[[+logcp.password_new]]\" />\n    </div>\n\n    <div class=\"ff\">\n        <label for=\"password_new_confirm\">[[!%login.password_new_confirm]]\n            <span class=\"error\">[[+logcp.error.password_new_confirm]]</span>\n        </label>\n        <input type=\"password\" name=\"password_new_confirm:required\" id=\"password_new_confirm\" value=\"[[+logcp.password_new_confirm]]\" />\n    </div>\n\n    <br class=\"clear\" />\n\n    <div class=\"form-buttons\">\n        <input type=\"submit\" name=\"logcp-submit\" value=\"[[!%login.change_password]]\" />\n    </div>\n</form>', 0, 'a:0:{}', 0, ''),
 (20, 0, 0, 'lgnExpiredTpl', '', 0, 12, 0, '<style>\n body{background-color:#f8e6c0}   \nsection.pwofbad{width:300px;margin:40px auto;}\nsection.pwofbad p{font-size: 18px}\n</style>\n        \n<section class=\"pwofbad\">\n<p class=\"center\"><strong>Информация по сбросу пароля</strong></p>\n<p class=\"center\">Ваш пароль уже был сброшен или ссылка не актуальна. Если вы желаете сбросить пароль снова, нажмите <a href=\"http://[[+sname]]/forgot-password.html\">здесь</a>.</p>\n</section>\n\n', 0, 'a:0:{}', 0, ''),
 (21, 1, 0, 'Head', '', 0, 21, 0, '<!DOCTYPE html>\n<html lang=\"ru\">\n\n<head>\n    \n    <base href=\"[[++site_url]]\" />\n	<meta charset=\"[[++modx_charset]]\" />\n\n	<title>[[*longtitle:default=`[[*pagetitle]]`]] - [[++site_url]]</title>\n	<meta name=\"description\" content=\"\">\n\n	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">\n\n	<meta property=\"og:image\" content=\"path/to/image.jpg\">\n	<link rel=\"shortcut icon\" href=\"[[++assets_url]]templates/Stas/app/img/favicon/favicon.ico\" type=\"image/x-icon\">\n	<link rel=\"apple-touch-icon\" href=\"[[++assets_url]]templates/Stas/app/img/favicon/apple-touch-icon.png\">\n	<link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"[[++assets_url]]templates/Stas/app/img/favicon/apple-touch-icon-72x72.png\">\n	<link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"[[++assets_url]]templates/Stas/app/img/favicon/apple-touch-icon-114x114.png\">\n\n	<!-- Chrome, Firefox OS and Opera -->\n	<meta name=\"theme-color\" content=\"#000\">\n	<!-- Windows Phone -->\n	<meta name=\"msapplication-navbutton-color\" content=\"#000\">\n	<!-- iOS Safari -->\n	<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"#000\">\n\n	<!--<style>body { opacity: 0; overflow-x: hidden; } html { background-color: #151515; }</style>-->\n\n</head>\n<body class=\"[[+bodyClass]]\">', 0, 'a:1:{s:9:\"bodyClass\";a:7:{s:4:\"name\";s:9:\"bodyClass\";s:4:\"desc\";s:0:\"\";s:4:\"type\";s:9:\"textfield\";s:7:\"options\";a:0:{}s:5:\"value\";s:8:\"isNoHome\";s:7:\"lexicon\";N;s:4:\"area\";s:0:\"\";}}', 0, ''),
-(22, 1, 0, 'Scripts', '', 0, 21, 0, '<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/bootstrap/dist/css/bootstrap.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/bootstrap/dist/css/bootstrap-theme.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/font-awesome/css/font-awesome.min.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/mmenu/css/jquery.mmenu.all.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/css-hamburgers/hamburgers.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/animate/animate.css\">\n<link href=\"[[++assets_url]]templates/Stas/app/libs/baguetteBox/baguetteBox.min.css\" rel=\"stylesheet\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/OwlCarousel/dist/assets/owl.carousel.min.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/OwlCarousel/dist/assets/owl.theme.default.min.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/jquery.bxslider.css\">\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/pluton-ie7.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/pluton.min.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/pluton-cslider.min.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/anet.min.css\">-->\n    \n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/main.min.css\">\n    \n<script src=\"[[++assets_url]]templates/Stas/app/libs/jquery/dist/jquery.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/animate/animate-css.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/animate/waypoints.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/bootstrap/dist/js/bootstrap.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/mmenu/js/jquery.mmenu.all.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/OwlCarousel/dist/owl.carousel.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.bxslider.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.cslider.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.inview.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.mixitup.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.placeholder.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/modernizr.custom.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/respond.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/app.js\"></script>\n <script src=\"[[++assets_url]]templates/Stas/app/libs/baguetteBox/baguetteBox.min.js\"></script>\n \n<script src=\"[[++assets_url]]templates/Stas/app/js/common.js\"></script>\n', 0, 'a:0:{}', 0, ''),
-(23, 1, 0, 'Header', '', 0, 21, 0, '<header>\n				<div class=\"top clearfix\" id=\"one\">\n					<div class=\"Logo\"><i class=\"fa fa-free-code-camp\" aria-hidden=\"true\"></i>Logotype</div>\n					<a href=\"#my-menu\" class=\"hamburger hamburger--emphatic visible-xs\">\n						<span class=\"hamburger-box\"><span class=\"hamburger-inner\"></span></span>\n					</a>\n					<nav id=\"my-menu\">\n						<ul><li class=\"first active\"><a href=\"/\">Главная</a></li>\n							<li><a href=\"#two\">Вторая</a></li>\n							<li><a href=\"#three\">Третья</a></li>\n							<li><a href=\"#four\">Четвертая</a></li>\n							<li><a href=\"#five\">Пятая</a></li>\n						</ul>\n					</nav>\n				</div>\n			</header>\n		', 0, 'a:0:{}', 0, ''),
+(22, 1, 0, 'Scripts', '', 0, 21, 0, '<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/bootstrap/dist/css/bootstrap.min.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/font-awesome/css/font-awesome.min.css\">\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/mmenu/css/jquery.mmenu.all.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/css-hamburgers/hamburgers.css\">-->\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/animate/animate.css\">\n<!--<link href=\"[[++assets_url]]templates/Stas/app/libs/baguetteBox/baguetteBox.min.css\" rel=\"stylesheet\">-->\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/OwlCarousel/dist/assets/owl.carousel.min.css\">\n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/libs/OwlCarousel/dist/assets/owl.theme.default.min.css\">\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/jquery.bxslider.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/pluton-ie7.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/pluton.min.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/pluton-cslider.min.css\">-->\n<!--<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/anet.min.css\">-->\n    \n<link rel=\"stylesheet\" href=\"[[++assets_url]]templates/Stas/app/css/main.min.css\">\n    \n<script src=\"[[++assets_url]]templates/Stas/app/libs/jquery/dist/jquery.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/bootstrap/dist/js/bootstrap.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/bootstrap/dist/js/popper.min.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/animate/animate-css.js\"></script>\n<script src=\"[[++assets_url]]templates/Stas/app/libs/animate/waypoints.min.js\"></script>\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/mmenu/js/jquery.mmenu.all.min.js\"></script>-->\n<script src=\"[[++assets_url]]templates/Stas/app/libs/OwlCarousel/dist/owl.carousel.min.js\"></script>\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.bxslider.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.cslider.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.inview.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.mixitup.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/jquery.placeholder.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/modernizr.custom.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/respond.min.js\"></script>-->\n<!--<script src=\"[[++assets_url]]templates/Stas/app/libs/pluton/js/app.js\"></script>-->\n <!--<script src=\"[[++assets_url]]templates/Stas/app/libs/baguetteBox/baguetteBox.min.js\"></script>-->\n \n<script src=\"[[++assets_url]]templates/Stas/app/js/common.js\"></script>\n', 0, 'a:0:{}', 0, ''),
+(23, 1, 0, 'Header', '', 0, 21, 0, '<header>\n   [[$Navbar]] \n   [[$Carousel]]\n</header>', 0, 'a:0:{}', 0, ''),
 (24, 1, 0, 'Content', '', 0, 21, 0, '[[!Personalize?\n    &yesChunk=`Main unreg`\n    &noChunk=`Main`\n    &ph=`personalize.name`\n]]\n\n', 0, 'a:0:{}', 0, ''),
-(25, 0, 0, 'Navbar', '', 0, 21, 0, '', 0, 'a:0:{}', 0, ''),
-(93, 1, 0, 'Sections', '', 0, 21, 0, '<section id=\"one\">1</section>\r\n			<section id=\"two\">2</section>\r\n			<section id=\"three\">3</section>\r\n			<section id=\"four\">4</section>\r\n			<section id=\"five\">5</section>', 0, 'a:0:{}', 0, ''),
+(25, 0, 0, 'Navbar', '', 0, 21, 0, '<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n  <a class=\"navbar-brand\" href=\"#\"><img src=\"https://bootstrap-4.ru/docs/4.3.1/assets/brand/bootstrap-solid.svg\" width=\"30\" height=\"30\" class=\" mr-3 d-inline-block align-top\" alt=\"\">NavbarLogo</a>\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarText\" aria-controls=\"navbarText\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <div class=\"collapse navbar-collapse\" id=\"navbarText\">\n    \n      [[Wayfinder?\n						&startId=`0`\n						&level=`1`\n						&outerTpl=`tpl.Wayfinder.outer`\n						&parentRowTpl=`tpl.Wayfinder.row.parent`\n						&innerRowTpl=`tpl.Wayfinder.row.inner`\n						&rowTpl=`tpl.Wayfinder.row`\n						&outerClass=`navbar-nav mx-auto`\n						&rowClass=`nav-item`\n						&selfClass=`active`\n					    ]]\n   \n    <span class=\"navbar-text\">\n      Navbar text with an inline element\n    </span>\n  </div>\n</nav>', 0, 'a:0:{}', 0, ''),
+(93, 1, 0, 'Sections', '', 0, 21, 0, '', 0, 'a:0:{}', 0, ''),
 (27, 1, 0, 'Login', '', 0, 21, 0, '<div class=\"clearfix\"></div>\n<section class=\"main-login\">\n    <div class=\"container clearfix\">\n        <div class=\"row\">\n            <div class=\"col-xs-12\">[[!Login? &loginTpl=`lgnLoginTpl` &logoutTpl=`lgnLogoutTpl` &errTpl=`lgnErrTpl` &loginResourceId=`1` &logoutResourceId=`1`]]</div>\n        </div>\n    </div>\n    \n\n</section>', 0, 'a:0:{}', 0, ''),
-(28, 0, 0, 'Main', '', 0, 21, 0, '[[$Navbar]]\n[[$Sections]]\n\n\n', 0, 'a:0:{}', 0, ''),
-(29, 0, 0, 'Main unreg', '', 0, 21, 0, '[[$Navbar]]\n[[$Sections]]\n\n\n\n\n', 0, 'a:0:{}', 0, ''),
+(28, 0, 0, 'Main', '', 0, 21, 0, '<section class=\"inputs\">\n    <div class=\"container\">\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        <h1>h1. Заголовок Bootstrap</h1>\n                        <h2>h2. Заголовок Bootstrap</h2>\n                        <h3>h3. Заголовок Bootstrap</h3>\n                        <h4>h4. Заголовок Bootstrap</h4>\n                        <h5>h5. Заголовок Bootstrap</h5>\n                        <h6>h6. Заголовок Bootstrap</h6>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        <ul>\n                          <li>Lorem ipsum dolor sit amet</li>\n                          <li>Consectetur adipiscing elit</li>\n                          <li>Integer molestie lorem at massa</li>\n                          <li>Facilisis in pretium nisl aliquet</li>\n                          <li>Nulla volutpat aliquam velit\n                            <ul>\n                              <li>Phasellus iaculis neque</li>\n                              <li>Purus sodales ultricies</li>\n                              <li>Vestibulum laoreet porttitor sem</li>\n                              <li>Ac tristique libero volutpat at</li>\n                            </ul>\n                          </li>\n                          <li>Faucibus porta lacus fringilla vel</li>\n                          <li>Aenean sit amet erat nunc</li>\n                          <li>Eget porttitor lorem</li>\n                        </ul>\n                        \n                        <ol>\n                          <li>Lorem ipsum dolor sit amet</li>\n                          <li>Consectetur adipiscing elit</li>\n                          <li>Integer molestie lorem at massa</li>\n                          <li>Facilisis in pretium nisl aliquet</li>\n                          <li>Nulla volutpat aliquam velit</li>\n                          <li>Faucibus porta lacus fringilla vel</li>\n                          <li>Aenean sit amet erat nunc</li>\n                          <li>Eget porttitor lorem</li>\n                        </ol>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        <table>\n    <caption>\n      Это пример таблицы, и это ее заголовок для описания контента.\n    </caption>\n    <thead>\n      <tr>\n        <th>Заголовок</th>\n        <th>Заголовок</th>\n        <th>Заголовок</th>\n        <th>Заголовок</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n      </tr>\n      <tr>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n      </tr>\n      <tr>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n        <td>Ячейка</td>\n      </tr>\n    </tbody>\n  </table>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n<form class=\"bd-example\">\n  <fieldset>\n    <legend>Пример легенды</legend>\n\n    <p>\n      <label for=\"input\">Пример ввода</label>\n      <input type=\"text\" id=\"input\" placeholder=\"Пример ввода\">\n    </p>\n\n    <p>\n      <label for=\"select\">Пример выбора</label>\n      <select id=\"select\">\n        <option value=\"\">Выберете...</option>\n        <optgroup label=\"Option group 1\">\n          <option value=\"\">Option 1</option>\n          <option value=\"\">Option 2</option>\n          <option value=\"\">Option 3</option>\n        </optgroup>\n        <optgroup label=\"Option group 2\">\n          <option value=\"\">Option 4</option>\n          <option value=\"\">Option 5</option>\n          <option value=\"\">Option 6</option>\n        </optgroup>\n      </select>\n    </p>\n\n    <p>\n      <label>\n        <input type=\"checkbox\" value=\"\">\n        Чекбокс\n      </label>\n    </p>\n\n    <p>\n      <label>\n        <input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios1\" value=\"option1\" checked=\"\">\n        Вариант один\n      </label>\n      <label>\n        <input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios2\" value=\"option2\">\n	Вариант второй - демонстрирует что он может быть очень очень очень очень очень очень очень длинным.\n      </label>\n      <label>\n        <input type=\"radio\" name=\"optionsRadios\" id=\"optionsRadios3\" value=\"option3\" disabled=\"\">\n        Вариант третий - отключена\n      </label>\n    </p>\n\n    <p>\n      <label for=\"textarea\">Пример текстового поля</label>\n      <textarea id=\"textarea\" rows=\"3\"></textarea>\n    </p>\n\n    <p>\n      <label for=\"time\">Пример времени</label>\n      <input type=\"datetime-local\" id=\"time\">\n    </p>\n\n    <p>\n      <label for=\"output\">Пример вывода</label>\n      <output name=\"result\" id=\"output\">100</output>\n    </p>\n\n    <p>\n      <button type=\"submit\">Кнопка отправки</button>\n      <input type=\"submit\" value=\"Кнопка отправки\">\n      <input type=\"button\" value=\"Кнопка ввода\">\n    </p>\n\n    <p>\n      <button type=\"submit\" disabled=\"\">Кнопка отправки</button>\n      <input type=\"submit\" value=\"Кнопка отправки\" disabled=\"\">\n      <input type=\"button\" value=\"Кнопка ввода\" disabled=\"\">\n    </p>\n  </fieldset>\n</form>\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        <div class=\"bd-example\">\n  <address>\n    <strong>Twitter, Inc.</strong><br>\n    1355 Market St, Suite 900<br>\n    San Francisco, CA 94103<br>\n    <abbr title=\"Phone\">P:</abbr> (123) 456-7890\n  </address>\n\n  <address>\n    <strong>Full Name</strong><br>\n    <a href=\"mailto:#\">first.last@example.com</a>\n  </address>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                        \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n\n                        \n                    </div>\n                </div>\n            </div>\n        </div>\n            \n    </div>\n</section>', 0, 'a:0:{}', 0, ''),
+(29, 0, 0, 'Main unreg', '', 0, 21, 0, '[[$Carousel]]', 0, 'a:0:{}', 0, ''),
 (30, 0, 0, 'Registr', '', 0, 21, 0, ' <div class=\"clearfix\"></div>\n <section class=\"reg\">\n     <div class=\"container\">\n         <div class=\"row\">\n             <div class=\"col-xs-12\">\n                  <h3>Регистрация пользователя.</h3>\n      [[!Register?\n        &submitVar=`registerbtn`\n        &activationResourceId=`12`\n        &activationEmailTpl=`myActivationEmailTpl`\n        &activationEmailSubject=`Спасибо за регистрацию!`\n        &submittedResourceId=`11`\n        &usergroups=`Пользователь`\n        &validate=`nospam:blank,\n          username:required:minLength=^3^,\n          password:required:minLength=^6^,\n          password_confirm:password_confirm=^password^,\n          email:required:email`\n        &placeholderPrefix=`reg.`\n      ]]\n      <div class=\"register\">\n        <div class=\"registerMessage\">[[!+reg.error.message]]</div>\n        <form class=\"form\" action=\"[[~[[*id]]]]\" method=\"post\">\n          <input type=\"hidden\" name=\"nospam\" value=\"[[!+reg.nospam]]\" />\n          <label for=\"username\">[[%register.username? &namespace=`login` &topic=`register`]]\n          <span class=\"error\">[[!+reg.error.username]]</span>\n          </label>\n          <input type=\"text\" name=\"username\"  id=\"username\" value=\"[[!+reg.username]]\" placeholder=\"Мин. 3 символа\"  />\n          <label for=\"password\">[[%register.password]]\n          <span class=\"error\">[[!+reg.error.password]]</span>\n          </label>\n          <input type=\"password\" name=\"password\" id=\"password\" value=\"[[!+reg.password]]\" placeholder=\"Мин. 6 символов\" />\n          <label for=\"password_confirm\">[[%register.password_confirm]]\n          <span class=\"error\">[[!+reg.error.password_confirm]]</span>\n          </label>\n          <input type=\"password\" name=\"password_confirm\" id=\"password_confirm\" value=\"[[!+reg.password_confirm]]\" placeholder=\"Подтвердите пароль\"  />\n          <label for=\"fullname\">[[%register.fullname]]\n          <span class=\"error\">[[!+reg.error.fullname]]</span>\n          </label>\n          <input type=\"text\" name=\"fullname\" id=\"fullname\" value=\"[[!+reg.fullname]]\"placeholder=\"Не обязательно\" />\n          <label for=\"email\">[[%register.email]]\n          <span class=\"error\">[[!+reg.error.email]]</span>\n          </label>\n          <input type=\"text\" name=\"email\" id=\"email\" value=\"[[!+reg.email]]\" placeholder=\"Обязательно\" />\n        <br class=\"clear\" />\n          <div class=\"form-buttons\">\n            <input class=\"sub\" type=\"submit\" name=\"registerbtn\" value=\"Зарегистрироваться\" />\n          </div>\n        </form>\n      </div>\n             </div>\n         </div>\n     </div>  \n     \n    </section>     \n   ', 0, 'a:0:{}', 0, ''),
 (31, 1, 0, 'Forgp', '', 0, 21, 0, ' <div class=\"clearfix\"></div>\n <section class=\"forgot\">\n     <div class=\"container\">\n         <div class=\"row\">\n             <div class=\"col-xs-12\"> [[!ForgotPassword? &resetResourceId=`9` &tpl=`lgnForgotPassTpl`]]</div>\n         </div>\n     </div>\n     \n    </section>', 0, 'a:0:{}', 0, ''),
 (32, 1, 0, 'myActivationEmailTpl', '', 0, 12, 0, '<p>[[+username]],</p>\n\n<p>Спасибо за регистрацию и интерес к нашему сайту [[+sname]], для активации аккаунта нажмите на ссылку:</p>\n\n<p><a href=\"[[+confirmUrl]]\">[[+confirmUrl]]</a></p>\n\n<p>После активации аккаунта, вы можете использовать свои логин и пароль:</p>\n\n<p>\nЛогин: <strong>[[+username]]</strong><br />\nПароль: <strong>[[+password]]</strong></p>\n\n<p>Если вы не регистрировались на сайте [[+sname]], проигнорируйте это письмо.</p>\n\n<p>Спасибо,<br />\n<em>Администратор сайта [[+sname]] </em></p>', 0, 'a:0:{}', 0, ''),
@@ -4957,15 +5108,18 @@ INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `nam
 (35, 1, 0, 'SimpleSearchOuter', '', 0, 18, 0, '<p class=\"sisea-results\">[[+resultInfo]]</p>\n<div class=\"sisea-paging\"><span class=\"sisea-result-pages\">[[%sisea.result_pages? &namespace=`sisea` &topic=`default`]]</span>[[+paging]]</div>\n<div class=\"sisea-results-list\">\n    [[+results]]\n</div>\n<div class=\"sisea-paging\"><span class=\"sisea-result-pages\">[[%sisea.result_pages? &namespace=`sisea` &topic=`default`]]</span>[[+paging]]</div>', 0, 'a:0:{}', 0, ''),
 (36, 1, 0, 'SimpleSearchPageTpl', '', 0, 18, 0, '<span class=\"sisea-page\"><a href=\"[[+link]]\">[[+text]]</a>[[+separator]]</span>', 0, 'a:0:{}', 0, ''),
 (37, 1, 0, 'SimpleSearchPageTplActive', '', 0, 18, 0, '<span class=\"sisea-page sisea-current-page\">[[+text]]</span>', 0, 'a:0:{}', 0, ''),
-(38, 1, 0, 'SimpleSearchResult', '', 0, 18, 0, '<div class=\"sisea-result\">\n    <h3>[[+idx]]. <a href=\"[[+link:is=``:then=`[[~[[+id]]]]`:else=`[[+link]]`]]\" title=\"[[+longtitle]]\">[[+pagetitle]]</a></h3>\n    <div class=\"extract\"><p>[[+extract]]</p></div>\n</div>', 0, 'a:0:{}', 0, ''),
+(38, 1, 0, 'SimpleSearchResult', '', 0, 18, 0, '<div class=\"sisea-result\">\n    <h3>[[+idx]]. <a href=\"[[+link:is=``:then=`[[~[[+id]]]]`:else=`[[+link]]`]]\" title=\"[[+longtitle]]\">[[+pagetitle]]</a></h3>\n    <div class=\"extract\"><p>[[+extract]]</p></div>\n</div>', 0, 'a:0:{}', 0, '');
+INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `static`, `static_file`) VALUES
 (43, 1, 0, 'Breadcrumbs', '', 0, 21, 0, '<section class=\"breadcrumbs\">\n    <div class=\"container\">\n        <div class=\"row\">\n            <h1>Breadcrumbs, Pagination, Labels, Badges, Jumbotron,<br>\nPage header, Thumbnails, Alerts, Progress bars,<br>\nMedia object, List group, Panels.</h1>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <ol class=\"breadcrumb\">\n  <li><a href=\"#\">Home</a></li>\n  <li><a href=\"#\">Library</a></li>\n  <li class=\"active\">Data</li>\n</ol>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <nav aria-label=\"...\">\n  <ul class=\"pager\">\n    <li><a href=\"#\">Previous</a></li>\n    <li><a href=\"#\">Next</a></li>\n  </ul>\n</nav>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <nav aria-label=\"...\">\n  <ul class=\"pager\">\n    <li class=\"previous disabled\"><a href=\"#\"><span aria-hidden=\"true\">&larr;</span> Older</a></li>\n    <li class=\"next\"><a href=\"#\">Newer <span aria-hidden=\"true\">&rarr;</span></a></li>\n  </ul>\n</nav>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <h1> <span class=\"label label-default\">New</span></h1>\n                </div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <span class=\"label label-default\">Default</span>\n<span class=\"label label-primary\">Primary</span>\n<span class=\"label label-success\">Success</span>\n<span class=\"label label-info\">Info</span>\n<span class=\"label label-warning\">Warning</span>\n<span class=\"label label-danger\">Danger</span>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <a href=\"#\">Inbox <span class=\"badge\">42</span></a>\n\n<button class=\"btn btn-primary\" type=\"button\">\n  Messages <span class=\"badge\">4</span>\n</button>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n              <ul class=\"nav nav-pills\" role=\"tablist\">\n  <li role=\"presentation\" class=\"active\"><a href=\"#\">Home <span class=\"badge\">42</span></a></li>\n  <li role=\"presentation\"><a href=\"#\">Profile</a></li>\n  <li role=\"presentation\"><a href=\"#\">Messages <span class=\"badge\">3</span></a></li>\n</ul>  \n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"jumbotron\">\n  <h1>Hello, world!</h1>\n  <p>Loremru</p>\n  <p><a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a></p>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"page-header\">\n  <h1>Example page header <small>Subtext for header</small></h1>\n</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <a href=\"#\" class=\"thumbnail\">\n      <img src=\"http://placeimg.com/171/180/any\" alt=\"...\">\n    </a>\n    </div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"thumbnail\">\n      <img src=\"http://placeimg.com/171/180/any\" alt=\"...\">\n      <div class=\"caption\">\n        <h3>Thumbnail label</h3>\n        <p>Lorem</p>\n        <p><a href=\"#\" class=\"btn btn-primary\" role=\"button\">Button</a> <a href=\"#\" class=\"btn btn-default\" role=\"button\">Button</a></p>\n      </div>\n    </div>\n    </div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"alert alert-success\" role=\"alert\">...</div>\n<div class=\"alert alert-info \" role=\"alert\">...</div>\n<div class=\"alert alert-warning\" role=\"alert\">...</div>\n<div class=\"alert alert-danger\" role=\"alert\">...</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"alert alert-warning alert-dismissible\" role=\"alert\">\n  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n  <strong>Warning!</strong> Better check yourself, you\'re not looking too good.\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"alert alert-success\" role=\"alert\">\n  <a href=\"#\" class=\"alert-link\">...</a>\n</div>\n<div class=\"alert alert-info\" role=\"alert\">\n  <a href=\"#\" class=\"alert-link\">...</a>\n</div>\n<div class=\"alert alert-warning\" role=\"alert\">\n  <a href=\"#\" class=\"alert-link\">...</a>\n</div>\n<div class=\"alert alert-danger\" role=\"alert\">\n  <a href=\"#\" class=\"alert-link\">...</a>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"progress\">\n  <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%;\">\n    60% Complete\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"progress\">\n  <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"0\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"min-width: 2em;\">\n    0%\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"2\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"min-width: 2em; width: 2%;\">\n    2%\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"progress\">\n  <div class=\"progress-bar progress-bar-success\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\">\n    <span class=\"sr-only\">40% Complete (success)</span>\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-info\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\">\n    <span class=\"sr-only\">20% Complete</span>\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-warning\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\">\n    <span class=\"sr-only\">60% Complete (warning)</span>\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-danger\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">\n    <span class=\"sr-only\">80% Complete (danger)</span>\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                 <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"progress\">\n  <div class=\"progress-bar progress-bar-success progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"40\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 40%\">\n    <span class=\"sr-only\">40% Complete (success)</span>\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-info progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"20\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 20%\">\n    <span class=\"sr-only\">20% Complete</span>\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-warning progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 60%\">\n    <span class=\"sr-only\">60% Complete (warning)</span>\n  </div>\n</div>\n<div class=\"progress\">\n  <div class=\"progress-bar progress-bar-danger progress-bar-striped\" role=\"progressbar\" aria-valuenow=\"80\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 80%\">\n    <span class=\"sr-only\">80% Complete (danger)</span>\n  </div>\n</div>\n</div>\n        </div>\n         </div>\n          </div>\n            \n        \n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"progress\">\n  <div class=\"progress-bar progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"45\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width: 45%\">\n    <span class=\"sr-only\">45% Complete</span>\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"progress\">\n  <div class=\"progress-bar progress-bar-success\" style=\"width: 35%\">\n    <span class=\"sr-only\">35% Complete (success)</span>\n  </div>\n  <div class=\"progress-bar progress-bar-warning progress-bar-striped\" style=\"width: 20%\">\n    <span class=\"sr-only\">20% Complete (warning)</span>\n  </div>\n  <div class=\"progress-bar progress-bar-danger\" style=\"width: 10%\">\n    <span class=\"sr-only\">10% Complete (danger)</span>\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"media\">\n \n  <div class=\"media-body\">\n    <h4 class=\"media-heading\">Media heading</h4>\n    fdfddfddsdsdsds<br>dfsdsdssds<br>fdfdfdfd<br>dfsdsds\n  </div>\n   <div class=\"media-right media-middle\">\n    <a href=\"#\">\n      <img class=\"media-object\" src=\"http://placeimg.com/60/60\" alt=\"...\">\n    </a>\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n               <ul class=\"list-group\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul> \n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <ul class=\"list-group\">\n  <li class=\"list-group-item\">\n    <span class=\"badge\">14</span>\n    Cras justo odio\n  </li>\n  <li class=\"list-group-item\">\n    <span class=\"badge\">18</span>\n    Cras justo odio\n  </li>\n</ul>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item active\">\n    Cras justo odio\n  </a>\n  <a href=\"#\" class=\"list-group-item\">Dapibus ac facilisis in</a>\n  <a href=\"#\" class=\"list-group-item\">Morbi leo risus</a>\n  <a href=\"#\" class=\"list-group-item\">Porta ac consectetur ac</a>\n  <a href=\"#\" class=\"list-group-item\">Vestibulum at eros</a>\n</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"list-group\">\n  <button type=\"button\" class=\"list-group-item\">Cras justo odio</button>\n  <button type=\"button\" class=\"list-group-item disabled\">Dapibus ac facilisis in</button>\n  <button type=\"button\" class=\"list-group-item\">Morbi leo risus</button>\n  <button type=\"button\" class=\"list-group-item\">Porta ac consectetur ac</button>\n  <button type=\"button\" class=\"list-group-item\">Vestibulum at eros</button>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <ul class=\"list-group\">\n  <li class=\"list-group-item list-group-item-success\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item list-group-item-info\">Cras sit amet nibh libero</li>\n  <li class=\"list-group-item list-group-item-warning active\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item list-group-item-danger\">Vestibulum at eros</li>\n</ul>\n<div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-success\">Dapibus ac facilisis in</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-info active\">Cras sit amet nibh libero</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-warning\">Porta ac consectetur ac</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-danger\">Vestibulum at eros</a>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item active\">\n    <h4 class=\"list-group-item-heading\">List group item heading</h4>\n    <p class=\"list-group-item-text\">...</p>\n  </a>\n</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n               <div class=\"panel panel-default\">\n  <div class=\"panel-body\">\n    Basic panel example\n  </div>\n</div> \n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"panel panel-default\">\n  <div class=\"panel-heading\">Panel heading without title</div>\n  <div class=\"panel-body\">\n    Panel content\n  </div>\n</div>\n\n<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Panel title</h3>\n  </div>\n  <div class=\"panel-body\">\n    Panel content\n  </div>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"panel panel-default\">\n  <div class=\"panel-body\">\n    Panel content\n  </div>\n  <div class=\"panel-footer\">Panel footer</div>\n</div>\n</div>\n        </div>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"panel panel-primary\"><div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Panel title</h3>\n  </div>\n  <div class=\"panel-body\">\n    Panel content\n  </div></div>\n<div class=\"panel panel-success\"><div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Panel title</h3>\n  </div>\n  <div class=\"panel-body\">\n    Panel content\n  </div></div>\n<div class=\"panel panel-info\"><div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Panel title</h3>\n  </div>\n  <div class=\"panel-body\">\n    Panel content\n  </div></div>\n<div class=\"panel panel-warning\"><div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Panel title</h3>\n  </div>\n  <div class=\"panel-body\">\n    Panel content\n  </div></div>\n<div class=\"panel panel-danger\"><div class=\"panel-heading\">\n    <h3 class=\"panel-title\">Panel title</h3>\n  </div>\n  <div class=\"panel-body\">\n    Panel content\n  </div></div>\n  </div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"panel panel-default\">\n  <!-- Default panel contents -->\n  <div class=\"panel-heading\">Panel heading</div>\n  <div class=\"panel-body\">\n    <p>Lorem</p>\n  </div>\n\n  <!-- Table -->\n  <table class=\"table\">\n    <tr>\n        <td>Lorem</td>\n        <td>Lorem</td>\n        <td>Lorem</td>\n    </tr>\n    <tr>\n        <td>Lorem</td>\n        <td>Lorem</td>\n        <td>Lorem</td>\n    </tr>\n  </table>\n</div>\n</div>\n        </div>\n            </div>\n            <div class=\"col-sm-4\">\n                <div class=\"bs-docs-section clearfix\">\n		 		<div class=\"bs-component\">\n                <div class=\"panel panel-default\">\n  <!-- Default panel contents -->\n  <div class=\"panel-heading\">Panel heading</div>\n  <div class=\"panel-body\">\n    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente alias ipsam facilis aliquid expedita vero qui recusandae culpa unde ipsum nesciunt temporibus beatae deleniti quibusdam quis reiciendis quam! Laborum ut.</p>\n  </div>\n\n  <!-- List group -->\n  <ul class=\"list-group\">\n    <li class=\"list-group-item\">Cras justo odio</li>\n    <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n    <li class=\"list-group-item\">Morbi leo risus</li>\n    <li class=\"list-group-item\">Porta ac consectetur ac</li>\n    <li class=\"list-group-item\">Vestibulum at eros</li>\n  </ul>\n</div>\n            </div>\n        </div>\n        </div>\n        </div>\n        </div>\n    \n</section>', 0, 'a:0:{}', 0, ''),
 (45, 1, 0, 'Up', '', 0, 21, 0, '<div id=\"upbutton\"><span>Наверх</span><i class=\"fa fa-chevron-right\" aria-hidden=\"true\"></i></div>', 0, 'a:0:{}', 0, ''),
-(64, 0, 0, 'Bs-component', '', 0, 0, 0, '<div class=\"container\">\n		<!-- Custom Section\n		================================================== -->\n		<div class=\"bs-docs-section\">\n\n			\n					<div class=\"bs-component\">\n						\n					</div>\n				</div>\n			\n\n		<div id=\"source-modal\" class=\"modal fade\">\n			<div class=\"modal-dialog modal-lg\">\n				<div class=\"modal-content\">\n					<div class=\"modal-header\">\n						<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n						<h4 class=\"modal-title\">Source Code</h4>\n					</div>\n					<div class=\"modal-body\">\n						<pre></pre>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>', 0, NULL, 0, ''),
+(64, 0, 0, 'Bs-component', '', 0, 0, 0, '<div class=\"container\">\n	\n		<div class=\"bs-docs-section\">\n\n			\n					<div class=\"bs-component\">\n						\n					</div>\n				</div>\n			\n\n		<div id=\"source-modal\" class=\"modal fade\">\n			<div class=\"modal-dialog modal-lg\">\n				<div class=\"modal-content\">\n					<div class=\"modal-header\">\n						<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n						<h4 class=\"modal-title\">Source Code</h4>\n					</div>\n					<div class=\"modal-body\">\n						<pre></pre>\n					</div>\n				</div>\n			</div>\n		</div>\n	</div>', 0, 'a:0:{}', 0, ''),
 (67, 0, 0, 'DemoGalAlbumRowTpl', '', 0, 10, 0, '<div class=\"col-sm-6 col-md-4 col-lg-3\">\n<div class=\"albumPreview\">\n<h3 class=\"center\"><a href=\"[[~[[*id]]? &[[+albumRequestVar]]=`[[+id]]`]]\">[[+name]]</a></h3>\n<div class=\"thumb center\">\n<a href=\"[[~[[*id]]? &[[+albumRequestVar]]=`[[+id]]`]]\"><img src=\"[[+image]]\" alt=\"[[+name]]\"/></a>\n</div>\n\n</div>\n</div>\n\n', 0, 'a:0:{}', 0, ''),
 (68, 0, 0, 'DemoGalItemThumb', '', 0, 10, 0, '<div class=\"col-sm-6 col-md-4 col-lg-3\">\n    <div class=\"item-wrap\">\n        <a href=\"[[+image]]\" rel=\"colorbox\" title=\"[[+description]]\">\n        <img class=\"[[+imgCls]]\" src=\"[[+thumbnail]]\" alt=\"[[+name]]\" />\n    <div class=\"overlay\">\n        <div class=\"box\">\n            <div class=\"content\">\n                <span class=\"effort-des black\"><i class=\"fa fa-plus-square-o\" aria-hidden=\"true\"></i></span>\n            </div>\n        </div>\n    </div>\n</a>\n\n    </div>\n</div>\n\n\n                                    \n                                    \n                                ', 0, 'a:0:{}', 0, ''),
 (69, 0, 0, 'DemoGalleryAlbumTpl', '', 0, 10, 0, '\n\n<div class=\"albumname\">\n<div class=\"link\"><a href=\"[[~[[*id]]]][[+id]]\"><i class=\"fa fa-arrow-circle-left\" aria-hidden=\"true\"></i>Назад в галерею.</a>\n</div>\n<h1>[[+album_name]]</h1>\n</div>\n[[+thumbnails]]\n', 0, NULL, 0, ''),
 (70, 0, 0, 'SiteGalleryItemTpl', '', 0, 10, 0, '<div class=\"galItem [[+class]]\">\n    <div class=\"title\"><span>[[+title]]</span></div>\n    <a href=\"[[+src]]\" class=\"gallery\" title=\"[[+title]]\">\n        <img src=\"/assets/components/site_gallery/connector.php?action=web/image/gallery/small&src=[[+src]]\"/>\n    </a>\n</div>', 0, NULL, 0, ''),
-(71, 0, 0, 'SiteGalleryRowTpl', '', 0, 10, 0, '<div class=\"[[+class]]\">[[+wrapper]]</div>', 0, NULL, 0, '');
+(71, 0, 0, 'SiteGalleryRowTpl', '', 0, 10, 0, '<div class=\"[[+class]]\">[[+wrapper]]</div>', 0, NULL, 0, ''),
+(94, 1, 0, 'tpl.Wayfinder.row', '', 0, 0, 0, '<li [[+wf.classes]]><a href=\"[[+wf.link]]\" title=\"[[+wf.title]]\" class=\"nav-link\">[[+wf.linktext]]\n</a></li>', 0, 'a:0:{}', 0, ''),
+(95, 1, 0, 'Carousel', '', 0, 21, 0, '<div class=\"carousel-main\">\n    <div class=\"container clearfix\">\n        <div class=\"row\">\n            <div class=\"col-sm-12\">\n                <div class=\"owl-carousel main-carousel\">\n      <div class=\"photo1\"> \n      \n      </div>\n      <div class=\"photo2\"> \n      \n      </div>\n      <div class=\"photo3\"> \n      \n      </div>\n                </div>\n    \n            </div> \n        </div>\n    </div>\n   \n   \n   \n</div>', 0, 'a:0:{}', 0, '');
 
 -- --------------------------------------------------------
 
@@ -4975,19 +5129,19 @@ INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `nam
 
 CREATE TABLE `new_site_plugins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT 0,
-  `category` int(11) NOT NULL DEFAULT 0,
-  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
+  `editor_type` int(11) NOT NULL DEFAULT '0',
+  `category` int(11) NOT NULL DEFAULT '0',
+  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
   `plugincode` mediumtext NOT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
-  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `properties` text,
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `moduleguid` varchar(32) NOT NULL DEFAULT '',
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5018,10 +5172,10 @@ INSERT INTO `new_site_plugins` (`id`, `source`, `property_preprocess`, `name`, `
 --
 
 CREATE TABLE `new_site_plugin_events` (
-  `pluginid` int(10) NOT NULL DEFAULT 0,
+  `pluginid` int(10) NOT NULL DEFAULT '0',
   `event` varchar(255) NOT NULL DEFAULT '',
-  `priority` int(10) NOT NULL DEFAULT 0,
-  `propertyset` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `priority` int(10) NOT NULL DEFAULT '0',
+  `propertyset` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5089,18 +5243,18 @@ INSERT INTO `new_site_plugin_events` (`pluginid`, `event`, `priority`, `property
 
 CREATE TABLE `new_site_snippets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT 0,
-  `category` int(11) NOT NULL DEFAULT 0,
-  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
-  `snippet` mediumtext DEFAULT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
+  `editor_type` int(11) NOT NULL DEFAULT '0',
+  `category` int(11) NOT NULL DEFAULT '0',
+  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
+  `snippet` mediumtext,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `properties` text,
   `moduleguid` varchar(32) NOT NULL DEFAULT '',
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5208,18 +5362,18 @@ INSERT INTO `new_site_snippets` (`id`, `source`, `property_preprocess`, `name`, 
 
 CREATE TABLE `new_site_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `templatename` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Template',
-  `editor_type` int(11) NOT NULL DEFAULT 0,
-  `category` int(11) NOT NULL DEFAULT 0,
+  `editor_type` int(11) NOT NULL DEFAULT '0',
+  `category` int(11) NOT NULL DEFAULT '0',
   `icon` varchar(255) NOT NULL DEFAULT '',
-  `template_type` int(11) NOT NULL DEFAULT 0,
+  `template_type` int(11) NOT NULL DEFAULT '0',
   `content` mediumtext NOT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `properties` text DEFAULT NULL,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `properties` text,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5228,7 +5382,7 @@ CREATE TABLE `new_site_templates` (
 --
 
 INSERT INTO `new_site_templates` (`id`, `source`, `property_preprocess`, `templatename`, `description`, `editor_type`, `category`, `icon`, `template_type`, `content`, `locked`, `properties`, `static`, `static_file`) VALUES
-(1, 0, 0, 'Начальный шаблон', '', 0, 0, '', 0, '[[$Head? &bodyClass=`isHome`]]\n\n<div id=\"my-page\">\n    <div id=\"my-header\">[[$Header]]</div>\n    <div id=\"my-content\">[[$Content]]</div>\n    <div id=\"my-footer\">[[$Footer]]</div>\n</div>\n \n[[$Up]]\n[[$Bs-component]]\n[[$Scripts]]\n</body>\n</html>\n', 0, 'a:0:{}', 0, ''),
+(1, 0, 0, 'Начальный шаблон', '', 0, 0, '', 0, '[[$Head? &bodyClass=`isHome`]]\n\n[[$Header]]\n    [[$Content]]\n    [[$Footer]]\n\n \n<!--[[$Up]]-->\n[[$Bs-component]]\n[[$Scripts]]\n</body>\n</html>\n', 0, 'a:0:{}', 0, ''),
 (2, 0, 0, 'Blogit container', 'Blogit - Created by MPThemes http://mpthemes.com', 0, 7, '', 0, '<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n	<base href=\"[[++site_url]]\" />\r\n        <meta charset=\"[[++modx_charset:lcase]]\" />\r\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\r\n        <title>[[*longtitle:strip_tags:empty=`[[*pagetitle:strip_tags]]`]] | [[++site_name:strip_tags]]</title>\r\n        <meta name=\"description\" content=\"[[*description:notempty=`[[*description]]`:default=`[[+content:ellipsis=`155`]]`]]\">\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n</head>\r\n<body>\r\n	[[*content]]\r\n	<!-- BlogIt - This chunk grabs all children of the resource. -->\r\n	[[$blogit.get_posts]]\r\n	<!-- BlogIt - This chunk grabs all uses Tagger tags used in posts -->\r\n	[[$blogit.taglist]]\r\n</body>\r\n</html>', 0, NULL, 0, ''),
 (3, 0, 0, 'Blogit post', 'Blogit - Created by MPThemes http://mpthemes.com', 0, 7, '', 0, '<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n	<base href=\"[[++site_url]]\" />\r\n        <meta charset=\"[[++modx_charset:lcase]]\" />\r\n        <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\r\n        <title>[[*longtitle:strip_tags:empty=`[[*pagetitle:strip_tags]]`]] | [[++site_name:strip_tags]]</title>\r\n        <meta name=\"description\" content=\"[[*description:notempty=`[[*description]]`:default=`[[+content:ellipsis=`155`]]`]]\">\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n</head>\r\n<body>\r\n	[[blogit.lexicon_load]]\r\n	<p><a href=\"[[~[[*parent]]]]\">[[%blogit.back_to_overview]]</a></p>\r\n	<article>\r\n		<header>\r\n			<h1>[[*longtitle:strip_tags:empty=`[[*pagetitle:strip_tags]]`]]</h1>\r\n		</header>\r\n		[[*blogit.post_main_image:isnot=``:then=`<img src=\"[[*blogit.post_main_image:phpthumbof=`w=[[++blogit.main_image_width]]`]]\" alt=\"[[*blogit.post_main_image_alt]]\">`]]\r\n		[[*content]]\r\n		<footer>\r\n			<small>[[%blogit.published_on]]: <time datetime=\"[[*publishedon:strtotime:date=`%y-%m-%d`]]\">[[*publishedon:strtotime:date=`%b %d %Y`]]</time></small><br>\r\n			<small>[[%blogit.created_by]]: [[*createdby:userinfo=`username`]]</small><br>\r\n			[[++blogit.use_tags:isequalto=`1`:then=`\r\n			<small>Tags: [[!TaggerGetTags? &resources=`[[*id]]` &rowTpl=`blogit.tag_links_tpl` &separator=`, ` &target=`[[++blogit.blog_container_id]]`]]</small>\r\n			`]]\r\n		</footer>\r\n	</article>\r\n</body>\r\n</html>', 0, NULL, 0, ''),
 (4, 1, 0, 'Forgot Password', '', 0, 20, '', 0, '[[$Head]]\n<body>\n    <div id=\"my-page\">\n[[$Header]]\n        <div id=\"my-content\">\n            [[$Navbar]]\n		    [[$Forgp]]\n        </div>\n\n		<div id=\"my-footer\">\n			[[$Footer]]\n		</div>\n\n\n</div>\n[[$Scripts]]\n</body>\n</html>\n\n      	\n  ', 0, 'a:0:{}', 0, ''),
@@ -5245,23 +5399,23 @@ INSERT INTO `new_site_templates` (`id`, `source`, `property_preprocess`, `templa
 
 CREATE TABLE `new_site_tmplvars` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `type` varchar(20) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
   `caption` varchar(80) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT 0,
-  `category` int(11) NOT NULL DEFAULT 0,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `elements` text DEFAULT NULL,
-  `rank` int(11) NOT NULL DEFAULT 0,
+  `editor_type` int(11) NOT NULL DEFAULT '0',
+  `category` int(11) NOT NULL DEFAULT '0',
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `elements` text,
+  `rank` int(11) NOT NULL DEFAULT '0',
   `display` varchar(20) NOT NULL DEFAULT '',
-  `default_text` mediumtext DEFAULT NULL,
-  `properties` text DEFAULT NULL,
-  `input_properties` text DEFAULT NULL,
-  `output_properties` text DEFAULT NULL,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `default_text` mediumtext,
+  `properties` text,
+  `input_properties` text,
+  `output_properties` text,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5289,8 +5443,8 @@ INSERT INTO `new_site_tmplvars` (`id`, `source`, `property_preprocess`, `type`, 
 
 CREATE TABLE `new_site_tmplvar_access` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tmplvarid` int(10) NOT NULL DEFAULT 0,
-  `documentgroup` int(10) NOT NULL DEFAULT 0
+  `tmplvarid` int(10) NOT NULL DEFAULT '0',
+  `documentgroup` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5301,8 +5455,8 @@ CREATE TABLE `new_site_tmplvar_access` (
 
 CREATE TABLE `new_site_tmplvar_contentvalues` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tmplvarid` int(10) NOT NULL DEFAULT 0,
-  `contentid` int(10) NOT NULL DEFAULT 0,
+  `tmplvarid` int(10) NOT NULL DEFAULT '0',
+  `contentid` int(10) NOT NULL DEFAULT '0',
   `value` mediumtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5321,9 +5475,9 @@ INSERT INTO `new_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `v
 --
 
 CREATE TABLE `new_site_tmplvar_templates` (
-  `tmplvarid` int(10) NOT NULL DEFAULT 0,
-  `templateid` int(11) NOT NULL DEFAULT 0,
-  `rank` int(11) NOT NULL DEFAULT 0
+  `tmplvarid` int(10) NOT NULL DEFAULT '0',
+  `templateid` int(11) NOT NULL DEFAULT '0',
+  `rank` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5342,7 +5496,7 @@ INSERT INTO `new_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VAL
 
 CREATE TABLE `new_system_eventnames` (
   `name` varchar(50) NOT NULL,
-  `service` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
+  `service` tinyint(4) UNSIGNED NOT NULL DEFAULT '0',
   `groupname` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5555,7 +5709,7 @@ CREATE TABLE `new_system_settings` (
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5995,19 +6149,19 @@ CREATE TABLE `new_tagger_groups` (
   `name` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `field_type` varchar(100) NOT NULL,
-  `allow_new` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `remove_unused` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `allow_blank` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `allow_type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `show_autotag` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `hide_input` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `tag_limit` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `allow_new` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `remove_unused` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `allow_blank` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `allow_type` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `show_autotag` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `hide_input` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `tag_limit` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `show_for_templates` text NOT NULL,
   `place` varchar(100) NOT NULL DEFAULT 'in-tab',
-  `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `description` text NOT NULL,
-  `in_tvs_position` int(10) UNSIGNED NOT NULL DEFAULT 9999,
-  `as_radio` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `in_tvs_position` int(10) UNSIGNED NOT NULL DEFAULT '9999',
+  `as_radio` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `sort_field` varchar(255) NOT NULL DEFAULT 'alias',
   `sort_dir` varchar(255) NOT NULL DEFAULT 'asc',
   `show_for_contexts` text NOT NULL
@@ -6024,7 +6178,7 @@ CREATE TABLE `new_tagger_tags` (
   `tag` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `group` int(10) UNSIGNED NOT NULL,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6048,8 +6202,8 @@ CREATE TABLE `new_thumb_images` (
   `id` int(10) UNSIGNED NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `cache_image` varchar(255) DEFAULT NULL,
-  `config` mediumtext DEFAULT NULL,
-  `isend` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+  `config` mediumtext,
+  `isend` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6061,22 +6215,22 @@ CREATE TABLE `new_thumb_images` (
 CREATE TABLE `new_transport_packages` (
   `signature` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `installed` datetime DEFAULT NULL,
-  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
-  `workspace` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `provider` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `source` tinytext DEFAULT NULL,
-  `manifest` text DEFAULT NULL,
-  `attributes` mediumtext DEFAULT NULL,
+  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `workspace` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `provider` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` tinytext,
+  `manifest` text,
+  `attributes` mediumtext,
   `package_name` varchar(255) NOT NULL,
-  `metadata` text DEFAULT NULL,
-  `version_major` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `version_minor` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
-  `version_patch` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `metadata` text,
+  `version_major` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
+  `version_minor` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
+  `version_patch` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
   `release` varchar(100) NOT NULL DEFAULT '',
-  `release_index` smallint(5) UNSIGNED NOT NULL DEFAULT 0
+  `release_index` smallint(5) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6143,14 +6297,14 @@ INSERT INTO `new_transport_packages` (`signature`, `created`, `updated`, `instal
 CREATE TABLE `new_transport_providers` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `service_url` tinytext DEFAULT NULL,
+  `description` mediumtext,
+  `service_url` tinytext,
   `username` varchar(255) NOT NULL DEFAULT '',
   `api_key` varchar(255) NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `active` tinyint(1) NOT NULL DEFAULT 1,
-  `priority` tinyint(4) NOT NULL DEFAULT 10,
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `priority` tinyint(4) NOT NULL DEFAULT '10',
   `properties` mediumtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6174,15 +6328,15 @@ CREATE TABLE `new_users` (
   `password` varchar(255) NOT NULL DEFAULT '',
   `cachepwd` varchar(255) NOT NULL DEFAULT '',
   `class_key` varchar(100) NOT NULL DEFAULT 'modUser',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `remote_key` varchar(255) DEFAULT NULL,
-  `remote_data` text DEFAULT NULL,
+  `remote_data` text,
   `hash_class` varchar(100) NOT NULL DEFAULT 'hashing.modNative',
   `salt` varchar(100) NOT NULL DEFAULT '',
-  `primary_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
-  `session_stale` text DEFAULT NULL,
-  `sudo` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `createdon` int(20) NOT NULL DEFAULT 0
+  `primary_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `session_stale` text,
+  `sudo` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `createdon` int(20) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6206,16 +6360,16 @@ CREATE TABLE `new_user_attributes` (
   `email` varchar(100) NOT NULL DEFAULT '',
   `phone` varchar(100) NOT NULL DEFAULT '',
   `mobilephone` varchar(100) NOT NULL DEFAULT '',
-  `blocked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `blockeduntil` int(11) NOT NULL DEFAULT 0,
-  `blockedafter` int(11) NOT NULL DEFAULT 0,
-  `logincount` int(11) NOT NULL DEFAULT 0,
-  `lastlogin` int(11) NOT NULL DEFAULT 0,
-  `thislogin` int(11) NOT NULL DEFAULT 0,
-  `failedlogincount` int(10) NOT NULL DEFAULT 0,
+  `blocked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `blockeduntil` int(11) NOT NULL DEFAULT '0',
+  `blockedafter` int(11) NOT NULL DEFAULT '0',
+  `logincount` int(11) NOT NULL DEFAULT '0',
+  `lastlogin` int(11) NOT NULL DEFAULT '0',
+  `thislogin` int(11) NOT NULL DEFAULT '0',
+  `failedlogincount` int(10) NOT NULL DEFAULT '0',
   `sessionid` varchar(100) NOT NULL DEFAULT '',
-  `dob` int(10) NOT NULL DEFAULT 0,
-  `gender` int(1) NOT NULL DEFAULT 0,
+  `dob` int(10) NOT NULL DEFAULT '0',
+  `gender` int(1) NOT NULL DEFAULT '0',
   `address` text NOT NULL,
   `country` varchar(255) NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
@@ -6225,7 +6379,7 @@ CREATE TABLE `new_user_attributes` (
   `photo` varchar(255) NOT NULL DEFAULT '',
   `comment` text NOT NULL,
   `website` varchar(255) NOT NULL DEFAULT '',
-  `extended` text DEFAULT NULL
+  `extended` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6233,7 +6387,7 @@ CREATE TABLE `new_user_attributes` (
 --
 
 INSERT INTO `new_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `address`, `country`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `website`, `extended`) VALUES
-(1, 1, 'Администратор по умолчанию', 'stan19781@gmail.com', '', '', 0, 0, 0, 214, 1510844470, 1566978021, 0, '9kq4ocaa4d7eo6ann0khpg73jshu53gf', 0, 0, '', '', '', '', '', '', '', '', '', NULL),
+(1, 1, 'Администратор по умолчанию', 'stan19781@gmail.com', '', '', 0, 0, 0, 216, 1567150922, 1567153507, 0, '7pp92ogds21t6ivo986b70umj2', 0, 0, '', '', '', '', '', '', '', '', '', NULL),
 (3, 3, '', 'platonov_stan@mail.ru', '', '', 0, 0, 0, 7, 1491287477, 1491302110, 0, 'pinq7vkq5q6r7f8adtj2m64550', 0, 0, '', '', '', '', '', '', '', '', '', '[]');
 
 -- --------------------------------------------------------
@@ -6245,8 +6399,8 @@ INSERT INTO `new_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `ph
 CREATE TABLE `new_user_group_roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext DEFAULT NULL,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999
+  `description` mediumtext,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6264,13 +6418,13 @@ INSERT INTO `new_user_group_roles` (`id`, `name`, `description`, `authority`) VA
 --
 
 CREATE TABLE `new_user_group_settings` (
-  `group` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `group` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `key` varchar(50) NOT NULL,
-  `value` text DEFAULT NULL,
+  `value` text,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6284,11 +6438,11 @@ CREATE TABLE `new_user_messages` (
   `type` varchar(15) NOT NULL DEFAULT '',
   `subject` varchar(255) NOT NULL DEFAULT '',
   `message` text NOT NULL,
-  `sender` int(10) NOT NULL DEFAULT 0,
-  `recipient` int(10) NOT NULL DEFAULT 0,
-  `private` tinyint(4) NOT NULL DEFAULT 0,
+  `sender` int(10) NOT NULL DEFAULT '0',
+  `recipient` int(10) NOT NULL DEFAULT '0',
+  `private` tinyint(4) NOT NULL DEFAULT '0',
   `date_sent` datetime DEFAULT NULL,
-  `read` tinyint(1) NOT NULL DEFAULT 0
+  `read` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6298,13 +6452,13 @@ CREATE TABLE `new_user_messages` (
 --
 
 CREATE TABLE `new_user_settings` (
-  `user` int(11) NOT NULL DEFAULT 0,
+  `user` int(11) NOT NULL DEFAULT '0',
   `key` varchar(50) NOT NULL DEFAULT '',
-  `value` text DEFAULT NULL,
+  `value` text,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6318,8 +6472,8 @@ CREATE TABLE `new_workspaces` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `path` varchar(255) NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
-  `attributes` mediumtext DEFAULT NULL
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `attributes` mediumtext
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -7410,7 +7564,7 @@ ALTER TABLE `new_lexicon_entries`
 -- AUTO_INCREMENT для таблицы `new_manager_log`
 --
 ALTER TABLE `new_manager_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2817;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2965;
 
 --
 -- AUTO_INCREMENT для таблицы `new_media_sources`
@@ -7494,13 +7648,13 @@ ALTER TABLE `new_register_topics`
 -- AUTO_INCREMENT для таблицы `new_site_content`
 --
 ALTER TABLE `new_site_content`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `new_site_htmlsnippets`
 --
 ALTER TABLE `new_site_htmlsnippets`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT для таблицы `new_site_plugins`

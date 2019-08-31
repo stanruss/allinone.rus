@@ -12,15 +12,7 @@
 	/**/
 
 @media (min-width : 240px) and (max-width : 767px)
-	html
-		header
-			position: relative
-			top: 0
-		.hamburger
-			position: relative
-			top: 8px
-		.Logo
-			float: right
+	/**/
 
 @media only screen and (max-width : 480px)
 	.animated
@@ -44,49 +36,7 @@
 
 
 @media only screen and (min-width : 768px)
-	html
-		#my-content
-			margin-top: 71px
-
-		#my-menu
-			display: block
-			position: fixed
-			height: 71px
-			left: 210px
-			z-index: 20
-			.mm-navbar
-				display: none
-			.mm-listview
-				
-				height: 71px
-				overflow-y: hidden
-				margin: 0
-				position: fixed
-				top: 0
-				li
-					display: inline-block
-					width: 104px
-					text-align: center
-					color: $white
-					&.active
-						background: rgba(0,0,0, .1)
-					&:hover
-						background: rgba(0,0,0, .1)
-		.mm-listview>li>a, .mm-listview>li>span
-			padding-left: 10px
-			
-			line-height: 51px
-			
-		
-		.mm-menu.mm-theme-white
-			background-color: $main-color
-		.mm-panels, .mm-panels>.mm-panel
-			position: fixed
-			
-			left: 210px
-			height: 71px
-		.mm-panels>.mm-panel.mm-hasnavbar
-			padding: 0
+	/**/
 @media only screen and (min-width : 992px)
 	/**/
 
@@ -95,4 +45,24 @@
 @media only screen and (min-width : 1200px)
 	/**/
 @media (min-width : 240px) and (max-width : 991px)
-	/**/
+	html 
+		header
+			.carousel-main
+				height: 320px
+				position: relative
+				.photo1
+					size: 100% 320px 
+				.photo2
+					size: 100% 320px 
+				.photo3
+					size: 100% 320px 
+				.owl-prev
+					height: 320px
+					width: 40px
+					img
+						@include padding(140px, top)
+				.owl-next
+					height: 320px
+					width: 40px
+					img
+						@include padding(140px, top)
