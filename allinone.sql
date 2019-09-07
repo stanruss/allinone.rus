@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 03 2019 г., 16:00
--- Версия сервера: 5.6.41
--- Версия PHP: 5.5.38
+-- Время создания: Сен 07 2019 г., 12:38
+-- Версия сервера: 10.3.13-MariaDB
+-- Версия PHP: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,9 +32,9 @@ CREATE TABLE `new_access_actiondom` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -47,9 +47,9 @@ CREATE TABLE `new_access_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -62,9 +62,9 @@ CREATE TABLE `new_access_category` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -78,9 +78,9 @@ CREATE TABLE `new_access_context` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -105,9 +105,9 @@ CREATE TABLE `new_access_elements` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -121,9 +121,9 @@ CREATE TABLE `new_access_media_source` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -146,9 +146,9 @@ CREATE TABLE `new_access_menus` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -161,9 +161,9 @@ CREATE TABLE `new_access_namespace` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -175,10 +175,10 @@ CREATE TABLE `new_access_namespace` (
 
 CREATE TABLE `new_access_permissions` (
   `id` int(10) UNSIGNED NOT NULL,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `template` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `value` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
+  `value` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -428,11 +428,11 @@ INSERT INTO `new_access_permissions` (`id`, `template`, `name`, `description`, `
 CREATE TABLE `new_access_policies` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `template` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `description` mediumtext DEFAULT NULL,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `template` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `class` varchar(255) NOT NULL DEFAULT '',
-  `data` text,
+  `data` text DEFAULT NULL,
   `lexicon` varchar(255) NOT NULL DEFAULT 'permissions'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -464,9 +464,9 @@ INSERT INTO `new_access_policies` (`id`, `name`, `description`, `parent`, `templ
 
 CREATE TABLE `new_access_policy_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `template_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `template_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext,
+  `description` mediumtext DEFAULT NULL,
   `lexicon` varchar(255) NOT NULL DEFAULT 'permissions'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -493,7 +493,7 @@ INSERT INTO `new_access_policy_templates` (`id`, `template_group`, `name`, `desc
 CREATE TABLE `new_access_policy_template_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` mediumtext
+  `description` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -518,9 +518,9 @@ CREATE TABLE `new_access_resources` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -534,9 +534,9 @@ CREATE TABLE `new_access_resource_groups` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -559,9 +559,9 @@ CREATE TABLE `new_access_templatevars` (
   `id` int(10) UNSIGNED NOT NULL,
   `target` varchar(100) NOT NULL DEFAULT '',
   `principal_class` varchar(100) NOT NULL DEFAULT 'modPrincipal',
-  `principal` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `policy` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `principal` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `policy` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -573,10 +573,10 @@ CREATE TABLE `new_access_templatevars` (
 
 CREATE TABLE `new_actiondom` (
   `id` int(10) UNSIGNED NOT NULL,
-  `set` int(11) NOT NULL DEFAULT '0',
+  `set` int(11) NOT NULL DEFAULT 0,
   `action` varchar(255) NOT NULL DEFAULT '',
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `xtype` varchar(100) NOT NULL DEFAULT '',
   `container` varchar(255) NOT NULL DEFAULT '',
   `rule` varchar(100) NOT NULL DEFAULT '',
@@ -584,9 +584,9 @@ CREATE TABLE `new_actiondom` (
   `constraint` varchar(255) NOT NULL DEFAULT '',
   `constraint_field` varchar(100) NOT NULL DEFAULT '',
   `constraint_class` varchar(100) NOT NULL DEFAULT '',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `for_parent` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `for_parent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -599,7 +599,7 @@ CREATE TABLE `new_actions` (
   `id` int(10) UNSIGNED NOT NULL,
   `namespace` varchar(100) NOT NULL DEFAULT 'core',
   `controller` varchar(255) NOT NULL,
-  `haslayout` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `haslayout` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `lang_topics` text NOT NULL,
   `assets` text NOT NULL,
   `help_url` text NOT NULL
@@ -632,7 +632,7 @@ CREATE TABLE `new_actions_fields` (
   `tab` varchar(255) NOT NULL DEFAULT '',
   `form` varchar(255) NOT NULL DEFAULT '',
   `other` varchar(255) NOT NULL DEFAULT '',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -726,9 +726,9 @@ INSERT INTO `new_actions_fields` (`id`, `action`, `name`, `type`, `tab`, `form`,
 --
 
 CREATE TABLE `new_active_users` (
-  `internalKey` int(9) NOT NULL DEFAULT '0',
+  `internalKey` int(9) NOT NULL DEFAULT 0,
   `username` varchar(50) NOT NULL DEFAULT '',
-  `lasthit` int(20) NOT NULL DEFAULT '0',
+  `lasthit` int(20) NOT NULL DEFAULT 0,
   `id` int(10) DEFAULT NULL,
   `action` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(20) NOT NULL DEFAULT ''
@@ -742,9 +742,9 @@ CREATE TABLE `new_active_users` (
 
 CREATE TABLE `new_categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent` int(10) UNSIGNED DEFAULT '0',
+  `parent` int(10) UNSIGNED DEFAULT 0,
   `category` varchar(45) NOT NULL DEFAULT '',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -782,9 +782,9 @@ INSERT INTO `new_categories` (`id`, `parent`, `category`, `rank`) VALUES
 --
 
 CREATE TABLE `new_categories_closure` (
-  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `descendant` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `depth` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `descendant` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `depth` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -848,7 +848,7 @@ CREATE TABLE `new_class_map` (
   `class` varchar(120) NOT NULL DEFAULT '',
   `parent_class` varchar(120) NOT NULL DEFAULT '',
   `name_field` varchar(255) NOT NULL DEFAULT 'name',
-  `path` tinytext,
+  `path` tinytext DEFAULT NULL,
   `lexicon` varchar(255) NOT NULL DEFAULT 'core:resource'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -877,7 +877,7 @@ CREATE TABLE `new_clientconfig_group` (
   `id` int(10) UNSIGNED NOT NULL,
   `label` varchar(75) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `sortorder` int(10) NOT NULL DEFAULT '0'
+  `sortorder` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -899,13 +899,13 @@ CREATE TABLE `new_clientconfig_setting` (
   `label` varchar(75) NOT NULL DEFAULT '',
   `xtype` varchar(75) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `is_required` tinyint(1) NOT NULL DEFAULT '0',
-  `sortorder` int(10) NOT NULL DEFAULT '0',
+  `is_required` tinyint(1) NOT NULL DEFAULT 0,
+  `sortorder` int(10) NOT NULL DEFAULT 0,
   `value` mediumtext NOT NULL,
   `default` mediumtext NOT NULL,
-  `group` int(11) DEFAULT '0',
-  `options` mediumtext,
-  `source` int(11) DEFAULT '0'
+  `group` int(11) DEFAULT 0,
+  `options` mediumtext DEFAULT NULL,
+  `source` int(11) DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -940,7 +940,7 @@ CREATE TABLE `new_collection_resource_template` (
 CREATE TABLE `new_collection_selections` (
   `collection` int(10) UNSIGNED NOT NULL,
   `resource` int(10) UNSIGNED NOT NULL,
-  `menuindex` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `menuindex` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -952,7 +952,7 @@ CREATE TABLE `new_collection_selections` (
 CREATE TABLE `new_collection_settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `collection` int(10) UNSIGNED NOT NULL,
-  `template` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `template` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -972,20 +972,20 @@ CREATE TABLE `new_collection_templates` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL DEFAULT '',
-  `global_template` int(1) NOT NULL DEFAULT '0',
-  `bulk_actions` int(1) NOT NULL DEFAULT '0',
-  `allow_dd` int(1) NOT NULL DEFAULT '1',
-  `page_size` int(10) NOT NULL DEFAULT '20',
+  `global_template` int(1) NOT NULL DEFAULT 0,
+  `bulk_actions` int(1) NOT NULL DEFAULT 0,
+  `allow_dd` int(1) NOT NULL DEFAULT 1,
+  `page_size` int(10) NOT NULL DEFAULT 20,
   `sort_field` varchar(100) NOT NULL DEFAULT 'id',
   `sort_dir` varchar(4) NOT NULL DEFAULT 'asc',
   `sort_type` varchar(64) DEFAULT NULL,
   `child_template` int(10) UNSIGNED DEFAULT NULL,
   `child_resource_type` varchar(100) NOT NULL DEFAULT 'modDocument',
-  `resource_type_selection` int(1) NOT NULL DEFAULT '1',
+  `resource_type_selection` int(1) NOT NULL DEFAULT 1,
   `tab_label` varchar(255) NOT NULL DEFAULT 'collections.children',
   `button_label` varchar(255) NOT NULL DEFAULT 'collections.children.create',
   `content_place` varchar(255) NOT NULL DEFAULT 'original',
-  `view_for` int(1) UNSIGNED NOT NULL DEFAULT '0',
+  `view_for` int(1) UNSIGNED NOT NULL DEFAULT 0,
   `link_label` varchar(255) NOT NULL DEFAULT 'selections.create',
   `context_menu` varchar(512) NOT NULL DEFAULT 'view,edit,duplicate,publish,unpublish,-,delete,undelete,remove,-,unlink',
   `buttons` varchar(512) NOT NULL DEFAULT 'open,view,edit,duplicate,publish:orange,unpublish,delete,undelete,remove,unlink',
@@ -998,15 +998,15 @@ CREATE TABLE `new_collection_templates` (
   `child_cacheable` int(1) DEFAULT NULL,
   `child_searchable` int(1) DEFAULT NULL,
   `child_richtext` int(1) DEFAULT NULL,
-  `child_content_type` int(10) NOT NULL DEFAULT '0',
+  `child_content_type` int(10) NOT NULL DEFAULT 0,
   `parent` varchar(100) NOT NULL DEFAULT '',
   `child_content_disposition` int(1) DEFAULT NULL,
   `permanent_sort_before` varchar(255) NOT NULL DEFAULT '',
   `permanent_sort_after` varchar(255) NOT NULL DEFAULT '',
-  `selection_link_condition` text,
-  `search_query_exclude_tvs` int(1) NOT NULL DEFAULT '0',
-  `search_query_exclude_tagger` int(1) NOT NULL DEFAULT '0',
-  `search_query_title_only` int(1) NOT NULL DEFAULT '0'
+  `selection_link_condition` text DEFAULT NULL,
+  `search_query_exclude_tvs` int(1) NOT NULL DEFAULT 0,
+  `search_query_exclude_tagger` int(1) NOT NULL DEFAULT 0,
+  `search_query_title_only` int(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1027,13 +1027,13 @@ CREATE TABLE `new_collection_template_columns` (
   `template` int(10) UNSIGNED NOT NULL,
   `label` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `sortable` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `width` int(10) UNSIGNED NOT NULL DEFAULT '100',
+  `hidden` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `sortable` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `width` int(10) UNSIGNED NOT NULL DEFAULT 100,
   `editor` varchar(255) NOT NULL DEFAULT '',
   `renderer` varchar(255) NOT NULL DEFAULT '',
   `php_renderer` varchar(255) NOT NULL DEFAULT '',
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `sort_type` varchar(64) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1057,11 +1057,11 @@ INSERT INTO `new_collection_template_columns` (`id`, `template`, `label`, `name`
 CREATE TABLE `new_content_type` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` tinytext,
-  `mime_type` tinytext,
-  `file_extensions` tinytext,
-  `headers` mediumtext,
-  `binary` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `description` tinytext DEFAULT NULL,
+  `mime_type` tinytext DEFAULT NULL,
+  `file_extensions` tinytext DEFAULT NULL,
+  `headers` mediumtext DEFAULT NULL,
+  `binary` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1087,8 +1087,8 @@ INSERT INTO `new_content_type` (`id`, `name`, `description`, `mime_type`, `file_
 CREATE TABLE `new_context` (
   `key` varchar(100) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `description` tinytext,
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `description` tinytext DEFAULT NULL,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1119,11 +1119,11 @@ CREATE TABLE `new_context_resource` (
 CREATE TABLE `new_context_setting` (
   `context_key` varchar(255) NOT NULL,
   `key` varchar(50) NOT NULL,
-  `value` mediumtext,
+  `value` mediumtext DEFAULT NULL,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1143,8 +1143,8 @@ INSERT INTO `new_context_setting` (`context_key`, `key`, `value`, `xtype`, `name
 CREATE TABLE `new_dashboard` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
-  `hide_trees` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `description` text DEFAULT NULL,
+  `hide_trees` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1163,9 +1163,9 @@ INSERT INTO `new_dashboard` (`id`, `name`, `description`, `hide_trees`) VALUES
 CREATE TABLE `new_dashboard_widget` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `type` varchar(100) NOT NULL,
-  `content` mediumtext,
+  `content` mediumtext DEFAULT NULL,
   `namespace` varchar(255) NOT NULL DEFAULT '',
   `lexicon` varchar(255) NOT NULL DEFAULT 'core:dashboards',
   `size` varchar(255) NOT NULL DEFAULT 'half'
@@ -1189,9 +1189,9 @@ INSERT INTO `new_dashboard_widget` (`id`, `name`, `description`, `type`, `conten
 --
 
 CREATE TABLE `new_dashboard_widget_placement` (
-  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `widget` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `widget` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1214,8 +1214,8 @@ INSERT INTO `new_dashboard_widget_placement` (`dashboard`, `widget`, `rank`) VAL
 CREATE TABLE `new_documentgroup_names` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `private_memgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `private_webgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `private_memgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `private_webgroup` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1234,8 +1234,8 @@ INSERT INTO `new_documentgroup_names` (`id`, `name`, `private_memgroup`, `privat
 
 CREATE TABLE `new_document_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `document_group` int(10) NOT NULL DEFAULT '0',
-  `document` int(10) NOT NULL DEFAULT '0'
+  `document_group` int(10) NOT NULL DEFAULT 0,
+  `document` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1257,9 +1257,9 @@ INSERT INTO `new_document_groups` (`id`, `document_group`, `document`) VALUES
 --
 
 CREATE TABLE `new_element_property_sets` (
-  `element` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `element` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `element_class` varchar(100) NOT NULL DEFAULT '',
-  `property_set` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `property_set` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1272,7 +1272,7 @@ CREATE TABLE `new_extension_packages` (
   `id` int(10) UNSIGNED NOT NULL,
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `name` varchar(100) NOT NULL DEFAULT 'core',
-  `path` text,
+  `path` text DEFAULT NULL,
   `table_prefix` varchar(255) NOT NULL DEFAULT '',
   `service_class` varchar(255) NOT NULL DEFAULT '',
   `service_name` varchar(255) NOT NULL DEFAULT '',
@@ -1290,8 +1290,8 @@ CREATE TABLE `new_fc_profiles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1301,8 +1301,8 @@ CREATE TABLE `new_fc_profiles` (
 --
 
 CREATE TABLE `new_fc_profiles_usergroups` (
-  `usergroup` int(11) NOT NULL DEFAULT '0',
-  `profile` int(11) NOT NULL DEFAULT '0'
+  `usergroup` int(11) NOT NULL DEFAULT 0,
+  `profile` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1313,11 +1313,11 @@ CREATE TABLE `new_fc_profiles_usergroups` (
 
 CREATE TABLE `new_fc_sets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `profile` int(11) NOT NULL DEFAULT '0',
+  `profile` int(11) NOT NULL DEFAULT 0,
   `action` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '0',
-  `template` int(11) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT 0,
+  `template` int(11) NOT NULL DEFAULT 0,
   `constraint` varchar(255) NOT NULL DEFAULT '',
   `constraint_field` varchar(100) NOT NULL DEFAULT '',
   `constraint_class` varchar(100) NOT NULL DEFAULT ''
@@ -1335,8 +1335,8 @@ CREATE TABLE `new_formit_forms` (
   `context_key` varchar(100) NOT NULL DEFAULT '',
   `values` text NOT NULL,
   `ip` varchar(15) NOT NULL DEFAULT '',
-  `date` int(11) NOT NULL DEFAULT '0',
-  `encrypted` tinyint(1) NOT NULL DEFAULT '0',
+  `date` int(11) NOT NULL DEFAULT 0,
+  `encrypted` tinyint(1) NOT NULL DEFAULT 0,
   `hash` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1348,15 +1348,15 @@ CREATE TABLE `new_formit_forms` (
 
 CREATE TABLE `new_gallery_albums` (
   `id` int(10) UNSIGNED NOT NULL,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `year` varchar(100) DEFAULT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `createdon` datetime DEFAULT NULL,
-  `createdby` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `prominent` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `createdby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `prominent` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `watermark` varchar(255) NOT NULL DEFAULT '',
   `cover_filename` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1377,7 +1377,7 @@ INSERT INTO `new_gallery_albums` (`id`, `parent`, `name`, `year`, `description`,
 
 CREATE TABLE `new_gallery_album_contexts` (
   `id` int(10) UNSIGNED NOT NULL,
-  `album` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `album` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1389,9 +1389,9 @@ CREATE TABLE `new_gallery_album_contexts` (
 
 CREATE TABLE `new_gallery_album_items` (
   `id` int(10) UNSIGNED NOT NULL,
-  `item` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `album` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `item` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `album` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1417,14 +1417,14 @@ CREATE TABLE `new_gallery_items` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL DEFAULT '',
   `filename` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `mediatype` varchar(40) NOT NULL DEFAULT 'image',
-  `url` text,
+  `url` text DEFAULT NULL,
   `createdon` datetime DEFAULT NULL,
-  `createdby` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `createdby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `duration` varchar(40) NOT NULL DEFAULT '',
-  `streamer` text,
+  `streamer` text DEFAULT NULL,
   `watermark_pos` varchar(10) NOT NULL DEFAULT 'tl'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1449,7 +1449,7 @@ INSERT INTO `new_gallery_items` (`id`, `name`, `filename`, `description`, `media
 
 CREATE TABLE `new_gallery_tags` (
   `id` int(10) UNSIGNED NOT NULL,
-  `item` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `item` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `tag` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1467,7 +1467,7 @@ CREATE TABLE `new_lexicon_entries` (
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `language` varchar(20) NOT NULL DEFAULT 'en',
   `createdon` datetime DEFAULT NULL,
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1478,7 +1478,7 @@ CREATE TABLE `new_lexicon_entries` (
 
 CREATE TABLE `new_manager_log` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `user` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `occurred` datetime DEFAULT NULL,
   `action` varchar(100) NOT NULL DEFAULT '',
   `classKey` varchar(100) NOT NULL DEFAULT '',
@@ -5002,7 +5002,123 @@ INSERT INTO `new_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, `
 (3505, 1, '2019-09-03 15:58:40', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
 (3506, 1, '2019-09-03 15:59:28', 'chunk_update', 'modChunk', '98'),
 (3507, 1, '2019-09-03 15:59:29', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
-(3508, 1, '2019-09-03 16:00:03', 'clear_cache', '', 'mgr');
+(3508, 1, '2019-09-03 16:00:03', 'clear_cache', '', 'mgr'),
+(3509, 1, '2019-09-07 11:09:30', 'login', 'modContext', 'mgr'),
+(3510, 1, '2019-09-07 11:14:47', 'chunk_update', 'modChunk', '98'),
+(3511, 1, '2019-09-07 11:14:48', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3512, 1, '2019-09-07 11:15:32', 'chunk_update', 'modChunk', '98'),
+(3513, 1, '2019-09-07 11:15:32', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3514, 1, '2019-09-07 11:16:22', 'chunk_update', 'modChunk', '98'),
+(3515, 1, '2019-09-07 11:16:23', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3516, 1, '2019-09-07 11:17:09', 'chunk_update', 'modChunk', '98'),
+(3517, 1, '2019-09-07 11:17:09', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3518, 1, '2019-09-07 11:17:23', 'chunk_update', 'modChunk', '98'),
+(3519, 1, '2019-09-07 11:17:23', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3520, 1, '2019-09-07 11:18:14', 'chunk_update', 'modChunk', '98'),
+(3521, 1, '2019-09-07 11:18:14', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3522, 1, '2019-09-07 11:20:27', 'chunk_update', 'modChunk', '98'),
+(3523, 1, '2019-09-07 11:20:27', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3524, 1, '2019-09-07 11:25:18', 'chunk_update', 'modChunk', '98'),
+(3525, 1, '2019-09-07 11:25:19', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3526, 1, '2019-09-07 11:25:58', 'chunk_update', 'modChunk', '98'),
+(3527, 1, '2019-09-07 11:25:58', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3528, 1, '2019-09-07 11:27:02', 'chunk_update', 'modChunk', '98'),
+(3529, 1, '2019-09-07 11:27:02', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3530, 1, '2019-09-07 11:28:27', 'chunk_update', 'modChunk', '98'),
+(3531, 1, '2019-09-07 11:28:28', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3532, 1, '2019-09-07 11:29:00', 'chunk_update', 'modChunk', '98'),
+(3533, 1, '2019-09-07 11:29:00', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3534, 1, '2019-09-07 11:29:11', 'clear_cache', '', 'mgr'),
+(3535, 1, '2019-09-07 11:30:51', 'chunk_update', 'modChunk', '98'),
+(3536, 1, '2019-09-07 11:30:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3537, 1, '2019-09-07 11:30:58', 'chunk_update', 'modChunk', '98'),
+(3538, 1, '2019-09-07 11:30:58', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3539, 1, '2019-09-07 11:33:19', 'chunk_update', 'modChunk', '98'),
+(3540, 1, '2019-09-07 11:33:20', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3541, 1, '2019-09-07 11:33:25', 'chunk_update', 'modChunk', '98'),
+(3542, 1, '2019-09-07 11:33:26', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3543, 1, '2019-09-07 11:33:56', 'chunk_update', 'modChunk', '98'),
+(3544, 1, '2019-09-07 11:33:56', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3545, 1, '2019-09-07 11:35:18', 'chunk_update', 'modChunk', '98'),
+(3546, 1, '2019-09-07 11:35:18', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3547, 1, '2019-09-07 11:36:14', 'chunk_update', 'modChunk', '98'),
+(3548, 1, '2019-09-07 11:36:14', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3549, 1, '2019-09-07 11:37:22', 'chunk_update', 'modChunk', '98'),
+(3550, 1, '2019-09-07 11:37:22', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3551, 1, '2019-09-07 11:39:33', 'chunk_update', 'modChunk', '98'),
+(3552, 1, '2019-09-07 11:39:33', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3553, 1, '2019-09-07 11:45:02', 'chunk_update', 'modChunk', '98'),
+(3554, 1, '2019-09-07 11:45:03', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3555, 1, '2019-09-07 11:45:41', 'chunk_update', 'modChunk', '98'),
+(3556, 1, '2019-09-07 11:45:41', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3557, 1, '2019-09-07 11:46:11', 'chunk_update', 'modChunk', '98'),
+(3558, 1, '2019-09-07 11:46:11', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3559, 1, '2019-09-07 11:47:51', 'chunk_update', 'modChunk', '98'),
+(3560, 1, '2019-09-07 11:47:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3561, 1, '2019-09-07 11:48:16', 'chunk_update', 'modChunk', '98'),
+(3562, 1, '2019-09-07 11:48:17', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3563, 1, '2019-09-07 11:48:52', 'chunk_update', 'modChunk', '98'),
+(3564, 1, '2019-09-07 11:48:53', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3565, 1, '2019-09-07 11:51:12', 'chunk_update', 'modChunk', '98'),
+(3566, 1, '2019-09-07 11:51:12', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3567, 1, '2019-09-07 11:52:33', 'chunk_update', 'modChunk', '98'),
+(3568, 1, '2019-09-07 11:52:33', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3569, 1, '2019-09-07 11:53:15', 'chunk_update', 'modChunk', '98'),
+(3570, 1, '2019-09-07 11:53:15', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3571, 1, '2019-09-07 11:54:15', 'chunk_update', 'modChunk', '98'),
+(3572, 1, '2019-09-07 11:54:15', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3573, 1, '2019-09-07 11:55:33', 'chunk_update', 'modChunk', '98'),
+(3574, 1, '2019-09-07 11:55:33', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3575, 1, '2019-09-07 11:56:58', 'chunk_update', 'modChunk', '98'),
+(3576, 1, '2019-09-07 11:56:58', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3577, 1, '2019-09-07 11:58:51', 'chunk_update', 'modChunk', '98'),
+(3578, 1, '2019-09-07 11:58:52', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3579, 1, '2019-09-07 12:00:03', 'chunk_update', 'modChunk', '98'),
+(3580, 1, '2019-09-07 12:00:03', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3581, 1, '2019-09-07 12:00:51', 'chunk_update', 'modChunk', '98'),
+(3582, 1, '2019-09-07 12:00:51', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3583, 1, '2019-09-07 12:01:49', 'chunk_update', 'modChunk', '98'),
+(3584, 1, '2019-09-07 12:01:50', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3585, 1, '2019-09-07 12:02:08', 'chunk_update', 'modChunk', '98'),
+(3586, 1, '2019-09-07 12:02:08', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3587, 1, '2019-09-07 12:04:13', 'chunk_update', 'modChunk', '98'),
+(3588, 1, '2019-09-07 12:04:14', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3589, 1, '2019-09-07 12:05:45', 'chunk_update', 'modChunk', '98'),
+(3590, 1, '2019-09-07 12:05:46', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3591, 1, '2019-09-07 12:06:16', 'chunk_update', 'modChunk', '98'),
+(3592, 1, '2019-09-07 12:06:16', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3593, 1, '2019-09-07 12:13:49', 'chunk_update', 'modChunk', '98'),
+(3594, 1, '2019-09-07 12:13:49', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3595, 1, '2019-09-07 12:15:28', 'chunk_update', 'modChunk', '98'),
+(3596, 1, '2019-09-07 12:15:28', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3597, 1, '2019-09-07 12:16:44', 'chunk_update', 'modChunk', '98'),
+(3598, 1, '2019-09-07 12:16:44', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3599, 1, '2019-09-07 12:24:26', 'chunk_update', 'modChunk', '98'),
+(3600, 1, '2019-09-07 12:24:26', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3601, 1, '2019-09-07 12:25:55', 'chunk_update', 'modChunk', '98'),
+(3602, 1, '2019-09-07 12:25:55', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3603, 1, '2019-09-07 12:27:23', 'chunk_update', 'modChunk', '98'),
+(3604, 1, '2019-09-07 12:27:23', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3605, 1, '2019-09-07 12:28:38', 'chunk_update', 'modChunk', '98'),
+(3606, 1, '2019-09-07 12:28:39', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3607, 1, '2019-09-07 12:30:22', 'chunk_update', 'modChunk', '98'),
+(3608, 1, '2019-09-07 12:30:23', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3609, 1, '2019-09-07 12:30:46', 'chunk_update', 'modChunk', '98'),
+(3610, 1, '2019-09-07 12:30:46', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3611, 1, '2019-09-07 12:31:15', 'chunk_update', 'modChunk', '98'),
+(3612, 1, '2019-09-07 12:31:16', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3613, 1, '2019-09-07 12:31:38', 'chunk_update', 'modChunk', '98'),
+(3614, 1, '2019-09-07 12:31:38', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3615, 1, '2019-09-07 12:33:24', 'chunk_update', 'modChunk', '98'),
+(3616, 1, '2019-09-07 12:33:25', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3617, 1, '2019-09-07 12:33:42', 'chunk_update', 'modChunk', '98'),
+(3618, 1, '2019-09-07 12:33:42', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3619, 1, '2019-09-07 12:34:10', 'chunk_update', 'modChunk', '98'),
+(3620, 1, '2019-09-07 12:34:10', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3621, 1, '2019-09-07 12:34:33', 'chunk_update', 'modChunk', '98'),
+(3622, 1, '2019-09-07 12:34:34', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default'),
+(3623, 1, '2019-09-07 12:34:57', 'chunk_update', 'modChunk', '98'),
+(3624, 1, '2019-09-07 12:34:58', 'propertyset_update_from_element', 'modPropertySet', 'modChunk 98 Default');
 
 -- --------------------------------------------------------
 
@@ -5013,10 +5129,10 @@ INSERT INTO `new_manager_log` (`id`, `user`, `occurred`, `action`, `classKey`, `
 CREATE TABLE `new_media_sources` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
+  `description` text DEFAULT NULL,
   `class_key` varchar(100) NOT NULL DEFAULT 'sources.modFileMediaSource',
-  `properties` mediumtext,
-  `is_stream` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
+  `properties` mediumtext DEFAULT NULL,
+  `is_stream` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5034,7 +5150,7 @@ INSERT INTO `new_media_sources` (`id`, `name`, `description`, `class_key`, `prop
 --
 
 CREATE TABLE `new_media_sources_contexts` (
-  `source` int(11) NOT NULL DEFAULT '0',
+  `source` int(11) NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5045,9 +5161,9 @@ CREATE TABLE `new_media_sources_contexts` (
 --
 
 CREATE TABLE `new_media_sources_elements` (
-  `source` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `object_class` varchar(100) NOT NULL DEFAULT 'modTemplateVar',
-  `object` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `object` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `context_key` varchar(100) NOT NULL DEFAULT 'web'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5074,10 +5190,10 @@ INSERT INTO `new_media_sources_elements` (`source`, `object_class`, `object`, `c
 CREATE TABLE `new_membergroup_names` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT '',
-  `description` text,
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT '1'
+  `description` text DEFAULT NULL,
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `dashboard` int(10) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5097,10 +5213,10 @@ INSERT INTO `new_membergroup_names` (`id`, `name`, `description`, `parent`, `ran
 
 CREATE TABLE `new_member_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `member` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `role` int(10) UNSIGNED NOT NULL DEFAULT '1',
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `user_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `member` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `role` int(10) UNSIGNED NOT NULL DEFAULT 1,
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5123,7 +5239,7 @@ CREATE TABLE `new_menus` (
   `action` varchar(255) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `icon` varchar(255) NOT NULL DEFAULT '',
-  `menuindex` int(11) UNSIGNED NOT NULL DEFAULT '0',
+  `menuindex` int(11) UNSIGNED NOT NULL DEFAULT 0,
   `params` text NOT NULL,
   `handler` text NOT NULL,
   `permissions` text NOT NULL,
@@ -5200,16 +5316,16 @@ CREATE TABLE `new_migx_configs` (
   `filters` text NOT NULL,
   `extended` text NOT NULL,
   `columns` text NOT NULL,
-  `createdby` int(10) NOT NULL DEFAULT '0',
+  `createdby` int(10) NOT NULL DEFAULT 0,
   `createdon` datetime DEFAULT NULL,
-  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT 0,
   `editedon` datetime DEFAULT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime DEFAULT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `publishedon` datetime DEFAULT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT '0'
+  `publishedby` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5220,19 +5336,19 @@ CREATE TABLE `new_migx_configs` (
 
 CREATE TABLE `new_migx_config_elements` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT '0',
-  `element_id` int(10) NOT NULL DEFAULT '0',
-  `rank` int(10) NOT NULL DEFAULT '0',
-  `createdby` int(10) NOT NULL DEFAULT '0',
+  `config_id` int(10) NOT NULL DEFAULT 0,
+  `element_id` int(10) NOT NULL DEFAULT 0,
+  `rank` int(10) NOT NULL DEFAULT 0,
+  `createdby` int(10) NOT NULL DEFAULT 0,
   `createdon` datetime NOT NULL,
-  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT 0,
   `editedon` datetime NOT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime NOT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `publishedon` datetime NOT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT '0'
+  `publishedby` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5245,16 +5361,16 @@ CREATE TABLE `new_migx_elements` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` varchar(100) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `createdby` int(10) NOT NULL DEFAULT '0',
+  `createdby` int(10) NOT NULL DEFAULT 0,
   `createdon` datetime NOT NULL,
-  `editedby` int(10) NOT NULL DEFAULT '0',
+  `editedby` int(10) NOT NULL DEFAULT 0,
   `editedon` datetime NOT NULL,
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime NOT NULL,
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `publishedon` datetime NOT NULL,
-  `publishedby` int(10) NOT NULL DEFAULT '0'
+  `publishedby` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5265,10 +5381,10 @@ CREATE TABLE `new_migx_elements` (
 
 CREATE TABLE `new_migx_formtabs` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT '0',
+  `config_id` int(10) NOT NULL DEFAULT 0,
   `caption` varchar(255) NOT NULL DEFAULT '',
-  `pos` int(10) NOT NULL DEFAULT '0',
-  `print_before_tabs` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `pos` int(10) NOT NULL DEFAULT 0,
+  `print_before_tabs` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `extended` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5280,13 +5396,13 @@ CREATE TABLE `new_migx_formtabs` (
 
 CREATE TABLE `new_migx_formtab_fields` (
   `id` int(10) UNSIGNED NOT NULL,
-  `config_id` int(10) NOT NULL DEFAULT '0',
-  `formtab_id` int(10) NOT NULL DEFAULT '0',
+  `config_id` int(10) NOT NULL DEFAULT 0,
+  `formtab_id` int(10) NOT NULL DEFAULT 0,
   `field` varchar(255) NOT NULL DEFAULT '',
   `caption` varchar(255) NOT NULL DEFAULT '',
   `description` text NOT NULL,
-  `pos` int(10) NOT NULL DEFAULT '0',
-  `description_is_code` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `pos` int(10) NOT NULL DEFAULT 0,
+  `description_is_code` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `inputTV` varchar(255) NOT NULL DEFAULT '',
   `inputTVtype` varchar(255) NOT NULL DEFAULT '',
   `validation` text NOT NULL,
@@ -5308,8 +5424,8 @@ CREATE TABLE `new_migx_formtab_fields` (
 
 CREATE TABLE `new_namespaces` (
   `name` varchar(40) NOT NULL DEFAULT '',
-  `path` text,
-  `assets_path` text
+  `path` text DEFAULT NULL,
+  `assets_path` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5354,9 +5470,9 @@ INSERT INTO `new_namespaces` (`name`, `path`, `assets_path`) VALUES
 CREATE TABLE `new_property_set` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(50) NOT NULL DEFAULT '',
-  `category` int(10) NOT NULL DEFAULT '0',
+  `category` int(10) NOT NULL DEFAULT 0,
   `description` varchar(255) NOT NULL DEFAULT '',
-  `properties` text
+  `properties` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5368,25 +5484,25 @@ CREATE TABLE `new_property_set` (
 CREATE TABLE `new_quip_comments` (
   `id` int(10) UNSIGNED NOT NULL,
   `thread` varchar(255) NOT NULL DEFAULT '',
-  `parent` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `rank` tinytext,
-  `author` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `parent` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `rank` tinytext DEFAULT NULL,
+  `author` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `body` text NOT NULL,
   `createdon` datetime DEFAULT NULL,
   `editedon` datetime DEFAULT NULL,
-  `approved` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `approved` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `approvedon` datetime DEFAULT NULL,
-  `approvedby` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `approvedby` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL DEFAULT '',
   `website` varchar(255) NOT NULL DEFAULT '',
   `ip` varchar(255) NOT NULL DEFAULT '0.0.0.0',
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `deletedon` datetime DEFAULT NULL,
-  `deletedby` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `resource` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `deletedby` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `resource` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `idprefix` varchar(255) NOT NULL DEFAULT 'qcom',
-  `existing_params` text
+  `existing_params` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5396,9 +5512,9 @@ CREATE TABLE `new_quip_comments` (
 --
 
 CREATE TABLE `new_quip_comments_closure` (
-  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `descendant` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `depth` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `ancestor` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `descendant` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `depth` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5423,15 +5539,15 @@ CREATE TABLE `new_quip_comment_notify` (
 CREATE TABLE `new_quip_threads` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `createdon` datetime DEFAULT NULL,
-  `moderated` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `moderated` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `moderator_group` varchar(255) NOT NULL DEFAULT 'Administrator',
-  `moderators` text,
-  `notify_emails` text,
-  `resource` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `moderators` text DEFAULT NULL,
+  `notify_emails` text DEFAULT NULL,
+  `resource` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `idprefix` varchar(255) NOT NULL DEFAULT 'qcom',
-  `existing_params` text,
-  `quip_call_params` text,
-  `quipreply_call_params` text
+  `existing_params` text DEFAULT NULL,
+  `quip_call_params` text DEFAULT NULL,
+  `quipreply_call_params` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5445,11 +5561,11 @@ CREATE TABLE `new_register_messages` (
   `id` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   `valid` datetime NOT NULL,
-  `accessed` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `accesses` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `expires` int(20) NOT NULL DEFAULT '0',
+  `accessed` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `accesses` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `expires` int(20) NOT NULL DEFAULT 0,
   `payload` mediumtext NOT NULL,
-  `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `kill` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5461,7 +5577,7 @@ CREATE TABLE `new_register_messages` (
 CREATE TABLE `new_register_queues` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `options` mediumtext
+  `options` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5483,8 +5599,8 @@ CREATE TABLE `new_register_topics` (
   `queue` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `options` mediumtext
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `options` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5504,7 +5620,7 @@ INSERT INTO `new_register_topics` (`id`, `queue`, `name`, `created`, `updated`, 
 CREATE TABLE `new_session` (
   `id` varchar(255) NOT NULL DEFAULT '',
   `access` int(20) UNSIGNED NOT NULL,
-  `data` mediumtext
+  `data` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5512,13 +5628,11 @@ CREATE TABLE `new_session` (
 --
 
 INSERT INTO `new_session` (`id`, `access`, `data`) VALUES
-('9kq4ocaa4d7eo6ann0khpg73jshu53gf', 1566978022, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d662fe5f05ae3.63406320\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
-('q8c8jcnui2eqg6bquvbrklft41', 1567150922, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d68d34aaf4cd6.88481006\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
 ('7pp92ogds21t6ivo986b70umj2', 1567511144, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"mgr\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"mgr\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d68dd63a43906.20379294\";modx.mgr.session.cookie.lifetime|i:604800;modx.mgr.user.config|a:0:{}modx.user.1.userGroups|a:1:{i:0;i:1;}newResourceTokens|a:10:{i:0;s:23:\"5d68ec554a17e3.01722061\";i:1;s:23:\"5d68ec6d2bd8b6.12497339\";i:2;s:23:\"5d68ec8a7ce837.53818554\";i:3;s:23:\"5d68ecfd726ac9.83302055\";i:4;s:23:\"5d68efe21ba127.26960270\";i:5;s:23:\"5d6e51fe81b164.72624468\";i:6;s:23:\"5d6e523e48ac43.81828646\";i:7;s:23:\"5d6e5246ca3921.17215714\";i:8;s:23:\"5d6e5262d2d464.10391476\";i:9;s:23:\"5d6e526897b110.34452677\";}'),
-('21j4nh1bfjj4fq3ul3ca3cud52', 1567157764, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:0:{}'),
-('ds5mah47mpnlagg9r92ne0e8p0', 1567239769, 'modx.user.contextTokens|a:0:{}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}'),
+('b07qi0uuttorosd5oodg6no244', 1567847528, 'modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.user.contextTokens|a:0:{}'),
 ('5q17j8cg7gptm7pfn26tkvnra6', 1567250000, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.user.0.resourceGroups|a:1:{s:3:\"web\";a:0:{}}modx.user.0.attributes|a:1:{s:3:\"web\";a:5:{s:16:\"modAccessContext\";a:1:{s:3:\"web\";a:1:{i:0;a:3:{s:9:\"principal\";i:0;s:9:\"authority\";s:1:\"0\";s:6:\"policy\";a:1:{s:4:\"load\";b:1;}}}}s:22:\"modAccessResourceGroup\";a:0:{}s:17:\"modAccessCategory\";a:0:{}s:28:\"sources.modAccessMediaSource\";a:0:{}s:18:\"modAccessNamespace\";a:0:{}}}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d6a35449d0758.76217105\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}modx.user.1.userGroups|a:1:{i:0;i:1;}newResourceTokens|a:3:{i:0;s:23:\"5d6a561ca8f866.89277224\";i:1;s:23:\"5d6a5639cf3813.97415419\";i:2;s:23:\"5d6a565098d985.61283062\";}'),
-('iktagkk9afe0rse7g8r4edldp3', 1567402375, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d6ca9877edf21.96577261\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}');
+('iktagkk9afe0rse7g8r4edldp3', 1567402375, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d6ca9877edf21.96577261\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}'),
+('08bmpf78qi9o3qj753jj3hma57', 1567843770, 'modx.user.contextTokens|a:1:{s:3:\"mgr\";i:1;}modx.mgr.user.token|s:52:\"modx5d662fd224f3f5.71663062_15d7365ba410da0.24414245\";modx.mgr.session.cookie.lifetime|i:0;modx.mgr.user.config|a:0:{}');
 
 -- --------------------------------------------------------
 
@@ -5535,42 +5649,42 @@ CREATE TABLE `new_site_content` (
   `description` text NOT NULL,
   `alias` varchar(255) DEFAULT '',
   `link_attributes` varchar(255) NOT NULL DEFAULT '',
-  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `pub_date` int(20) NOT NULL DEFAULT '0',
-  `unpub_date` int(20) NOT NULL DEFAULT '0',
-  `parent` int(10) NOT NULL DEFAULT '0',
-  `isfolder` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `introtext` text,
-  `content` mediumtext,
-  `richtext` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `template` int(10) NOT NULL DEFAULT '0',
-  `menuindex` int(10) NOT NULL DEFAULT '0',
-  `searchable` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `cacheable` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `createdby` int(10) NOT NULL DEFAULT '0',
-  `createdon` int(20) NOT NULL DEFAULT '0',
-  `editedby` int(10) NOT NULL DEFAULT '0',
-  `editedon` int(20) NOT NULL DEFAULT '0',
-  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `deletedon` int(20) NOT NULL DEFAULT '0',
-  `deletedby` int(10) NOT NULL DEFAULT '0',
-  `publishedon` int(20) NOT NULL DEFAULT '0',
-  `publishedby` int(10) NOT NULL DEFAULT '0',
+  `published` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `pub_date` int(20) NOT NULL DEFAULT 0,
+  `unpub_date` int(20) NOT NULL DEFAULT 0,
+  `parent` int(10) NOT NULL DEFAULT 0,
+  `isfolder` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `introtext` text DEFAULT NULL,
+  `content` mediumtext DEFAULT NULL,
+  `richtext` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `template` int(10) NOT NULL DEFAULT 0,
+  `menuindex` int(10) NOT NULL DEFAULT 0,
+  `searchable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `cacheable` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `createdby` int(10) NOT NULL DEFAULT 0,
+  `createdon` int(20) NOT NULL DEFAULT 0,
+  `editedby` int(10) NOT NULL DEFAULT 0,
+  `editedon` int(20) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `deletedon` int(20) NOT NULL DEFAULT 0,
+  `deletedby` int(10) NOT NULL DEFAULT 0,
+  `publishedon` int(20) NOT NULL DEFAULT 0,
+  `publishedby` int(10) NOT NULL DEFAULT 0,
   `menutitle` varchar(255) NOT NULL DEFAULT '',
-  `donthit` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `privateweb` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `privatemgr` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `content_dispo` tinyint(1) NOT NULL DEFAULT '0',
-  `hidemenu` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `donthit` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `privateweb` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `privatemgr` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `content_dispo` tinyint(1) NOT NULL DEFAULT 0,
+  `hidemenu` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `class_key` varchar(100) NOT NULL DEFAULT 'modDocument',
   `context_key` varchar(100) NOT NULL DEFAULT 'web',
-  `content_type` int(11) UNSIGNED NOT NULL DEFAULT '1',
-  `uri` text,
-  `uri_override` tinyint(1) NOT NULL DEFAULT '0',
-  `hide_children_in_tree` tinyint(1) NOT NULL DEFAULT '0',
-  `show_in_tree` tinyint(1) NOT NULL DEFAULT '1',
-  `properties` mediumtext,
-  `alias_visible` tinyint(1) UNSIGNED NOT NULL DEFAULT '1'
+  `content_type` int(11) UNSIGNED NOT NULL DEFAULT 1,
+  `uri` text DEFAULT NULL,
+  `uri_override` tinyint(1) NOT NULL DEFAULT 0,
+  `hide_children_in_tree` tinyint(1) NOT NULL DEFAULT 0,
+  `show_in_tree` tinyint(1) NOT NULL DEFAULT 1,
+  `properties` mediumtext DEFAULT NULL,
+  `alias_visible` tinyint(1) UNSIGNED NOT NULL DEFAULT 1
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5602,17 +5716,17 @@ INSERT INTO `new_site_content` (`id`, `type`, `contentType`, `pagetitle`, `longt
 
 CREATE TABLE `new_site_htmlsnippets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Chunk',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
-  `snippet` mediumtext,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
+  `snippet` mediumtext DEFAULT NULL,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5676,7 +5790,7 @@ INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `nam
 INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `static`, `static_file`) VALUES
 (97, 1, 0, 'Header2', '', 0, 21, 0, '<header>\n   [[$Navbar]] \n   \n</header>', 0, 'a:0:{}', 0, '');
 INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `name`, `description`, `editor_type`, `category`, `cache_type`, `snippet`, `locked`, `properties`, `static`, `static_file`) VALUES
-(98, 1, 0, 'Content3', '', 0, 21, 0, '<section class=\"third\">\n    <div class=\"container\">\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"basic-addon1\">@</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"Имя пользователя\" aria-label=\"Имя пользователя\" aria-describedby=\"basic-addon1\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <input type=\"text\" class=\"form-control\" placeholder=\"Имя получателя\" aria-label=\"Имя получателя\" aria-describedby=\"basic-addon2\">\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\" id=\"basic-addon2\">@example.com</span>\n  </div>\n</div>\n\n<label for=\"basic-url\">Your vanity URL</label>\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"basic-addon3\">https://example.com/users/</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" id=\"basic-url\" aria-describedby=\"basic-addon3\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">$</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\">\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\">.00</span>\n  </div>\n</div>\n\n<div class=\"input-group\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">With textarea</span>\n  </div>\n  <textarea class=\"form-control\" aria-label=\"With textarea\"></textarea>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"input-group flex-nowrap\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"addon-wrapping\">@</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"Username\" aria-label=\"Username\" aria-describedby=\"addon-wrapping\">\n</div><br><br>\n\n<div class=\"input-group input-group-sm mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroup-sizing-sm\">Small</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Small\" aria-describedby=\"inputGroup-sizing-sm\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroup-sizing-default\">Default</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\">\n</div>\n\n<div class=\"input-group input-group-lg\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroup-sizing-lg\">Large</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Large\" aria-describedby=\"inputGroup-sizing-sm\">\n</div><br><br>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <div class=\"input-group-text\">\n      <input type=\"checkbox\" aria-label=\"Checkbox for following text input\">\n    </div>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\">\n</div>\n\n<div class=\"input-group\">\n  <div class=\"input-group-prepend\">\n    <div class=\"input-group-text\">\n    <input type=\"radio\" aria-label=\"Radio button for following text input\">\n    </div>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Text input with radio button\">\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">Имя и Фамилия</span>\n  </div>\n  <input type=\"text\" aria-label=\"First name\" class=\"form-control\">\n  <input type=\"text\" aria-label=\"Last name\" class=\"form-control\">\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">$</span>\n    <span class=\"input-group-text\">0.00</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Dollar amount (with dot and two decimal places)\">\n</div>\n\n<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control\" aria-label=\"Dollar amount (with dot and two decimal places)\">\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\">$</span>\n    <span class=\"input-group-text\">0.00</span>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"button-addon1\">Кнопка</button>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"\" aria-label=\"Example text with button addon\" aria-describedby=\"button-addon1\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <input type=\"text\" class=\"form-control\" placeholder=\"Recipient\'s username\" aria-label=\"Recipient\'s username\" aria-describedby=\"button-addon2\">\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"button-addon2\">Кнопка</button>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\" id=\"button-addon3\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"\" aria-label=\"Example text with two button addons\" aria-describedby=\"button-addon3\">\n</div>\n\n<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control\" placeholder=\"Recipient\'s username\" aria-label=\"Recipient\'s username with two button addons\" aria-describedby=\"button-addon4\">\n  <div class=\"input-group-append\" id=\"button-addon4\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <label class=\"input-group-text\" for=\"inputGroupSelect01\">Options</label>\n  </div>\n  <select class=\"custom-select\" id=\"inputGroupSelect01\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n</div>\n\n<div class=\"input-group mb-3\">\n  <select class=\"custom-select\" id=\"inputGroupSelect02\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n  <div class=\"input-group-append\">\n    <label class=\"input-group-text\" for=\"inputGroupSelect02\">Options</label>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n  <select class=\"custom-select\" id=\"inputGroupSelect03\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n</div>\n\n<div class=\"input-group\">\n  <select class=\"custom-select\" id=\"inputGroupSelect04\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroupFileAddon01\">Upload</span>\n  </div>\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile01\" aria-describedby=\"inputGroupFileAddon01\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile01\">Choose file</label>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile02\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile02\" aria-describedby=\"inputGroupFileAddon02\">Choose file</label>\n  </div>\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\" id=\"inputGroupFileAddon02\">Upload</span>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"inputGroupFileAddon03\">Кнопка</button>\n  </div>\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile03\" aria-describedby=\"inputGroupFileAddon03\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile03\">Choose file</label>\n  </div>\n</div>\n\n<div class=\"input-group\">\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile04\" aria-describedby=\"inputGroupFileAddon04\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile04\">Choose file</label>\n  </div>\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"inputGroupFileAddon04\">Кнопка</button>\n  </div>\n</div><br><br>\n\n<ul class=\"list-group\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"jumbotron\">\n  <h1 class=\"display-4\">Привет, мир!</h1>\n  <p class=\"lead\">Это простой пример блока с компонентом в стиле jumbotron для привлечения дополнительного внимания к содержанию или информации.</p>\n  <hr class=\"my-4\">\n  <p>Использются служебные классы для типографики и расстояния содержимого в контейнере большего размера.</p>\n  <p class=\"lead\">\n    <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n  </p>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-12\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"jumbotron jumbotron-fluid\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">Fluid jumbotron</h1>\n    <p class=\"lead\">Это модифицированный jumbotron, который занимает все горизонтальное пространство своего родителя.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            \n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group\">\n  <li class=\"list-group-item active\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <ul class=\"list-group\">\n  <li class=\"list-group-item disabled\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-action active\">\n    Cras justo odio\n  </a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Dapibus ac facilisis in</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Morbi leo risus</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Porta ac consectetur ac</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action disabled\">Vestibulum at eros</a>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"list-group\">\n  <button type=\"button\" class=\"list-group-item list-group-item-action active\">\n    Cras justo odio\n  </button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\">Dapibus ac facilisis in</button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\">Morbi leo risus</button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\">Porta ac consectetur ac</button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\" disabled>Vestibulum at eros</button>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group list-group-flush\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <ul class=\"list-group list-group-horizontal\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-sm\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-md\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-lg\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-xl\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group\">\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n\n  \n  <li class=\"list-group-item list-group-item-primary\">Элемент основной группы списков</li>\n  <li class=\"list-group-item list-group-item-secondary\">Дополнительный элемент группы списков</li>\n  <li class=\"list-group-item list-group-item-success\">Элемент группы списка успешных действий</li>\n  <li class=\"list-group-item list-group-item-danger\">Элемент группы списка опасности</li>\n  <li class=\"list-group-item list-group-item-warning\">Элемент группы списка предупреждений</li>\n  <li class=\"list-group-item list-group-item-info\">Элемент группы списка информации</li>\n  <li class=\"list-group-item list-group-item-light\">Элемент группы с легким списком</li>\n  <li class=\"list-group-item list-group-item-dark\">Элемент группы темных списков</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Dapibus ac facilisis in</a>\n\n  \n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-primary\">Элемент основной группы списков</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-secondary\">Дополнительный элемент группы списков</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-success\">Элемент группы списка успешных действий</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-danger\">Элемент группы списка опасности</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-warning\">Элемент группы списка предупреждений</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-info\">Элемент группы списка информации</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-light\">Элемент группы с легким списком</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-dark\">Элемент группы темных списков</a>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group\">\n  <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n    Cras justo odio\n    <span class=\"badge badge-primary badge-pill\">14</span>\n  </li>\n  <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n    Dapibus ac facilisis in\n    <span class=\"badge badge-primary badge-pill\">2</span>\n  </li>\n  <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n    Morbi leo risus\n    <span class=\"badge badge-primary badge-pill\">1</span>\n  </li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-action active\">\n    <div class=\"d-flex w-100 justify-content-between\">\n      <h5 class=\"mb-1\">List group item heading</h5>\n      <small>3 days ago</small>\n    </div>\n    <p class=\"mb-1\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n    <small>Donec id elit non mi porta.</small>\n  </a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">\n    <div class=\"d-flex w-100 justify-content-between\">\n      <h5 class=\"mb-1\">List group item heading</h5>\n      <small class=\"text-muted\">3 days ago</small>\n    </div>\n    <p class=\"mb-1\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n    <small class=\"text-muted\">Donec id elit non mi porta.</small>\n  </a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">\n    <div class=\"d-flex w-100 justify-content-between\">\n      <h5 class=\"mb-1\">List group item heading</h5>\n      <small class=\"text-muted\">3 days ago</small>\n    </div>\n    <p class=\"mb-1\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n    <small class=\"text-muted\">Donec id elit non mi porta.</small>\n  </a>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-12\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"row\">\n  <div class=\"col-4\">\n    <div class=\"list-group\" id=\"list-tab\" role=\"tablist\">\n      <a class=\"list-group-item list-group-item-action active\" id=\"list-home-list\" data-toggle=\"list\" href=\"#list-home\" role=\"tab\" aria-controls=\"home\">Home</a>\n      <a class=\"list-group-item list-group-item-action\" id=\"list-profile-list\" data-toggle=\"list\" href=\"#list-profile\" role=\"tab\" aria-controls=\"profile\">Profile</a>\n      <a class=\"list-group-item list-group-item-action\" id=\"list-messages-list\" data-toggle=\"list\" href=\"#list-messages\" role=\"tab\" aria-controls=\"messages\">Messages</a>\n      <a class=\"list-group-item list-group-item-action\" id=\"list-settings-list\" data-toggle=\"list\" href=\"#list-settings\" role=\"tab\" aria-controls=\"settings\">Settings</a>\n    </div>\n  </div>\n  <div class=\"col-8\">\n    <div class=\"tab-content\" id=\"nav-tabContent\">\n      <div class=\"tab-pane fade show active\" id=\"list-home\" role=\"tabpanel\" aria-labelledby=\"list-home-list\">Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.</div>\n      <div class=\"tab-pane fade\" id=\"list-profile\" role=\"tabpanel\" aria-labelledby=\"list-profile-list\">Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.</div>\n      <div class=\"tab-pane fade\" id=\"list-messages\" role=\"tabpanel\" aria-labelledby=\"list-messages-list\">Ut ut do pariatur aliquip aliqua aliquip exercitation do nostrud commodo reprehenderit aute ipsum voluptate. Irure Lorem et laboris nostrud amet cupidatat cupidatat anim do ut velit mollit consequat enim tempor. Consectetur est minim nostrud nostrud consectetur irure labore voluptate irure. Ipsum id Lorem sit sint voluptate est pariatur eu ad cupidatat et deserunt culpa sit eiusmod deserunt. Consectetur et fugiat anim do eiusmod aliquip nulla laborum elit adipisicing pariatur cillum.</div>\n      <div class=\"tab-pane fade\" id=\"list-settings\" role=\"tabpanel\" aria-labelledby=\"list-settings-list\">Irure enim occaecat labore sit qui aliquip reprehenderit amet velit. Deserunt ullamco ex elit nostrud ut dolore nisi officia magna sit occaecat laboris sunt dolor. Nisi eu minim cillum occaecat aute est cupidatat aliqua labore aute occaecat ea aliquip sunt amet. Aute mollit dolor ut exercitation irure commodo non amet consectetur quis amet culpa. Quis ullamco nisi amet qui aute irure eu. Magna labore dolor quis ex labore id nostrud deserunt dolor eiusmod eu pariatur culpa mollit in irure.</div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            \n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-12\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <!-- List group -->\n<div class=\"list-group\" id=\"myList\" role=\"tablist\">\n  <a class=\"list-group-item list-group-item-action active\" data-toggle=\"list\" href=\"#home\" role=\"tab\">Home</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#profile\" role=\"tab\">Profile</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#messages\" role=\"tab\">Messages</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#settings\" role=\"tab\">Settings</a>\n</div>\n\n<!-- Tab panes -->\n<div class=\"tab-content\">\n  <div class=\"tab-pane active\" id=\"home\" role=\"tabpanel\">Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.</div>\n  <div class=\"tab-pane\" id=\"profile\" role=\"tabpanel\">Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.</div>\n  <div class=\"tab-pane\" id=\"messages\" role=\"tabpanel\">Ut ut do pariatur aliquip aliqua aliquip exercitation do nostrud commodo reprehenderit aute ipsum voluptate. Irure Lorem et laboris nostrud amet cupidatat cupidatat anim do ut velit mollit consequat enim tempor. Consectetur est minim nostrud nostrud consectetur irure labore voluptate irure. Ipsum id Lorem sit sint voluptate est pariatur eu ad cupidatat et deserunt culpa sit eiusmod deserunt. Consectetur et fugiat anim do eiusmod aliquip nulla laborum elit adipisicing pariatur cillum.</div>\n  <div class=\"tab-pane\" id=\"settings\" role=\"tabpanel\">Irure enim occaecat labore sit qui aliquip reprehenderit amet velit. Deserunt ullamco ex elit nostrud ut dolore nisi officia magna sit occaecat laboris sunt dolor. Nisi eu minim cillum occaecat aute est cupidatat aliqua labore aute occaecat ea aliquip sunt amet. Aute mollit dolor ut exercitation irure commodo non amet consectetur quis amet culpa. Quis ullamco nisi amet qui aute irure eu. Magna labore dolor quis ex labore id nostrud deserunt dolor eiusmod eu pariatur culpa mollit in irure.</div>\n</div>\n                    </div>\n                </div>\n            </div>\n            \n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      $(\'#myList a[href=\"#profile\"]\').tab(\'show\') // Select tab by name\n$(\'#myList a:first-child\').tab(\'show\') // Select first tab\n$(\'#myList a:last-child\').tab(\'show\') // Select last tab\n$(\'#myList a:nth-child(3)\').tab(\'show\') // Select third tab\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n               <!-- List group -->\n<div class=\"list-group\" id=\"myList\" role=\"tablist\">\n  <a class=\"list-group-item list-group-item-action active\" data-toggle=\"list\" href=\"#home1\" role=\"tab\">Home</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#profile1\" role=\"tab\">Profile</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#messages1\" role=\"tab\">Messages</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#settings1\" role=\"tab\">Settings</a>\n</div>\n\n<!-- Tab panes -->\n<div class=\"tab-content\">\n  <div class=\"tab-pane fade active\" id=\"home1\" role=\"tabpanel\">Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.</div>\n  <div class=\"tab-pane fade\" id=\"profile1\" role=\"tabpanel\">Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.</div>\n  <div class=\"tab-pane fade\" id=\"messages1\" role=\"tabpanel\">Ut ut do pariatur aliquip aliqua aliquip exercitation do nostrud commodo reprehenderit aute ipsum voluptate. Irure Lorem et laboris nostrud amet cupidatat cupidatat anim do ut velit mollit consequat enim tempor. Consectetur est minim nostrud nostrud consectetur irure labore voluptate irure. Ipsum id Lorem sit sint voluptate est pariatur eu ad cupidatat et deserunt culpa sit eiusmod deserunt. Consectetur et fugiat anim do eiusmod aliquip nulla laborum elit adipisicing pariatur cillum.</div>\n  <div class=\"tab-pane fade\" id=\"settings1\" role=\"tabpanel\">Irure enim occaecat labore sit qui aliquip reprehenderit amet velit. Deserunt ullamco ex elit nostrud ut dolore nisi officia magna sit occaecat laboris sunt dolor. Nisi eu minim cillum occaecat aute est cupidatat aliqua labore aute occaecat ea aliquip sunt amet. Aute mollit dolor ut exercitation irure commodo non amet consectetur quis amet culpa. Quis ullamco nisi amet qui aute irure eu. Magna labore dolor quis ex labore id nostrud deserunt dolor eiusmod eu pariatur culpa mollit in irure.</div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\" w-50 mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Media heading</h5>\n    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-25 mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Media heading</h5>\n    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n\n    <div class=\"media mt-3\">\n      <a class=\"mr-3\" href=\"#\">\n        <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n      </a>\n      <div class=\"media-body\">\n        <h5 class=\"mt-0\">Media heading</h5>\n        Cras sit amet nibh libero, in gravida nulla. \n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 align-self-start mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Top-aligned media</h5>\n    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>\n    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 align-self-center mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Center-aligned media</h5>\n    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>\n    <p class=\"mb-0\">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 align-self-end mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Bottom-aligned media</h5>\n    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>\n    <p class=\"mb-0\">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"media\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0 mb-1\">Media object</h5>\n    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n  </div>\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 ml-3\" alt=\"...\">\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-unstyled\">\n  <li class=\"media\">\n    <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n    <div class=\"media-body\">\n      <h5 class=\"mt-0 mb-1\">List-based media object</h5>\n      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    </div>\n  </li>\n  <li class=\"media my-4\">\n    <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n    <div class=\"media-body\">\n      <h5 class=\"mt-0 mb-1\">List-based media object</h5>\n      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    </div>\n  </li>\n  <li class=\"media\">\n    <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n    <div class=\"media-body\">\n      <h5 class=\"mt-0 mb-1\">List-based media object</h5>\n      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    </div>\n  </li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        \n            \n    </div>\n</section>', 0, 'a:0:{}', 0, '');
+(98, 1, 0, 'Content3', '', 0, 21, 0, '<section class=\"third\">\n    <div class=\"container\">\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"basic-addon1\">@</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"Имя пользователя\" aria-label=\"Имя пользователя\" aria-describedby=\"basic-addon1\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <input type=\"text\" class=\"form-control\" placeholder=\"Имя получателя\" aria-label=\"Имя получателя\" aria-describedby=\"basic-addon2\">\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\" id=\"basic-addon2\">@example.com</span>\n  </div>\n</div>\n\n<label for=\"basic-url\">Your vanity URL</label>\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"basic-addon3\">https://example.com/users/</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" id=\"basic-url\" aria-describedby=\"basic-addon3\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">$</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Amount (to the nearest dollar)\">\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\">.00</span>\n  </div>\n</div>\n\n<div class=\"input-group\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">With textarea</span>\n  </div>\n  <textarea class=\"form-control\" aria-label=\"With textarea\"></textarea>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"input-group flex-nowrap\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"addon-wrapping\">@</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"Username\" aria-label=\"Username\" aria-describedby=\"addon-wrapping\">\n</div><br><br>\n\n<div class=\"input-group input-group-sm mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroup-sizing-sm\">Small</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Small\" aria-describedby=\"inputGroup-sizing-sm\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroup-sizing-default\">Default</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Default\" aria-describedby=\"inputGroup-sizing-default\">\n</div>\n\n<div class=\"input-group input-group-lg\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroup-sizing-lg\">Large</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Large\" aria-describedby=\"inputGroup-sizing-sm\">\n</div><br><br>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <div class=\"input-group-text\">\n      <input type=\"checkbox\" aria-label=\"Checkbox for following text input\">\n    </div>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Text input with checkbox\">\n</div>\n\n<div class=\"input-group\">\n  <div class=\"input-group-prepend\">\n    <div class=\"input-group-text\">\n    <input type=\"radio\" aria-label=\"Radio button for following text input\">\n    </div>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Text input with radio button\">\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">Имя и Фамилия</span>\n  </div>\n  <input type=\"text\" aria-label=\"First name\" class=\"form-control\">\n  <input type=\"text\" aria-label=\"Last name\" class=\"form-control\">\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\">$</span>\n    <span class=\"input-group-text\">0.00</span>\n  </div>\n  <input type=\"text\" class=\"form-control\" aria-label=\"Dollar amount (with dot and two decimal places)\">\n</div>\n\n<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control\" aria-label=\"Dollar amount (with dot and two decimal places)\">\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\">$</span>\n    <span class=\"input-group-text\">0.00</span>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"button-addon1\">Кнопка</button>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"\" aria-label=\"Example text with button addon\" aria-describedby=\"button-addon1\">\n</div>\n\n<div class=\"input-group mb-3\">\n  <input type=\"text\" class=\"form-control\" placeholder=\"Recipient\'s username\" aria-label=\"Recipient\'s username\" aria-describedby=\"button-addon2\">\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"button-addon2\">Кнопка</button>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\" id=\"button-addon3\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n  <input type=\"text\" class=\"form-control\" placeholder=\"\" aria-label=\"Example text with two button addons\" aria-describedby=\"button-addon3\">\n</div>\n\n<div class=\"input-group\">\n  <input type=\"text\" class=\"form-control\" placeholder=\"Recipient\'s username\" aria-label=\"Recipient\'s username with two button addons\" aria-describedby=\"button-addon4\">\n  <div class=\"input-group-append\" id=\"button-addon4\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <label class=\"input-group-text\" for=\"inputGroupSelect01\">Options</label>\n  </div>\n  <select class=\"custom-select\" id=\"inputGroupSelect01\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n</div>\n\n<div class=\"input-group mb-3\">\n  <select class=\"custom-select\" id=\"inputGroupSelect02\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n  <div class=\"input-group-append\">\n    <label class=\"input-group-text\" for=\"inputGroupSelect02\">Options</label>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n  <select class=\"custom-select\" id=\"inputGroupSelect03\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n</div>\n\n<div class=\"input-group\">\n  <select class=\"custom-select\" id=\"inputGroupSelect04\">\n    <option selected>Choose...</option>\n    <option value=\"1\">One</option>\n    <option value=\"2\">Two</option>\n    <option value=\"3\">Three</option>\n  </select>\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\">Кнопка</button>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <span class=\"input-group-text\" id=\"inputGroupFileAddon01\">Upload</span>\n  </div>\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile01\" aria-describedby=\"inputGroupFileAddon01\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile01\">Choose file</label>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile02\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile02\" aria-describedby=\"inputGroupFileAddon02\">Choose file</label>\n  </div>\n  <div class=\"input-group-append\">\n    <span class=\"input-group-text\" id=\"inputGroupFileAddon02\">Upload</span>\n  </div>\n</div>\n\n<div class=\"input-group mb-3\">\n  <div class=\"input-group-prepend\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"inputGroupFileAddon03\">Кнопка</button>\n  </div>\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile03\" aria-describedby=\"inputGroupFileAddon03\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile03\">Choose file</label>\n  </div>\n</div>\n\n<div class=\"input-group\">\n  <div class=\"custom-file\">\n    <input type=\"file\" class=\"custom-file-input\" id=\"inputGroupFile04\" aria-describedby=\"inputGroupFileAddon04\">\n    <label class=\"custom-file-label\" for=\"inputGroupFile04\">Choose file</label>\n  </div>\n  <div class=\"input-group-append\">\n    <button class=\"btn btn-outline-secondary\" type=\"button\" id=\"inputGroupFileAddon04\">Кнопка</button>\n  </div>\n</div><br><br>\n\n<ul class=\"list-group\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"jumbotron\">\n  <h1 class=\"display-4\">Привет, мир!</h1>\n  <p class=\"lead\">Это простой пример блока с компонентом в стиле jumbotron для привлечения дополнительного внимания к содержанию или информации.</p>\n  <hr class=\"my-4\">\n  <p>Использются служебные классы для типографики и расстояния содержимого в контейнере большего размера.</p>\n  <p class=\"lead\">\n    <a class=\"btn btn-primary btn-lg\" href=\"#\" role=\"button\">Learn more</a>\n  </p>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-12\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"jumbotron jumbotron-fluid\">\n  <div class=\"container\">\n    <h1 class=\"display-4\">Fluid jumbotron</h1>\n    <p class=\"lead\">Это модифицированный jumbotron, который занимает все горизонтальное пространство своего родителя.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            \n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group\">\n  <li class=\"list-group-item active\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <ul class=\"list-group\">\n  <li class=\"list-group-item disabled\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-action active\">\n    Cras justo odio\n  </a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Dapibus ac facilisis in</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Morbi leo risus</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Porta ac consectetur ac</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action disabled\">Vestibulum at eros</a>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"list-group\">\n  <button type=\"button\" class=\"list-group-item list-group-item-action active\">\n    Cras justo odio\n  </button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\">Dapibus ac facilisis in</button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\">Morbi leo risus</button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\">Porta ac consectetur ac</button>\n  <button type=\"button\" class=\"list-group-item list-group-item-action\" disabled>Vestibulum at eros</button>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group list-group-flush\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n  <li class=\"list-group-item\">Porta ac consectetur ac</li>\n  <li class=\"list-group-item\">Vestibulum at eros</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <ul class=\"list-group list-group-horizontal\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-sm\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-md\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-lg\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n<ul class=\"list-group list-group-horizontal-xl\">\n  <li class=\"list-group-item\">Cras justo odio</li>\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n  <li class=\"list-group-item\">Morbi leo risus</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group\">\n  <li class=\"list-group-item\">Dapibus ac facilisis in</li>\n\n  \n  <li class=\"list-group-item list-group-item-primary\">Элемент основной группы списков</li>\n  <li class=\"list-group-item list-group-item-secondary\">Дополнительный элемент группы списков</li>\n  <li class=\"list-group-item list-group-item-success\">Элемент группы списка успешных действий</li>\n  <li class=\"list-group-item list-group-item-danger\">Элемент группы списка опасности</li>\n  <li class=\"list-group-item list-group-item-warning\">Элемент группы списка предупреждений</li>\n  <li class=\"list-group-item list-group-item-info\">Элемент группы списка информации</li>\n  <li class=\"list-group-item list-group-item-light\">Элемент группы с легким списком</li>\n  <li class=\"list-group-item list-group-item-dark\">Элемент группы темных списков</li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">Dapibus ac facilisis in</a>\n\n  \n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-primary\">Элемент основной группы списков</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-secondary\">Дополнительный элемент группы списков</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-success\">Элемент группы списка успешных действий</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-danger\">Элемент группы списка опасности</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-warning\">Элемент группы списка предупреждений</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-info\">Элемент группы списка информации</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-light\">Элемент группы с легким списком</a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action list-group-item-dark\">Элемент группы темных списков</a>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-group\">\n  <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n    Cras justo odio\n    <span class=\"badge badge-primary badge-pill\">14</span>\n  </li>\n  <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n    Dapibus ac facilisis in\n    <span class=\"badge badge-primary badge-pill\">2</span>\n  </li>\n  <li class=\"list-group-item d-flex justify-content-between align-items-center\">\n    Morbi leo risus\n    <span class=\"badge badge-primary badge-pill\">1</span>\n  </li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"list-group\">\n  <a href=\"#\" class=\"list-group-item list-group-item-action active\">\n    <div class=\"d-flex w-100 justify-content-between\">\n      <h5 class=\"mb-1\">List group item heading</h5>\n      <small>3 days ago</small>\n    </div>\n    <p class=\"mb-1\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n    <small>Donec id elit non mi porta.</small>\n  </a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">\n    <div class=\"d-flex w-100 justify-content-between\">\n      <h5 class=\"mb-1\">List group item heading</h5>\n      <small class=\"text-muted\">3 days ago</small>\n    </div>\n    <p class=\"mb-1\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n    <small class=\"text-muted\">Donec id elit non mi porta.</small>\n  </a>\n  <a href=\"#\" class=\"list-group-item list-group-item-action\">\n    <div class=\"d-flex w-100 justify-content-between\">\n      <h5 class=\"mb-1\">List group item heading</h5>\n      <small class=\"text-muted\">3 days ago</small>\n    </div>\n    <p class=\"mb-1\">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>\n    <small class=\"text-muted\">Donec id elit non mi porta.</small>\n  </a>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-12\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"row\">\n  <div class=\"col-4\">\n    <div class=\"list-group\" id=\"list-tab\" role=\"tablist\">\n      <a class=\"list-group-item list-group-item-action active\" id=\"list-home-list\" data-toggle=\"list\" href=\"#list-home\" role=\"tab\" aria-controls=\"home\">Home</a>\n      <a class=\"list-group-item list-group-item-action\" id=\"list-profile-list\" data-toggle=\"list\" href=\"#list-profile\" role=\"tab\" aria-controls=\"profile\">Profile</a>\n      <a class=\"list-group-item list-group-item-action\" id=\"list-messages-list\" data-toggle=\"list\" href=\"#list-messages\" role=\"tab\" aria-controls=\"messages\">Messages</a>\n      <a class=\"list-group-item list-group-item-action\" id=\"list-settings-list\" data-toggle=\"list\" href=\"#list-settings\" role=\"tab\" aria-controls=\"settings\">Settings</a>\n    </div>\n  </div>\n  <div class=\"col-8\">\n    <div class=\"tab-content\" id=\"nav-tabContent\">\n      <div class=\"tab-pane fade show active\" id=\"list-home\" role=\"tabpanel\" aria-labelledby=\"list-home-list\">Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.</div>\n      <div class=\"tab-pane fade\" id=\"list-profile\" role=\"tabpanel\" aria-labelledby=\"list-profile-list\">Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.</div>\n      <div class=\"tab-pane fade\" id=\"list-messages\" role=\"tabpanel\" aria-labelledby=\"list-messages-list\">Ut ut do pariatur aliquip aliqua aliquip exercitation do nostrud commodo reprehenderit aute ipsum voluptate. Irure Lorem et laboris nostrud amet cupidatat cupidatat anim do ut velit mollit consequat enim tempor. Consectetur est minim nostrud nostrud consectetur irure labore voluptate irure. Ipsum id Lorem sit sint voluptate est pariatur eu ad cupidatat et deserunt culpa sit eiusmod deserunt. Consectetur et fugiat anim do eiusmod aliquip nulla laborum elit adipisicing pariatur cillum.</div>\n      <div class=\"tab-pane fade\" id=\"list-settings\" role=\"tabpanel\" aria-labelledby=\"list-settings-list\">Irure enim occaecat labore sit qui aliquip reprehenderit amet velit. Deserunt ullamco ex elit nostrud ut dolore nisi officia magna sit occaecat laboris sunt dolor. Nisi eu minim cillum occaecat aute est cupidatat aliqua labore aute occaecat ea aliquip sunt amet. Aute mollit dolor ut exercitation irure commodo non amet consectetur quis amet culpa. Quis ullamco nisi amet qui aute irure eu. Magna labore dolor quis ex labore id nostrud deserunt dolor eiusmod eu pariatur culpa mollit in irure.</div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            \n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-12\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <!-- List group -->\n<div class=\"list-group\" id=\"myList\" role=\"tablist\">\n  <a class=\"list-group-item list-group-item-action active\" data-toggle=\"list\" href=\"#home\" role=\"tab\">Home</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#profile\" role=\"tab\">Profile</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#messages\" role=\"tab\">Messages</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#settings\" role=\"tab\">Settings</a>\n</div>\n\n<!-- Tab panes -->\n<div class=\"tab-content\">\n  <div class=\"tab-pane active\" id=\"home\" role=\"tabpanel\">Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.</div>\n  <div class=\"tab-pane\" id=\"profile\" role=\"tabpanel\">Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.</div>\n  <div class=\"tab-pane\" id=\"messages\" role=\"tabpanel\">Ut ut do pariatur aliquip aliqua aliquip exercitation do nostrud commodo reprehenderit aute ipsum voluptate. Irure Lorem et laboris nostrud amet cupidatat cupidatat anim do ut velit mollit consequat enim tempor. Consectetur est minim nostrud nostrud consectetur irure labore voluptate irure. Ipsum id Lorem sit sint voluptate est pariatur eu ad cupidatat et deserunt culpa sit eiusmod deserunt. Consectetur et fugiat anim do eiusmod aliquip nulla laborum elit adipisicing pariatur cillum.</div>\n  <div class=\"tab-pane\" id=\"settings\" role=\"tabpanel\">Irure enim occaecat labore sit qui aliquip reprehenderit amet velit. Deserunt ullamco ex elit nostrud ut dolore nisi officia magna sit occaecat laboris sunt dolor. Nisi eu minim cillum occaecat aute est cupidatat aliqua labore aute occaecat ea aliquip sunt amet. Aute mollit dolor ut exercitation irure commodo non amet consectetur quis amet culpa. Quis ullamco nisi amet qui aute irure eu. Magna labore dolor quis ex labore id nostrud deserunt dolor eiusmod eu pariatur culpa mollit in irure.</div>\n</div>\n                    </div>\n                </div>\n            </div>\n            \n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      $(\'#myList a[href=\"#profile\"]\').tab(\'show\') // Select tab by name\n$(\'#myList a:first-child\').tab(\'show\') // Select first tab\n$(\'#myList a:last-child\').tab(\'show\') // Select last tab\n$(\'#myList a:nth-child(3)\').tab(\'show\') // Select third tab\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n               <!-- List group -->\n<div class=\"list-group\" id=\"myList\" role=\"tablist\">\n  <a class=\"list-group-item list-group-item-action active\" data-toggle=\"list\" href=\"#home1\" role=\"tab\">Home</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#profile1\" role=\"tab\">Profile</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#messages1\" role=\"tab\">Messages</a>\n  <a class=\"list-group-item list-group-item-action\" data-toggle=\"list\" href=\"#settings1\" role=\"tab\">Settings</a>\n</div>\n\n<!-- Tab panes -->\n<div class=\"tab-content\">\n  <div class=\"tab-pane fade active\" id=\"home1\" role=\"tabpanel\">Velit aute mollit ipsum ad dolor consectetur nulla officia culpa adipisicing exercitation fugiat tempor. Voluptate deserunt sit sunt nisi aliqua fugiat proident ea ut. Mollit voluptate reprehenderit occaecat nisi ad non minim tempor sunt voluptate consectetur exercitation id ut nulla. Ea et fugiat aliquip nostrud sunt incididunt consectetur culpa aliquip eiusmod dolor. Anim ad Lorem aliqua in cupidatat nisi enim eu nostrud do aliquip veniam minim.</div>\n  <div class=\"tab-pane fade\" id=\"profile1\" role=\"tabpanel\">Cupidatat quis ad sint excepteur laborum in esse qui. Et excepteur consectetur ex nisi eu do cillum ad laborum. Mollit et eu officia dolore sunt Lorem culpa qui commodo velit ex amet id ex. Officia anim incididunt laboris deserunt anim aute dolor incididunt veniam aute dolore do exercitation. Dolor nisi culpa ex ad irure in elit eu dolore. Ad laboris ipsum reprehenderit irure non commodo enim culpa commodo veniam incididunt veniam ad.</div>\n  <div class=\"tab-pane fade\" id=\"messages1\" role=\"tabpanel\">Ut ut do pariatur aliquip aliqua aliquip exercitation do nostrud commodo reprehenderit aute ipsum voluptate. Irure Lorem et laboris nostrud amet cupidatat cupidatat anim do ut velit mollit consequat enim tempor. Consectetur est minim nostrud nostrud consectetur irure labore voluptate irure. Ipsum id Lorem sit sint voluptate est pariatur eu ad cupidatat et deserunt culpa sit eiusmod deserunt. Consectetur et fugiat anim do eiusmod aliquip nulla laborum elit adipisicing pariatur cillum.</div>\n  <div class=\"tab-pane fade\" id=\"settings1\" role=\"tabpanel\">Irure enim occaecat labore sit qui aliquip reprehenderit amet velit. Deserunt ullamco ex elit nostrud ut dolore nisi officia magna sit occaecat laboris sunt dolor. Nisi eu minim cillum occaecat aute est cupidatat aliqua labore aute occaecat ea aliquip sunt amet. Aute mollit dolor ut exercitation irure commodo non amet consectetur quis amet culpa. Quis ullamco nisi amet qui aute irure eu. Magna labore dolor quis ex labore id nostrud deserunt dolor eiusmod eu pariatur culpa mollit in irure.</div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\" w-50 mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Media heading</h5>\n    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-25 mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Media heading</h5>\n    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n\n    <div class=\"media mt-3\">\n      <a class=\"mr-3\" href=\"#\">\n        <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n      </a>\n      <div class=\"media-body\">\n        <h5 class=\"mt-0\">Media heading</h5>\n        Cras sit amet nibh libero, in gravida nulla. \n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 align-self-start mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Top-aligned media</h5>\n    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>\n    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 align-self-center mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Center-aligned media</h5>\n    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>\n    <p class=\"mb-0\">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <div class=\"media\">\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 align-self-end mr-3\" alt=\"...\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0\">Bottom-aligned media</h5>\n    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>\n    <p class=\"mb-0\">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <div class=\"media\">\n  <div class=\"media-body\">\n    <h5 class=\"mt-0 mb-1\">Media object</h5>\n    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n  </div>\n  <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 ml-3\" alt=\"...\">\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <ul class=\"list-unstyled\">\n  <li class=\"media\">\n    <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n    <div class=\"media-body\">\n      <h5 class=\"mt-0 mb-1\">List-based media object</h5>\n      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    </div>\n  </li>\n  <li class=\"media my-4\">\n    <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n    <div class=\"media-body\">\n      <h5 class=\"mt-0 mb-1\">List-based media object</h5>\n      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    </div>\n  </li>\n  <li class=\"media\">\n    <img src=\"https://im0-tub-ru.yandex.net/i?id=59a40c323e2a6cdf84f42aa9037098ee-l&n=13\" class=\"w-50 mr-3\" alt=\"...\">\n    <div class=\"media-body\">\n      <h5 class=\"mt-0 mb-1\">List-based media object</h5>\n      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\n    </div>\n  </li>\n</ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">\n  Запустить модальное окно\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        ...\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalLong\">\n  Запустить модальное окно\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModalLong\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLongTitle\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>\n        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>\n        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>\n        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>\n        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>\n        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>\n        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>\n        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>\n        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>\n        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>\n        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>\n        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>\n        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalCenter\">\n  Запустить модальное окно\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModalCenter\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n               <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalCenter1\">\n  Запустить модальное окно\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModalCenter1\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n  <h5>Popover in a modal</h5>\n  <p>This <a href=\"#\" role=\"button\" class=\"btn btn-secondary popover-test\" title=\"Popover title\" data-content=\"Popover body content is set in this attribute.\">button</a> triggers a popover on click.</p>\n  <hr>\n  <h5>Tooltips in a modal</h5>\n  <p><a href=\"#\" class=\"tooltip-test\" title=\"Tooltip\">This link</a> and <a href=\"#\" class=\"tooltip-test\" title=\"Tooltip\">that link</a> have tooltips on hover.</p>\n</div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                                     <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalCenter2\">\n  Запустить модальное окно\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModalCenter2\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n     <div class=\"modal-body\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"col-md-4\">.col-md-4</div>\n      <div class=\"col-md-4 ml-auto\">.col-md-4 .ml-auto</div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-3 ml-auto\">.col-md-3 .ml-auto</div>\n      <div class=\"col-md-2 ml-auto\">.col-md-2 .ml-auto</div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-6 ml-auto\">.col-md-6 .ml-auto</div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-sm-9\">\n        Level 1: .col-sm-9\n        <div class=\"row\">\n          <div class=\"col-8 col-sm-6\">\n            Level 2: .col-8 .col-sm-6\n          </div>\n          <div class=\"col-4 col-sm-6\">\n            Level 2: .col-4 .col-sm-6\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		  \n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal3\" data-whatever=\"@mdo\">Open modal for @mdo</button>\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal3\" data-whatever=\"@fat\">Open modal for @fat</button>\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal3\" data-whatever=\"@getbootstrap\">Open modal for @getbootstrap</button>\n\n<div class=\"modal fade\" id=\"exampleModal3\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">New message</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <form>\n          <div class=\"form-group\">\n            <label for=\"recipient-name\" class=\"col-form-label\">Recipient:</label>\n            <input type=\"text\" class=\"form-control\" id=\"recipient-name\">\n          </div>\n          <div class=\"form-group\">\n            <label for=\"message-text\" class=\"col-form-label\">Message:</label>\n            <textarea class=\"form-control\" id=\"message-text\"></textarea>\n          </div>\n        </form>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Send message</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n                    \n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                       <!-- Button trigger modal -->\n<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModalCenter3\">\n  Запустить модальное окно\n</button>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"exampleModalCenter3\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalCenterTitle\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-xl modal-dialog-centered\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLongTitle\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n                    </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\">\n        \n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n                      \n                    </div>\n                </div>\n            </div>\n            <div class=\"col-sm-6\">\n                <div class=\"bs-docs-section clearfix\">\n		 		    <div class=\"bs-component\">\n              \n                    </div>\n                </div>\n            </div>\n        </div>\n        \n        \n            \n    </div>\n</section>', 0, 'a:0:{}', 0, '');
 
 -- --------------------------------------------------------
 
@@ -5686,19 +5800,19 @@ INSERT INTO `new_site_htmlsnippets` (`id`, `source`, `property_preprocess`, `nam
 
 CREATE TABLE `new_site_plugins` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
   `plugincode` mediumtext NOT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
-  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `moduleguid` varchar(32) NOT NULL DEFAULT '',
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5729,10 +5843,10 @@ INSERT INTO `new_site_plugins` (`id`, `source`, `property_preprocess`, `name`, `
 --
 
 CREATE TABLE `new_site_plugin_events` (
-  `pluginid` int(10) NOT NULL DEFAULT '0',
+  `pluginid` int(10) NOT NULL DEFAULT 0,
   `event` varchar(255) NOT NULL DEFAULT '',
-  `priority` int(10) NOT NULL DEFAULT '0',
-  `propertyset` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `priority` int(10) NOT NULL DEFAULT 0,
+  `propertyset` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5800,18 +5914,18 @@ INSERT INTO `new_site_plugin_events` (`pluginid`, `event`, `priority`, `property
 
 CREATE TABLE `new_site_snippets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `name` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `cache_type` tinyint(1) NOT NULL DEFAULT '0',
-  `snippet` mediumtext,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `cache_type` tinyint(1) NOT NULL DEFAULT 0,
+  `snippet` mediumtext DEFAULT NULL,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
   `moduleguid` varchar(32) NOT NULL DEFAULT '',
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5919,18 +6033,18 @@ INSERT INTO `new_site_snippets` (`id`, `source`, `property_preprocess`, `name`, 
 
 CREATE TABLE `new_site_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `templatename` varchar(50) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT 'Template',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
   `icon` varchar(255) NOT NULL DEFAULT '',
-  `template_type` int(11) NOT NULL DEFAULT '0',
+  `template_type` int(11) NOT NULL DEFAULT 0,
   `content` mediumtext NOT NULL,
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `properties` text,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `properties` text DEFAULT NULL,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -5958,23 +6072,23 @@ INSERT INTO `new_site_templates` (`id`, `source`, `property_preprocess`, `templa
 
 CREATE TABLE `new_site_tmplvars` (
   `id` int(10) UNSIGNED NOT NULL,
-  `source` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `source` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `property_preprocess` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `type` varchar(20) NOT NULL DEFAULT '',
   `name` varchar(50) NOT NULL DEFAULT '',
   `caption` varchar(80) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
-  `editor_type` int(11) NOT NULL DEFAULT '0',
-  `category` int(11) NOT NULL DEFAULT '0',
-  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `elements` text,
-  `rank` int(11) NOT NULL DEFAULT '0',
+  `editor_type` int(11) NOT NULL DEFAULT 0,
+  `category` int(11) NOT NULL DEFAULT 0,
+  `locked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `elements` text DEFAULT NULL,
+  `rank` int(11) NOT NULL DEFAULT 0,
   `display` varchar(20) NOT NULL DEFAULT '',
-  `default_text` mediumtext,
-  `properties` text,
-  `input_properties` text,
-  `output_properties` text,
-  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `default_text` mediumtext DEFAULT NULL,
+  `properties` text DEFAULT NULL,
+  `input_properties` text DEFAULT NULL,
+  `output_properties` text DEFAULT NULL,
+  `static` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `static_file` varchar(255) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6002,8 +6116,8 @@ INSERT INTO `new_site_tmplvars` (`id`, `source`, `property_preprocess`, `type`, 
 
 CREATE TABLE `new_site_tmplvar_access` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tmplvarid` int(10) NOT NULL DEFAULT '0',
-  `documentgroup` int(10) NOT NULL DEFAULT '0'
+  `tmplvarid` int(10) NOT NULL DEFAULT 0,
+  `documentgroup` int(10) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6014,8 +6128,8 @@ CREATE TABLE `new_site_tmplvar_access` (
 
 CREATE TABLE `new_site_tmplvar_contentvalues` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tmplvarid` int(10) NOT NULL DEFAULT '0',
-  `contentid` int(10) NOT NULL DEFAULT '0',
+  `tmplvarid` int(10) NOT NULL DEFAULT 0,
+  `contentid` int(10) NOT NULL DEFAULT 0,
   `value` mediumtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6034,9 +6148,9 @@ INSERT INTO `new_site_tmplvar_contentvalues` (`id`, `tmplvarid`, `contentid`, `v
 --
 
 CREATE TABLE `new_site_tmplvar_templates` (
-  `tmplvarid` int(10) NOT NULL DEFAULT '0',
-  `templateid` int(11) NOT NULL DEFAULT '0',
-  `rank` int(11) NOT NULL DEFAULT '0'
+  `tmplvarid` int(10) NOT NULL DEFAULT 0,
+  `templateid` int(11) NOT NULL DEFAULT 0,
+  `rank` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6055,7 +6169,7 @@ INSERT INTO `new_site_tmplvar_templates` (`tmplvarid`, `templateid`, `rank`) VAL
 
 CREATE TABLE `new_system_eventnames` (
   `name` varchar(50) NOT NULL,
-  `service` tinyint(4) UNSIGNED NOT NULL DEFAULT '0',
+  `service` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
   `groupname` varchar(20) NOT NULL DEFAULT ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6268,7 +6382,7 @@ CREATE TABLE `new_system_settings` (
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6708,19 +6822,19 @@ CREATE TABLE `new_tagger_groups` (
   `name` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `field_type` varchar(100) NOT NULL,
-  `allow_new` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `remove_unused` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `allow_blank` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `allow_type` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `show_autotag` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `hide_input` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `tag_limit` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `allow_new` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `remove_unused` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allow_blank` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `allow_type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `show_autotag` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `hide_input` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `tag_limit` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `show_for_templates` text NOT NULL,
   `place` varchar(100) NOT NULL DEFAULT 'in-tab',
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `position` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `description` text NOT NULL,
-  `in_tvs_position` int(10) UNSIGNED NOT NULL DEFAULT '9999',
-  `as_radio` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
+  `in_tvs_position` int(10) UNSIGNED NOT NULL DEFAULT 9999,
+  `as_radio` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
   `sort_field` varchar(255) NOT NULL DEFAULT 'alias',
   `sort_dir` varchar(255) NOT NULL DEFAULT 'asc',
   `show_for_contexts` text NOT NULL
@@ -6737,7 +6851,7 @@ CREATE TABLE `new_tagger_tags` (
   `tag` varchar(100) NOT NULL,
   `alias` varchar(100) NOT NULL,
   `group` int(10) UNSIGNED NOT NULL,
-  `rank` int(10) UNSIGNED NOT NULL DEFAULT '0'
+  `rank` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6761,8 +6875,8 @@ CREATE TABLE `new_thumb_images` (
   `id` int(10) UNSIGNED NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `cache_image` varchar(255) DEFAULT NULL,
-  `config` mediumtext,
-  `isend` tinyint(1) UNSIGNED NOT NULL DEFAULT '0'
+  `config` mediumtext DEFAULT NULL,
+  `isend` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6774,22 +6888,22 @@ CREATE TABLE `new_thumb_images` (
 CREATE TABLE `new_transport_packages` (
   `signature` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `installed` datetime DEFAULT NULL,
-  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
-  `workspace` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `provider` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `source` tinytext,
-  `manifest` text,
-  `attributes` mediumtext,
+  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `workspace` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `provider` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `disabled` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `source` tinytext DEFAULT NULL,
+  `manifest` text DEFAULT NULL,
+  `attributes` mediumtext DEFAULT NULL,
   `package_name` varchar(255) NOT NULL,
-  `metadata` text,
-  `version_major` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  `version_minor` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
-  `version_patch` smallint(5) UNSIGNED NOT NULL DEFAULT '0',
+  `metadata` text DEFAULT NULL,
+  `version_major` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `version_minor` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
+  `version_patch` smallint(5) UNSIGNED NOT NULL DEFAULT 0,
   `release` varchar(100) NOT NULL DEFAULT '',
-  `release_index` smallint(5) UNSIGNED NOT NULL DEFAULT '0'
+  `release_index` smallint(5) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6856,14 +6970,14 @@ INSERT INTO `new_transport_packages` (`signature`, `created`, `updated`, `instal
 CREATE TABLE `new_transport_providers` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext,
-  `service_url` tinytext,
+  `description` mediumtext DEFAULT NULL,
+  `service_url` tinytext DEFAULT NULL,
   `username` varchar(255) NOT NULL DEFAULT '',
   `api_key` varchar(255) NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
-  `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  `priority` tinyint(4) NOT NULL DEFAULT '10',
+  `updated` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `active` tinyint(1) NOT NULL DEFAULT 1,
+  `priority` tinyint(4) NOT NULL DEFAULT 10,
   `properties` mediumtext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6887,15 +7001,15 @@ CREATE TABLE `new_users` (
   `password` varchar(255) NOT NULL DEFAULT '',
   `cachepwd` varchar(255) NOT NULL DEFAULT '',
   `class_key` varchar(100) NOT NULL DEFAULT 'modUser',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   `remote_key` varchar(255) DEFAULT NULL,
-  `remote_data` text,
+  `remote_data` text DEFAULT NULL,
   `hash_class` varchar(100) NOT NULL DEFAULT 'hashing.modNative',
   `salt` varchar(100) NOT NULL DEFAULT '',
-  `primary_group` int(10) UNSIGNED NOT NULL DEFAULT '0',
-  `session_stale` text,
-  `sudo` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `createdon` int(20) NOT NULL DEFAULT '0'
+  `primary_group` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `session_stale` text DEFAULT NULL,
+  `sudo` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `createdon` int(20) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6919,16 +7033,16 @@ CREATE TABLE `new_user_attributes` (
   `email` varchar(100) NOT NULL DEFAULT '',
   `phone` varchar(100) NOT NULL DEFAULT '',
   `mobilephone` varchar(100) NOT NULL DEFAULT '',
-  `blocked` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `blockeduntil` int(11) NOT NULL DEFAULT '0',
-  `blockedafter` int(11) NOT NULL DEFAULT '0',
-  `logincount` int(11) NOT NULL DEFAULT '0',
-  `lastlogin` int(11) NOT NULL DEFAULT '0',
-  `thislogin` int(11) NOT NULL DEFAULT '0',
-  `failedlogincount` int(10) NOT NULL DEFAULT '0',
+  `blocked` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `blockeduntil` int(11) NOT NULL DEFAULT 0,
+  `blockedafter` int(11) NOT NULL DEFAULT 0,
+  `logincount` int(11) NOT NULL DEFAULT 0,
+  `lastlogin` int(11) NOT NULL DEFAULT 0,
+  `thislogin` int(11) NOT NULL DEFAULT 0,
+  `failedlogincount` int(10) NOT NULL DEFAULT 0,
   `sessionid` varchar(100) NOT NULL DEFAULT '',
-  `dob` int(10) NOT NULL DEFAULT '0',
-  `gender` int(1) NOT NULL DEFAULT '0',
+  `dob` int(10) NOT NULL DEFAULT 0,
+  `gender` int(1) NOT NULL DEFAULT 0,
   `address` text NOT NULL,
   `country` varchar(255) NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
@@ -6938,7 +7052,7 @@ CREATE TABLE `new_user_attributes` (
   `photo` varchar(255) NOT NULL DEFAULT '',
   `comment` text NOT NULL,
   `website` varchar(255) NOT NULL DEFAULT '',
-  `extended` text
+  `extended` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6946,7 +7060,7 @@ CREATE TABLE `new_user_attributes` (
 --
 
 INSERT INTO `new_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `phone`, `mobilephone`, `blocked`, `blockeduntil`, `blockedafter`, `logincount`, `lastlogin`, `thislogin`, `failedlogincount`, `sessionid`, `dob`, `gender`, `address`, `country`, `city`, `state`, `zip`, `fax`, `photo`, `comment`, `website`, `extended`) VALUES
-(1, 1, 'Администратор по умолчанию', 'stan19781@gmail.com', '', '', 0, 0, 0, 218, 1567241540, 1567402375, 0, 'iktagkk9afe0rse7g8r4edldp3', 0, 0, '', '', '', '', '', '', '', '', '', NULL),
+(1, 1, 'Администратор по умолчанию', 'stan19781@gmail.com', '', '', 0, 0, 0, 219, 1567402375, 1567843770, 0, '08bmpf78qi9o3qj753jj3hma57', 0, 0, '', '', '', '', '', '', '', '', '', NULL),
 (3, 3, '', 'platonov_stan@mail.ru', '', '', 0, 0, 0, 7, 1491287477, 1491302110, 0, 'pinq7vkq5q6r7f8adtj2m64550', 0, 0, '', '', '', '', '', '', '', '', '', '[]');
 
 -- --------------------------------------------------------
@@ -6958,8 +7072,8 @@ INSERT INTO `new_user_attributes` (`id`, `internalKey`, `fullname`, `email`, `ph
 CREATE TABLE `new_user_group_roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` mediumtext,
-  `authority` int(10) UNSIGNED NOT NULL DEFAULT '9999'
+  `description` mediumtext DEFAULT NULL,
+  `authority` int(10) UNSIGNED NOT NULL DEFAULT 9999
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -6977,13 +7091,13 @@ INSERT INTO `new_user_group_roles` (`id`, `name`, `description`, `authority`) VA
 --
 
 CREATE TABLE `new_user_group_settings` (
-  `group` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `group` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `key` varchar(50) NOT NULL,
-  `value` text,
+  `value` text DEFAULT NULL,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -6997,11 +7111,11 @@ CREATE TABLE `new_user_messages` (
   `type` varchar(15) NOT NULL DEFAULT '',
   `subject` varchar(255) NOT NULL DEFAULT '',
   `message` text NOT NULL,
-  `sender` int(10) NOT NULL DEFAULT '0',
-  `recipient` int(10) NOT NULL DEFAULT '0',
-  `private` tinyint(4) NOT NULL DEFAULT '0',
+  `sender` int(10) NOT NULL DEFAULT 0,
+  `recipient` int(10) NOT NULL DEFAULT 0,
+  `private` tinyint(4) NOT NULL DEFAULT 0,
   `date_sent` datetime DEFAULT NULL,
-  `read` tinyint(1) NOT NULL DEFAULT '0'
+  `read` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -7011,13 +7125,13 @@ CREATE TABLE `new_user_messages` (
 --
 
 CREATE TABLE `new_user_settings` (
-  `user` int(11) NOT NULL DEFAULT '0',
+  `user` int(11) NOT NULL DEFAULT 0,
   `key` varchar(50) NOT NULL DEFAULT '',
-  `value` text,
+  `value` text DEFAULT NULL,
   `xtype` varchar(75) NOT NULL DEFAULT 'textfield',
   `namespace` varchar(40) NOT NULL DEFAULT 'core',
   `area` varchar(255) NOT NULL DEFAULT '',
-  `editedon` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `editedon` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -7031,8 +7145,8 @@ CREATE TABLE `new_workspaces` (
   `name` varchar(255) NOT NULL DEFAULT '',
   `path` varchar(255) NOT NULL DEFAULT '',
   `created` datetime NOT NULL,
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
-  `attributes` mediumtext
+  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `attributes` mediumtext DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -8123,7 +8237,7 @@ ALTER TABLE `new_lexicon_entries`
 -- AUTO_INCREMENT для таблицы `new_manager_log`
 --
 ALTER TABLE `new_manager_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3509;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3625;
 
 --
 -- AUTO_INCREMENT для таблицы `new_media_sources`
